@@ -1,0 +1,54 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="margin1dp">1dp</dimen>
+    <dimen name="margin2dp">2dp</dimen>
+    <dimen name="margin3dp">3dp</dimen>
+    <dimen name="margin4dp">4dp</dimen>
+    <dimen name="margin5dp">5dp</dimen>
+    <dimen name="margin6dp">6dp</dimen>
+    <dimen name="margin7dp">7dp</dimen>
+    <dimen name="margin8dp">9dp</dimen>
+    <dimen name="margin10dp">10dp</dimen>
+    <dimen name="margin13dp">13dp</dimen>
+    <dimen name="margin14dp">14dp</dimen>
+    <dimen name="margin15dp">15dp</dimen>
+    <dimen name="margin20dp">20dp</dimen>
+    <dimen name="margin25dp">25dp</dimen>
+    <dimen name="margin30dp">30dp</dimen>
+    <dimen name="margin35dp">35dp</dimen>
+    <dimen name="margin40dp">40dp</dimen>
+    <dimen name="margin45dp">45dp</dimen>
+    <dimen name="margin50dp">50dp</dimen>
+    <dimen name="margin60dp">60dp</dimen>
+    <dimen name="margin70dp">70dp</dimen>
+
+    <dimen name="text6sp">6sp</dimen>
+    <dimen name="text7sp">7sp</dimen>
+    <dimen name="text8sp">8sp</dimen>
+    <dimen name="text9sp">9sp</dimen>
+    <dimen name="text10sp">10sp</dimen>
+    <dimen name="text11sp">11sp</dimen>
+    <dimen name="text12sp">12sp</dimen>
+    <dimen name="text13sp">13sp</dimen>
+    <dimen name="text14sp">14sp</dimen>
+    <dimen name="text15sp">15sp</dimen>
+    <dimen name="text16sp">16sp</dimen>
+    <dimen name="text17sp">17sp</dimen>
+    <dimen name="text18sp">18sp</dimen>
+    <dimen name="text20sp">20sp</dimen>
+    <dimen name="text22sp">22sp</dimen>
+    <dimen name="text23sp">23sp</dimen>
+    <dimen name="text24sp">24sp</dimen>
+    <dimen name="text28sp">28sp</dimen>
+    <dimen name="text30sp">30sp</dimen>
+    <dimen name="text32sp">32sp</dimen>
+    <dimen name="text35sp">35sp</dimen>
+    <dimen name="text40sp">40sp</dimen>
+</resources>

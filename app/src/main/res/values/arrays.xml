@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ld_activityScreenTitles">
+        <item>Home</item>
+        <item>Friend List</item>
+        <item>Family List</item>
+        <item>Export</item>
+        <item>Create Child Profile</item>
+        <item>Change Password</item>
+        <item>Contact Us</item>
+        <item>Log Out</item>
+    </string-array>
+
+    <array name="ld_activityScreenIcons">
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_menu_manage</item>
+    </array>
+
+</resources>

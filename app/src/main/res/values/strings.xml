@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">HomeHelp</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">1513162652315211</string>
+    <string name="fb_login_protocol_scheme">fb1513162652315211</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="sign_in">Sign In</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_with_facebook">Sign Up with Facebook</string>
+    <string name="have_an_account_sign_in">Have an account? Sign In</string>
+    <string name="please_enter_valid_email">Please enter a valid email address</string>
+    <string name="please_enter_password">Please enter a valid password</string>
+    <string name="please_enter_full_name">Please enter full name</string>
+    <string name="please_wait">Please wait</string>
+    <string name="fetching_facebook_information">Fetching facebook information</string>
+    <string name="name">Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="address">Address</string>
+    <string name="life_lesson">Life Lesson</string>
+    <string name="about">About</string>
+    <string name="gallery">Gallery</string>
+    <string name="nick_name">Nick Name</string>
+    <string name="save">Save</string>
+</resources>

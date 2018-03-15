@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutProfilePic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="@dimen/margin20dp"
+        android:layout_marginTop="@dimen/margin20dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/bordered_circle" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewProfilePic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin20dp"
+        android:layout_marginTop="@dimen/margin10dp"
+        android:background="@null"
+        android:text="Emilly Smith"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text15sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/margin40dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="240dp"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
