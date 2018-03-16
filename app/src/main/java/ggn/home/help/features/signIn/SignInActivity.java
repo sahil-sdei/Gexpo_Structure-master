@@ -35,6 +35,7 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
 
     @Override
     protected int setLayoutId() {
+//        getWindow().setBackgroundDrawableResource(R.drawable.splash_background);
         return R.layout.activity_sign_in;
     }
 

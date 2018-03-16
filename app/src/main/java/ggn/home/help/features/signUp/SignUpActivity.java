@@ -35,6 +35,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
 
     @Override
     protected int setLayoutId() {
+//        getWindow().setBackgroundDrawableResource(R.drawable.splash_background);
         return R.layout.activity_sign_up;
     }
 
@@ -107,7 +108,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void signIn(View view){
+    public void signIn(View view) {
         SignInActivity.start(getActivityG());
         finish();
     }

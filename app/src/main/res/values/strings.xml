@@ -48,5 +48,7 @@
     <string name="please_enter_confirm_password">Please enter confirm password</string>
     <string name="passwords_does_not_match">Passwords does not match</string>
     <string name="change_password">Change Password</string>
+    <string name="please_enter_address">Please enter address</string>
+    <string name="please_enter_life_lesson">Please enter life lesson</string>
 
 </resources>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <data></data>
+    <data>
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.editProfile.EditProfileBinder" />
+
+    </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -60,6 +66,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/name"
                             android:padding="@dimen/margin15dp"
+                            android:text="@={binder.name}"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -75,7 +82,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/date_of_birth"
-
                             android:padding="@dimen/margin15dp"
                             android:textColor="@color/black" />
 
@@ -112,6 +118,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/address"
                             android:padding="@dimen/margin15dp"
+                            android:text="@={binder.address}"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -128,6 +135,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/life_lesson"
                             android:padding="@dimen/margin15dp"
+                            android:text="@={binder.lifeLesson}"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -142,6 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin10dp"
                         android:background="@drawable/round_bordered_button_blue"
+                        android:onClick="@{binder::updateClicked}"
                         android:text="@string/update"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
