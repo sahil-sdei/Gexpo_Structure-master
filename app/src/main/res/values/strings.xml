@@ -43,4 +43,9 @@
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="manage_accounts">Manage Accounts</string>
+    <string name="please_enter_old_password">Please enter old password</string>
+    <string name="please_enter_new_password">Please enter new password</string>
+    <string name="please_enter_confirm_password">Please enter confirm password</string>
+    <string name="passwords_does_not_match">Passwords does not match</string>
+
 </resources>

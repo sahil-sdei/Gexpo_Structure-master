@@ -25,6 +25,7 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.accounts.ManageAccountsActivity;
+import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFragment;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
@@ -121,10 +122,12 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         }
         slidingRootNav.closeMenu();
 
-
         switch (position) {
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
+                break;
+            case POS_CREATE_CHILD_PROFILE:
+                showFragment(CreateChildProfileFragment.newInstance());
                 break;
             default:
                 Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
