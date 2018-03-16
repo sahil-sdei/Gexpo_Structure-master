@@ -43,8 +43,8 @@ public class ChangePasswordPresenter extends BasePresenter<ChangePasswordView> i
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_new_password));
         } else if (confirmPassword.get().isEmpty()) {
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_confirm_password));
-        } else if (newPassword.get().equalsIgnoreCase(confirmPassword.get())) {
-            getView().displayError(getView().getActivityG().getString(R.string.please_enter_confirm_password));
+        } else if (!newPassword.get().equalsIgnoreCase(confirmPassword.get())) {
+            getView().displayError(getView().getActivityG().getString(R.string.passwords_does_not_match));
         } else {
             getView().hideKeyboard(view);
 //                getView().showLoading(getView().getActivityG().getString(R.string.validating_user), getView().getActivityG().getString(R.string.please_wait));

@@ -55,6 +55,7 @@
 
                         <EditText
                             android:id="@+id/editTextName"
+                            style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/name"
@@ -63,10 +64,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.v4.widget.Space
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/margin10dp" />
-
                     <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayout"
                         android:layout_width="match_parent"
@@ -74,17 +71,16 @@
 
                         <EditText
                             android:id="@+id/editTextDateOfBirth"
+                            style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/date_of_birth"
+
                             android:padding="@dimen/margin15dp"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.v4.widget.Space
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/margin10dp" />
 
                     <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayout"
@@ -93,6 +89,7 @@
 
                         <EditText
                             android:id="@+id/editTextGender"
+                            style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/gender"
@@ -101,9 +98,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.v4.widget.Space
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/margin10dp" />
 
                     <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayout"
@@ -112,6 +106,8 @@
 
                         <EditText
                             android:id="@+id/editTextAddress"
+
+                            style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/address"
@@ -120,10 +116,6 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.v4.widget.Space
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/margin10dp" />
-
                     <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayout"
                         android:layout_width="match_parent"
@@ -131,6 +123,7 @@
 
                         <EditText
                             android:id="@+id/editTextLifeLesson"
+                            style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/life_lesson"

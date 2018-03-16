@@ -25,12 +25,14 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.accounts.ManageAccountsActivity;
+import ggn.home.help.features.changePassword.ChangePasswordActivity;
 import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFragment;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
+import ggn.home.help.features.profile.ProfileActivity;
 
 public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
@@ -110,6 +112,15 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             }
         });
 
+        findViewById(R.id.relativeLayoutProfilePic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingRootNav.closeMenu();
+                Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         adapter.setSelected(POS_DASHBOARD);
 
         setUpAccounts();
@@ -128,6 +139,10 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
+                break;
+            case POS_CHANGE_PASSWORD:
+                Intent intent = new Intent(DashboardActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
                 break;
             default:
                 Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);

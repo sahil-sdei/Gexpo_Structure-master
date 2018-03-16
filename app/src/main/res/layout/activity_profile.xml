@@ -19,12 +19,13 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:background="@color/greyLight"
                 android:id="@+id/imageViewBackground"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:scaleType="centerCrop" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewProfilePic"
                 android:layout_width="70dp"
                 android:layout_height="70dp"

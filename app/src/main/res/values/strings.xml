@@ -47,5 +47,6 @@
     <string name="please_enter_new_password">Please enter new password</string>
     <string name="please_enter_confirm_password">Please enter confirm password</string>
     <string name="passwords_does_not_match">Passwords does not match</string>
+    <string name="change_password">Change Password</string>
 
 </resources>

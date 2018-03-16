@@ -34,6 +34,7 @@ public class ChangePasswordActivity extends BaseActivity<ActivityChangePasswordB
 
     @Override
     public void initViews() {
+        setupToolbar(getString(R.string.change_password));
         getDataBinder().setBinder(getPresenter());
     }
 

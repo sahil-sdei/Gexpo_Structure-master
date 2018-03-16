@@ -3,104 +3,103 @@
 
     <data></data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <android.support.v4.widget.Space
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/margin10dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/editTextName"
+            <android.support.v4.widget.Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:padding="@dimen/margin15dp"
-                android:textColor="@color/black" />
+                android:layout_height="@dimen/margin5dp" />
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin10dp" />
-
-        <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/editTextDateOfBirth"
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/date_of_birth"
-                android:padding="@dimen/margin15dp"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/editTextName"
+                    style="@style/editTextThemeSingleLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:padding="@dimen/margin15dp"
+                    android:textColor="@color/black" />
 
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin10dp" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextGender"
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/gender"
-                android:padding="@dimen/margin15dp"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/editTextDateOfBirth"
+                    style="@style/editTextThemeSingleLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_of_birth"
+                    android:padding="@dimen/margin15dp"
+                    android:textColor="@color/black" />
 
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin10dp" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextAddress"
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/address"
-                android:padding="@dimen/margin15dp"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/editTextGender"
+                    style="@style/editTextThemeSingleLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/gender"
+                    android:padding="@dimen/margin15dp"
+                    android:textColor="@color/black" />
 
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin10dp" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            style="@style/TextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextLifeLesson"
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/life_lesson"
-                android:padding="@dimen/margin15dp"
-                android:textColor="@color/black" />
+                android:layout_height="wrap_content">
 
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/editTextAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address"
+                    style="@style/editTextThemeSingleLine"
+                    android:padding="@dimen/margin15dp"
+                    android:textColor="@color/black" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextLifeLesson"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/life_lesson"
+                    style="@style/editTextThemeSingleLine"
+                    android:padding="@dimen/margin15dp"
+                    android:textColor="@color/black" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>
