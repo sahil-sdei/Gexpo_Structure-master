@@ -50,7 +50,7 @@
                 android:lines="1"
                 android:text="Stan Smith"
                 android:textColor="@color/greyDark"
-                android:textSize="@dimen/text16sp" />
+                android:textSize="@dimen/text15sp" />
         </RelativeLayout>
     </RelativeLayout>
 </layout>

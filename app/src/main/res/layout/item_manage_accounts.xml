@@ -15,7 +15,7 @@
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin10dp"
+        android:layout_marginBottom="@dimen/margin5dp"
         android:background="@color/white"
         android:elevation="@dimen/margin5dp">
 
@@ -64,8 +64,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_below="@+id/relativeLayoutProfile"
                 android:padding="@dimen/margin10dp">
 
@@ -84,8 +85,9 @@
                 <View
                     android:id="@+id/viewDivider"
                     android:layout_width="@dimen/margin1dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/textViewAccountTransfer"
                     android:layout_centerHorizontal="true"
                     android:background="@color/greyLight" />
 
