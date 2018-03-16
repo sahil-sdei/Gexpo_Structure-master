@@ -50,15 +50,16 @@
 
     <RelativeLayout
         android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listAccounts"
             android:layout_width="240dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutManageAccounts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/listAccounts"

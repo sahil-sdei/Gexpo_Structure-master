@@ -19,9 +19,13 @@ import android.view.View;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import ggn.home.help.R;
+import ggn.home.help.features.accounts.ManageAccountsActivity;
+import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
@@ -86,7 +90,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         findViewById(R.id.textViewUserName).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (findViewById(R.id.recyclerViewAccounts).getVisibility() == View.GONE) {
+                if (findViewById(R.id.listAccounts).getVisibility() == View.GONE) {
                     findViewById(R.id.listAccounts).setVisibility(View.VISIBLE);
                     findViewById(R.id.list).setVisibility(View.GONE);
                 } else {
@@ -96,7 +100,18 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             }
         });
 
+        findViewById(R.id.relativeLayoutManageAccounts).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingRootNav.closeMenu();
+                Intent intent = new Intent(DashboardActivity.this, ManageAccountsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         adapter.setSelected(POS_DASHBOARD);
+
+        setUpAccounts();
     }
 
     @Override
@@ -152,5 +167,19 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     @ColorInt
     private int color(@ColorRes int res) {
         return ContextCompat.getColor(this, res);
+    }
+
+    private void setUpAccounts() {
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("a");
+        list.add("a");
+
+        RecyclerView recyclerView = findViewById(R.id.listAccounts);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.VERTICAL, false));
+        AccountsAdapter accountsAdapter = new AccountsAdapter(list, DashboardActivity.this);
+        accountsAdapter.setShouldLoadMore(false);
+        recyclerView.setAdapter(accountsAdapter);
     }
 }

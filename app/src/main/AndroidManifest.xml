@@ -41,6 +41,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity
+            android:name=".features.accounts.ManageAccountsActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

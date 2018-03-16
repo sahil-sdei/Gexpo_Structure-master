@@ -1,94 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:elevation="@dimen/margin5dp">
+<layout>
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.accounts.ManageAccountsAdapterBinder" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin10dp"
+        android:background="@color/white"
+        android:elevation="@dimen/margin5dp">
 
         <RelativeLayout
-            android:padding="@dimen/margin10dp"
-            android:id="@+id/relativeLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
 
             <RelativeLayout
-                android:id="@+id/relativeLayoutProfilePic"
-                android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:id="@+id/relativeLayoutProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin10dp">
 
-                <ImageView
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutProfilePic"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/bordered_circle" />
+                    android:layout_height="50dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageViewProfilePic"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/bordered_circle" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewProfilePic"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textViewUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/margin15dp"
+                    android:layout_marginRight="@dimen/margin10dp"
+                    android:layout_toRightOf="@+id/relativeLayoutProfilePic"
+                    android:lines="1"
+                    android:text="Stan Smith"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text16sp" />
+
             </RelativeLayout>
 
-            <TextView
-                android:layout_toRightOf="@+id/relativeLayoutProfilePic"
-                android:id="@+id/textViewUserName"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/margin15dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/margin10dp"
-                android:layout_gravity="center"
-                android:text="Stan Smith"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text16sp" />
+                android:layout_below="@+id/relativeLayoutProfile"
+                android:padding="@dimen/margin10dp">
+
+                <TextView
+                    android:id="@+id/textViewAccountTransfer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/viewDivider"
+                    android:drawableTop="@drawable/ic_menu_manage"
+                    android:gravity="center"
+                    android:text="@string/account_transfer"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/text13sp" />
+
+                <View
+                    android:id="@+id/viewDivider"
+                    android:layout_width="@dimen/margin1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textViewAccountTransfer"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/greyLight" />
+
+                <TextView
+                    android:id="@+id/textViewDeleteAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/viewDivider"
+                    android:drawableTop="@drawable/ic_menu_manage"
+                    android:gravity="center"
+                    android:text="@string/delete_account"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/text13sp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:padding="@dimen/margin10dp"
-            android:layout_below="@+id/relativeLayoutProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textViewAccountTransfer"
-                android:drawableTop="@drawable/ic_menu_manage"
-                android:textColor="@color/greyDark"
-                android:layout_width="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:textSize="@dimen/text13sp"
-                android:gravity="center"
-                android:layout_toLeftOf="@+id/viewDivider"
-                android:text="@string/account_transfer"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:id="@+id/viewDivider"
-                android:layout_alignBottom="@+id/textViewAccountTransfer"
-                android:layout_centerHorizontal="true"
-                android:layout_width="@dimen/margin1dp"
-                android:background="@color/greyLight"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_alignParentRight="true"
-                android:id="@+id/textViewDeleteAccount"
-                android:drawableTop="@drawable/ic_menu_manage"
-                android:textColor="@color/greyDark"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/text13sp"
-                android:gravity="center"
-                android:layout_toRightOf="@+id/viewDivider"
-                android:text="@string/delete_account"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-</android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
+</layout>
