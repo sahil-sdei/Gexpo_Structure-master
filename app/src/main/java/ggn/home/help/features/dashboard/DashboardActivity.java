@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -24,6 +25,7 @@ import ggn.home.help.R;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
+import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
 
 public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
@@ -81,6 +83,19 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
+        findViewById(R.id.textViewUserName).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (findViewById(R.id.recyclerViewAccounts).getVisibility() == View.GONE) {
+                    findViewById(R.id.listAccounts).setVisibility(View.VISIBLE);
+                    findViewById(R.id.list).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.listAccounts).setVisibility(View.GONE);
+                    findViewById(R.id.list).setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         adapter.setSelected(POS_DASHBOARD);
     }
 
@@ -90,8 +105,17 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             finish();
         }
         slidingRootNav.closeMenu();
-        Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-        showFragment(selectedScreen);
+
+
+        switch (position) {
+            case POS_DASHBOARD:
+                showFragment(MemoriesFragment.newInstance());
+                break;
+            default:
+                Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
+                showFragment(selectedScreen);
+                break;
+        }
     }
 
     private void showFragment(Fragment fragment) {

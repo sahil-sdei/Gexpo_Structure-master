@@ -36,4 +36,10 @@
     <string name="gallery">Gallery</string>
     <string name="nick_name">Nick Name</string>
     <string name="save">Save</string>
+    <string name="update">Update</string>
+    <string name="account_transfer">Account Transfer</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

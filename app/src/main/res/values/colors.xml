@@ -9,5 +9,6 @@
     <color name="black">#000000</color>
     <color name="buttonBlue">#00ADFA</color>
     <color name="greyDark">#505050</color>
+    <color name="blackGradient">#DD000000</color>
 
 </resources>
