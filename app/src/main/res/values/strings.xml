@@ -60,5 +60,8 @@
     <string name="profile">Profile</string>
     <string name="share">Share</string>
     <string name="delete">Delete</string>
+    <string name="add_memories">Add Memories</string>
+    <string name="title">Title</string>
+    <string name="description_100_characters_limit">Description (100 characters limit)</string>
 
 </resources>
