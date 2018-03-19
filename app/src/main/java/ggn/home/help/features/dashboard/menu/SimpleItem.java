@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ggn.home.help.R;
@@ -39,7 +40,9 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
         holder.icon.setImageDrawable(icon);
 
         holder.title.setTextColor(isChecked ? selectedItemTextTint : normalItemTextTint);
-        holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
+//        holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
+
+        holder.linearLayoutParent.setBackgroundResource(isChecked ? R.color.transparentGrey : R.color.transparent);
     }
 
     public SimpleItem withSelectedIconTint(int selectedItemIconTint) {
@@ -62,15 +65,19 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
         return this;
     }
 
+
     static class ViewHolder extends DrawerAdapter.ViewHolder {
 
         private ImageView icon;
         private TextView title;
+        private LinearLayout linearLayoutParent;
 
         public ViewHolder(View itemView) {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.icon);
             title = (TextView) itemView.findViewById(R.id.title);
+            linearLayoutParent= (LinearLayout) itemView.findViewById(R.id.linearLayoutParent);
+
         }
     }
 }

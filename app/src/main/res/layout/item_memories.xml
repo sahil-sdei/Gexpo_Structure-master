@@ -15,7 +15,8 @@
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin5dp"
+        android:layout_marginTop="@dimen/margin1dp"
+        android:layout_marginBottom="@dimen/margin3dp"
         android:background="@color/white"
         android:elevation="@dimen/margin5dp">
 
@@ -90,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_menu_manage" />
+                     />
 
                 <TextView
                     android:id="@+id/textViewLikes"
@@ -98,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:drawablePadding="@dimen/margin5dp"
-                    android:drawableRight="@drawable/com_facebook_button_icon_white"
+                    android:drawableRight="@drawable/ic_smile_unlike"
                     android:padding="@dimen/margin15dp"
                     android:text="11"
                     android:textColor="@color/white"
@@ -111,7 +112,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/textViewLikes"
                     android:drawablePadding="@dimen/margin5dp"
-                    android:drawableRight="@drawable/com_facebook_button_icon_white"
+                    android:drawableRight="@drawable/ic_comment"
                     android:paddingBottom="@dimen/margin15dp"
                     android:paddingRight="@dimen/margin15dp"
                     android:paddingTop="@dimen/margin15dp"
@@ -126,7 +127,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_margin="@dimen/margin15dp"
-                    android:background="@drawable/com_facebook_button_icon_white" />
+                    android:background="@drawable/ic_share" />
 
             </RelativeLayout>
 
@@ -143,6 +144,7 @@
                     android:paddingLeft="@dimen/margin20dp"
                     android:paddingRight="@dimen/margin20dp"
                     android:paddingTop="@dimen/margin10dp"
+                    android:text="Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text "
                     android:textColor="@color/black"
                     android:textSize="@dimen/text13sp" />
 

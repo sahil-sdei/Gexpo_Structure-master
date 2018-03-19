@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@color/greyLight"
+                android:background="#DBE08A"
                 android:id="@+id/imageViewBackground"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -27,8 +27,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewProfilePic"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:layout_centerInParent="true"
                 android:scaleType="centerCrop" />
 
@@ -37,10 +37,13 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
+            android:background="@color/greyLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/toolbar"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/greyDark"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

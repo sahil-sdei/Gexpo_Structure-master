@@ -15,7 +15,7 @@
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin5dp"
+        android:layout_marginTop="@dimen/margin5dp"
         android:background="@color/white"
         android:elevation="@dimen/margin5dp">
 
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_toLeftOf="@+id/viewDivider"
-                    android:drawableTop="@drawable/ic_menu_manage"
+                    android:drawableTop="@drawable/ic_account_transfer"
                     android:gravity="center"
                     android:text="@string/account_transfer"
                     android:textColor="@color/greyDark"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/viewDivider"
-                    android:drawableTop="@drawable/ic_menu_manage"
+                    android:drawableTop="@drawable/ic_delete_account"
                     android:gravity="center"
                     android:text="@string/delete_account"
                     android:textColor="@color/greyDark"

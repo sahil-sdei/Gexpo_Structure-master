@@ -9,7 +9,7 @@
         android:textColor="@color/black"
         android:id="@+id/textViewTab"
         android:gravity="center"
-        android:textSize="@dimen/text15sp"
+        android:textSize="@dimen/text17sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

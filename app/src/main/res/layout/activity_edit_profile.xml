@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -33,17 +33,33 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:background="#DBE08A"
                         android:id="@+id/imageViewBackground"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:scaleType="centerCrop" />
 
-                    <ImageView
+                    <RelativeLayout
+                        android:layout_centerInParent="true"
+                        android:layout_width="85dp"
+                        android:background="@drawable/circle_white"
+                        android:layout_height="85dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewProfilePic"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
                         android:layout_centerInParent="true"
                         android:scaleType="centerCrop" />
+
+                        <ImageView
+                            android:src="@drawable/ic_edit_photo"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
@@ -65,7 +81,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/name"
-                            android:padding="@dimen/margin15dp"
                             android:text="@={binder.name}"
                             android:textColor="@color/black" />
 
@@ -82,7 +97,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/date_of_birth"
-                            android:padding="@dimen/margin15dp"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -99,7 +113,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/gender"
-                            android:padding="@dimen/margin15dp"
                             android:textColor="@color/black" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -117,7 +130,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/address"
-                            android:padding="@dimen/margin15dp"
                             android:text="@={binder.address}"
                             android:textColor="@color/black" />
 
@@ -132,9 +144,14 @@
                             android:id="@+id/editTextLifeLesson"
                             style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
+                            android:inputType="textMultiLine"
+                            android:lines="5"
+                            android:maxLines="6"
+                            android:minLines="3"
+                            android:gravity="top|left"
+                            android:scrollbars="vertical"
                             android:layout_height="wrap_content"
                             android:hint="@string/life_lesson"
-                            android:padding="@dimen/margin15dp"
                             android:text="@={binder.lifeLesson}"
                             android:textColor="@color/black" />
 
@@ -154,7 +171,7 @@
                         android:text="@string/update"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text15sp" />
+                        android:textSize="@dimen/text16sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

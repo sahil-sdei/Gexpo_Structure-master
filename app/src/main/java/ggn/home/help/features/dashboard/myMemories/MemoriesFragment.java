@@ -1,6 +1,8 @@
 package ggn.home.help.features.dashboard.myMemories;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     protected void onCreateFragmentG() {
         injectPresenter(new MemoriesPresenter());
         getPresenter().attachView(this);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -50,5 +53,11 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         memoriesAdapter = new MemoriesAdapter(list, getActivityG(), getPresenter());
         memoriesAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewMemories.setAdapter(memoriesAdapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_memories, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 }

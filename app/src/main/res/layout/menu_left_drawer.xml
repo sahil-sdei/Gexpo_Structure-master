@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/backgroundNavigation"
     android:orientation="vertical">
 
 
     <RelativeLayout
         android:id="@+id/relativeLayoutProfilePic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="@dimen/margin20dp"
         android:layout_marginTop="@dimen/margin20dp">
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/bordered_circle" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -27,6 +27,8 @@
     </RelativeLayout>
 
     <TextView
+        android:drawableRight="@drawable/ic_dropdown"
+        android:drawablePadding="@dimen/margin5dp"
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +38,7 @@
         android:text="Emilly Smith"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="@dimen/text15sp" />
+        android:textSize="@dimen/text17sp" />
 
     <Space
         android:layout_width="wrap_content"
@@ -65,14 +67,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/listAccounts"
-            android:background="@color/white">
+            >
 
             <ImageView
                 android:id="@+id/imageSettings"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_menu_manage" />
+                android:src="@drawable/ic_manage_accounts" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
                 android:lines="1"
                 android:text="Manage Accounts"
                 android:textColor="@color/greyDark"
-                android:textSize="@dimen/text15sp" />
+                android:textSize="@dimen/text16sp" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

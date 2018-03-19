@@ -12,7 +12,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/transparent">
 
 
         <RelativeLayout
@@ -50,7 +50,7 @@
                 android:lines="1"
                 android:text="Stan Smith"
                 android:textColor="@color/greyDark"
-                android:textSize="@dimen/text15sp" />
+                android:textSize="@dimen/text16sp" />
         </RelativeLayout>
     </RelativeLayout>
 </layout>

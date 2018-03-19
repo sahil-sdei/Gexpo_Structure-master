@@ -3,6 +3,7 @@ package ggn.home.help.features.accounts;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +56,11 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
         ManageAccountsAdapter manageAccountsAdapter = new ManageAccountsAdapter(list, getActivityG(), getPresenter());
         manageAccountsAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewAccounts.setAdapter(manageAccountsAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
     }
 }

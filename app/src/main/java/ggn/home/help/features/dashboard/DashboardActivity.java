@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -159,10 +161,8 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(color(R.color.colorPrimary))
-                .withTextTint(color(R.color.colorPrimaryDark))
-                .withSelectedIconTint(color(R.color.colorAccent))
-                .withSelectedTextTint(color(R.color.colorAccent));
+                .withTextTint(color(R.color.greyDark))
+                .withSelectedTextTint(color(R.color.black));
     }
 
     private String[] loadScreenTitles() {

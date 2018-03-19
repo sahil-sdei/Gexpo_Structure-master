@@ -50,5 +50,15 @@
     <string name="change_password">Change Password</string>
     <string name="please_enter_address">Please enter address</string>
     <string name="please_enter_life_lesson">Please enter life lesson</string>
+    <string name="add_your_memories">Add your memories</string>
+    <string name="notifications">Notifications</string>
+    <string name="add">Add</string>
+    <string name="add_image">Add image</string>
+    <string name="edit">Edit</string>
+    <string name="family">Family</string>
+    <string name="friends">Friends</string>
+    <string name="profile">Profile</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
 
 </resources>

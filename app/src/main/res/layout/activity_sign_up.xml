@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <LinearLayout
@@ -80,7 +79,7 @@
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text15sp" />
+                    android:textSize="@dimen/text16sp" />
 
 
                 <TextView
@@ -108,8 +107,10 @@
                     android:background="@drawable/rounded_fb_blue"
                     android:text="@string/sign_up_with_facebook"
                     android:textAllCaps="false"
+                    android:padding="@dimen/margin10dp"
+                    android:drawableLeft="@drawable/ic_if_facebook"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text15sp" />
+                    android:textSize="@dimen/text16sp" />
 
                 <TextView
                     android:id="@+id/textViewSignIn"

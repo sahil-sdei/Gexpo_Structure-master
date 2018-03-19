@@ -8,11 +8,24 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyLight">
+        android:background="@color/backgroundGrey">
+
+        <TextView
+            android:drawableTop="@drawable/ic_add_in_emptyscreen"
+            android:layout_width="wrap_content"
+            android:text="@string/add_your_memories"
+            android:textColor="@color/greyLight"
+            android:textSize="@dimen/text16sp"
+            android:drawablePadding="@dimen/margin7dp"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content" />
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewMemories"
             android:layout_width="match_parent"
+            android:visibility="visible"
             android:layout_height="match_parent" />
     </RelativeLayout>
 </layout>

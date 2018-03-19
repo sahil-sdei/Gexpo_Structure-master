@@ -28,6 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
+                    android:enabled="false"
+                    android:text="Emily"
                     android:padding="@dimen/margin15dp"
                     android:textColor="@color/black" />
 
@@ -43,9 +45,11 @@
                     android:id="@+id/editTextDateOfBirth"
                     style="@style/editTextThemeSingleLine"
                     android:layout_width="match_parent"
+                    android:enabled="false"
                     android:layout_height="wrap_content"
                     android:hint="@string/date_of_birth"
                     android:padding="@dimen/margin15dp"
+                    android:text="Jan 1, 2000"
                     android:textColor="@color/black" />
 
             </android.support.design.widget.TextInputLayout>
@@ -61,6 +65,8 @@
                     style="@style/editTextThemeSingleLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Female"
                     android:hint="@string/gender"
                     android:padding="@dimen/margin15dp"
                     android:textColor="@color/black" />
@@ -78,6 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
+                    android:enabled="false"
+                    android:text="#129, Maline"
                     style="@style/editTextThemeSingleLine"
                     android:padding="@dimen/margin15dp"
                     android:textColor="@color/black" />
@@ -92,6 +100,13 @@
 
                 <EditText
                     android:id="@+id/editTextLifeLesson"
+                    android:enabled="false"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:maxLines="6"
+                    android:minLines="3"
+                    android:scrollbars="vertical"
+                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/life_lesson"

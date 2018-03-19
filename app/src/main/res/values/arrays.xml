@@ -13,15 +13,14 @@
     </string-array>
 
     <array name="ld_activityScreenIcons">
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
-        <item>@drawable/ic_menu_manage</item>
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_friend_list</item>
+        <item>@drawable/ic_family_list</item>
+        <item>@drawable/ic_export</item>
+        <item>@drawable/ic_create_child_profile</item>
+        <item>@drawable/ic_change_password</item>
+        <item>@drawable/ic_contant_us</item>
+        <item>@drawable/ic_sign_out</item>
     </array>
 
 </resources>

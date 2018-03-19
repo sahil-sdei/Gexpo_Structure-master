@@ -5,10 +5,17 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="whiteTransparent">#AAFFFFFF</color>
-    <color name="greyLight">#9E9E9E</color>
+    <color name="greyLight">#C5C5C5</color>
     <color name="black">#000000</color>
-    <color name="buttonBlue">#00ADFA</color>
-    <color name="greyDark">#505050</color>
+    <color name="buttonBlue">#212D9D</color>
+    <color name="greyDark">#979797</color>
     <color name="blackGradient">#DD000000</color>
+    <color name="backgroundGrey">#F6F6F6</color>
+    <color name="backgroundNavigation">#ECECEC</color>
+    <color name="textBlue">#6168B2</color>
+    <color name="textRed">#E67961</color>
+    <color name="transparentGrey">#AAE2E2E2</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="transparentBlack">#66000000</color>
 
 </resources>

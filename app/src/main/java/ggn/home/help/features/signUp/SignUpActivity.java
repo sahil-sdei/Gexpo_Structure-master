@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -35,7 +36,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
 
     @Override
     protected int setLayoutId() {
-//        getWindow().setBackgroundDrawableResource(R.drawable.splash_background);
+        getWindow().setBackgroundDrawableResource(R.drawable.background);
         return R.layout.activity_sign_up;
     }
 
@@ -81,9 +82,9 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
                 ds.setUnderlineText(false);
             }
         };
-        signIn.setSpan(new StyleSpan(Typeface.ITALIC), 16, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signIn.setSpan(new ForegroundColorSpan(Color.BLUE), 16, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signIn.setSpan(clickableSpanSignIn, 16, 23, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signIn.setSpan(new StyleSpan(Typeface.ITALIC), 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signIn.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivityG(), R.color.textBlue)), 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signIn.setSpan(clickableSpanSignIn, 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         getDataBinder().textViewSignIn.setText(signIn);
         getDataBinder().textViewSignIn.setMovementMethod(LinkMovementMethod.getInstance());
     }
