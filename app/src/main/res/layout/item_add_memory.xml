@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.memoryCategories.MemoryCategoriesAdapterBinder" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin1dp"
+        android:onClick="@{() -> binder.onItemClicked()}"
+        android:background="@color/black"
+        android:padding="@dimen/margin20dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/margin20dp"
+            android:layout_toLeftOf="@+id/relativeLayoutYears"
+            android:text="Pre Birth"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textViewTitle"
+            android:layout_marginRight="@dimen/margin20dp"
+            android:layout_toLeftOf="@+id/relativeLayoutYears"
+            android:text="Potentiality"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text15sp" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="0-3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewYearsPH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewYear"
+                android:text="years"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text15sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
