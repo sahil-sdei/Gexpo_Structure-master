@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_notifications"
+        android:id="@+id/action_notifications"
         app:showAsAction="always"
         android:icon="@drawable/ic_notification"
         android:title="@string/notifications" />
 
     <item
-        android:id="@+id/menu_add"
+        android:id="@+id/action_add"
         app:showAsAction="always"
         android:icon="@drawable/ic_add"
         android:title="@string/add_your_memories" />

@@ -63,5 +63,8 @@
     <string name="add_memories">Add Memories</string>
     <string name="title">Title</string>
     <string name="description_100_characters_limit">Description (100 characters limit)</string>
+    <string name="sub_categories">Sub Categories</string>
+    <string name="add_media">Add Media</string>
+    <string name="upload">Upload</string>
 
 </resources>

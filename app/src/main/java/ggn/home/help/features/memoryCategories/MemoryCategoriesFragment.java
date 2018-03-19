@@ -1,16 +1,19 @@
 package ggn.home.help.features.memoryCategories;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentMemoriesBinding;
+import ggn.home.help.databinding.FragmentRecyclerViewBinding;
 import ggn.home.help.features.internal.base.BaseFragment;
 
 
-public class MemoryCategoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoryCategoriesPresenter> implements MemoryCategoriesView {
+public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, MemoryCategoriesPresenter> implements MemoryCategoriesView {
 
     private List<String> list;
     private MemoryCategoriesAdapter memoryCategoriesAdapter;
@@ -22,13 +25,14 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentMemoriesBindi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_memories;
+        return R.layout.fragment_recycler_view;
     }
 
     @Override
     protected void onCreateFragmentG() {
         injectPresenter(new MemoryCategoriesPresenter());
         getPresenter().attachView(this);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -45,10 +49,16 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentMemoriesBindi
         list.add("a");
         list.add("a");
 
-        getDataBinder().recyclerViewMemories.setHasFixedSize(true);
-        getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+        getDataBinder().recyclerView.setHasFixedSize(true);
+        getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
         memoryCategoriesAdapter = new MemoryCategoriesAdapter(list, getActivityG(), getPresenter());
         memoryCategoriesAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewMemories.setAdapter(memoryCategoriesAdapter);
+        getDataBinder().recyclerView.setAdapter(memoryCategoriesAdapter);
     }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu_notifications, menu);
+//        super.onCreateOptionsMenu(menu,inflater);
+//    }
 }

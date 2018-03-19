@@ -16,10 +16,13 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin1dp"
+        android:onClick="@{() -> binder.onSubcategoryItemClicked()}"
+        android:layout_marginBottom="@dimen/margin2dp"
         android:background="@color/white">
 
         <RelativeLayout
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/imageNext"
             android:id="@+id/relativeLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,18 +30,18 @@
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutProfilePic"
-                android:layout_width="35dp"
-                android:layout_height="35dp">
+                android:layout_width="40dp"
+                android:layout_height="40dp">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/bordered_circle" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
@@ -54,7 +57,17 @@
                 android:lines="1"
                 android:text="Pregnancy Moments"
                 android:textColor="@color/greyDark"
-                android:textSize="@dimen/text15sp" />
+                android:textSize="@dimen/text16sp" />
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageNext"
+            android:padding="@dimen/margin10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_forward"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 </layout>

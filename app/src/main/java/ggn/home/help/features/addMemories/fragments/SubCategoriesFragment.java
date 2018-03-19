@@ -8,6 +8,8 @@ import java.util.List;
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentMemoriesBinding;
 import ggn.home.help.databinding.FragmentProfileAboutBinding;
+import ggn.home.help.databinding.FragmentRecyclerViewBinding;
+import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.addMemories.AddMemoryPresenter;
 import ggn.home.help.features.addMemories.AddMemoryView;
 import ggn.home.help.features.addMemories.SubCategoriesAdapter;
@@ -16,7 +18,7 @@ import ggn.home.help.features.profile.ProfilePresenter;
 import ggn.home.help.features.profile.ProfileView;
 
 
-public class SubCategoriesFragment extends BaseFragment<FragmentMemoriesBinding, AddMemoryPresenter> implements AddMemoryView {
+public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, AddMemoryPresenter> implements AddMemoryView {
 
     public static SubCategoriesFragment newInstance() {
         SubCategoriesFragment subCategoriesFragment = new SubCategoriesFragment();
@@ -25,7 +27,7 @@ public class SubCategoriesFragment extends BaseFragment<FragmentMemoriesBinding,
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_memories;
+        return R.layout.fragment_recycler_view;
     }
 
     @Override
@@ -48,10 +50,15 @@ public class SubCategoriesFragment extends BaseFragment<FragmentMemoriesBinding,
         list.add("a");
         list.add("a");
 
-        getDataBinder().recyclerViewMemories.setHasFixedSize(true);
-        getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+        getDataBinder().recyclerView.setHasFixedSize(true);
+        getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
         SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(list, getActivityG(), getPresenter());
         subCategoriesAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewMemories.setAdapter(subCategoriesAdapter);
+        getDataBinder().recyclerView.setAdapter(subCategoriesAdapter);
+    }
+
+    @Override
+    public void showDescriptionFragment() {
+        ((AddMemoryActivity)getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
     }
 }

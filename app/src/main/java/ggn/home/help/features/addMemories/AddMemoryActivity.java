@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryBinding;
+import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
 
@@ -36,12 +37,23 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
     public void initViews() {
         setupToolbar(getString(R.string.add_memories));
 
-        showFragment(SubCategoriesFragment.newInstance());
+        showFragment(AddDescriptionFragment.newInstance());
     }
 
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+    }
+
+    public void showFragmentWithBackStack(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void showDescriptionFragment() {
     }
 }

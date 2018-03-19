@@ -157,6 +157,14 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+        invalidateOptionsMenu();
+    }
+
+    public void showFragmentWithBackStack(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private DrawerItem createItemFor(int position) {

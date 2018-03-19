@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text=""
-        android:textSize="@dimen/text16sp" />
+        android:textSize="@dimen/text18sp" />
 
 </android.support.v7.widget.Toolbar>

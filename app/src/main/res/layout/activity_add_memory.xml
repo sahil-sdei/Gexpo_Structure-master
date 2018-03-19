@@ -14,7 +14,7 @@
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/buttonBlue"
+            android:background="@color/textRed"
             android:padding="@dimen/margin15dp">
 
             <TextView
@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayoutPicture"
             android:background="@android:color/transparent"
-            android:padding="@dimen/margin10dp"
-            android:text="Sub Categories"
+            android:padding="@dimen/margin15dp"
+            android:text="@string/sub_categories"
             android:textColor="@color/black"
-            android:textSize="@dimen/text15sp" />
+            android:textSize="@dimen/text16sp" />
 
         <FrameLayout
             android:id="@+id/container"
