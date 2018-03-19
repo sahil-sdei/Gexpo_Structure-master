@@ -50,5 +50,8 @@
     <string name="change_password">Change Password</string>
     <string name="please_enter_address">Please enter address</string>
     <string name="please_enter_life_lesson">Please enter life lesson</string>
+    <string name="add_memories">Add Memories</string>
+    <string name="title">Title</string>
+    <string name="description_100_characters_limit">Description (100 characters limit)</string>
 
 </resources>
