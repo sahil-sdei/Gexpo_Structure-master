@@ -21,6 +21,7 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.pickMedia.adapters.BucketsAdapter;
+import ggn.home.help.utils.SpacesItemDecoration;
 
 public class OneFragment extends Fragment {
     private static RecyclerView recyclerView;
@@ -69,6 +70,7 @@ public class OneFragment extends Fragment {
         mAdapter = new BucketsAdapter(bucketNames,bitmapList,getContext());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(),3);
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new SpacesItemDecoration(1));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new ClickListener() {

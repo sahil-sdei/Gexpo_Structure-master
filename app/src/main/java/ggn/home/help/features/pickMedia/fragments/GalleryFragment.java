@@ -37,11 +37,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        maxSelection = 1;
-        if (maxSelection == 0) maxSelection = Integer.MAX_VALUE;
-        mode = 1;
-        selectionTitle = 0;
     }
 
     @Override
@@ -64,7 +59,7 @@ public class GalleryFragment extends Fragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView toolbarText = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        TextView toolbarText = toolbar.findViewById(R.id.toolbar_title);
         if (toolbarText != null) {
             toolbarText.setText(R.string.gallery);
         }
@@ -73,11 +68,12 @@ public class GalleryFragment extends Fragment {
         tabLayout = v.findViewById(R.id.tabs);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        if (mode == 1 || mode == 2) {
-            adapter.addFragment(new OneFragment(), "Images");
-        }
-        if (mode == 1 || mode == 3)
-            adapter.addFragment(new TwoFragment(), "Videos");
+
+        maxSelection = 1;
+        mode = 1;
+        selectionTitle = 0;
+        adapter.addFragment(new OneFragment(), "Images");
+        adapter.addFragment(new TwoFragment(), "Videos");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

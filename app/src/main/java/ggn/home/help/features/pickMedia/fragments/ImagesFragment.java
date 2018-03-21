@@ -1,6 +1,7 @@
 package ggn.home.help.features.pickMedia.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,11 +12,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.florent37.camerafragment.PreviewActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.pickMedia.adapters.MediaAdapter;
+import ggn.home.help.utils.SpacesItemDecoration;
 
 public class ImagesFragment extends Fragment {
     private static RecyclerView recyclerView;
@@ -60,6 +64,7 @@ public class ImagesFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.getItemAnimator().setChangeDuration(0);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addItemDecoration(new SpacesItemDecoration(1));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -67,6 +72,9 @@ public class ImagesFragment extends Fragment {
                     imagesSelected.add(mediaList.get(position));
                     selected.set(position, !selected.get(position));
                     mAdapter.notifyItemChanged(position);
+
+                    Intent intentPhoto = PreviewActivity.newIntentPhoto(getActivity(), mediaList.get(0));
+                    startActivity(intentPhoto);
                 } else if (selected.get(position).equals(true)) {
                     if (imagesSelected.indexOf(mediaList.get(position)) != -1) {
                         imagesSelected.remove(imagesSelected.indexOf(mediaList.get(position)));
