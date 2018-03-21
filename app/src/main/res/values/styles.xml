@@ -13,6 +13,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ThemeFullscreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="FullscreenTheme" parent="AppTheme.NoActionBar">
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -20,6 +24,7 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">

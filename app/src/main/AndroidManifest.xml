@@ -3,6 +3,10 @@
     package="ggn.home.help">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".features.internal.base.ApplicationClass"
@@ -13,7 +17,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name=".features.addMemories.AddMemoryActivity"
+            android:name=".features.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -50,10 +54,19 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
-        <!--<activity-->
-            <!--android:name=".features.addMemories.AddMemoryActivity"-->
-            <!--android:windowSoftInputMode="stateHidden|adjustResize"-->
-            <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".features.addMemories.AddMemoryActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.pickMedia.AddMediaActivity"
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.github.florent37.camerafragment.PreviewActivity"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>

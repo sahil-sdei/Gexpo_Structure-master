@@ -18,6 +18,7 @@ import ggn.home.help.features.addMemories.AddMemoryPresenter;
 import ggn.home.help.features.addMemories.AddMemoryView;
 import ggn.home.help.features.addMemories.SubCategoriesAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.utils.UtillsG;
 
 
@@ -49,7 +50,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         textView.setCompoundDrawables(null, top, null, null);
 //        textView.setCompoundDrawablePadding(UtillsG.dipToPixels(getActivityG(), 5));
         textView.setTextColor(ContextCompat.getColor(getActivityG(), R.color.greyDark));
-//        textView.setTextSize(UtillsG.dipToPixels(getActivityG(), 13));
+//        textView.setTextSize9(UtillsG.dipToPixels(getActivityG(), 13));
 
         getDataBinder().flowLayoutAttachments.addView(textView);
 
@@ -68,6 +69,8 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
                 button.setBackgroundResource(R.color.buttonBlue);
 
                 getDataBinder().flowLayoutAttachments.addView(button);
+
+                AddMediaActivity.start(getActivityG());
             }
         });
     }
