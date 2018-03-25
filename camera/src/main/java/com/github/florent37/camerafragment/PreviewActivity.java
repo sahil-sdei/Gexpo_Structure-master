@@ -69,13 +69,13 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
 
     public static Intent newIntentPhoto(Context context, String filePath) {
         return new Intent(context, PreviewActivity.class)
-                .putExtra(MEDIA_ACTION_ARG, MediaAction.ACTION_PHOTO)
+                .putExtra(MEDIA_ACTION_ARG, Configuration.MEDIA_ACTION_PHOTO)
                 .putExtra(FILE_PATH_ARG, filePath);
     }
 
     public static Intent newIntentVideo(Context context, String filePath) {
         return new Intent(context, PreviewActivity.class)
-                .putExtra(MEDIA_ACTION_ARG, MediaAction.ACTION_VIDEO)
+                .putExtra(MEDIA_ACTION_ARG, Configuration.MEDIA_ACTION_VIDEO)
                 .putExtra(FILE_PATH_ARG, filePath);
     }
 
@@ -338,10 +338,10 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
         if (view.getId() == R.id.confirm_media_result) {
             resultIntent.putExtra(RESPONSE_CODE_ARG, ACTION_CONFIRM).putExtra(FILE_PATH_ARG, previewFilePath);
         } else if (view.getId() == R.id.re_take_media) {
-            deleteMediaFile();
+//            deleteMediaFile();
             resultIntent.putExtra(RESPONSE_CODE_ARG, ACTION_RETAKE);
         } else if (view.getId() == R.id.cancel_media_action) {
-            deleteMediaFile();
+//            deleteMediaFile();
             resultIntent.putExtra(RESPONSE_CODE_ARG, ACTION_CANCEL);
         }
         setResult(RESULT_OK, resultIntent);
@@ -351,7 +351,7 @@ public class PreviewActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        deleteMediaFile();
+//        deleteMediaFile();
     }
 
     private boolean deleteMediaFile() {
