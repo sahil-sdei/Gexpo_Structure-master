@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin1dp"
         android:onClick="@{() -> binder.onItemClicked()}"
-        android:background="@color/textRed"
+        android:background="@drawable/layer_2"
         android:padding="@dimen/margin20dp">
 
         <TextView

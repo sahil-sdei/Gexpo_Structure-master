@@ -14,7 +14,7 @@
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/textRed"
+            android:background="@drawable/demo_add_mem"
             android:padding="@dimen/margin15dp">
 
             <TextView
@@ -53,7 +53,7 @@
             android:padding="@dimen/margin15dp"
             android:text="@string/sub_categories"
             android:textColor="@color/black"
-            android:textSize="@dimen/text16sp" />
+            android:textSize="@dimen/text17sp" />
 
         <FrameLayout
             android:id="@+id/container"

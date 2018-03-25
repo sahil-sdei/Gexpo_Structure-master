@@ -45,12 +45,11 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private static final int POS_DASHBOARD = 0;
     private static final int POS_FRIEND_LIST = 1;
-    private static final int POS_FAMILY_LIST = 2;
-    private static final int POS_EXPORT = 3;
-    private static final int POS_CREATE_CHILD_PROFILE = 4;
-    private static final int POS_CHANGE_PASSWORD = 5;
-    private static final int POS_CONTACT_US = 6;
-    private static final int POS_LOGOUT = 7;
+    private static final int POS_EXPORT = 2;
+    private static final int POS_CREATE_CHILD_PROFILE = 3;
+    private static final int POS_CHANGE_PASSWORD = 4;
+    private static final int POS_CONTACT_US = 5;
+    private static final int POS_LOGOUT = 6;
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -84,7 +83,6 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_DASHBOARD).setChecked(true),
                 createItemFor(POS_FRIEND_LIST),
-                createItemFor(POS_FAMILY_LIST),
                 createItemFor(POS_EXPORT),
                 createItemFor(POS_CREATE_CHILD_PROFILE),
                 createItemFor(POS_CHANGE_PASSWORD),
@@ -147,6 +145,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
+                setupToolbar(getString(R.string.create_child_profile));
                 break;
             case POS_CHANGE_PASSWORD:
                 Intent intent = new Intent(DashboardActivity.this, ChangePasswordActivity.class);
@@ -155,6 +154,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             default:
                 Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
                 showFragment(selectedScreen);
+                setupToolbar(screenTitles[position]);
                 break;
         }
     }
