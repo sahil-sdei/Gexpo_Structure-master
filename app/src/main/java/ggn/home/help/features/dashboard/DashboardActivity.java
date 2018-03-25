@@ -3,12 +3,14 @@ package ggn.home.help.features.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
@@ -35,6 +38,8 @@ import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
 import ggn.home.help.features.profile.ProfileActivity;
+
+import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
 
 public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
@@ -138,6 +143,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         switch (position) {
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
+                setupToolbar("Dashboard");
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
@@ -160,11 +166,26 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         invalidateOptionsMenu();
     }
 
-    public void showFragmentWithBackStack(Fragment fragment) {
+    public void showFragmentWithBackStack(Fragment fragment, String title) {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
+        setupToolbar(title);
+    }
+
+    public void setupToolbar(String title) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        TextView toolbarText = toolbar.findViewById(R.id.toolbar_title);
+        if (toolbarText != null) {
+            toolbarText.setText(title);
+        }
     }
 
     private DrawerItem createItemFor(int position) {
@@ -212,5 +233,17 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADD_MEMORY) {
+            FragmentManager fm = getSupportFragmentManager();
+            for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                fm.popBackStack();
+            }
+            showFragment(MemoriesFragment.newInstance());
+        }
     }
 }

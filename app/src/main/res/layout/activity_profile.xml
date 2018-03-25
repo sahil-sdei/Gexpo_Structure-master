@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="#DBE08A"
+                android:background="@drawable/profile_background"
                 android:id="@+id/imageViewBackground"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -43,7 +43,7 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/toolbar"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/greyDark"
+            app:tabTextColor="@color/greyLight"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

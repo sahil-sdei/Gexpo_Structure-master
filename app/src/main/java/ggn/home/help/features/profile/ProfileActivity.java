@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityProfileBinding;
+import ggn.home.help.features.editProfile.EditProfileActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.PagerAdapter;
 
@@ -71,6 +72,16 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_edit:
+                EditProfileActivity.start(getActivityG());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setupViewPager(ViewPager viewPager) {
         adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFrag(ProfileAboutFragment.newInstance(), getString(R.string.about));
@@ -106,6 +117,5 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         menuItemEdit.setVisible(!isSelected);
         menuItemShare.setVisible(isSelected);
         menuItemDelete.setVisible(isSelected);
-//        invalidateOptionsMenu();
     }
 }

@@ -2,6 +2,7 @@ package ggn.home.help.features.addMemories;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.support.v4.app.Fragment;
 
 import ggn.home.help.R;
@@ -9,6 +10,7 @@ import ggn.home.help.databinding.ActivityAddMemoryBinding;
 import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 
 public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, AddMemoryPresenter> implements AddMemoryView {
 
@@ -36,8 +38,9 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
     @Override
     public void initViews() {
         setupToolbar(getString(R.string.add_memories));
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        showFragment(AddDescriptionFragment.newInstance());
+        showFragment(SubCategoriesFragment.newInstance());
     }
 
     private void showFragment(Fragment fragment) {

@@ -36,6 +36,8 @@ import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescriptionBinding, AddMemoryPresenter> implements AddMemoryView {
 
@@ -74,7 +76,9 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         getDataBinder().buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent resultIntent = getActivity().getIntent();
+                getActivity().setResult(RESULT_OK, resultIntent);
+                getActivity().finish();
             }
         });
     }
@@ -105,7 +109,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
-            if(resultCode == Activity.RESULT_OK){
+            if(resultCode == RESULT_OK){
                 if(data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM){
 //                    Toast.makeText(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG), Toast.LENGTH_SHORT).show();
                     addImageToView(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));

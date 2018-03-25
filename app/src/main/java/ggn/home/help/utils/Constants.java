@@ -34,7 +34,9 @@ public @interface Constants
         int IMAGE_SEARCH = 303;
         int INVITE       = 404;
         int IMAGESEARCH  = 505;
-        int IMAGE_PREVIEW  = 505;
+        int ADD_MEMORY  = 506;
+        int IMAGE_PREVIEW  = 507;
+
     }
 
 }

@@ -8,6 +8,7 @@ public class MemoryCategoriesPresenter extends BasePresenter<MemoryCategoriesVie
 
     @Override
     public void onItemClicked() {
-        AddMemoryActivity.start(getView().getActivityG());
+//        AddMemoryActivity.start(getView().getActivityG());
+        getView().goToAddMemories();
     }
 }

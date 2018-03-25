@@ -3,6 +3,7 @@ package ggn.home.help.features.internal.base;
 import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,6 +28,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
     private CharSequence progressTitle = "Loading";
     private CharSequence progressMessage = "";
     private TextView toolbarText;
+
+    public Toolbar toolbar;
 
     /**
      * {@inheritDoc}
@@ -60,13 +63,14 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
      *              and also show back button.
      */
     public void setupToolbar(String title) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
 
-        toolbarText = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarText = toolbar.findViewById(R.id.toolbar_title);
         if (toolbarText != null) {
             toolbarText.setText(title);
         }

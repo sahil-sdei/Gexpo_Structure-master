@@ -1,5 +1,6 @@
 package ggn.home.help.features.memoryCategories;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,7 +11,9 @@ import java.util.List;
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentMemoriesBinding;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
+import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.utils.Constants;
 
 
 public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, MemoryCategoriesPresenter> implements MemoryCategoriesView {
@@ -61,5 +64,11 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         menu.clear();
         inflater.inflate(R.menu.menu_notifications, menu);
         super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public void goToAddMemories() {
+        Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
+        getActivity().startActivityForResult(intent, Constants.RequestCode.ADD_MEMORY);
     }
 }
