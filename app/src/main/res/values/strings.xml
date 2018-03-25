@@ -66,5 +66,6 @@
     <string name="sub_categories">Sub Categories</string>
     <string name="add_media">Add Media</string>
     <string name="upload">Upload</string>
+    <string name="description">Description</string>
 
 </resources>

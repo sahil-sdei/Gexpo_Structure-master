@@ -1,6 +1,7 @@
 package ggn.home.help.features.pickMedia.fragments;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.github.florent37.camerafragment.CameraFragment;
 import com.github.florent37.camerafragment.CameraFragmentApi;
+import com.github.florent37.camerafragment.PreviewActivity;
 import com.github.florent37.camerafragment.configuration.Configuration;
 import com.github.florent37.camerafragment.listeners.CameraFragmentControlsAdapter;
 import com.github.florent37.camerafragment.listeners.CameraFragmentResultAdapter;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
+import ggn.home.help.utils.Constants;
 
 
 public class VideoFragment extends Fragment implements View.OnClickListener {
@@ -142,12 +145,12 @@ public class VideoFragment extends Fragment implements View.OnClickListener {
             cameraFragment.takePhotoOrCaptureVideo(new CameraFragmentResultAdapter() {
                                                        @Override
                                                        public void onVideoRecorded(String filePath) {
-                                                           Toast.makeText(getActivity(), "onVideoRecorded " + filePath, Toast.LENGTH_SHORT).show();
+                                                           Intent intent = PreviewActivity.newIntentVideo(getActivity(), filePath);
+                                                           getActivity().startActivityForResult(intent, Constants.RequestCode.IMAGE_PREVIEW);
                                                        }
 
                                                        @Override
                                                        public void onPhotoTaken(byte[] bytes, String filePath) {
-                                                           Toast.makeText(getActivity(), "onPhotoTaken " + filePath, Toast.LENGTH_SHORT).show();
                                                        }
                                                    },
                     Environment.getExternalStorageDirectory().getPath(),

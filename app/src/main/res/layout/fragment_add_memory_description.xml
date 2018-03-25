@@ -55,18 +55,19 @@
             <com.nex3z.flowlayout.FlowLayout
                 android:id="@+id/flowLayoutAttachments"
                 android:layout_width="match_parent"
-                app:flChildSpacing="auto"
                 app:flChildSpacingForLastRow="align"
                 app:flRowSpacing="8dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin20dp" />
 
             <TextView
+                android:id="@+id/textViewAddMedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin20dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:drawablePadding="@dimen/margin7dp"
                 android:drawableTop="@drawable/ic_add_image_large"
                 android:text="@string/add_media"
@@ -74,7 +75,7 @@
                 android:textSize="@dimen/text13sp" />
 
             <Button
-                android:id="@+id/buttonSignIn"
+                android:id="@+id/buttonUpload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin15dp"

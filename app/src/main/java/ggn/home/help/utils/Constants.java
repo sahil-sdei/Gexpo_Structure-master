@@ -21,6 +21,8 @@ public @interface Constants
         String TRANSITION_NAME_2 = "name2";
         String PAGE_NUMBER       = "page_number";
         String TITLE             = "title";
+        String FILE_PATH_ARG = "file_path_arg";
+        String RESPONSE_CODE_ARG = "response_code_arg";
     }
 
     @interface RequestCode
@@ -32,6 +34,7 @@ public @interface Constants
         int IMAGE_SEARCH = 303;
         int INVITE       = 404;
         int IMAGESEARCH  = 505;
+        int IMAGE_PREVIEW  = 505;
     }
 
 }

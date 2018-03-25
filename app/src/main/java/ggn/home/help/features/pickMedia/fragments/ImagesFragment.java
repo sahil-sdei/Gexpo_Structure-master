@@ -1,5 +1,6 @@
 package ggn.home.help.features.pickMedia.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.florent37.camerafragment.PreviewActivity;
 
@@ -19,6 +21,7 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.pickMedia.adapters.MediaAdapter;
+import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.SpacesItemDecoration;
 
 public class ImagesFragment extends Fragment {
@@ -68,20 +71,20 @@ public class ImagesFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if (!selected.get(position).equals(true) && imagesSelected.size() < GalleryFragment.maxSelection) {
-                    imagesSelected.add(mediaList.get(position));
-                    selected.set(position, !selected.get(position));
-                    mAdapter.notifyItemChanged(position);
+//                if (!selected.get(position).equals(true) && imagesSelected.size() < GalleryFragment.maxSelection) {
+//                    imagesSelected.add(mediaList.get(position));
+//                    selected.set(position, !selected.get(position));
+//                    mAdapter.notifyItemChanged(position);
 
-                    Intent intentPhoto = PreviewActivity.newIntentPhoto(getActivity(), mediaList.get(0));
-                    startActivity(intentPhoto);
-                } else if (selected.get(position).equals(true)) {
-                    if (imagesSelected.indexOf(mediaList.get(position)) != -1) {
-                        imagesSelected.remove(imagesSelected.indexOf(mediaList.get(position)));
-                        selected.set(position, !selected.get(position));
-                        mAdapter.notifyItemChanged(position);
-                    }
-                }
+                    Intent intentPhoto = PreviewActivity.newIntentPhoto(getActivity(), mediaList.get(position));
+                    getActivity().startActivityForResult(intentPhoto, Constants.RequestCode.IMAGE_PREVIEW);
+//                } else if (selected.get(position).equals(true)) {
+//                    if (imagesSelected.indexOf(mediaList.get(position)) != -1) {
+//                        imagesSelected.remove(imagesSelected.indexOf(mediaList.get(position)));
+//                        selected.set(position, !selected.get(position));
+//                        mAdapter.notifyItemChanged(position);
+//                    }
+//                }
             }
 
             @Override

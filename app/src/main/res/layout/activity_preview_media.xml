@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="@dimen/margin15dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            style="@style/editTextThemeSingleLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:gravity="top|left"
+            android:scrollbars="vertical"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:drawableLeft="@drawable/ic_tag_people"
+            style="@style/editTextThemeSingleLine"
+            android:drawablePadding="@dimen/margin5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10dp"
+            android:background="@drawable/round_bordered_button_blue"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text16sp" />
+    </LinearLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout_transparent"/>
+
+</RelativeLayout>

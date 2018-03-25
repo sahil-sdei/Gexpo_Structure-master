@@ -30,9 +30,9 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
 
     @Override
     protected void onCreateFragmentG() {
+        setHasOptionsMenu(true);
         injectPresenter(new MemoryCategoriesPresenter());
         getPresenter().attachView(this);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -56,9 +56,10 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         getDataBinder().recyclerView.setAdapter(memoryCategoriesAdapter);
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_notifications, menu);
-//        super.onCreateOptionsMenu(menu,inflater);
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_notifications, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
 }

@@ -208,4 +208,9 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         accountsAdapter.setShouldLoadMore(false);
         recyclerView.setAdapter(accountsAdapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
 }

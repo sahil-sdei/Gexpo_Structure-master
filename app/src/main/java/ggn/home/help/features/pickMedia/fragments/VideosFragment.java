@@ -19,6 +19,7 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.pickMedia.adapters.MediaAdapter;
+import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.SpacesItemDecoration;
 
 public class VideosFragment extends Fragment {
@@ -68,21 +69,21 @@ public class VideosFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if (!selected.get(position).equals(true) && imagesSelected.size() < GalleryFragment.maxSelection) {
-                    imagesSelected.add(mediaList.get(position));
-                    selected.set(position, !selected.get(position));
-                    mAdapter.notifyItemChanged(position);
+//                if (!selected.get(position).equals(true) && imagesSelected.size() < GalleryFragment.maxSelection) {
+//                    imagesSelected.add(mediaList.get(position));
+//                    selected.set(position, !selected.get(position));
+//                    mAdapter.notifyItemChanged(position);
 
-                    Intent intentVideo = PreviewActivity.newIntentVideo(getActivity(), mediaList.get(0));
-                    startActivity(intentVideo);
+                Intent intentVideo = PreviewActivity.newIntentVideo(getActivity(), mediaList.get(position));
+                getActivity().startActivityForResult(intentVideo, Constants.RequestCode.IMAGE_PREVIEW);
 
-                } else if (selected.get(position).equals(true)) {
-                    if (imagesSelected.indexOf(mediaList.get(position)) != -1) {
-                        imagesSelected.remove(imagesSelected.indexOf(mediaList.get(position)));
-                        selected.set(position, !selected.get(position));
-                        mAdapter.notifyItemChanged(position);
-                    }
-                }
+//                } else if (selected.get(position).equals(true)) {
+//                    if (imagesSelected.indexOf(mediaList.get(position)) != -1) {
+//                        imagesSelected.remove(imagesSelected.indexOf(mediaList.get(position)));
+//                        selected.set(position, !selected.get(position));
+//                        mAdapter.notifyItemChanged(position);
+//                    }
+//                }
             }
 
             @Override

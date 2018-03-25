@@ -1,13 +1,27 @@
 package ggn.home.help.features.addMemories.fragments;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.github.florent37.camerafragment.PreviewActivity;
+import com.nex3z.flowlayout.FlowLayout;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +33,13 @@ import ggn.home.help.features.addMemories.AddMemoryView;
 import ggn.home.help.features.addMemories.SubCategoriesAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
+import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
 
 
 public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescriptionBinding, AddMemoryPresenter> implements AddMemoryView {
+
+    private DisplayMetrics displayMetrics;
 
     public static AddDescriptionFragment newInstance() {
         AddDescriptionFragment addDescriptionFragment = new AddDescriptionFragment();
@@ -38,39 +55,26 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     protected void onCreateFragmentG() {
         injectPresenter(new AddMemoryPresenter());
         getPresenter().attachView(this);
+
+        displayMetrics = new DisplayMetrics();
     }
 
     @Override
     public void initViews() {
         getDataBinder().flowLayoutAttachments.removeAllViews();
 
-        TextView textView = new TextView(getActivityG());
-        textView.setText("Add Media");
-        Drawable top = getResources().getDrawable(R.drawable.ic_add_image_large);
-        textView.setCompoundDrawables(null, top, null, null);
-//        textView.setCompoundDrawablePadding(UtillsG.dipToPixels(getActivityG(), 5));
-        textView.setTextColor(ContextCompat.getColor(getActivityG(), R.color.greyDark));
-//        textView.setTextSize9(UtillsG.dipToPixels(getActivityG(), 13));
-
-        getDataBinder().flowLayoutAttachments.addView(textView);
-
-//        getDataBinder().flowLayoutAttachments.addView(button);
-//        getDataBinder().flowLayoutAttachments.addView(button);
-//        getDataBinder().flowLayoutAttachments.addView(button);
-//        getDataBinder().flowLayoutAttachments.addView(button);
-//        getDataBinder().flowLayoutAttachments.addView(button);
-//        getDataBinder().flowLayoutAttachments.addView(button);
-
-        getDataBinder().buttonSignIn.setOnClickListener(new View.OnClickListener() {
+        getDataBinder().textViewAddMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button button = new Button(getActivityG());
-                button.setText("ABCD");
-                button.setBackgroundResource(R.color.buttonBlue);
+                Intent intent = new Intent(getActivityG(), AddMediaActivity.class);
+                startActivityForResult(intent, Constants.RequestCode.IMAGE_SEARCH);
+            }
+        });
 
-                getDataBinder().flowLayoutAttachments.addView(button);
+        getDataBinder().buttonUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                AddMediaActivity.start(getActivityG());
             }
         });
     }
@@ -78,6 +82,35 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     @Override
     public void showDescriptionFragment() {
 
+    }
 
+    private void addImageToView(String imagePath) {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View inflatedLayout = inflater.inflate(R.layout.flow_item_image, null, false);
+
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+
+        ImageView imageView = new ImageView(getActivity());
+        File file = new File(imagePath);
+        Uri imageUri = Uri.fromFile(file);
+        imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+//        Glide.with(getActivity()).load(imageUri).override(300,300).centerCrop().into(imageView);
+        inflatedLayout.setLayoutParams(new FlowLayout.LayoutParams((width / 3) - UtillsG.dipToPixels(getActivity(), 15),
+                UtillsG.dipToPixels(getActivity(), 140)));
+        getDataBinder().flowLayoutAttachments.addView(inflatedLayout);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
+            if(resultCode == Activity.RESULT_OK){
+                if(data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM){
+//                    Toast.makeText(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG), Toast.LENGTH_SHORT).show();
+                    addImageToView(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                }
+            }
+        }
     }
 }

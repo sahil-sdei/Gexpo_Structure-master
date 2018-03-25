@@ -33,9 +33,10 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
 
     @Override
     protected void onCreateFragmentG() {
+        setHasOptionsMenu(true);
         injectPresenter(new MemoriesPresenter());
         getPresenter().attachView(this);
-        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -61,6 +62,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.menu_memories, menu);
         super.onCreateOptionsMenu(menu,inflater);
     }

@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
+import ggn.home.help.utils.Constants;
 
 public class PhotoFragment extends Fragment implements View.OnClickListener {
 
@@ -147,9 +148,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
                                                        @Override
                                                        public void onPhotoTaken(byte[] bytes, String filePath) {
-                                                           Toast.makeText(getActivity(), "onPhotoTaken " + filePath, Toast.LENGTH_SHORT).show();
                                                            Intent intent = PreviewActivity.newIntentPhoto(getActivity(), filePath);
-                                                           startActivity(intent);
+                                                           getActivity().startActivityForResult(intent, Constants.RequestCode.IMAGE_PREVIEW);
                                                        }
                                                    },
                     Environment.getExternalStorageDirectory().getPath(),

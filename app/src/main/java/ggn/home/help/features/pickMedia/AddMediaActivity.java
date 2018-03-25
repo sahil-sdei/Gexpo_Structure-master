@@ -1,6 +1,7 @@
 package ggn.home.help.features.pickMedia;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,11 +17,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.github.florent37.camerafragment.PreviewActivity;
+
 import ggn.home.help.R;
 import ggn.home.help.features.pickMedia.adapters.PagerAdapter;
 import ggn.home.help.features.pickMedia.fragments.GalleryFragment;
 import ggn.home.help.features.pickMedia.fragments.PhotoFragment;
 import ggn.home.help.features.pickMedia.fragments.VideoFragment;
+import ggn.home.help.utils.Constants;
 
 public class AddMediaActivity extends AppCompatActivity {
 
@@ -35,6 +39,7 @@ public class AddMediaActivity extends AppCompatActivity {
         Intent starter = new Intent(context, AddMediaActivity.class);
         context.startActivity(starter);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +156,15 @@ public class AddMediaActivity extends AppCompatActivity {
                 //Got Permission
                 setUpViewPager();
             }
+        } else if (requestCode == Constants.RequestCode.IMAGE_PREVIEW) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(Constants.Extras.RESPONSE_CODE_ARG, PreviewActivity.ACTION_CONFIRM).putExtra(Constants.Extras.FILE_PATH_ARG, data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+                }
+            }
         }
     }
 
@@ -191,8 +205,8 @@ public class AddMediaActivity extends AppCompatActivity {
                 if (position == 1) {
                     PhotoFragment photoFragment = (PhotoFragment) adapter.getItem(1);
                     photoFragment.addCamera();
-                }else if (position == 2) {
-                    VideoFragment videoFragment= (VideoFragment) adapter.getItem(2);
+                } else if (position == 2) {
+                    VideoFragment videoFragment = (VideoFragment) adapter.getItem(2);
                     videoFragment.addCamera();
                 }
             }

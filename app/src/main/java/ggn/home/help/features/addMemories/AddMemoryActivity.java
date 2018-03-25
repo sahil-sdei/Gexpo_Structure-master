@@ -37,7 +37,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
     public void initViews() {
         setupToolbar(getString(R.string.add_memories));
 
-        showFragment(SubCategoriesFragment.newInstance());
+        showFragment(AddDescriptionFragment.newInstance());
     }
 
     private void showFragment(Fragment fragment) {
@@ -55,5 +55,10 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void showDescriptionFragment() {
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
