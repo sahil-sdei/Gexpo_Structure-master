@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HomeHelp</string>
+    <string name="app_name">Memoreeta</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -68,5 +68,12 @@
     <string name="upload">Upload</string>
     <string name="description">Description</string>
     <string name="create_child_profile">Create Child Profile</string>
+    <string name="search_name">Search name</string>
+    <string name="requests">Requests</string>
+    <string name="see_all">See all</string>
+    <string name="invite_to_join_memoreeta">Invite to join Memoreeta</string>
+    <string name="invite_facebook_friends">Invite Facebook Friends</string>
+    <string name="friends_n_family">Friends &amp; Family</string>
+    <string name="posts">Posts</string>
 
 </resources>

@@ -38,6 +38,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="50dp"
+                    android:src="@drawable/demo_image_wall"
                     android:layout_height="50dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>

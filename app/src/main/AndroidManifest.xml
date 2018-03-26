@@ -73,6 +73,16 @@
             android:name="com.github.florent37.camerafragment.PreviewActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".features.searchUser.SearchUserActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.userProfile.UserProfileActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

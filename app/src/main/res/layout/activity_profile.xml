@@ -44,7 +44,7 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/toolbar"
             app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/greyLight"
+            app:tabTextColor="@color/greyDark"
             app:tabGravity="fill"
             app:tabMode="fixed" />
 

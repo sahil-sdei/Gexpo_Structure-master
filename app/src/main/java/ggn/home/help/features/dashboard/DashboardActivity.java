@@ -37,6 +37,7 @@ import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
+import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
 import ggn.home.help.features.profile.ProfileActivity;
 
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
@@ -142,6 +143,10 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
                 setupToolbar("Dashboard");
+                break;
+            case POS_FRIEND_LIST:
+                showFragment(FriendsFamilyFragment.newInstance());
+                setupToolbar(getString(R.string.friends_n_family));
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
