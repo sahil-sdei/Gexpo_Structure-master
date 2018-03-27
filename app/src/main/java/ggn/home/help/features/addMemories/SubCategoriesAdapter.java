@@ -8,14 +8,15 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ItemManageAccountsBinding;
 import ggn.home.help.databinding.ItemSubCategoriesBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
+import ggn.home.help.features.memoryCategories.SubCategories;
 
 public class SubCategoriesAdapter extends InfiniteAdapterG<ItemSubCategoriesBinding> {
 
-    private List<String> dataList;
+    private List<SubCategories> dataList;
     private AddMemoryAdapterBinder addMemoryAdapterBinder;
     private Context context;
 
-    public SubCategoriesAdapter(List<String> dataList, Context context, AddMemoryAdapterBinder addMemoryAdapterBinder) {
+    public SubCategoriesAdapter(List<SubCategories> dataList, Context context, AddMemoryAdapterBinder addMemoryAdapterBinder) {
         this.dataList = dataList;
         this.addMemoryAdapterBinder = addMemoryAdapterBinder;
         this.context = context;

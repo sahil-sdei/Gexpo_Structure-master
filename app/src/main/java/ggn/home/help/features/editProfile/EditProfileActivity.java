@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 
 import ggn.home.help.R;
-import ggn.home.help.databinding.ActivityChangePasswordBinding;
 import ggn.home.help.databinding.ActivityEditProfileBinding;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.UtillsG;

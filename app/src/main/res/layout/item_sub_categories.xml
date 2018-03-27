@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="data"
-            type="String" />
+            type="ggn.home.help.features.memoryCategories.SubCategories" />
 
         <variable
             name="binder"
@@ -40,8 +40,9 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="38dp"
+                    app:urlSquare="@{data.icon}"
+                    android:layout_height="38dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
@@ -55,7 +56,7 @@
                 android:layout_marginRight="@dimen/margin10dp"
                 android:layout_toRightOf="@+id/relativeLayoutProfilePic"
                 android:lines="1"
-                android:text="Pregnancy Moments"
+                android:text="@{data.title}"
                 android:textColor="@color/greyDark"
                 android:textSize="@dimen/text16sp" />
         </RelativeLayout>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="data"
+            type="ggn.home.help.features.memoryCategories.Categories"/>
+
+    </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_main"
@@ -14,7 +20,7 @@
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/demo_add_mem"
+            app:fullWidthBG="@{data.image}"
             android:padding="@dimen/margin15dp">
 
             <TextView
@@ -23,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textViewDesc"
                 android:layout_alignParentLeft="true"
-                android:text="Pre Birth"
+                android:text="@{data.title}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text20sp"
                 android:textStyle="bold" />
@@ -34,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:text="Potentiality"
+                android:text="@{data.subTitle}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text15sp" />
 
@@ -51,7 +57,7 @@
             android:layout_below="@+id/relativeLayoutPicture"
             android:background="@android:color/transparent"
             android:padding="@dimen/margin15dp"
-            android:text="@string/sub_categories"
+            android:text="@{data.subTitle}"
             android:textColor="@color/black"
             android:textSize="@dimen/text17sp" />
 
@@ -60,12 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/textViewSubCategories" />
-
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/recyclerViewSubCategories"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@+id/textViewSubCategories" />-->
 
     </RelativeLayout>
 </layout>

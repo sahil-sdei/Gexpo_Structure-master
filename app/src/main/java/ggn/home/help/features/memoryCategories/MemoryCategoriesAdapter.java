@@ -10,11 +10,11 @@ import ggn.home.help.features.internal.base.InfiniteAdapterG;
 
 public class MemoryCategoriesAdapter extends InfiniteAdapterG<ItemAddMemoryBinding> {
 
-    private List<String> dataList;
+    private List<Categories> dataList;
     private Context context;
     private MemoryCategoriesAdapterBinder memoryCategoriesAdapterBinder;
 
-    public MemoryCategoriesAdapter(List<String> dataList, Context context, MemoryCategoriesAdapterBinder memoryCategoriesAdapterBinder) {
+    public MemoryCategoriesAdapter(List<Categories> dataList, Context context, MemoryCategoriesAdapterBinder memoryCategoriesAdapterBinder) {
         this.dataList = dataList;
         this.context = context;
         this.memoryCategoriesAdapterBinder = memoryCategoriesAdapterBinder;

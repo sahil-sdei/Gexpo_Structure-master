@@ -34,12 +34,10 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
 
     @Override
     public void initViews() {
-        getDataBinder().editTextSearchName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        getDataBinder().textViewSearchName.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    SearchUserActivity.start(getActivityG());
-                }
+            public void onClick(View view) {
+                SearchUserActivity.start(getActivityG());
             }
         });
 

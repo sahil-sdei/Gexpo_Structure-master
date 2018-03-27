@@ -3,7 +3,6 @@ package ggn.home.help.features.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -17,8 +16,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -30,7 +29,7 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.features.accounts.ManageAccountsActivity;
-import ggn.home.help.features.changePassword.ChangePasswordActivity;
+import ggn.home.help.features.changePassword.ChangePasswordFragment;
 import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFragment;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
@@ -142,24 +141,24 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         switch (position) {
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
-                setupToolbar("Dashboard");
+                setupToolbar("Dashboard", false);
                 break;
             case POS_FRIEND_LIST:
                 showFragment(FriendsFamilyFragment.newInstance());
-                setupToolbar(getString(R.string.friends_n_family));
+                setupToolbar(getString(R.string.friends_n_family), false);
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
-                setupToolbar(getString(R.string.create_child_profile));
+                setupToolbar(getString(R.string.create_child_profile), false);
                 break;
             case POS_CHANGE_PASSWORD:
-                Intent intent = new Intent(DashboardActivity.this, ChangePasswordActivity.class);
-                startActivity(intent);
+                showFragment(ChangePasswordFragment.newInstance());
+                setupToolbar(getString(R.string.change_password), false);
                 break;
             default:
                 Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
                 showFragment(selectedScreen);
-                setupToolbar(screenTitles[position]);
+                setupToolbar(screenTitles[position], false);
                 break;
         }
     }
@@ -176,21 +175,34 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
-        setupToolbar(title);
     }
 
-    public void setupToolbar(String title) {
+    public void setupToolbar(String title, boolean isBackVisible) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isBackVisible);
 
         TextView toolbarText = toolbar.findViewById(R.id.toolbar_title);
         if (toolbarText != null) {
             toolbarText.setText(title);
         }
+
+        ImageView imageViewMenu = toolbar.findViewById(R.id.imageViewMenu);
+        imageViewMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (slidingRootNav.isMenuOpened())
+                    slidingRootNav.closeMenu();
+                else
+                    slidingRootNav.openMenu();
+            }
+        });
+
+        if (isBackVisible)
+            imageViewMenu.setVisibility(View.GONE);
+        else
+            imageViewMenu.setVisibility(View.VISIBLE);
     }
 
     private DrawerItem createItemFor(int position) {
@@ -244,11 +256,13 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ADD_MEMORY) {
-            FragmentManager fm = getSupportFragmentManager();
-            for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                fm.popBackStack();
+            if (resultCode == RESULT_OK) {
+                FragmentManager fm = getSupportFragmentManager();
+                for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
+                showFragment(MemoriesFragment.newInstance());
             }
-            showFragment(MemoriesFragment.newInstance());
         }
     }
 }

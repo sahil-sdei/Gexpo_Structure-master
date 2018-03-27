@@ -111,7 +111,6 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
             if(resultCode == RESULT_OK){
                 if(data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM){
-//                    Toast.makeText(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG), Toast.LENGTH_SHORT).show();
                     addImageToView(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
                 }
             }

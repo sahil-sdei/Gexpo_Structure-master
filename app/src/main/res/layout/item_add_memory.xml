@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="data"
-            type="String" />
+            type="ggn.home.help.features.memoryCategories.Categories" />
 
         <variable
             name="binder"
@@ -17,9 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin1dp"
-        android:onClick="@{() -> binder.onItemClicked()}"
-        android:background="@drawable/layer_2"
-        android:padding="@dimen/margin20dp">
+        android:onClick="@{() -> binder.onItemClicked(data)}"
+        android:padding="@dimen/margin20dp"
+        app:fullWidthBG="@{data.image}">
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -28,7 +30,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginRight="@dimen/margin20dp"
             android:layout_toLeftOf="@+id/relativeLayoutYears"
-            android:text="Pre Birth"
+            android:text="@{data.title}"
             android:textColor="@color/white"
             android:textSize="@dimen/text20sp"
             android:textStyle="bold" />
@@ -41,23 +43,25 @@
             android:layout_below="@+id/textViewTitle"
             android:layout_marginRight="@dimen/margin20dp"
             android:layout_toLeftOf="@+id/relativeLayoutYears"
-            android:text="Potentiality"
+            android:text="@{data.subTitle}"
             android:textColor="@color/white"
-            android:textSize="@dimen/text15sp" />
+            android:textSize="@dimen/text15sp"
+            android:visibility="@{data.subTitle == null ? View.GONE : View.VISIBLE}" />
 
         <RelativeLayout
             android:id="@+id/relativeLayoutYears"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="@{data.years == null ? View.GONE : View.VISIBLE}">
 
             <TextView
                 android:id="@+id/textViewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="0-3"
+                android:text="@{data.years}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text20sp"
                 android:textStyle="bold" />
