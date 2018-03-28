@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundGrey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutExport"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin10dp"
+        android:padding="@dimen/margin15dp">
+
+        <ImageView
+            android:id="@+id/imageViewExport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_manage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin15dp"
+            android:layout_marginRight="@dimen/margin25dp"
+            android:layout_toLeftOf="@+id/imageViewExportSelected"
+            android:layout_toRightOf="@+id/imageViewExport"
+            android:text="Export your photos to PDF HD album"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text17sp" />
+
+        <ImageView
+            android:id="@+id/imageViewExportSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_check_black_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutReceive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayoutExport"
+        android:layout_marginTop="@dimen/margin20dp"
+        android:padding="@dimen/margin15dp">
+
+        <ImageView
+            android:id="@+id/imageViewReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_manage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin15dp"
+            android:layout_marginRight="@dimen/margin25dp"
+            android:layout_toLeftOf="@+id/imageViewReceiveSelected"
+            android:layout_toRightOf="@+id/imageViewReceive"
+            android:text="Receive Memoreeta high quality colored paper album at your home address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text17sp" />
+
+        <ImageView
+            android:id="@+id/imageViewReceiveSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_check_black_24dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
