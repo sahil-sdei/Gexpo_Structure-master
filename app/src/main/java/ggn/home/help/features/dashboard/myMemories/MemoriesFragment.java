@@ -18,7 +18,7 @@ import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 
 public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoriesPresenter> implements MemoriesView {
 
-    private List<String> list;
+    private List<Memory> list;
     private MemoriesAdapter memoriesAdapter;
 
     public static MemoriesFragment newInstance() {
@@ -42,16 +42,12 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     @Override
     public void initViews() {
         list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
+        list.add(new Memory("Stan Smith", "pro", "5", "2", "img1"));
+        list.add(new Memory("John Smith", "pro", "13", "3", "img2"));
+        list.add(new Memory("Steve Smith", "pro", "2", "4", "img3"));
+        list.add(new Memory("John Ward", "pro", "3", "6", "img4"));
+        list.add(new Memory("Alexander", "pro", "13", "2", "img5"));
+
 
         getDataBinder().recyclerViewMemories.setHasFixedSize(true);
         getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
