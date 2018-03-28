@@ -31,6 +31,8 @@ import ggn.home.help.R;
 import ggn.home.help.features.accounts.ManageAccountsActivity;
 import ggn.home.help.features.changePassword.ChangePasswordFragment;
 import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFragment;
+import ggn.home.help.features.dashboard.export.ExportFragment;
+import ggn.home.help.features.dashboard.familyTree.FamilyTreeFragment;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
@@ -45,11 +47,12 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private static final int POS_DASHBOARD = 0;
     private static final int POS_FRIEND_LIST = 1;
-    private static final int POS_EXPORT = 2;
-    private static final int POS_CREATE_CHILD_PROFILE = 3;
-    private static final int POS_CHANGE_PASSWORD = 4;
-    private static final int POS_CONTACT_US = 5;
-    private static final int POS_LOGOUT = 6;
+    private static final int POS_FAMILY_TREE = 2;
+    private static final int POS_EXPORT = 3;
+    private static final int POS_CREATE_CHILD_PROFILE = 4;
+    private static final int POS_CHANGE_PASSWORD = 5;
+    private static final int POS_CONTACT_US = 6;
+    private static final int POS_LOGOUT = 7;
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -83,6 +86,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_DASHBOARD).setChecked(true),
                 createItemFor(POS_FRIEND_LIST),
+                createItemFor(POS_FAMILY_TREE),
                 createItemFor(POS_EXPORT),
                 createItemFor(POS_CREATE_CHILD_PROFILE),
                 createItemFor(POS_CHANGE_PASSWORD),
@@ -146,6 +150,14 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             case POS_FRIEND_LIST:
                 showFragment(FriendsFamilyFragment.newInstance());
                 setupToolbar(getString(R.string.friends_n_family), false);
+                break;
+            case POS_FAMILY_TREE:
+                showFragment(FamilyTreeFragment.newInstance());
+                setupToolbar(getString(R.string.family_tree), false);
+                break;
+            case POS_EXPORT:
+                showFragment(ExportFragment.newInstance());
+                setupToolbar(getString(R.string.export), false);
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
