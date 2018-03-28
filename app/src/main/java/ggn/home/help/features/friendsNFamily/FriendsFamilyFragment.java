@@ -1,19 +1,22 @@
 package ggn.home.help.features.friendsNFamily;
 
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentFriendsFamilyBinding;
-import ggn.home.help.features.friendsNFamily.fragments.FriendsRequestsFragment;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.features.profile.FamilyAdapter;
 import ggn.home.help.features.searchUser.SearchUserActivity;
 import ggn.home.help.utils.PagerAdapter;
 
 
 public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBinding, FriendsFamilyPresenter> implements FriendsFamilyView {
 
-    private PagerAdapter adapter;
+    private RequestsAdapter requestsAdapter;
 
     public static FriendsFamilyFragment newInstance() {
         FriendsFamilyFragment friendsFamilyFragment = new FriendsFamilyFragment();
@@ -41,22 +44,18 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
             }
         });
 
-        setupViewPager(getDataBinder().viewPager);
-        getDataBinder().tabs.setupWithViewPager(getDataBinder().viewPager);
-        getDataBinder().viewPager.setOffscreenPageLimit(2);
-    }
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        list.add("a");
 
-    private void setupViewPager(ViewPager viewPager) {
-        adapter = new PagerAdapter(getChildFragmentManager());
-        adapter.addFrag(FriendsRequestsFragment.newInstance(), getString(R.string.friends));
-        adapter.addFrag(FriendsRequestsFragment.newInstance(), getString(R.string.family));
-        viewPager.setAdapter(adapter);
-    }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        menu.clear();
-//        inflater.inflate(R.menu.menu_notifications, menu);
-//        super.onCreateOptionsMenu(menu,inflater);
-//    }
+        getDataBinder().recyclerViewRequests.setHasFixedSize(true);
+        getDataBinder().recyclerViewRequests.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+        requestsAdapter = new RequestsAdapter(list, getActivityG());
+        requestsAdapter.setShouldLoadMore(false);
+        getDataBinder().recyclerViewRequests.setAdapter(requestsAdapter);
+        getDataBinder().recyclerViewRequests.setNestedScrollingEnabled(false);
+    }
 }

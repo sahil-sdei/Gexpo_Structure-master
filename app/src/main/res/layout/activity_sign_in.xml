@@ -12,18 +12,31 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:animateLayoutChanges="true"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_weight="0.35"
+                android:id="@+id/imageViewLogo"
+                android:layout_marginBottom="@dimen/margin15dp"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin20dp"
+                android:src="@drawable/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_height="0dp" />
+
             <LinearLayout
+                android:layout_weight="0.65"
+                android:id="@+id/linearLayoutParent"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/margin15dp"
                 android:orientation="vertical">
@@ -96,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin20dp"
                     android:background="@drawable/rounded_fb_blue"
-                    android:text="@string/sign_up_with_facebook"
+                    android:text="@string/sign_in_with_facebook"
                     android:textAllCaps="false"
                     android:padding="@dimen/margin10dp"
                     android:drawableLeft="@drawable/ic_if_facebook"
@@ -117,6 +130,6 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 </layout>

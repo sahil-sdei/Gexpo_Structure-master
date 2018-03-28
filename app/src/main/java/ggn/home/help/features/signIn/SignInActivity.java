@@ -13,6 +13,7 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
@@ -64,7 +65,10 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
         getDataBinder().buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataBinder().loginButton.performClick();
+                if (UtillsG.isNetworkAvailable(getActivityG()))
+                    getDataBinder().loginButton.performClick();
+                else
+                    Toast.makeText(getActivityG(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -108,7 +112,7 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void signUp(View view){
+    public void signUp(View view) {
         SignUpActivity.start(getActivityG());
         finish();
     }

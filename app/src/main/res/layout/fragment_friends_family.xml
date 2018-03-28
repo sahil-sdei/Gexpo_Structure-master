@@ -3,44 +3,168 @@
 
     <data></data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/backgroundGrey"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewSearchName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin15dp"
-            android:background="@color/backgroundGrey"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="@dimen/margin5dp"
-            android:text="@string/search_name"
-            android:imeOptions="actionSearch"
-            android:padding="@dimen/margin13dp"
-            android:textSize="@dimen/text19sp" />
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/greyDark" />
+            android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tabs"
-            android:layout_below="@+id/toolbar"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <TextView
+                android:id="@+id/textViewSearchName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin15dp"
+                android:background="@color/backgroundGrey"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="@dimen/margin5dp"
+                android:imeOptions="actionSearch"
+                android:padding="@dimen/margin13dp"
+                android:text="@string/search_name"
+                android:textSize="@dimen/text19sp" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundGrey"
+                    android:padding="@dimen/margin10dp"
+                    android:text="@string/requests"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/text18sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:background="@color/backgroundGrey"
+                    android:id="@+id/recyclerViewRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/imageNext"
+                    android:padding="@dimen/margin10dp">
+
+
+                    <ImageView
+                        android:id="@+id/imageViewFriends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_friend_list_large" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin20dp"
+                        android:layout_marginRight="@dimen/margin10dp"
+                        android:layout_toRightOf="@+id/imageViewFriends"
+                        android:lines="1"
+                        android:text="@string/friends"
+                        android:textColor="@color/greyDark"
+                        android:textSize="@dimen/text18sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/margin10dp"
+                        android:src="@drawable/ic_forward" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/backgroundGrey" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/imageNext"
+                    android:padding="@dimen/margin10dp">
+
+
+                    <ImageView
+                        android:id="@+id/imageViewFamily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_family_list_large" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/margin20dp"
+                        android:layout_marginRight="@dimen/margin10dp"
+                        android:layout_toRightOf="@+id/imageViewFamily"
+                        android:lines="1"
+                        android:text="@string/family"
+                        android:textColor="@color/greyDark"
+                        android:textSize="@dimen/text18sp" />
+
+                    <ImageView
+                        android:id="@+id/imageNext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/margin10dp"
+                        android:src="@drawable/ic_forward" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundGrey"
+                    android:padding="@dimen/margin10dp"
+                    android:text="@string/invite_to_join_memoreeta"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/text18sp" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutInvite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin10dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewFacebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_facebook_invite" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin15dp"
+                        android:layout_toRightOf="@+id/imageViewFacebook"
+                        android:padding="@dimen/margin10dp"
+                        android:text="@string/invite_facebook_friends"
+                        android:textColor="@color/greyDark"
+                        android:textSize="@dimen/text19sp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

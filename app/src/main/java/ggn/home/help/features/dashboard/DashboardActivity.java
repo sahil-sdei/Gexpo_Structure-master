@@ -40,8 +40,10 @@ import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
 import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
 import ggn.home.help.features.profile.ProfileActivity;
+import ggn.home.help.utils.Constants;
 
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
+import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
 
 public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
@@ -117,7 +119,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             public void onClick(View view) {
                 slidingRootNav.closeMenu();
                 Intent intent = new Intent(DashboardActivity.this, ManageAccountsActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, Constants.RequestCode.MANAGE_ACCOUNTS);
             }
         });
 
@@ -175,7 +177,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         }
     }
 
-    private void showFragment(Fragment fragment) {
+    public void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
@@ -187,6 +189,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
+        setupToolbar(title, false);
     }
 
     public void setupToolbar(String title, boolean isBackVisible) {
@@ -216,6 +219,13 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         else
             imageViewMenu.setVisibility(View.VISIBLE);
     }
+
+//    @Override
+//    public boolean onMenuOpened(int featureId, Menu menu) {
+//        findViewById(R.id.listAccounts).setVisibility(View.GONE);
+//        findViewById(R.id.list).setVisibility(View.VISIBLE);
+//        return super.onMenuOpened(featureId, menu);
+//    }
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
@@ -267,14 +277,24 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_MEMORY) {
-            if (resultCode == RESULT_OK) {
-                FragmentManager fm = getSupportFragmentManager();
-                for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                    fm.popBackStack();
+        switch (requestCode) {
+            case ADD_MEMORY:
+                if (resultCode == RESULT_OK) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                        fm.popBackStack();
+                    }
+                    showFragment(MemoriesFragment.newInstance());
+                    setupToolbar("Dashboard", false);
                 }
-                showFragment(MemoriesFragment.newInstance());
-            }
+                break;
+
+            case MANAGE_ACCOUNTS:
+                if (resultCode == RESULT_OK) {
+                    showFragment(CreateChildProfileFragment.newInstance());
+                    setupToolbar(getString(R.string.create_child_profile), false);
+                }
+                break;
         }
     }
 }

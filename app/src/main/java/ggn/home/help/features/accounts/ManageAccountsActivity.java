@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,14 +43,6 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
 
         getDataBinder().recyclerViewAccounts.setHasFixedSize(true);
         getDataBinder().recyclerViewAccounts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
@@ -62,5 +55,17 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add:
+                Intent resultIntent = getIntent();
+                setResult(RESULT_OK, resultIntent);
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -13,14 +13,13 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyLight"
+        android:background="@color/backgroundGrey"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:fullWidthBG="@{data.image}"
             android:padding="@dimen/margin15dp">
 
             <TextView
@@ -57,7 +56,7 @@
             android:layout_below="@+id/relativeLayoutPicture"
             android:background="@android:color/transparent"
             android:padding="@dimen/margin15dp"
-            android:text="@{data.subTitle}"
+            android:text="Sub Categories"
             android:textColor="@color/black"
             android:textSize="@dimen/text17sp" />
 

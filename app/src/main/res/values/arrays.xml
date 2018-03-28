@@ -4,6 +4,7 @@
     <string-array name="ld_activityScreenTitles">
         <item>Home</item>
         <item>Friends &amp; Family</item>
+        <item>Family Tree</item>
         <item>Export</item>
         <item>Create Child Profile</item>
         <item>Change Password</item>
@@ -14,6 +15,7 @@
     <array name="ld_activityScreenIcons">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_friend_list</item>
+        <item>@drawable/ic_family_list</item>
         <item>@drawable/ic_export</item>
         <item>@drawable/ic_create_child_profile</item>
         <item>@drawable/ic_change_password</item>

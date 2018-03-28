@@ -39,26 +39,24 @@ public class SignInPresenter extends BasePresenter<SignInView> implements SignIn
 
     @Override
     public void signInClicked(View view) {
-        DashboardActivity.start(getView().getActivityG());
-
-//        if (email.get().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.get()).matches()) {
-//            getView().displayError(getView().getActivityG().getString(R.string.please_enter_valid_email));
-//        } else if (password.get().isEmpty()) {
-//            getView().displayError(getView().getActivityG().getString(R.string.please_enter_password));
-//        } else {
-//            getView().hideKeyboard(view);
-//            DashboardActivity.start(getView().getActivityG());
-////                getView().showLoading(getView().getActivityG().getString(R.string.validating_user), getView().getActivityG().getString(R.string.please_wait));
-////                createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
-////                        .login(getEmail().get(), getPassword().get()), new CallBackG<UserModel>() {
-////                    @Override
-////                    public void callBack(UserModel output) {
-////                        getView().saveDataLocally(output);
-////                        DashboardActivity.start(getView().getActivityG());
-////                    }
-////                });
-////        }
+        if (email.get().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.get()).matches()) {
+            getView().displayError(getView().getActivityG().getString(R.string.please_enter_valid_email));
+        } else if (password.get().isEmpty()) {
+            getView().displayError(getView().getActivityG().getString(R.string.please_enter_password));
+        } else {
+            getView().hideKeyboard(view);
+            DashboardActivity.start(getView().getActivityG());
+//                getView().showLoading(getView().getActivityG().getString(R.string.validating_user), getView().getActivityG().getString(R.string.please_wait));
+//                createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
+//                        .login(getEmail().get(), getPassword().get()), new CallBackG<UserModel>() {
+//                    @Override
+//                    public void callBack(UserModel output) {
+//                        getView().saveDataLocally(output);
+//                        DashboardActivity.start(getView().getActivityG());
+//                    }
+//                });
 //        }
+        }
     }
 
     public FacebookCallback<LoginResult> getFbCallback() {

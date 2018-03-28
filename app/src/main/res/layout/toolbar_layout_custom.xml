@@ -6,29 +6,25 @@
     android:background="@color/white"
     android:elevation="@dimen/margin10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageViewMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:paddingBottom="@dimen/margin10dp"
+        android:paddingRight="@dimen/margin10dp"
+        android:paddingTop="@dimen/margin10dp"
+        android:src="@drawable/ic_menu" />
 
-        <ImageView
-            android:paddingRight="@dimen/margin10dp"
-            android:paddingTop="@dimen/margin10dp"
-            android:paddingBottom="@dimen/margin10dp"
-            android:id="@+id/imageViewMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu" />
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text18sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text18sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>

@@ -1,37 +1,24 @@
 package ggn.home.help.features.addMemories.fragments;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.github.florent37.camerafragment.PreviewActivity;
 import com.nex3z.flowlayout.FlowLayout;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentAddMemoryDescriptionBinding;
-import ggn.home.help.databinding.FragmentRecyclerViewBinding;
 import ggn.home.help.features.addMemories.AddMemoryPresenter;
 import ggn.home.help.features.addMemories.AddMemoryView;
-import ggn.home.help.features.addMemories.SubCategoriesAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
@@ -84,7 +71,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     }
 
     @Override
-    public void showDescriptionFragment() {
+    public void showDescriptionFragment(SubCategories subCategories) {
 
     }
 

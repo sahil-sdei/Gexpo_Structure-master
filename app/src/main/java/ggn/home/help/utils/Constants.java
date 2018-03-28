@@ -36,6 +36,7 @@ public @interface Constants
         int IMAGESEARCH  = 505;
         int ADD_MEMORY  = 506;
         int IMAGE_PREVIEW  = 507;
+        int MANAGE_ACCOUNTS  = 508;
 
     }
 

@@ -12,7 +12,9 @@ import ggn.home.help.databinding.ActivityAddMemoryBinding;
 import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.memoryCategories.Categories;
+import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.utils.Constants;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 
 public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, AddMemoryPresenter> implements AddMemoryView {
 
@@ -49,6 +51,8 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         binding.setData(categories);
         binding.executePendingBindings();
 
+        ImageLoader.loadFullWidthImageBG(binding.relativeLayoutPicture, categories.listSubcategories.get(0).background);
+
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);
         showFragment(SubCategoriesFragment.newInstance(bundle));
@@ -68,7 +72,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
     }
 
     @Override
-    public void showDescriptionFragment() {
+    public void showDescriptionFragment(SubCategories subCategories) {
     }
 
     @Override

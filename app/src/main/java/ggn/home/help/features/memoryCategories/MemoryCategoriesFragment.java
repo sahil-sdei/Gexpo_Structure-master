@@ -42,78 +42,103 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         list = new ArrayList<>();
 
         List<SubCategories> preBirth = new ArrayList<>();
-        preBirth.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        preBirth.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        preBirth.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        preBirth.add(new SubCategories("Pregnancy Moments", "ic_delivery_moments", "demo_add_mem"));
+        preBirth.add(new SubCategories("Baby Inside Me", "ic_miscellaneous", "demo_add_mem"));
+        preBirth.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> birth = new ArrayList<>();
-        birth.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        birth.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        birth.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        birth.add(new SubCategories("Delivery moments", "ic_miscellaneous", "a11112"));
+        birth.add(new SubCategories("Just born", "ic_miscellaneous", "a11112"));
+        birth.add(new SubCategories("First baby cry", "ic_miscellaneous", "a11112"));
+        birth.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11112"));
+
 
         List<SubCategories> infancy = new ArrayList<>();
-        infancy.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        infancy.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        infancy.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        infancy.add(new SubCategories("Firsts", "ic_miscellaneous", "a11133"));
+        infancy.add(new SubCategories("First Word", "ic_miscellaneous", "a11133"));
+        infancy.add(new SubCategories("First Walk", "ic_miscellaneous", "a11133"));
+        infancy.add(new SubCategories("First Birthday", "ic_miscellaneous", "a11133"));
+        infancy.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11133"));
+
 
         List<SubCategories> earlyChildhood = new ArrayList<>();
-        earlyChildhood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        earlyChildhood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        earlyChildhood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        earlyChildhood.add(new SubCategories("First Swim", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First Bike Ride", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First KG Day", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First Hobby", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First Friend", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First Handwritings", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("First drawings", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("KG Moments", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111114"));
+
 
         List<SubCategories> middleChildhood = new ArrayList<>();
-        middleChildhood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        middleChildhood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        middleChildhood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        middleChildhood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a111116"));
+        middleChildhood.add(new SubCategories("New Sport", "ic_miscellaneous", "a111116"));
+        middleChildhood.add(new SubCategories("New Language", "ic_miscellaneous", "a111116"));
+        middleChildhood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a111116"));
+        middleChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111116"));
 
         List<SubCategories> lateChildhood = new ArrayList<>();
-        lateChildhood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        lateChildhood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        lateChildhood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        lateChildhood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a11115"));
+        lateChildhood.add(new SubCategories("New Sport", "ic_miscellaneous", "a11115"));
+        lateChildhood.add(new SubCategories("New Language", "ic_miscellaneous", "a11115"));
+        lateChildhood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a11115"));
+        lateChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11115"));
 
         List<SubCategories> adolescence = new ArrayList<>();
-        adolescence.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        adolescence.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        adolescence.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        adolescence.add(new SubCategories("New Hobby", "ic_miscellaneous", "a17"));
+        adolescence.add(new SubCategories("New Sport", "ic_miscellaneous", "a17"));
+        adolescence.add(new SubCategories("New Language", "ic_miscellaneous", "a17"));
+        adolescence.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a17"));
+        adolescence.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a17"));
 
         List<SubCategories> earlyAdulthood = new ArrayList<>();
-        earlyAdulthood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        earlyAdulthood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        earlyAdulthood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        earlyAdulthood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a18"));
+        earlyAdulthood.add(new SubCategories("New Sport", "ic_miscellaneous", "a18"));
+        earlyAdulthood.add(new SubCategories("New Language", "ic_miscellaneous", "a18"));
+        earlyAdulthood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a18"));
+        earlyAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a18"));
 
         List<SubCategories> midlife = new ArrayList<>();
-        midlife.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        midlife.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        midlife.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        midlife.add(new SubCategories("New Hobby", "ic_miscellaneous", "a19"));
+        midlife.add(new SubCategories("New Sport", "ic_miscellaneous", "a19"));
+        midlife.add(new SubCategories("New Language", "ic_miscellaneous", "a19"));
+        midlife.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a19"));
+        midlife.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a19"));
 
         List<SubCategories> matureAdulthood = new ArrayList<>();
-        matureAdulthood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        matureAdulthood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        matureAdulthood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        matureAdulthood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a110"));
+        matureAdulthood.add(new SubCategories("New Sport", "ic_miscellaneous", "a110"));
+        matureAdulthood.add(new SubCategories("New Language", "ic_miscellaneous", "a110"));
+        matureAdulthood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a110"));
+        matureAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a110"));
 
         List<SubCategories> lateAdulthood = new ArrayList<>();
-        lateAdulthood.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        lateAdulthood.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        lateAdulthood.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        lateAdulthood.add(new SubCategories("New Clothes", "ic_miscellaneous", "a111"));
+        lateAdulthood.add(new SubCategories("New Friend", "ic_miscellaneous", "a111"));
+        lateAdulthood.add(new SubCategories("New Company", "ic_miscellaneous", "a111"));
+        lateAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111"));
 
         List<SubCategories> fullLifeAlbum = new ArrayList<>();
-        fullLifeAlbum.add(new SubCategories("Pregnancy Moments", "demo_image_wall", "demo_add_mem"));
-        fullLifeAlbum.add(new SubCategories("Baby Inside Me", "demo_image_wall", "demo_add_mem"));
-        fullLifeAlbum.add(new SubCategories("Miscellaneous", "demo_image_wall", "demo_add_mem"));
+        fullLifeAlbum.add(new SubCategories("Navigate", "ic_miscellaneous", "a112"));
+        fullLifeAlbum.add(new SubCategories("Transfer your album to one of your family", "ic_miscellaneous", "a112"));
 
 
         list.add(new Categories("Pre Birth", "Potientiality", "layer_2", null, preBirth));
-        list.add(new Categories("Birth", "Hope", "layer_2", null, birth));
-        list.add(new Categories("Infancy", "Vitality", "layer_2", "0-3", infancy));
-        list.add(new Categories("Early Childhood", "Playfulness", "layer_2", "3-6", earlyChildhood));
-        list.add(new Categories("Middle Childhood", "Imagination", "layer_2", "6-8", middleChildhood));
-        list.add(new Categories("Late Childhood", "Ingenuity", "layer_2", "9-11", lateChildhood));
-        list.add(new Categories("Adolescence", "Passion", "layer_2", "12-20", adolescence));
-        list.add(new Categories("Early Adulthood", "Enterprise", "layer_2", "20-35", earlyAdulthood));
-        list.add(new Categories("Midlife", "Contemplation", "layer_2", "35-50", midlife));
-        list.add(new Categories("Mature Adulthood", "Benevolence", "layer_2", "50-80", matureAdulthood));
-        list.add(new Categories("Late Adulthood", "Wisdom", "layer_2", "80+", lateAdulthood));
-        list.add(new Categories("Full Life Album", null, "layer_2", null, fullLifeAlbum));
+        list.add(new Categories("Birth", "Hope", "a2", null, birth));
+        list.add(new Categories("Infancy", "Vitality", "a3", "0-3", infancy));
+        list.add(new Categories("Early Childhood", "Playfulness", "a4", "3-6", earlyChildhood));
+        list.add(new Categories("Middle Childhood", "Imagination", "a5", "6-8", middleChildhood));
+        list.add(new Categories("Late Childhood", "Ingenuity", "a6", "9-11", lateChildhood));
+        list.add(new Categories("Adolescence", "Passion", "a7", "12-20", adolescence));
+        list.add(new Categories("Early Adulthood", "Enterprise", "a8", "20-35", earlyAdulthood));
+        list.add(new Categories("Midlife", "Contemplation", "a9", "35-50", midlife));
+        list.add(new Categories("Mature Adulthood", "Benevolence", "a10", "50-80", matureAdulthood));
+        list.add(new Categories("Late Adulthood", "Wisdom", "a11", "80+", lateAdulthood));
+        list.add(new Categories("Full Life Album", null, "a12", null, fullLifeAlbum));
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
