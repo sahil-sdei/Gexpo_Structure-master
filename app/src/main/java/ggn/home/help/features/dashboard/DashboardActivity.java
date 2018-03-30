@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -47,6 +49,7 @@ import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
 
 public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
+    private boolean doubleBackToExitPressedOnce = false;
     private static final int POS_DASHBOARD = 0;
     private static final int POS_FRIEND_LIST = 1;
     private static final int POS_FAMILY_TREE = 2;
@@ -296,5 +299,22 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Snackbar.make(findViewById(android.R.id.content), getString(R.string.press_again_to_exit_app), Snackbar.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }
