@@ -10,4 +10,8 @@
             <enum name="shadow_alpha" value="2"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CustomTextView">
+        <attr name="fontG" format="string" />
+    </declare-styleable>
 </resources>
