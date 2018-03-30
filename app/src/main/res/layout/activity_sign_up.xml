@@ -13,30 +13,30 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <LinearLayout
-            android:gravity="center"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_weight="0.25"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background" />
+
+            <ImageView
                 android:id="@+id/imageViewLogo"
-                android:layout_marginBottom="@dimen/margin15dp"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/margin20dp"
-                android:src="@drawable/logo"
-                android:layout_centerHorizontal="true"
-                android:layout_height="0dp" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginBottom="@dimen/margin15dp"
+                android:layout_marginTop="@dimen/margin40dp"
+                android:src="@drawable/logo" />
 
             <LinearLayout
-                android:layout_weight="0.75"
                 android:id="@+id/linearLayoutParent"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_margin="@dimen/margin15dp"
                 android:orientation="vertical">
 
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Create An Account"
+                    android:text="@string/create_an_account"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text18sp" />
@@ -118,10 +118,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin20dp"
                     android:background="@drawable/rounded_fb_blue"
+                    android:drawableLeft="@drawable/ic_if_facebook"
+                    android:padding="@dimen/margin10dp"
                     android:text="@string/sign_up_with_facebook"
                     android:textAllCaps="false"
-                    android:padding="@dimen/margin10dp"
-                    android:drawableLeft="@drawable/ic_if_facebook"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text16sp" />
 
@@ -139,6 +139,6 @@
                     android:textSize="@dimen/text15sp" />
 
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
     </ScrollView>
 </layout>
