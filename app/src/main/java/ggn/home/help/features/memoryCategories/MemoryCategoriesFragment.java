@@ -127,7 +127,7 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         fullLifeAlbum.add(new SubCategories("Transfer your album to one of your family", "ic_miscellaneous", "a112"));
 
 
-        list.add(new Categories("Pre Birth", "Potientiality", "layer_2", null, preBirth));
+        list.add(new Categories("Pre Birth", "Potentiality", "layer_2", null, preBirth));
         list.add(new Categories("Birth", "Hope", "a2", null, birth));
         list.add(new Categories("Infancy", "Vitality", "a3", "0-3", infancy));
         list.add(new Categories("Early Childhood", "Playfulness", "a4", "3-6", earlyChildhood));
