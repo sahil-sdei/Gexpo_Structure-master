@@ -63,7 +63,7 @@ public class ApplicationClass extends Application implements Application.Activit
 //        registerActivityLifecycleCallbacks(this);
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
-//        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/vegur_medium.otf");
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/Roboto-Light.ttf");
         //for camera
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();

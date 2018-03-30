@@ -9,6 +9,9 @@
         android:background="@drawable/bg"
         android:orientation="vertical">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout_transparent_white_logo" />
 
     </RelativeLayout>
 </layout>

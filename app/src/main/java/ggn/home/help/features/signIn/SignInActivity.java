@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -37,7 +38,7 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
 
     @Override
     protected int setLayoutId() {
-        getWindow().setBackgroundDrawableResource(R.drawable.background);
+//        getWindow().setBackgroundDrawableResource(R.drawable.background);
         return R.layout.activity_sign_in;
     }
 
@@ -55,6 +56,7 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
     @Override
     public void initViews() {
         getDataBinder().setBinder(getPresenter());
+        getDataBinder().editTextPassword.setTransformationMethod(new PasswordTransformationMethod());
 
         callbackManager = CallbackManager.Factory.create();
 

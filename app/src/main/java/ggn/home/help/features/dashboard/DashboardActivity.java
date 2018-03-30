@@ -3,6 +3,7 @@ package ggn.home.help.features.dashboard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,7 +35,7 @@ import ggn.home.help.features.accounts.ManageAccountsActivity;
 import ggn.home.help.features.changePassword.ChangePasswordFragment;
 import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFragment;
 import ggn.home.help.features.dashboard.export.ExportFragment;
-import ggn.home.help.features.dashboard.familyTree.FamilyTreeFragment;
+import ggn.home.help.features.dashboard.familyTree.FamilyTreeActivity;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
@@ -150,32 +151,31 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         switch (position) {
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
-                setupToolbar("Dashboard", false);
+                setupToolbar("", true, false);
                 break;
             case POS_FRIEND_LIST:
                 showFragment(FriendsFamilyFragment.newInstance());
-                setupToolbar(getString(R.string.friends_n_family), false);
+                setupToolbar(getString(R.string.friends_n_family), false, false);
                 break;
             case POS_FAMILY_TREE:
-                showFragment(FamilyTreeFragment.newInstance());
-                setupToolbar(getString(R.string.family_tree), false);
+                FamilyTreeActivity.start(DashboardActivity.this);
                 break;
             case POS_EXPORT:
                 showFragment(ExportFragment.newInstance());
-                setupToolbar(getString(R.string.export), false);
+                setupToolbar(getString(R.string.export), false, false);
                 break;
             case POS_CREATE_CHILD_PROFILE:
                 showFragment(CreateChildProfileFragment.newInstance());
-                setupToolbar(getString(R.string.create_child_profile), false);
+                setupToolbar(getString(R.string.create_child_profile), false, false);
                 break;
             case POS_CHANGE_PASSWORD:
                 showFragment(ChangePasswordFragment.newInstance());
-                setupToolbar(getString(R.string.change_password), false);
+                setupToolbar(getString(R.string.change_password), false, false);
                 break;
             default:
                 Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
                 showFragment(selectedScreen);
-                setupToolbar(screenTitles[position], false);
+                setupToolbar(screenTitles[position], false, false);
                 break;
         }
     }
@@ -192,14 +192,14 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 .add(R.id.container, fragment)
                 .addToBackStack(null)
                 .commit();
-        setupToolbar(title, false);
+        setupToolbar(title, false, false);
     }
 
-    public void setupToolbar(String title, boolean isBackVisible) {
+    public void setupToolbar(String title, boolean isLogoVisible, boolean isTransparent) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isBackVisible);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isTransparent);
 
         TextView toolbarText = toolbar.findViewById(R.id.toolbar_title);
         if (toolbarText != null) {
@@ -217,10 +217,18 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             }
         });
 
-        if (isBackVisible)
+        if(isTransparent) {
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
             imageViewMenu.setVisibility(View.GONE);
-        else
+        }else{
             imageViewMenu.setVisibility(View.VISIBLE);
+        }
+
+        ImageView imageViewLogo = toolbar.findViewById(R.id.imageViewTopLogo);
+        imageViewLogo.setVisibility(isLogoVisible ? View.VISIBLE : View.GONE);
+        imageViewLogo.setImageResource(isTransparent ? R.drawable.family_tree : R.drawable.memoreeta);
+        toolbar.setBackgroundColor(isTransparent ? ContextCompat.getColor(DashboardActivity.this, R.color.transparent) : ContextCompat.getColor(DashboardActivity.this, R.color.white));
+
     }
 
 //    @Override
@@ -288,14 +296,14 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                         fm.popBackStack();
                     }
                     showFragment(MemoriesFragment.newInstance());
-                    setupToolbar("Dashboard", false);
+                    setupToolbar("", true, false);
                 }
                 break;
 
             case MANAGE_ACCOUNTS:
                 if (resultCode == RESULT_OK) {
                     showFragment(CreateChildProfileFragment.newInstance());
-                    setupToolbar(getString(R.string.create_child_profile), false);
+                    setupToolbar(getString(R.string.create_child_profile), false, false);
                 }
                 break;
         }

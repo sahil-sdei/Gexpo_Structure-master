@@ -40,16 +40,16 @@
                 android:layout_margin="@dimen/margin15dp"
                 android:orientation="vertical">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/create_an_account"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textBrown"
                     android:textSize="@dimen/text18sp" />
 
-                <EditText
+                <ggn.home.help.utils.widgets.CustomEditText
                     android:id="@+id/editTextFullName"
                     style="@style/editTextTheme"
                     android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName" />
 
-                <EditText
+                <ggn.home.help.utils.widgets.CustomEditText
                     android:id="@+id/editTextEmail"
                     style="@style/editTextTheme"
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
 
-                <EditText
+                <ggn.home.help.utils.widgets.CustomEditText
                     android:id="@+id/editTextPassword"
                     style="@style/editTextTheme"
                     android:layout_width="match_parent"
@@ -79,11 +79,10 @@
                     android:layout_marginTop="@dimen/margin3dp"
                     android:background="@color/whiteTransparent"
                     android:hint="@string/password"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword" />
+                    android:imeOptions="actionDone" />
 
 
-                <Button
+                <ggn.home.help.utils.widgets.CustomButton
                     android:id="@+id/buttonSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,10 +92,10 @@
                     android:onClick="@{binder::signUpClicked}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text16sp" />
+                    android:textSize="@dimen/text14sp" />
 
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -105,7 +104,7 @@
                     android:text="Or"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text15sp" />
+                    android:textSize="@dimen/text14sp" />
 
                 <com.facebook.login.widget.LoginButton
                     android:id="@+id/loginButton"
@@ -113,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
 
-                <Button
+                <ggn.home.help.utils.widgets.CustomButton
                     android:id="@+id/buttonFacebook"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -124,9 +123,9 @@
                     android:text="@string/sign_up_with_facebook"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text16sp" />
+                    android:textSize="@dimen/text14sp" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewSignIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,7 +136,7 @@
                     android:text="@string/have_an_account_sign_in"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text15sp" />
+                    android:textSize="@dimen/text14sp" />
 
             </LinearLayout>
         </FrameLayout>

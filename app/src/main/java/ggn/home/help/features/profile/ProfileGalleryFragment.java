@@ -67,31 +67,22 @@ public class ProfileGalleryFragment extends BaseFragment<FragmentProfileGalleryB
     }
 
     private void addMockList() {
-        mAdapter.addItem(new HeaderItem("Header " + getHeaderCounter()));
 
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
+        mAdapter.addItem(new HeaderItem("Pre Birth"));
 
-        int headerPosition = new Random().nextInt(19) + 1;
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 0));
 
-        for (int i = 0; i < 100; i++) {
-            if (i % headerPosition == 0) {
-                mAdapter.addItem(new HeaderItem("Header " + getHeaderCounter()));
-                headerPosition = new Random().nextInt(19) + 1;
-            }
+        mAdapter.addItem(new HeaderItem("Birth"));
 
-            mAdapter.addItem(new GridItem("Grid " + getGridCounter(), mGridCounter));
-        }
-    }
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 1));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 1));
+        mAdapter.addItem(new GridItem("Grid " + getGridCounter(), 1));
 
-    public int getHeaderCounter() {
-        mGridCounter = 0;
-        return ++mHeaderCounter;
     }
 
     public int getGridCounter() {

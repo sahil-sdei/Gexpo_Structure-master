@@ -118,8 +118,10 @@ public class ProfileGalleryAdapter extends RecyclerView.Adapter<Holder> {
                     item.setSelected(!item.isSelected());
                     galleryItemSelected.onGalleryItemSelected();
                     notifyDataSetChanged();
-                } else
-                    Toast.makeText(view.getContext(), "You clicked on the " + item.getItemTitle() + " at Position -> " + item.getPosition() + "!", Toast.LENGTH_SHORT).show();
+                } else{
+
+                }
+//                    Toast.makeText(view.getContext(), "You clicked on the " + item.getItemTitle() + " at Position -> " + item.getPosition() + "!", Toast.LENGTH_SHORT).show();
             }
         });
 

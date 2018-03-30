@@ -41,12 +41,6 @@ public class FamilyFragment extends BaseFragment<FragmentRecyclerViewBinding, Me
         list.add("a");
         list.add("a");
         list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));

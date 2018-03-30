@@ -79,6 +79,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
+        <activity
+            android:name=".features.dashboard.familyTree.FamilyTreeActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
