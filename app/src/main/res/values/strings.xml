@@ -81,6 +81,7 @@
     <string name="success_admin_sub_category">Your suggested sub category successfully has been sent to admin</string>
     <string name="sign_in_with_facebook">Sign In With Facebook</string>
     <string name="no_internet_connection">No Internet connection!</string>
+    <string name="create_an_account">Create An Account</string>
 
 
 </resources>
