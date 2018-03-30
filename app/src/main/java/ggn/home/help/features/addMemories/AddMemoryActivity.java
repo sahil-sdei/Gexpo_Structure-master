@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryBinding;
+import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.memoryCategories.Categories;
@@ -66,7 +67,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     public void showFragmentWithBackStack(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, fragment)
+                .add(R.id.container, fragment, fragment.getClass().getName())
                 .addToBackStack(null)
                 .commit();
     }
@@ -92,8 +93,19 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void onBackPressed() {
-        Intent resultIntent = getIntent();
-        setResult(RESULT_CANCELED, resultIntent);
-        finish();
+        if (!isFragmentPresent(AddDescriptionFragment.class.getName())) {
+            Intent resultIntent = getIntent();
+            setResult(RESULT_CANCELED, resultIntent);
+            finish();
+        }
+    }
+
+    public boolean isFragmentPresent(String tag) {
+        Fragment frag = getSupportFragmentManager().findFragmentByTag(tag);
+        if (frag instanceof AddDescriptionFragment) {
+            getSupportFragmentManager().popBackStack();
+            return true;
+        } else
+            return false;
     }
 }
