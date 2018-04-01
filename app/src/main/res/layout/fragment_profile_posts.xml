@@ -19,22 +19,22 @@
                 android:background="@color/backgroundGrey"
                 android:padding="@dimen/margin10dp">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/friends"
-                    android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text18sp" />
+                    android:textColor="#FF5A5A5A"
+                    android:textSize="@dimen/text14sp" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="@string/see_all"
                     android:textColor="@color/buttonBlue"
-                    android:textSize="@dimen/text18sp" />
+                    android:textSize="@dimen/text14sp" />
 
             </RelativeLayout>
 
@@ -43,14 +43,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/backgroundGrey"
                 android:padding="@dimen/margin10dp"
                 android:text="@string/posts"
-                android:textColor="@color/greyDark"
-                android:textSize="@dimen/text18sp" />
+                android:textColor="#FF5A5A5A"
+                android:textSize="@dimen/text14sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewPosts"

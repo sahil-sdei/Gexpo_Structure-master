@@ -108,4 +108,8 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         } else
             return false;
     }
+
+    public void changeHeadingText(String title){
+        getDataBinder().textViewSubCategories.setText(title);
+    }
 }

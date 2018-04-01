@@ -16,10 +16,10 @@
         android:layout_width="@dimen/margin10dp"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <ggn.home.help.utils.widgets.CustomTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:textSize="@dimen/text15sp"
+        android:textSize="@dimen/text16sp"
         android:layout_height="wrap_content"
         android:textColor="@color/greyDark" />
 

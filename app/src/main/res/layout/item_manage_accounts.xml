@@ -32,23 +32,23 @@
 
                 <RelativeLayout
                     android:id="@+id/relativeLayoutProfilePic"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_width="45dp"
+                    android:layout_height="45dp">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:src="@drawable/bordered_circle" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewProfilePic"
-                        android:layout_width="50dp"
+                        android:layout_width="45dp"
                         android:src="@drawable/demo_image_wall"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
                         android:scaleType="centerCrop" />
                 </RelativeLayout>
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_below="@+id/relativeLayoutProfile"
                 android:padding="@dimen/margin10dp">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewAccountTransfer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,9 +80,10 @@
                     android:layout_toLeftOf="@+id/viewDivider"
                     android:drawableTop="@drawable/ic_account_transfer"
                     android:gravity="center"
+                    android:drawablePadding="@dimen/margin5dp"
                     android:text="@string/account_transfer"
                     android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text13sp" />
+                    android:textSize="@dimen/text12sp" />
 
                 <View
                     android:id="@+id/viewDivider"
@@ -93,7 +94,7 @@
                     android:layout_centerHorizontal="true"
                     android:background="@color/greyLight" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewDeleteAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,9 +102,10 @@
                     android:layout_toRightOf="@+id/viewDivider"
                     android:drawableTop="@drawable/ic_delete_account"
                     android:gravity="center"
+                    android:drawablePadding="@dimen/margin5dp"
                     android:text="@string/delete_account"
                     android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text13sp" />
+                    android:textSize="@dimen/text12sp" />
 
             </RelativeLayout>
 

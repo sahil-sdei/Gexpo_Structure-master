@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_white" />
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:text="John Edwards"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text30sp"
-                android:textStyle="bold" />
+                app:fontG="Roboto-Bold.ttf" />
 
 
             <TextView
@@ -47,11 +47,11 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:drawablePadding="@dimen/margin5dp"
-                android:drawableTop="@drawable/ic_friends"
+                android:drawableTop="@drawable/ic_tag_people"
                 android:padding="@dimen/margin10dp"
                 android:text="Add Friend"
                 android:textColor="@color/greyDark"
-                android:textSize="@dimen/text14sp" />
+                android:textSize="@dimen/text11sp" />
 
             <include
                 android:id="@+id/toolbar"
@@ -73,6 +73,7 @@
             android:background="@color/white"
             app:tabGravity="fill"
             app:tabIndicatorHeight="0dp"
+            app:tabTextAppearance="@style/CustomTabText"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/buttonBlue"
             app:tabTextColor="@color/black" />

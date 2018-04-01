@@ -22,7 +22,7 @@
             android:layout_height="150dp"
             android:padding="@dimen/margin15dp">
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,10 +30,11 @@
                 android:layout_alignParentLeft="true"
                 android:text="@{data.title}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text20sp"
-                android:textStyle="bold" />
+                app:fontG="Roboto-Medium.ttf"
+                android:textSize="@dimen/text24sp"
+                 />
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="@{data.subTitle}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text15sp" />
+                android:textSize="@dimen/text14sp" />
 
         </RelativeLayout>
 
@@ -58,7 +59,7 @@
             android:padding="@dimen/margin15dp"
             android:text="Sub Categories"
             android:textColor="@color/black"
-            android:textSize="@dimen/text17sp" />
+            android:textSize="@dimen/text16sp" />
 
         <FrameLayout
             android:id="@+id/container"

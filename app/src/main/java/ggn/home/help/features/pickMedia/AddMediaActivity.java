@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.github.florent37.camerafragment.PreviewActivity;
 
 import ggn.home.help.R;
+import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.pickMedia.adapters.PagerAdapter;
 import ggn.home.help.features.pickMedia.fragments.GalleryFragment;
 import ggn.home.help.features.pickMedia.fragments.PhotoFragment;
@@ -160,7 +161,7 @@ public class AddMediaActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
                     Intent resultIntent = new Intent();
-                    resultIntent.putExtra(Constants.Extras.RESPONSE_CODE_ARG, PreviewActivity.ACTION_CONFIRM).putExtra(Constants.Extras.FILE_PATH_ARG, data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                    resultIntent.putExtra(Constants.Extras.RESPONSE_CODE_ARG, PreviewActivity.ACTION_CONFIRM).putExtra(Constants.Extras.FILE_PATH_ARG, data.getStringExtra(Constants.Extras.FILE_PATH_ARG)).putExtra(AddDescriptionFragment.MEDIA_ACTION_ARG, data.getIntExtra(AddDescriptionFragment.MEDIA_ACTION_ARG, 0));
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 }

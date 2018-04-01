@@ -34,6 +34,7 @@
                 <RelativeLayout
                     android:id="@+id/relativeLayoutProfilePic"
                     android:layout_width="50dp"
+                    android:onClick="@{() -> binder.onProfileClicked(data)}"
                     android:layout_height="50dp">
 
                     <ImageView
@@ -49,7 +50,7 @@
                         app:urlSquare="@{data.userPicture}" />
                 </RelativeLayout>
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/text16sp" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewTimeAgo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -86,20 +87,19 @@
                 android:layout_height="200dp"
                 android:layout_below="@+id/relativeLayoutProfile">
 
-                <ImageView
-                    android:id="@+id/imageViewPicture"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPagerImages"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pro"
-                    app:urlFullWidth="@{data.image}" />
+                    android:layout_height="200dp"/>
+
+
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/gradient_black" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewLikes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text15sp" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewComments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,6 +135,14 @@
                     android:layout_margin="@dimen/margin15dp"
                     android:background="@drawable/ic_share" />
 
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    app:ci_drawable="@drawable/circle_blue"
+                    app:ci_drawable_unselected="@drawable/circle_gray"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -142,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeLayoutPicture">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

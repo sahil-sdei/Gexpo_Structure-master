@@ -53,11 +53,17 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
         getDataBinder().recyclerViewFriends.setNestedScrollingEnabled(false);
 
         List<Memory> listM = new ArrayList<>();
-        listM.add(new Memory("Stan Smith", "pro", "5", "2", "img1"));
-        listM.add(new Memory("John Smith", "pro", "13", "3", "img2"));
-        listM.add(new Memory("Steve Smith", "pro", "2", "4", "img3"));
-        listM.add(new Memory("John Ward", "pro", "3", "6", "img4"));
-        listM.add(new Memory("Alexander", "pro", "13", "2", "img5"));
+        List<String> listImages = new ArrayList<>();
+        listImages.add("pro");
+        listImages.add("pro");
+        listImages.add("pro");
+        listImages.add("pro");
+
+        listM.add(new Memory("Stan Smith", "pro", "5", "2", "img1", listImages));
+        listM.add(new Memory("John Smith", "pro", "13", "3", "img2", listImages));
+        listM.add(new Memory("Steve Smith", "pro", "2", "4", "img3", listImages));
+        listM.add(new Memory("John Ward", "pro", "3", "6", "img4", listImages));
+        listM.add(new Memory("Alexander", "pro", "13", "2", "img5", listImages));
 
         getDataBinder().recyclerViewPosts.setHasFixedSize(true);
         getDataBinder().recyclerViewPosts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));

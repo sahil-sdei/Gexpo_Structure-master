@@ -18,6 +18,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/whiteOff"
         app:tabGravity="fill"
+        app:tabTextAppearance="@style/CustomTabText"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/buttonBlue"
         app:tabTextColor="@color/black" />

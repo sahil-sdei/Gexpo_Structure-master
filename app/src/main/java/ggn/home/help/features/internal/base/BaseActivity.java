@@ -30,6 +30,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
     private TextView toolbarText;
 
     public Toolbar toolbar;
+    public Bundle savedInstanceState;
 
     /**
      * {@inheritDoc}
@@ -94,6 +95,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(setLayoutId());
+        this.savedInstanceState = savedInstanceState;
         binding = DataBindingUtil.setContentView(this, setLayoutId());
 
         onCreateActivityG();
@@ -228,4 +230,5 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
      * After that,put all the stuff you need in your activity on create.
      */
     protected abstract void onCreateActivityG();
+
 }

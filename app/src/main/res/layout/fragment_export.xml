@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data></data>
 
@@ -12,39 +12,196 @@
         <RelativeLayout
             android:id="@+id/relativeLayoutExport"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin10dp"
+            android:layout_marginTop="@dimen/margin3dp"
+            android:background="@color/white"
             android:padding="@dimen/margin15dp">
 
-            <ImageView
-                android:id="@+id/imageViewExport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_export_album" />
+            <RelativeLayout
+                android:id="@+id/relativeLayoutParentExport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin15dp"
-                android:layout_marginRight="@dimen/margin25dp"
-                android:layout_toLeftOf="@+id/imageViewExportSelected"
-                android:layout_toRightOf="@+id/imageViewExport"
-                android:text="Export your photos to PDF HD album"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text17sp" />
+                <ImageView
+                    android:id="@+id/imageViewExport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_export_album" />
 
-            <ImageView
-                android:minHeight="@dimen/margin30dp"
-                android:minWidth="@dimen/margin30dp"
-                android:id="@+id/imageViewExportSelected"
-                android:layout_width="wrap_content"
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin15dp"
+                    android:layout_marginRight="@dimen/margin25dp"
+                    android:layout_toRightOf="@+id/imageViewExport"
+                    android:text="Export your photos to PDF HD album."
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text14sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_check_black_24dp" />
+                android:layout_below="@+id/relativeLayoutParentExport"
+                android:layout_marginTop="@dimen/margin25dp">
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_shadow"
+                   >
+
+                    <RelativeLayout
+                        android:paddingTop="@dimen/margin10dp"
+                        android:paddingLeft="@dimen/margin20dp"
+                        android:paddingRight="@dimen/margin20dp"
+                        android:paddingBottom="@dimen/margin10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:id="@+id/textViewFullAlbum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/full_album"
+                            android:minWidth="100dp"
+                            android:gravity="center"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text14sp" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayoutPriceExOne"
+                            android:layout_below="@+id/textViewFullAlbum"
+                            android:layout_marginTop="@dimen/margin15dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:id="@+id/textViewPriceEx"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                app:fontG="Roboto-Bold.ttf"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text20sp" />
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$"
+                                android:layout_marginTop="@dimen/margin3dp"
+                                android:layout_toRightOf="@+id/textViewPriceEx"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text12sp" />
+
+                        </RelativeLayout>
+
+                        <ggn.home.help.utils.widgets.CustomButton
+                            android:layout_width="wrap_content"
+                            android:background="#FFE95F45"
+                            android:textColor="@color/white"
+                            android:text="Select"
+                            android:textAllCaps="false"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="@dimen/text14sp"
+                            android:layout_marginTop="@dimen/margin25dp"
+                            android:layout_below="@+id/relativeLayoutPriceExOne"
+                            android:layout_height="33dp" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_marginLeft="@dimen/margin20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_shadow">
+
+                    <RelativeLayout
+                        android:paddingTop="@dimen/margin10dp"
+                        android:paddingLeft="@dimen/margin20dp"
+                        android:paddingRight="@dimen/margin20dp"
+                        android:paddingBottom="@dimen/margin10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:id="@+id/textViewSelected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Selected Photos"
+                            android:minWidth="100dp"
+                            android:gravity="center"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text14sp" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayoutPriceExMul"
+                            android:layout_below="@+id/textViewSelected"
+                            android:layout_marginTop="@dimen/margin15dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:id="@+id/textViewPriceExMul"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10"
+                                app:fontG="Roboto-Bold.ttf"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text20sp" />
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$"
+                                android:layout_marginTop="@dimen/margin3dp"
+                                android:layout_toRightOf="@+id/textViewPriceExMul"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text12sp" />
+
+                        </RelativeLayout>
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:layout_below="@+id/relativeLayoutPriceExMul"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="per photo"
+                            android:layout_marginTop="-5dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="#FF353535"
+                            android:textSize="@dimen/text12sp" />
+
+                        <ggn.home.help.utils.widgets.CustomButton
+                            android:layout_width="wrap_content"
+                            android:background="#FF7A69B0"
+                            android:textColor="@color/white"
+                            android:text="Select"
+                            android:textAllCaps="false"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="@dimen/text14sp"
+                            android:layout_marginTop="@dimen/margin25dp"
+                            android:layout_below="@+id/relativeLayoutPriceExMul"
+                            android:layout_height="33dp" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -53,8 +210,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayoutExport"
-            android:layout_marginTop="@dimen/margin20dp"
+            android:layout_marginTop="@dimen/margin10dp"
+            android:background="@color/white"
             android:padding="@dimen/margin15dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutParentReceive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageViewReceive"
@@ -63,27 +226,177 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_memoreeta_album" />
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin15dp"
                 android:layout_marginRight="@dimen/margin25dp"
-                android:layout_toLeftOf="@+id/imageViewReceiveSelected"
                 android:layout_toRightOf="@+id/imageViewReceive"
-                android:text="Receive Memoreeta high quality colored paper album at your home address"
+                android:text="Receive Memoreeta high quality colored paper album at your home address."
                 android:textColor="@color/black"
-                android:textSize="@dimen/text17sp" />
+                android:textSize="@dimen/text14sp" />
+            </RelativeLayout>
 
-            <ImageView
-                android:minHeight="@dimen/margin30dp"
-                android:minWidth="@dimen/margin30dp"
-                android:id="@+id/imageViewReceiveSelected"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                />
+                android:layout_below="@+id/relativeLayoutParentReceive"
+                android:layout_marginTop="@dimen/margin25dp">
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_shadow">
+
+                    <RelativeLayout
+                        android:paddingTop="@dimen/margin10dp"
+                        android:paddingLeft="@dimen/margin20dp"
+                        android:paddingRight="@dimen/margin20dp"
+                        android:paddingBottom="@dimen/margin10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:id="@+id/textViewFullAlbumRe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/full_album"
+                            android:gravity="center"
+                            android:minWidth="100dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text14sp" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayoutPriceOneRe"
+                            android:layout_below="@+id/textViewFullAlbumRe"
+                            android:layout_marginTop="@dimen/margin15dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:id="@+id/textViewPriceRe"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50"
+                                app:fontG="Roboto-Bold.ttf"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text20sp" />
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$"
+                                android:layout_marginTop="@dimen/margin3dp"
+                                android:layout_toRightOf="@+id/textViewPriceRe"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text12sp" />
+
+                        </RelativeLayout>
+
+                        <ggn.home.help.utils.widgets.CustomButton
+                            android:layout_width="wrap_content"
+                            android:background="#FFE95F45"
+                            android:textColor="@color/white"
+                            android:text="Select"
+                            android:textAllCaps="false"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="@dimen/text14sp"
+                            android:layout_marginTop="@dimen/margin25dp"
+                            android:layout_below="@+id/relativeLayoutPriceOneRe"
+                            android:layout_height="33dp" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_marginLeft="@dimen/margin20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_shadow">
+
+                    <RelativeLayout
+                        android:paddingTop="@dimen/margin10dp"
+                        android:paddingLeft="@dimen/margin20dp"
+                        android:paddingRight="@dimen/margin20dp"
+                        android:paddingBottom="@dimen/margin10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:id="@+id/textViewSelectedRe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Selected Photos"
+                            android:minWidth="100dp"
+                            android:gravity="center"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text14sp" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayoutPriceMulRe"
+                            android:layout_below="@+id/textViewSelectedRe"
+                            android:layout_marginTop="@dimen/margin15dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:id="@+id/textViewPriceMulRe"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10"
+                                app:fontG="Roboto-Bold.ttf"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text20sp" />
+
+                            <ggn.home.help.utils.widgets.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$"
+                                android:layout_marginTop="@dimen/margin3dp"
+                                android:layout_toRightOf="@+id/textViewPriceMulRe"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text12sp" />
+
+                        </RelativeLayout>
+
+                        <ggn.home.help.utils.widgets.CustomTextView
+                            android:layout_below="@+id/relativeLayoutPriceMulRe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="per photo"
+                            android:layout_marginTop="-5dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="#FF353535"
+                            android:textSize="@dimen/text12sp" />
+
+                        <ggn.home.help.utils.widgets.CustomButton
+                            android:layout_width="wrap_content"
+                            android:background="#FF7A69B0"
+                            android:textColor="@color/white"
+                            android:text="Select"
+                            android:textAllCaps="false"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="@dimen/text14sp"
+                            android:layout_marginTop="@dimen/margin25dp"
+                            android:layout_below="@+id/relativeLayoutPriceMulRe"
+                            android:layout_height="33dp" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

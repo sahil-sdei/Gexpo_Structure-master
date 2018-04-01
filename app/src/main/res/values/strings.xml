@@ -83,5 +83,14 @@
     <string name="no_internet_connection">No Internet connection!</string>
     <string name="create_an_account">Create An Account</string>
     <string name="press_again_to_exit_app">Press again to exit app.</string>
+    <string name="share_in_the_memoreeta">Share in the memoreeta</string>
+    <string name="share_outside_the_memoreeta">Share outside the memoreeta</string>
+    <string name="full_album">Full Album</string>
+    <string name="life_event">Life Event</string>
+    <string name="tag_people">Tag People</string>
+    <string name="post">Post</string>
+    <string name="family_member">Family Member</string>
+    <string name="friend">Friend</string>
+    <string name="done">Done</string>
 
 </resources>

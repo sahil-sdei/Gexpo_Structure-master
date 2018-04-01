@@ -23,18 +23,18 @@
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutProfilePic"
-                android:layout_width="40dp"
-                android:layout_height="40dp">
+                android:layout_width="45dp"
+                android:layout_height="45dp">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@drawable/bordered_circle" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@drawable/demo_image_wall"
                     android:scaleType="centerCrop" />
             </RelativeLayout>

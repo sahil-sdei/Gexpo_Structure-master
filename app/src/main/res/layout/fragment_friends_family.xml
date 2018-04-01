@@ -15,7 +15,7 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewSearchName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -23,25 +23,26 @@
                 android:background="@color/backgroundGrey"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="@dimen/margin5dp"
+                android:textColor="@color/greyLight"
                 android:imeOptions="actionSearch"
                 android:padding="@dimen/margin13dp"
                 android:text="@string/search_name"
-                android:textSize="@dimen/text19sp" />
+                android:textSize="@dimen/text16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewRequests"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/backgroundGrey"
                     android:padding="@dimen/margin10dp"
                     android:text="@string/requests"
-                    android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text18sp" />
+                    android:textColor="#FF5A5A5A"
+                    android:textSize="@dimen/text14sp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:background="@color/backgroundGrey"
@@ -65,7 +66,7 @@
                         android:src="@drawable/ic_friend_list_large" />
 
 
-                    <TextView
+                    <ggn.home.help.utils.widgets.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -76,7 +77,7 @@
                         android:lines="1"
                         android:text="@string/friends"
                         android:textColor="@color/greyDark"
-                        android:textSize="@dimen/text18sp" />
+                        android:textSize="@dimen/text16sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -107,7 +108,7 @@
                         android:src="@drawable/ic_family_list_large" />
 
 
-                    <TextView
+                    <ggn.home.help.utils.widgets.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -118,7 +119,7 @@
                         android:lines="1"
                         android:text="@string/family"
                         android:textColor="@color/greyDark"
-                        android:textSize="@dimen/text18sp" />
+                        android:textSize="@dimen/text16sp" />
 
                     <ImageView
                         android:id="@+id/imageNext"
@@ -130,14 +131,14 @@
                         android:src="@drawable/ic_forward" />
                 </RelativeLayout>
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/backgroundGrey"
                     android:padding="@dimen/margin10dp"
                     android:text="@string/invite_to_join_memoreeta"
-                    android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text18sp" />
+                    android:textColor="#FF5A5A5A"
+                    android:textSize="@dimen/text14sp" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayoutInvite"
@@ -161,7 +162,7 @@
                         android:padding="@dimen/margin10dp"
                         android:text="@string/invite_facebook_friends"
                         android:textColor="@color/greyDark"
-                        android:textSize="@dimen/text19sp" />
+                        android:textSize="@dimen/text16sp" />
 
                 </RelativeLayout>
             </LinearLayout>

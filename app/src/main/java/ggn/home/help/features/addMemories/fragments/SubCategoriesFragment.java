@@ -51,6 +51,8 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
 
     @Override
     public void initViews() {
+        ((AddMemoryActivity)getActivity()).changeHeadingText(getString(R.string.sub_categories));
+
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
         SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(categoriesObj.listSubcategories, getActivityG(), getPresenter());

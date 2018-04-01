@@ -30,7 +30,7 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/circle_white">
 
-                    <TextView
+                    <ggn.home.help.utils.widgets.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -38,7 +38,7 @@
                         android:drawableTop="@drawable/ic_add_image"
                         android:text="@string/add_image"
                         android:textColor="@color/greyDark"
-                        android:textSize="@dimen/text11sp" />
+                        android:textSize="@dimen/text9sp" />
 
                 </RelativeLayout>
 
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextName"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextNickName"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextDateOfBirth"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextGender"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextAddress"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextLifeLesson"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin10dp" />
 
-                <Button
+                <ggn.home.help.utils.widgets.CustomButton
                     android:id="@+id/buttonSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

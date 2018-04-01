@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
+    <ggn.home.help.utils.widgets.CustomTextView
         android:id="@+id/textViewTitle"
         android:textColor="@color/textRed"
         android:padding="@dimen/margin10dp"

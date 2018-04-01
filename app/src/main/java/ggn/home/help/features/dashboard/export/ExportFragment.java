@@ -28,21 +28,11 @@ public class ExportFragment extends BaseFragment<FragmentExportBinding, ProfileP
 
     @Override
     public void initViews() {
-        getDataBinder().relativeLayoutExport.setOnClickListener(this);
-        getDataBinder().relativeLayoutReceive.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.relativeLayoutExport:
-                getDataBinder().imageViewExportSelected.setImageResource(R.drawable.ic_check_black_24dp);
-                getDataBinder().imageViewReceiveSelected.setImageResource(android.R.color.transparent);
-                break;
-            case R.id.relativeLayoutReceive:
-                getDataBinder().imageViewExportSelected.setImageResource(android.R.color.transparent);
-                getDataBinder().imageViewReceiveSelected.setImageResource(R.drawable.ic_check_black_24dp);
-                break;
-        }
+
     }
 }

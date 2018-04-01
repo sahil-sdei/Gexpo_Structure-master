@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
+        <ggn.home.help.utils.widgets.CustomEditText
             android:id="@+id/editTextSearchName"
             style="@style/editTextTheme"
             android:layout_width="match_parent"
@@ -17,9 +17,10 @@
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="@dimen/margin5dp"
             android:hint="@string/search_name"
+            android:textColorHint="@color/greyLight"
             android:imeOptions="actionSearch"
             android:padding="@dimen/margin13dp"
-            android:textSize="@dimen/text19sp" />
+            android:textSize="@dimen/text16sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewUsers"

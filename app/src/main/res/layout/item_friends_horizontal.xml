@@ -23,18 +23,18 @@
 
         <RelativeLayout
             android:id="@+id/relativeLayoutProfilePic"
-            android:layout_width="70dp"
-            android:layout_height="70dp">
+            android:layout_width="60dp"
+            android:layout_height="60dp">
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/bordered_circle" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageViewProfilePic"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/demo_image_wall" />
         </RelativeLayout>
@@ -46,15 +46,15 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/margin5dp">
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:lines="1"
                 android:text="Stan Smith"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text16sp" />
+                android:textColor="#FF444444"
+                android:textSize="@dimen/text12sp" />
 
         </RelativeLayout>
     </LinearLayout>

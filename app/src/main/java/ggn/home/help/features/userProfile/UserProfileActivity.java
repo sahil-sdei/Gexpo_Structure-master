@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityUserProfileBinding;
@@ -49,6 +53,22 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         setupViewPager(getDataBinder().viewPager);
         getDataBinder().tabs.setupWithViewPager(getDataBinder().viewPager);
         getDataBinder().viewPager.setOffscreenPageLimit(4);
+
+        getDataBinder().textViewAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(getActivityG(), view);
+                popup.getMenuInflater().inflate(R.menu.menu_add_friend, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(getActivityG(), "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+                popup.show();
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {

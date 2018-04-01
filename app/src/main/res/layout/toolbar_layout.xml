@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,14 +8,15 @@
     android:elevation="@dimen/margin10dp">
 
 
-    <TextView
+    <ggn.home.help.utils.widgets.CustomTextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:fontG="Roboto-Medium.ttf"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="@dimen/text18sp" />
+        android:textSize="@dimen/text16sp" />
 
 
 </android.support.v7.widget.Toolbar>

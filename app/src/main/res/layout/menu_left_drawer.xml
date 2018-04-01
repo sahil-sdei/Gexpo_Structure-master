@@ -27,7 +27,7 @@
 
     </RelativeLayout>
 
-    <TextView
+    <ggn.home.help.utils.widgets.CustomTextView
         android:drawableRight="@drawable/ic_dropdown"
         android:drawablePadding="@dimen/margin5dp"
         android:id="@+id/textViewUserName"
@@ -39,7 +39,7 @@
         android:text="Emilly Smith"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="@dimen/text17sp" />
+        android:textSize="@dimen/text18sp" />
 
     <Space
         android:layout_width="wrap_content"

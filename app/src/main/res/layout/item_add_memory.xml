@@ -23,7 +23,7 @@
         android:padding="@dimen/margin20dp"
         app:fullWidthBG="@{data.image}">
 
-        <TextView
+        <ggn.home.help.utils.widgets.CustomTextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,9 +33,10 @@
             android:text="@{data.title}"
             android:textColor="@color/white"
             android:textSize="@dimen/text20sp"
-            android:textStyle="bold" />
+            app:fontG="Quicksand-Bold.ttf"
+             />
 
-        <TextView
+        <ggn.home.help.utils.widgets.CustomTextView
             android:id="@+id/textViewDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
             android:layout_toLeftOf="@+id/relativeLayoutYears"
             android:text="@{data.subTitle}"
             android:textColor="@color/white"
-            android:textSize="@dimen/text15sp"
+            android:textSize="@dimen/text14sp"
             android:visibility="@{data.subTitle == null ? View.GONE : View.VISIBLE}" />
 
         <RelativeLayout
@@ -56,24 +57,25 @@
             android:gravity="center"
             android:visibility="@{data.years == null ? View.GONE : View.VISIBLE}">
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fontG="Quicksand-Bold.ttf"
                 android:layout_centerHorizontal="true"
                 android:text="@{data.years}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewYearsPH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewYear"
                 android:text="years"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text15sp" />
+                android:textSize="@dimen/text14sp" />
 
         </RelativeLayout>
     </RelativeLayout>

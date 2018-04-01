@@ -42,11 +42,18 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     @Override
     public void initViews() {
         list = new ArrayList<>();
-        list.add(new Memory("Stan Smith", "pro", "5", "2", "img1"));
-        list.add(new Memory("John Smith", "pro", "13", "3", "img2"));
-        list.add(new Memory("Steve Smith", "pro", "2", "4", "img3"));
-        list.add(new Memory("John Ward", "pro", "3", "6", "img4"));
-        list.add(new Memory("Alexander", "pro", "13", "2", "img5"));
+        List<String> listImages = new ArrayList<>();
+        listImages.add("pro");
+        listImages.add("pro");
+        listImages.add("pro");
+        listImages.add("pro");
+
+
+        list.add(new Memory("Stan Smith", "pro", "5", "2", "img1", listImages));
+        list.add(new Memory("John Smith", "pro", "13", "3", "img2", listImages));
+        list.add(new Memory("Steve Smith", "pro", "2", "4", "img3", listImages));
+        list.add(new Memory("John Ward", "pro", "3", "6", "img4", listImages));
+        list.add(new Memory("Alexander", "pro", "13", "2", "img5", listImages));
 
 
         getDataBinder().recyclerViewMemories.setHasFixedSize(true);

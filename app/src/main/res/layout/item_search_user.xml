@@ -29,19 +29,19 @@
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutProfilePic"
-                android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_width="45dp"
+                android:layout_height="45dp">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@drawable/bordered_circle" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:src="@drawable/demo_image_wall"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,9 +61,9 @@
                     android:lines="1"
                     android:text="Stan Smith"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text16sp" />
+                    android:textSize="@dimen/text14sp" />
 
-                <TextView
+                <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewMutualFriends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,8 +72,8 @@
                     android:lines="1"
                     android:layout_below="@+id/textViewUserName"
                     android:text="10 mutual friends"
-                    android:textColor="@color/greyDark"
-                    android:textSize="@dimen/text16sp" />
+                    android:textColor="@color/greyLight"
+                    android:textSize="@dimen/text14sp" />
 
             </RelativeLayout>
 

@@ -80,6 +80,11 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
+            android:name=".features.previewMedia.PreviewMediaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
             android:name=".features.dashboard.familyTree.FamilyTreeActivity"
             android:screenOrientation="portrait" />
 
