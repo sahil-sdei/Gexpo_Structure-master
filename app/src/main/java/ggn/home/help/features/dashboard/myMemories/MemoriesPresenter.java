@@ -10,11 +10,12 @@ import ggn.home.help.R;
 import ggn.home.help.features.internal.base.BasePresenter;
 import ggn.home.help.features.profile.FamilyFriendsAdapterBinder;
 import ggn.home.help.features.profile.ProfileActivity;
+import ggn.home.help.features.userProfile.UserProfileActivity;
 
 public class MemoriesPresenter extends BasePresenter<MemoriesView> implements MemoriesAdapterBinder, FamilyFriendsAdapterBinder {
 
     @Override
     public void onProfileClicked(Memory memory) {
-        ProfileActivity.start(getView().getActivityG());
+        UserProfileActivity.start(getView().getActivityG());
     }
 }

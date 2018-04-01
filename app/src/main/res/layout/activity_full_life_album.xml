@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="ggn.home.help.features.memoryCategories.Categories"/>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundGrey"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPicture"
+            android:background="@drawable/a112"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="@dimen/margin15dp">
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewDesc"
+                android:drawableRight="@drawable/ic_down_arrow"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:drawablePadding="@dimen/margin5dp"
+                android:text="@string/select_categories"
+                android:textColor="@color/white"
+                app:fontG="Roboto-Medium.ttf"
+                android:textSize="@dimen/text24sp"
+                 />
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewDesc"
+                android:drawableRight="@drawable/ic_down_arrow_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/margin5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:text="@string/select_sub_categories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text14sp" />
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout_transparent" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:background="@color/backgroundGrey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/CustomTabText"
+            android:layout_below="@+id/relativeLayoutPicture"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/greyDark"
+            app:tabGravity="fill"
+            app:tabMode="fixed" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_below="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</layout>

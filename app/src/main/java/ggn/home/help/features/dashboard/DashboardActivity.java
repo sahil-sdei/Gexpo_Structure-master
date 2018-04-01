@@ -42,6 +42,7 @@ import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
 import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
+import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumActivity;
 import ggn.home.help.features.profile.ProfileActivity;
 import ggn.home.help.utils.Constants;
 
@@ -53,12 +54,13 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     private boolean doubleBackToExitPressedOnce = false;
     private static final int POS_DASHBOARD = 0;
     private static final int POS_FRIEND_LIST = 1;
-    private static final int POS_FAMILY_TREE = 2;
-    private static final int POS_EXPORT = 3;
-    private static final int POS_CREATE_CHILD_PROFILE = 4;
-    private static final int POS_CHANGE_PASSWORD = 5;
-    private static final int POS_CONTACT_US = 6;
-    private static final int POS_LOGOUT = 7;
+    private static final int POS_FULL_LIFE_ALBUM = 2;
+    private static final int POS_FAMILY_TREE = 3;
+    private static final int POS_EXPORT = 4;
+    private static final int POS_CREATE_CHILD_PROFILE = 5;
+    private static final int POS_CHANGE_PASSWORD = 6;
+    private static final int POS_CONTACT_US = 7;
+    private static final int POS_LOGOUT = 8;
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -93,6 +95,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 createItemFor(POS_DASHBOARD).setChecked(true),
                 createItemFor(POS_FRIEND_LIST),
                 createItemFor(POS_FAMILY_TREE),
+                createItemFor(POS_FULL_LIFE_ALBUM),
                 createItemFor(POS_EXPORT),
                 createItemFor(POS_CREATE_CHILD_PROFILE),
                 createItemFor(POS_CHANGE_PASSWORD),
@@ -159,6 +162,9 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
                 break;
             case POS_FAMILY_TREE:
                 FamilyTreeActivity.start(DashboardActivity.this);
+                break;
+            case POS_FULL_LIFE_ALBUM:
+                FullLifeAlbumActivity.start(DashboardActivity.this);
                 break;
             case POS_EXPORT:
                 showFragment(ExportFragment.newInstance());

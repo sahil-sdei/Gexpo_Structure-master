@@ -92,5 +92,10 @@
     <string name="family_member">Family Member</string>
     <string name="friend">Friend</string>
     <string name="done">Done</string>
+    <string name="select_categories">Select Categories</string>
+    <string name="select_sub_categories">Select Sub Categories</string>
+    <string name="full_life_album">Full Life Album</string>
+    <string name="photos">Photos</string>
+    <string name="videos">Videos</string>
 
 </resources>

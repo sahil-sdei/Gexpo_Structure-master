@@ -88,6 +88,10 @@
             android:name=".features.dashboard.familyTree.FamilyTreeActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".features.fullLifeAlbum.FullLifeAlbumActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
