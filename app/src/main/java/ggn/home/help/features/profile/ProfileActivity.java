@@ -68,7 +68,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
                 EditProfileActivity.start(getActivityG());
                 break;
             case R.id.action_share:
-                PopupMenu popup = new PopupMenu(getActivityG(), item.getActionView());
+                PopupMenu popup = new PopupMenu(getActivityG(), findViewById(R.id.action_share));
                 popup.getMenuInflater().inflate(R.menu.menu_share, popup.getMenu());
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
