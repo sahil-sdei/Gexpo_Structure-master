@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin15dp">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutProfilePic"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/bordered_circle" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewProfilePic"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/demo_image_wall" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin15dp"
+                    android:layout_marginRight="@dimen/margin15dp"
+                    android:layout_toRightOf="@+id/relativeLayoutProfilePic">
+
+                    <ggn.home.help.utils.widgets.CustomTextView
+                        android:id="@+id/textViewUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:lines="1"
+                        android:text="Stan Smith"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text14sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/linearLayoutFooter"
+                android:layout_below="@+id/relativeLayoutProfile">
+
+                <ImageView
+                    android:id="@+id/imageViewPicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_black" />
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textViewDescription"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/margin5dp"
+                    android:layout_marginLeft="@dimen/margin15dp"
+                    android:layout_marginRight="@dimen/margin15dp"
+                    android:text="Lorem Ipsum text"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text16sp"
+                    app:fontG="Roboto-Medium.ttf" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/margin15dp">
+
+                <EditText
+                    android:id="@+id/editTextDescription"
+                    style="@style/editTextThemeSingleLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/editTextName"
+                    style="@style/editTextThemeSingleLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_tag_people"
+                    android:drawablePadding="@dimen/margin5dp"
+                    android:hint="@string/tag_people"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/buttonShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10dp"
+                    android:background="@drawable/round_bordered_button_blue"
+                    android:text="@string/share"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

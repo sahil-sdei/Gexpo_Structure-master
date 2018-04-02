@@ -27,7 +27,7 @@
                 android:id="@+id/textViewCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/textViewDesc"
+                android:layout_above="@+id/textViewSubCategory"
                 android:drawableRight="@drawable/ic_down_arrow"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
