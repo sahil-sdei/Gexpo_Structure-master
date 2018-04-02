@@ -4,30 +4,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
 
 import ggn.home.help.R;
-import ggn.home.help.databinding.ActivityAddMemoryBinding;
 import ggn.home.help.databinding.ActivityFullLifeAlbumBinding;
-import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
-import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.fullLifeAlbum.fragments.ImagesFragment;
 import ggn.home.help.features.fullLifeAlbum.fragments.VideosFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
-import ggn.home.help.features.memoryCategories.Categories;
-import ggn.home.help.features.memoryCategories.SubCategories;
-import ggn.home.help.features.profile.FamilyFragment;
-import ggn.home.help.features.profile.FriendsFragment;
-import ggn.home.help.features.profile.ProfileAboutFragment;
-import ggn.home.help.features.profile.ProfileGalleryFragment;
-import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.PagerAdapter;
-import ggn.home.help.utils.bitmapUtils.ImageLoader;
 
 public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView {
 
@@ -117,5 +104,11 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
         adapter.addFrag(ImagesFragment.newInstance(), getString(R.string.photos));
         adapter.addFrag(VideosFragment.newInstance(), getString(R.string.videos));
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add_white, menu);
+        return true;
     }
 }
