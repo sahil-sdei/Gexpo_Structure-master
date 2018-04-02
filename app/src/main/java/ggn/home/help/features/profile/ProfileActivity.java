@@ -2,7 +2,10 @@ package ggn.home.help.features.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -63,6 +66,26 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         switch (item.getItemId()){
             case R.id.action_edit:
                 EditProfileActivity.start(getActivityG());
+                break;
+            case R.id.action_share:
+                PopupMenu popup = new PopupMenu(getActivityG(), item.getActionView());
+                popup.getMenuInflater().inflate(R.menu.menu_share, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getTitle().toString().equalsIgnoreCase(getString(R.string.share_in_the_memoreeta))){
+
+                        }else{
+                            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                            sharingIntent.setType("text/plain");
+                            String shareBody = "Here is the share content body";
+                            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
                 break;
         }
         return super.onOptionsItemSelected(item);

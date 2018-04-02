@@ -24,7 +24,7 @@
             android:padding="@dimen/margin15dp">
 
             <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewTitle"
+                android:id="@+id/textViewCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textViewDesc"
@@ -39,7 +39,7 @@
                  />
 
             <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewDesc"
+                android:id="@+id/textViewSubCategory"
                 android:drawableRight="@drawable/ic_down_arrow_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

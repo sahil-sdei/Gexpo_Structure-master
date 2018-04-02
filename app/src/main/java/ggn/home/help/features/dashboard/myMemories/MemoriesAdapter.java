@@ -1,6 +1,7 @@
 package ggn.home.help.features.dashboard.myMemories;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,15 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(context, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        if(item.getTitle().toString().equalsIgnoreCase(context.getString(R.string.share_in_the_memoreeta))){
+
+                        }else{
+                            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                            sharingIntent.setType("text/plain");
+                            String shareBody = "Here is the share content body";
+                            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                            context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                        }
                         return true;
                     }
                 });
