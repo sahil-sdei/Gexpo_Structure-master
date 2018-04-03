@@ -14,6 +14,7 @@ import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
+import ggn.home.help.features.notifications.NotificationActivity;
 
 
 public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoriesPresenter> implements MemoriesView {
@@ -78,6 +79,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
                 ((DashboardActivity)getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.add_memories));
                 return true;
             case R.id.action_notifications:
+                NotificationActivity.start(getActivityG());
                 return true;
 
             default:

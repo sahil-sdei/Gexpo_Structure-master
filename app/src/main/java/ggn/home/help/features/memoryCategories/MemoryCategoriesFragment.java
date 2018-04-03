@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
 import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.features.notifications.NotificationActivity;
 import ggn.home.help.utils.Constants;
 
 
@@ -165,5 +167,15 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         intent.putExtra(Constants.Extras.DATA, categories);
         intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
         getActivity().startActivityForResult(intent, Constants.RequestCode.ADD_MEMORY);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_notifications:
+                NotificationActivity.start(getActivityG());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

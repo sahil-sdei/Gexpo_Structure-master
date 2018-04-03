@@ -114,6 +114,10 @@
             android:name=".features.addMemoryPreview.MemoryPreviewActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".features.notifications.NotificationActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
