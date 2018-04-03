@@ -3,10 +3,13 @@ package ggn.home.help.features.selectPictures;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,8 +60,8 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
-                final String[] animals = {"Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
-                int checkedItem = 1; // cow
+                final String[] animals = {"All", "Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
+                int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -86,7 +89,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Sub Category");
                 final String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
-                int checkedItem = 1; // cow
+                int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -130,6 +133,10 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_next, menu);
+//        MenuItem item = menu.findItem(R.id.action_edit);
+//        SpannableString s = new SpannableString("Next");
+//        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+//        item.setTitle(s);
         return true;
     }
 

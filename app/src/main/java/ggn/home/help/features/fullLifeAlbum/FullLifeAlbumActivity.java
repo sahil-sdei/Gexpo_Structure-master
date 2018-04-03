@@ -60,12 +60,11 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
-                final String[] animals = {"Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
-                int checkedItem = 1; // cow
+                final String[] animals = {"All","Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
+                int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("SSSSS", which+"");
                     }
                 });
 
@@ -90,7 +89,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Sub Category");
                 final String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
-                int checkedItem = 1; // cow
+                int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

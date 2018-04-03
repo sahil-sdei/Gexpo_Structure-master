@@ -17,7 +17,7 @@
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_friend_list</item>
         <item>@drawable/ic_family_list</item>
-        <item>@drawable/ic_family_list</item>
+        <item>@drawable/ic_full_life_album</item>
         <item>@drawable/ic_export</item>
         <item>@drawable/ic_create_child_profile</item>
         <item>@drawable/ic_change_password</item>

@@ -6,12 +6,16 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityPreviewPicturesBinding;
+import ggn.home.help.features.dashboard.export.ExportData;
+import ggn.home.help.features.delivery.DeliveryActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.profile.interfaces.GalleryItemSelected;
 import ggn.home.help.features.selectPictures.Pictures;
@@ -75,8 +79,25 @@ public class PreviewPicturesActivity extends BaseActivity<ActivityPreviewPicture
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_done:
+                if (listPictures.size() > 0) {
+                    ExportData exportData = new ExportData();
+                    exportData.type = 2;
+                    exportData.numberPhotos = listPictures.size();
+                    exportData.title = "";
+                    DeliveryActivity.start(getActivityG(), exportData);
+                }
+                else
+                    Toast.makeText(getActivityG(), "No pictures found. Please add pictures to proceed.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_delete:
+                for (Iterator<Pictures> iter = listPictures.listIterator(); iter.hasNext(); ) {
+                    Pictures p = iter.next();
+                    if (p.isSelected) {
+                        iter.remove();
+                    }
+                }
+                previewPicturesAdapter.notifyDataSetChanged();
+
                 break;
         }
         return super.onOptionsItemSelected(item);

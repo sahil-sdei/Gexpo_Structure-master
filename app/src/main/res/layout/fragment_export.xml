@@ -105,6 +105,7 @@
                         </RelativeLayout>
 
                         <ggn.home.help.utils.widgets.CustomButton
+                            android:id="@+id/buttonFullAlbumPdf"
                             android:layout_width="wrap_content"
                             android:background="#FFE95F45"
                             android:textColor="@color/white"
