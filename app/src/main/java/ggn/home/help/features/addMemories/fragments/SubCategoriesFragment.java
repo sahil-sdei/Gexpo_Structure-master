@@ -130,7 +130,9 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                 if (data.getBooleanExtra(MatisseFragment.EXTRA_IS_GALLERY, false)) {
                     List<Uri> uriList = Matisse.obtainResult(data);
                     List<String> pathList = Matisse.obtainPathResult(data);
-                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
+//                    String path = pathList.get(0);
+                    MemoryPreviewActivity.start(getActivityG());
                 } else {
                     if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
                         if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
