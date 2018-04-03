@@ -52,4 +52,6 @@
     <dimen name="text32sp">32sp</dimen>
     <dimen name="text35sp">35sp</dimen>
     <dimen name="text40sp">40sp</dimen>
+    <dimen name="grid_expected_size">120dp</dimen>
+
 </resources>

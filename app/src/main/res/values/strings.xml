@@ -99,5 +99,6 @@
     <string name="videos">Videos</string>
     <string name="all_family">All Family</string>
     <string name="select_family_members">Select Family Members</string>
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 
 </resources>

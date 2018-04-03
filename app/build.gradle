@@ -45,5 +45,5 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.7.14'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile project(':camera')
-
+    compile project(':usemedia')
 }

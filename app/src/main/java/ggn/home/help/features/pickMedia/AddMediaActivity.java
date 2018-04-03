@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,17 +18,28 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.usemedia.Matisse;
+import com.example.usemedia.MimeType;
+import com.example.usemedia.engine.impl.GlideEngine;
+import com.example.usemedia.filter.Filter;
+import com.example.usemedia.internal.entity.Album;
+import com.example.usemedia.internal.entity.CaptureStrategy;
+import com.example.usemedia.internal.entity.Item;
+import com.example.usemedia.internal.model.SelectedItemCollection;
+import com.example.usemedia.internal.ui.MediaSelectionFragment;
+import com.example.usemedia.internal.ui.adapter.AlbumMediaAdapter;
+import com.example.usemedia.ui.MatisseFragment;
 import com.github.florent37.camerafragment.PreviewActivity;
 
 import ggn.home.help.R;
 import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.pickMedia.adapters.PagerAdapter;
-import ggn.home.help.features.pickMedia.fragments.GalleryFragment;
 import ggn.home.help.features.pickMedia.fragments.PhotoFragment;
 import ggn.home.help.features.pickMedia.fragments.VideoFragment;
 import ggn.home.help.utils.Constants;
 
-public class AddMediaActivity extends AppCompatActivity {
+public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAdapter.CheckStateListener, AlbumMediaAdapter.OnMediaClickListener,
+        MediaSelectionFragment.SelectionProvider {
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
@@ -40,7 +52,6 @@ public class AddMediaActivity extends AppCompatActivity {
         Intent starter = new Intent(context, AddMediaActivity.class);
         context.startActivity(starter);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,9 +195,10 @@ public class AddMediaActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabs);
 
+        setUpMatisse();
 
         adapter = new PagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(GalleryFragment.newInstance(), "Gallery");
+        adapter.addFrag(MatisseFragment.newInstance(), "Gallery");
         adapter.addFrag(PhotoFragment.newInstance(), "Photo");
         adapter.addFrag(VideoFragment.newInstance(), "Video");
 
@@ -221,13 +233,37 @@ public class AddMediaActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (viewPager.getCurrentItem() == 0) {
-            GalleryFragment galleryFragment = (GalleryFragment) adapter.getItem(0);
-            boolean backPressed = galleryFragment.onBackPressed();
-            if (backPressed) {
-                super.onBackPressed();
-            }
-        } else
-            super.onBackPressed();
+        super.onBackPressed();
+    }
+
+    private void setUpMatisse() {
+        Matisse.from(AddMediaActivity.this)
+                .choose(MimeType.ofAll(), false)
+                .countable(true)
+                .capture(true)
+                .captureStrategy(
+                        new CaptureStrategy(true, "ggn.home.help.fileprovider"))
+                .maxSelectable(5)
+                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+                .gridExpectedSize(
+                        getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine());
+    }
+
+    @Override
+    public void onUpdate() {
+        ((MatisseFragment) adapter.getItem(0)).updateBottomToolbar();
+    }
+
+    @Override
+    public void onMediaClick(Album album, Item item, int adapterPosition) {
+        ((MatisseFragment) adapter.getItem(0)).onMediaClick(album, item, adapterPosition);
+    }
+
+    @Override
+    public SelectedItemCollection provideSelectedItemCollection() {
+        return ((MatisseFragment) adapter.getItem(0)).getSelectedItemCollection();
     }
 }

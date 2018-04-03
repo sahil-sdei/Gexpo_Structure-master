@@ -12,11 +12,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.usemedia.Matisse;
+import com.example.usemedia.ui.MatisseFragment;
 import com.github.florent37.camerafragment.PreviewActivity;
 import com.github.florent37.camerafragment.configuration.Configuration;
 import com.nex3z.flowlayout.FlowLayout;
 
 import java.io.File;
+import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentAddMemoryDescriptionBinding;
@@ -122,14 +125,19 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
             if (resultCode == RESULT_OK) {
-                if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
-//                    addImageToView(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
-                    if(data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO){
-                        Intent intentVideo = PreviewMediaActivity.newIntentVideo(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
-                        startActivityForResult(intentVideo, Constants.RequestCode.IMAGE_PREVIEW);
-                    }else {
-                        Intent intentPhoto = PreviewMediaActivity.newIntentPhoto(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
-                        startActivityForResult(intentPhoto, Constants.RequestCode.IMAGE_PREVIEW);
+                if (data.getBooleanExtra(MatisseFragment.EXTRA_IS_GALLERY, false)) {
+                    List<Uri> uriList = Matisse.obtainResult(data);
+                    List<String> pathList = Matisse.obtainPathResult(data);
+                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
+                } else {
+                    if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
+                        if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
+                            Intent intentVideo = PreviewMediaActivity.newIntentVideo(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                            startActivityForResult(intentVideo, Constants.RequestCode.IMAGE_PREVIEW);
+                        } else {
+                            Intent intentPhoto = PreviewMediaActivity.newIntentPhoto(getActivity(), data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                            startActivityForResult(intentPhoto, Constants.RequestCode.IMAGE_PREVIEW);
+                        }
                     }
                 }
             }
