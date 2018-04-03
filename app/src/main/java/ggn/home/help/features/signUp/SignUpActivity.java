@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySignUpBinding;
+import ggn.home.help.features.forgotPassword.ForgetPasswordActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signIn.SignInActivity;
 import ggn.home.help.utils.UtillsG;

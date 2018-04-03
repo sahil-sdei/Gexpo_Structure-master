@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySignInBinding;
+import ggn.home.help.features.forgotPassword.ForgetPasswordActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signUp.SignUpActivity;
 import ggn.home.help.utils.UtillsG;
@@ -71,6 +72,13 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
                     getDataBinder().loginButton.performClick();
                 else
                     Toast.makeText(getActivityG(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        getDataBinder().buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ForgetPasswordActivity.start(getActivityG());
             }
         });
 
