@@ -102,5 +102,6 @@
     <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
     <string name="request_password">Request Password</string>
     <string name="write_comment_here">Write comment here</string>
+    <string name="next">Next</string>
 
 </resources>

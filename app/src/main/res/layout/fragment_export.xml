@@ -186,6 +186,7 @@
                             android:textSize="@dimen/text12sp" />
 
                         <ggn.home.help.utils.widgets.CustomButton
+                            android:id="@+id/buttonSelectPhotosPdf"
                             android:layout_width="wrap_content"
                             android:background="#FF7A69B0"
                             android:textColor="@color/white"
@@ -300,6 +301,7 @@
                         </RelativeLayout>
 
                         <ggn.home.help.utils.widgets.CustomButton
+                            android:id="@+id/buttonFullAlbumMemoreeta"
                             android:layout_width="wrap_content"
                             android:background="#FFE95F45"
                             android:textColor="@color/white"
@@ -381,6 +383,7 @@
                             android:textSize="@dimen/text12sp" />
 
                         <ggn.home.help.utils.widgets.CustomButton
+                            android:id="@+id/buttonSelectPhotosMemoreeta"
                             android:layout_width="wrap_content"
                             android:background="#FF7A69B0"
                             android:textColor="@color/white"

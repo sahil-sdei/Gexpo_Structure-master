@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundGrey"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPicture"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/a112"
+            android:padding="@dimen/margin15dp">
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textViewSubCategory"
+                android:layout_alignParentLeft="true"
+                android:drawablePadding="@dimen/margin5dp"
+                android:drawableRight="@drawable/ic_down_arrow"
+                android:gravity="center"
+                android:text="@string/select_categories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text24sp"
+                app:fontG="Roboto-Medium.ttf" />
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewSubCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:drawablePadding="@dimen/margin5dp"
+                android:drawableRight="@drawable/ic_down_arrow_small"
+                android:text="@string/select_sub_categories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text14sp" />
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout_transparent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPictures"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayoutPicture" />
+
+    </RelativeLayout>
+</layout>
