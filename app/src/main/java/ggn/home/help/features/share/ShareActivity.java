@@ -3,6 +3,7 @@ package ggn.home.help.features.share;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityShareBinding;
@@ -49,7 +50,8 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding, SharePrese
                 startActivityForResult(intent, Constants.RequestCode.PRIVACY);
                 break;
             case R.id.button:
-
+                Toast.makeText(getActivityG(), "Shared successfully.", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
     }
