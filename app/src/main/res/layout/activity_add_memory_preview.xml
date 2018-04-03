@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/toolbar"
-                android:layout_marginTop="@dimen/margin5dp"
+                android:layout_marginTop="@dimen/margin3dp"
                 android:background="@color/white">
 
                 <RelativeLayout
@@ -67,21 +67,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/text14sp" />
 
-                        <ggn.home.help.utils.widgets.CustomTextView
-                            android:id="@+id/textViewPrivacy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/textViewUserName"
-                            android:layout_marginTop="@dimen/margin7dp"
-                            android:background="@drawable/bordered_rounded_gray"
-                            android:drawableLeft="@drawable/ic_everyone_in_share_screen"
-                            android:drawablePadding="@dimen/margin5dp"
-                            android:paddingBottom="@dimen/margin1dp"
-                            android:paddingLeft="@dimen/margin5dp"
-                            android:paddingRight="@dimen/margin5dp"
-                            android:paddingTop="@dimen/margin1dp"
-                            android:text="Everyone"
-                            android:textSize="@dimen/text12sp" />
+
 
                     </RelativeLayout>
                 </RelativeLayout>
@@ -132,35 +118,13 @@
                     android:orientation="vertical"
                     android:padding="@dimen/margin15dp">
 
-                    <EditText
-                        android:id="@+id/editTextDescription"
-                        style="@style/editTextThemeSingleLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top|left"
-                        android:hint="@string/description"
-                        android:inputType="textMultiLine"
-                        android:maxLines="3"
-                        android:scrollbars="vertical"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:id="@+id/editTextName"
-                        style="@style/editTextThemeSingleLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_tag_people"
-                        android:drawablePadding="@dimen/margin5dp"
-                        android:hint="@string/tag_people"
-                        android:textColor="@color/black" />
-
                     <Button
                         android:id="@+id/buttonShare"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin10dp"
                         android:background="@drawable/round_bordered_button_blue"
-                        android:text="@string/share"
+                        android:text="@string/save"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text14sp" />

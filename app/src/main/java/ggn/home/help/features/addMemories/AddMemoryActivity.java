@@ -56,6 +56,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);
+        bundle.putBoolean(Constants.Extras.IS_MEMORY, getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false));
         showFragment(SubCategoriesFragment.newInstance(bundle));
     }
 

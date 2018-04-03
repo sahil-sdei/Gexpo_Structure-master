@@ -75,7 +75,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         switch (item.getItemId()) {
 
             case R.id.action_add:
-                ((DashboardActivity)getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(), getString(R.string.add_memories));
+                ((DashboardActivity)getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.add_memories));
                 return true;
             case R.id.action_notifications:
                 return true;

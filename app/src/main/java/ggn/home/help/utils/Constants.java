@@ -23,6 +23,9 @@ public @interface Constants
         String TITLE             = "title";
         String FILE_PATH_ARG = "file_path_arg";
         String RESPONSE_CODE_ARG = "response_code_arg";
+        String PRIVACY           = "privacy";
+        String IS_MEMORY         = "is_memory";
+        String SCREEN_NUMBER     = "screen_number";
     }
 
     @interface RequestCode
@@ -38,6 +41,8 @@ public @interface Constants
         int IMAGE_PREVIEW  = 507;
         int MANAGE_ACCOUNTS  = 508;
 
+        int PRIVACY      = 509;
+        int SELECT_FAMILY_MEMBERS = 510;
     }
 
 }

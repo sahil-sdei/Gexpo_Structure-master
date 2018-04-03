@@ -1,5 +1,6 @@
 package ggn.home.help.features.fullLifeAlbum.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -41,6 +42,13 @@ public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
         baseViewHolder.binding.setData(dataList.get(position));
         baseViewHolder.binding.setBinder(photoVideoAdapterBinder);
         baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
+
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels;
+
+        baseViewHolder.binding.relativeLayoutParent.getLayoutParams().height = (width / 3);
+        baseViewHolder.binding.relativeLayoutParent.getLayoutParams().width = (width / 3) - 2;
+
         baseViewHolder.binding.executePendingBindings();
     }
 }

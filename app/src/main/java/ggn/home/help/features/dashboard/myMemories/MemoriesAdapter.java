@@ -12,6 +12,7 @@ import java.util.List;
 import ggn.home.help.R;
 import ggn.home.help.databinding.ItemMemoriesBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
+import ggn.home.help.features.share.ShareActivity;
 import me.relex.circleindicator.CircleIndicator;
 
 public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
@@ -53,7 +54,7 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().toString().equalsIgnoreCase(context.getString(R.string.share_in_the_memoreeta))){
-
+                            ShareActivity.start(context);
                         }else{
                             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                             sharingIntent.setType("text/plain");

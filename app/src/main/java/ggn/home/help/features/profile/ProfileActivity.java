@@ -13,6 +13,7 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityProfileBinding;
 import ggn.home.help.features.editProfile.EditProfileActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.features.share.ShareActivity;
 import ggn.home.help.utils.PagerAdapter;
 
 public class ProfileActivity extends BaseActivity<ActivityProfileBinding, ProfilePresenter> implements ProfileView {
@@ -74,7 +75,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().toString().equalsIgnoreCase(getString(R.string.share_in_the_memoreeta))){
-
+                            ShareActivity.start(getActivityG());
                         }else{
                             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                             sharingIntent.setType("text/plain");

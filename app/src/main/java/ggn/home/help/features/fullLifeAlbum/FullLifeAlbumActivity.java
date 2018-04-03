@@ -6,14 +6,19 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityFullLifeAlbumBinding;
+import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.fullLifeAlbum.fragments.ImagesFragment;
 import ggn.home.help.features.fullLifeAlbum.fragments.VideosFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.utils.PagerAdapter;
 
 public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView {
@@ -55,17 +60,22 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
-                String[] animals = {"Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
+                final String[] animals = {"Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
                 int checkedItem = 1; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Log.d("SSSSS", which+"");
                     }
                 });
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ListView lw = ((AlertDialog)dialog).getListView();
+                        String checkedItem = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+
+                        getDataBinder().textViewCategory.setText(checkedItem);
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
@@ -79,7 +89,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Sub Category");
-                String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
+                final String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
                 int checkedItem = 1; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
@@ -90,6 +100,10 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ListView lw = ((AlertDialog)dialog).getListView();
+                        String checkedItem = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+
+                        getDataBinder().textViewSubCategory.setText(checkedItem);
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
@@ -110,5 +124,15 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_add_white, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add:
+                DashboardActivity.start(getActivityG(), true);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

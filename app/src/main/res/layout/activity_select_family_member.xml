@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin3dp"
             android:background="@color/white"
-            android:padding="@dimen/margin10dp">
+            android:padding="@dimen/margin15dp">
 
 
             <ImageView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_export_album" />
+                android:src="@drawable/ic_family" />
 
             <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
@@ -37,8 +37,8 @@
                 android:layout_marginRight="@dimen/margin25dp"
                 android:layout_toRightOf="@+id/imageViewAllFamily"
                 android:text="@string/all_family"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text14sp" />
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
 
         </RelativeLayout>
 

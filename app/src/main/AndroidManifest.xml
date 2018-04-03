@@ -92,6 +92,23 @@
             android:name=".features.fullLifeAlbum.FullLifeAlbumActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".features.share.ShareActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.privacy.PrivacyActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.familyMembers.FamilyMembersActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.addMemoryPreview.MemoryPreviewActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

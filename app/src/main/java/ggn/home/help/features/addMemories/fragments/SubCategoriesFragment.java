@@ -1,6 +1,7 @@
 package ggn.home.help.features.addMemories.fragments;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,17 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.florent37.camerafragment.PreviewActivity;
+import com.github.florent37.camerafragment.configuration.Configuration;
+
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
 import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.addMemories.AddMemoryPresenter;
 import ggn.home.help.features.addMemories.AddMemoryView;
 import ggn.home.help.features.addMemories.SubCategoriesAdapter;
+import ggn.home.help.features.addMemoryPreview.MemoryPreviewActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.Categories;
 import ggn.home.help.features.memoryCategories.SubCategories;
+import ggn.home.help.features.pickMedia.AddMediaActivity;
+import ggn.home.help.features.previewMedia.PreviewMediaActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+
+import static android.app.Activity.RESULT_OK;
+import static ggn.home.help.features.addMemories.fragments.AddDescriptionFragment.MEDIA_ACTION_ARG;
 
 
 public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, AddMemoryPresenter> implements AddMemoryView {
@@ -64,8 +74,15 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
     public void showDescriptionFragment(SubCategories subCategories) {
         if (subCategories.title.equalsIgnoreCase("Miscellaneous")) {
             addSubCategory();
-        } else
-            ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
+        } else{
+            if(getArguments().getBoolean(Constants.Extras.IS_MEMORY)){
+                Intent intent = new Intent(getActivityG(), AddMediaActivity.class);
+                intent.putExtra(Constants.Extras.IS_MEMORY, true);
+                startActivityForResult(intent, Constants.RequestCode.IMAGE_SEARCH);
+            }else{
+                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
+            }
+        }
     }
 
     private void addSubCategory() {
@@ -99,5 +116,21 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
 
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
+            if (resultCode == RESULT_OK) {
+                if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
+                    if(data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO){
+                        MemoryPreviewActivity.start(getActivityG());
+                    }else {
+                        MemoryPreviewActivity.start(getActivityG());
+                    }
+                }
+            }
+        }
     }
 }

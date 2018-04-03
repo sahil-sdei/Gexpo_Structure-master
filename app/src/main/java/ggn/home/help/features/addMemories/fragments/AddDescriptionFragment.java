@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -71,6 +72,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         getDataBinder().buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getActivityG(), "Memory Posted Successfully.", Toast.LENGTH_LONG).show();
                 Intent resultIntent = getActivity().getIntent();
                 getActivity().setResult(RESULT_OK, resultIntent);
                 getActivity().finish();
@@ -85,10 +87,18 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 
     private void addImageToView(String imagePath) {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
-        View inflatedLayout = inflater.inflate(R.layout.flow_item_image, null, false);
+        final View inflatedLayout = inflater.inflate(R.layout.flow_item_image, null, false);
 
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
+
+        ImageView imageViewDelete = inflatedLayout.findViewById(R.id.imageViewDelete);
+        imageViewDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getDataBinder().flowLayoutAttachments.removeView(inflatedLayout);
+            }
+        });
 
         ImageView imageView = inflatedLayout.findViewById(R.id.imageViewPicture);
         File file = new File(imagePath);

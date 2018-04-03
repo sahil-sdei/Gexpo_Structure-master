@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin3dp"
             android:background="@color/white"
-            android:padding="@dimen/margin10dp">
+            android:padding="@dimen/margin15dp">
 
 
             <ImageView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_export_album" />
+                android:src="@drawable/ic_everyone" />
 
             <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
@@ -37,8 +37,8 @@
                 android:layout_marginRight="@dimen/margin25dp"
                 android:layout_toRightOf="@+id/imageViewEveryone"
                 android:text="Everyone"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text14sp" />
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
 
         </RelativeLayout>
 
@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayoutExport"
+            android:layout_marginTop="@dimen/margin1dp"
             android:background="@color/white"
             android:padding="@dimen/margin15dp">
 
@@ -55,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_memoreeta_album" />
+                android:src="@drawable/ic_friends" />
 
             <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
@@ -65,8 +66,8 @@
                 android:layout_marginRight="@dimen/margin25dp"
                 android:layout_toRightOf="@+id/imageViewFriends"
                 android:text="Friends"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text14sp" />
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
 
         </RelativeLayout>
 
@@ -75,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayoutExport"
+            android:layout_marginTop="@dimen/margin1dp"
             android:background="@color/white"
             android:padding="@dimen/margin15dp">
 
@@ -83,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_memoreeta_album" />
+                android:src="@drawable/ic_family" />
 
             <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
@@ -93,8 +95,15 @@
                 android:layout_marginRight="@dimen/margin25dp"
                 android:layout_toRightOf="@+id/imageViewFamily"
                 android:text="Family"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text14sp" />
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_forward" />
 
         </RelativeLayout>
 
@@ -103,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayoutExport"
+            android:layout_marginTop="@dimen/margin1dp"
             android:background="@color/white"
             android:padding="@dimen/margin15dp">
 
@@ -111,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_memoreeta_album" />
+                android:layout_marginLeft="@dimen/margin2dp"
+                android:src="@drawable/ic_only_me" />
 
             <ggn.home.help.utils.widgets.CustomTextView
                 android:layout_width="wrap_content"
@@ -120,9 +131,9 @@
                 android:layout_marginLeft="@dimen/margin15dp"
                 android:layout_marginRight="@dimen/margin25dp"
                 android:layout_toRightOf="@+id/imageViewOnlyMe"
-                android:text="Friends"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text14sp" />
+                android:text="Only Me"
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
 
         </RelativeLayout>
 

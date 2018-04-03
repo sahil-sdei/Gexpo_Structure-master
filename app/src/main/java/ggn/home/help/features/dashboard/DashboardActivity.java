@@ -43,6 +43,7 @@ import ggn.home.help.features.dashboard.menu.SimpleItem;
 import ggn.home.help.features.dashboard.myMemories.MemoriesFragment;
 import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumActivity;
+import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.features.profile.ProfileActivity;
 import ggn.home.help.utils.Constants;
 
@@ -69,6 +70,18 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     public static void start(Context context) {
         Intent starter = new Intent(context, DashboardActivity.class);
+        context.startActivity(starter);
+    }
+
+    public static void start(Context context, boolean isMemory) {
+        Intent starter = new Intent(context, DashboardActivity.class);
+        starter.putExtra(Constants.Extras.IS_MEMORY, isMemory);
+        context.startActivity(starter);
+    }
+
+    public static void start(Context context, int screen) {
+        Intent starter = new Intent(context, DashboardActivity.class);
+        starter.putExtra(Constants.Extras.SCREEN_NUMBER, screen);
         context.startActivity(starter);
     }
 
@@ -142,6 +155,14 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         adapter.setSelected(POS_DASHBOARD);
 
         setUpAccounts();
+
+        if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
+            showFragment(MemoryCategoriesFragment.newInstance(true));
+        }
+
+        if(getIntent().getIntExtra(Constants.Extras.SCREEN_NUMBER, 0)==1){
+            FullLifeAlbumActivity.start(DashboardActivity.this);
+        }
     }
 
     @Override
@@ -317,18 +338,19 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Snackbar.make(findViewById(android.R.id.content), getString(R.string.press_again_to_exit_app), Snackbar.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        super.onBackPressed();
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed();
+//            return;
+//        }
+//
+//        this.doubleBackToExitPressedOnce = true;
+//        Snackbar.make(findViewById(android.R.id.content), getString(R.string.press_again_to_exit_app), Snackbar.LENGTH_SHORT).show();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                doubleBackToExitPressedOnce = false;
+//            }
+//        }, 2000);
     }
 }

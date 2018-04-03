@@ -1,6 +1,8 @@
 package ggn.home.help.features.memoryCategories;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,8 +22,11 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
     private List<Categories> list;
     private MemoryCategoriesAdapter memoryCategoriesAdapter;
 
-    public static MemoryCategoriesFragment newInstance() {
+    public static MemoryCategoriesFragment newInstance(boolean isMemory) {
         MemoryCategoriesFragment activityFragment = new MemoryCategoriesFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Constants.Extras.IS_MEMORY, isMemory);
+        activityFragment.setArguments(bundle);
         return activityFragment;
     }
 
@@ -158,6 +163,7 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
     public void goToAddMemories(Categories categories) {
         Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
         intent.putExtra(Constants.Extras.DATA, categories);
+        intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
         getActivity().startActivityForResult(intent, Constants.RequestCode.ADD_MEMORY);
     }
 }
