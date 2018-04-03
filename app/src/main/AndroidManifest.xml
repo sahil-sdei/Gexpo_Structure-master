@@ -118,6 +118,11 @@
             android:name=".features.notifications.NotificationActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".features.comments.CommentsActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

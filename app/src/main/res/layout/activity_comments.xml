@@ -3,7 +3,7 @@
 
     <data></data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,6 +17,50 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relativeLayoutComments"
+            android:layout_below="@+id/toolbar" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/viewLine"
+            android:layout_marginLeft="@dimen/margin10dp"
+            android:layout_marginRight="@dimen/margin10dp">
+
+            <ggn.home.help.utils.widgets.CustomEditText
+                android:id="@+id/editTextComment"
+                style="@style/editTextTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin15dp"
+                android:layout_toLeftOf="@+id/imageViewSend"
+                android:background="@null"
+                android:hint="@string/write_comment_here"
+                android:padding="@dimen/margin10dp" />
+
+            <ImageView
+                android:id="@+id/imageViewSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin5dp"
+                android:src="@drawable/ic_select" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin10dp"
+            android:layout_marginLeft="@dimen/margin10dp"
+            android:layout_marginRight="@dimen/margin10dp"
+            android:layout_marginTop="@dimen/margin5dp"
+            android:background="@color/greyDark" />
+    </RelativeLayout>
 </layout>

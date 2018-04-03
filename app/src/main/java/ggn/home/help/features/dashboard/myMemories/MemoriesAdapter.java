@@ -5,15 +5,14 @@ import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ItemMemoriesBinding;
+import ggn.home.help.features.comments.CommentsActivity;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.share.ShareActivity;
-import me.relex.circleindicator.CircleIndicator;
 
 public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
 
@@ -53,9 +52,9 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getTitle().toString().equalsIgnoreCase(context.getString(R.string.share_in_the_memoreeta))){
+                        if (item.getTitle().toString().equalsIgnoreCase(context.getString(R.string.share_in_the_memoreeta))) {
                             ShareActivity.start(context);
-                        }else{
+                        } else {
                             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                             sharingIntent.setType("text/plain");
                             String shareBody = "Here is the share content body";
@@ -66,6 +65,13 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
                     }
                 });
                 popup.show();
+            }
+        });
+
+        baseViewHolder.binding.textViewComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommentsActivity.start(context);
             }
         });
 

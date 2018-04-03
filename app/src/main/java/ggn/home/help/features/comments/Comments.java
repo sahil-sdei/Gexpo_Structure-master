@@ -7,13 +7,13 @@ package ggn.home.help.features.comments;
 public class Comments {
     public String username;
     public String text;
-    public String timeAgo;
+    public String time;
     public String userPicture;
 
-    public Comments(String username, String text, String timeAgo, String userPicture) {
+    public Comments(String username, String text, String time, String userPicture) {
         this.username = username;
         this.text = text;
-        this.timeAgo = timeAgo;
+        this.time = time;
         this.userPicture = userPicture;
     }
 }

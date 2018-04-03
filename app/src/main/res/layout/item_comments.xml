@@ -5,11 +5,11 @@
 
         <variable
             name="data"
-            type="ggn.home.help.features.notifications.Notifications" />
+            type="ggn.home.help.features.comments.Comments" />
 
         <variable
             name="binder"
-            type="ggn.home.help.features.notifications.NotificationAdapterBinder"/>
+            type="ggn.home.help.features.comments.CommentsAdapterBinder"/>
 
     </data>
 
