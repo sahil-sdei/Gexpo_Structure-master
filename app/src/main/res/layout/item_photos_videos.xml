@@ -11,6 +11,9 @@
             name="binder"
             type="ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder"/>
 
+        <variable
+            name="pictures"
+            type="ggn.home.help.features.selectPictures.Pictures"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,7 +23,7 @@
 
         <ImageView
             android:id="@+id/image"
-            app:urlFullWidth="@{data}"
+            app:urlFullWidth="@{`pro`}"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -32,6 +35,23 @@
             android:layout_centerInParent="true"
             android:src="@drawable/ic_video"
             android:visibility="gone" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/relativeLayoutSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparentBlack"
+            android:padding="@dimen/margin7dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_select" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

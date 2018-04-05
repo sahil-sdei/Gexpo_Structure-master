@@ -2,6 +2,7 @@ package ggn.home.help.features.addMemories.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.github.florent37.camerafragment.configuration.Configuration;
 import com.nex3z.flowlayout.FlowLayout;
 
 import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
@@ -30,8 +33,10 @@ import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.features.previewMedia.PreviewMediaActivity;
+import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -41,8 +46,11 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     private DisplayMetrics displayMetrics;
     public final static String MEDIA_ACTION_ARG = "media_action_arg";
 
-    public static AddDescriptionFragment newInstance() {
+    public static AddDescriptionFragment newInstance(List<Pictures> pictures) {
         AddDescriptionFragment addDescriptionFragment = new AddDescriptionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.Extras.SELECTED_MEDIA, (Serializable) pictures);
+        addDescriptionFragment.setArguments(bundle);
         return addDescriptionFragment;
     }
 
@@ -61,7 +69,6 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 
     @Override
     public void initViews() {
-        ((AddMemoryActivity) getActivity()).changeHeadingText(getString(R.string.life_event));
         getDataBinder().flowLayoutAttachments.removeAllViews();
 
         getDataBinder().textViewAddMedia.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +88,11 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
                 getActivity().finish();
             }
         });
+
+        List<Pictures> pictures = (List<Pictures>) getArguments().getSerializable(Constants.Extras.SELECTED_MEDIA);
+        for(Pictures picturesObj : pictures){
+            addImageToView(picturesObj.picture);
+        }
     }
 
     @Override
@@ -104,17 +116,18 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         });
 
         ImageView imageView = inflatedLayout.findViewById(R.id.imageViewPicture);
-        File file = new File(imagePath);
-        Uri imageUri = Uri.fromFile(file);
-//        imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.override(100, 100);
-        requestOptions.transforms(new CenterCrop(), new RoundedCorners(10));
-        Glide
-                .with(imageView.getContext())
-                .load(imageUri)
-                .apply(requestOptions)
-                .into((imageView));
+        ImageLoader.songArtSmall(imageView, imagePath);
+//        File file = new File(imagePath);
+//        Uri imageUri = Uri.fromFile(file);
+////        imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+//        RequestOptions requestOptions = new RequestOptions();
+//        requestOptions.override(100, 100);
+//        requestOptions.transforms(new CenterCrop(), new RoundedCorners(10));
+//        Glide
+//                .with(imageView.getContext())
+//                .load(imageUri)
+//                .apply(requestOptions)
+//                .into((imageView));
         inflatedLayout.setLayoutParams(new FlowLayout.LayoutParams((width / 4) - UtillsG.dipToPixels(getActivity(), 15),
                 (width / 4) - UtillsG.dipToPixels(getActivity(), 15)));
         getDataBinder().flowLayoutAttachments.addView(inflatedLayout);

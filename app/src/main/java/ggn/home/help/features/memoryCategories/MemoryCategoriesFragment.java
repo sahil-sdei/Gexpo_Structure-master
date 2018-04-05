@@ -52,6 +52,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         preBirth.add(new SubCategories("Pregnancy Moments", "ic_delivery_moments", "demo_add_mem"));
         preBirth.add(new SubCategories("Baby Inside Me", "ic_miscellaneous", "demo_add_mem"));
         preBirth.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "demo_add_mem"));
+        preBirth.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
 
         List<SubCategories> birth = new ArrayList<>();
@@ -59,6 +61,7 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         birth.add(new SubCategories("Just born", "ic_miscellaneous", "a11112"));
         birth.add(new SubCategories("First baby cry", "ic_miscellaneous", "a11112"));
         birth.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11112"));
+        birth.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
 
 
         List<SubCategories> infancy = new ArrayList<>();
@@ -67,6 +70,7 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         infancy.add(new SubCategories("First Walk", "ic_miscellaneous", "a11133"));
         infancy.add(new SubCategories("First Birthday", "ic_miscellaneous", "a11133"));
         infancy.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11133"));
+        infancy.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
 
 
         List<SubCategories> earlyChildhood = new ArrayList<>();
@@ -79,6 +83,7 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         earlyChildhood.add(new SubCategories("First drawings", "ic_miscellaneous", "a111114"));
         earlyChildhood.add(new SubCategories("KG Moments", "ic_miscellaneous", "a111114"));
         earlyChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111114"));
+        earlyChildhood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
 
 
         List<SubCategories> middleChildhood = new ArrayList<>();
@@ -87,6 +92,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         middleChildhood.add(new SubCategories("New Language", "ic_miscellaneous", "a111116"));
         middleChildhood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a111116"));
         middleChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111116"));
+        middleChildhood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> lateChildhood = new ArrayList<>();
         lateChildhood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a11115"));
@@ -94,6 +101,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         lateChildhood.add(new SubCategories("New Language", "ic_miscellaneous", "a11115"));
         lateChildhood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a11115"));
         lateChildhood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a11115"));
+        lateChildhood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> adolescence = new ArrayList<>();
         adolescence.add(new SubCategories("New Hobby", "ic_miscellaneous", "a17"));
@@ -101,6 +110,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         adolescence.add(new SubCategories("New Language", "ic_miscellaneous", "a17"));
         adolescence.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a17"));
         adolescence.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a17"));
+        adolescence.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> earlyAdulthood = new ArrayList<>();
         earlyAdulthood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a18"));
@@ -108,6 +119,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         earlyAdulthood.add(new SubCategories("New Language", "ic_miscellaneous", "a18"));
         earlyAdulthood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a18"));
         earlyAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a18"));
+        earlyAdulthood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> midlife = new ArrayList<>();
         midlife.add(new SubCategories("New Hobby", "ic_miscellaneous", "a19"));
@@ -115,6 +128,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         midlife.add(new SubCategories("New Language", "ic_miscellaneous", "a19"));
         midlife.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a19"));
         midlife.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a19"));
+        midlife.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> matureAdulthood = new ArrayList<>();
         matureAdulthood.add(new SubCategories("New Hobby", "ic_miscellaneous", "a110"));
@@ -122,12 +137,16 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         matureAdulthood.add(new SubCategories("New Language", "ic_miscellaneous", "a110"));
         matureAdulthood.add(new SubCategories("New Bicycle", "ic_miscellaneous", "a110"));
         matureAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a110"));
+        matureAdulthood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> lateAdulthood = new ArrayList<>();
         lateAdulthood.add(new SubCategories("New Clothes", "ic_miscellaneous", "a111"));
         lateAdulthood.add(new SubCategories("New Friend", "ic_miscellaneous", "a111"));
         lateAdulthood.add(new SubCategories("New Company", "ic_miscellaneous", "a111"));
         lateAdulthood.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "a111"));
+        lateAdulthood.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
+
 
         List<SubCategories> fullLifeAlbum = new ArrayList<>();
         fullLifeAlbum.add(new SubCategories("Navigate", "ic_miscellaneous", "a112"));

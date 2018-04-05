@@ -3,6 +3,7 @@
 
     <string-array name="ld_activityScreenTitles">
         <item>Home</item>
+        <item>Add New Memory</item>
         <item>Friends &amp; Family</item>
         <item>Family Tree</item>
         <item>Full Life Album</item>
@@ -15,6 +16,7 @@
 
     <array name="ld_activityScreenIcons">
         <item>@drawable/ic_home</item>
+        <item>@drawable/ic_full_life_album</item>
         <item>@drawable/ic_friend_list</item>
         <item>@drawable/ic_family_list</item>
         <item>@drawable/ic_full_life_album</item>

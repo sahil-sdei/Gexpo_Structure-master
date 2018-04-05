@@ -54,14 +54,15 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private boolean doubleBackToExitPressedOnce = false;
     private static final int POS_DASHBOARD = 0;
-    private static final int POS_FRIEND_LIST = 1;
-    private static final int POS_FULL_LIFE_ALBUM = 2;
-    private static final int POS_FAMILY_TREE = 3;
-    private static final int POS_EXPORT = 4;
-    private static final int POS_CREATE_CHILD_PROFILE = 5;
-    private static final int POS_CHANGE_PASSWORD = 6;
-    private static final int POS_CONTACT_US = 7;
-    private static final int POS_LOGOUT = 8;
+    private static final int POS_ADD_NEW_MEMORY = 1;
+    private static final int POS_FRIEND_LIST = 2;
+    private static final int POS_FULL_LIFE_ALBUM = 3;
+    private static final int POS_FAMILY_TREE = 4;
+    private static final int POS_EXPORT = 5;
+    private static final int POS_CREATE_CHILD_PROFILE = 6;
+    private static final int POS_CHANGE_PASSWORD = 7;
+    private static final int POS_CONTACT_US = 8;
+    private static final int POS_LOGOUT = 9;
 
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -106,6 +107,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_DASHBOARD).setChecked(true),
+                createItemFor(POS_ADD_NEW_MEMORY),
                 createItemFor(POS_FRIEND_LIST),
                 createItemFor(POS_FAMILY_TREE),
                 createItemFor(POS_FULL_LIFE_ALBUM),
@@ -158,6 +160,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
         if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
             showFragment(MemoryCategoriesFragment.newInstance(true));
+            setupToolbar(getString(R.string.add_new_memory), false, false);
         }
 
         if(getIntent().getIntExtra(Constants.Extras.SCREEN_NUMBER, 0)==1){
@@ -176,6 +179,10 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             case POS_DASHBOARD:
                 showFragment(MemoriesFragment.newInstance());
                 setupToolbar("", true, false);
+                break;
+            case POS_ADD_NEW_MEMORY:
+                showFragment(MemoryCategoriesFragment.newInstance(true));
+                setupToolbar(getString(R.string.add_new_memory), false, false);
                 break;
             case POS_FRIEND_LIST:
                 showFragment(FriendsFamilyFragment.newInstance());

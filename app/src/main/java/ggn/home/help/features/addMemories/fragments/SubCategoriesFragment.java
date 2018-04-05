@@ -28,6 +28,8 @@ import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.Categories;
 import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
+import ggn.home.help.features.selectMediaPost.SelectMediaPostActivity;
+import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
 
@@ -38,6 +40,7 @@ import static ggn.home.help.features.addMemories.fragments.AddDescriptionFragmen
 public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, AddMemoryPresenter> implements AddMemoryView {
 
     private Categories categoriesObj;
+    private SubCategories subCategories;
 
     public static SubCategoriesFragment newInstance() {
         SubCategoriesFragment subCategoriesFragment = new SubCategoriesFragment();
@@ -76,7 +79,8 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
 
     @Override
     public void showDescriptionFragment(SubCategories subCategories) {
-        if (subCategories.title.equalsIgnoreCase("Miscellaneous")) {
+        this.subCategories = subCategories;
+        if (subCategories.title.equalsIgnoreCase("Suggest Sub Category")) {
             addSubCategory();
         } else {
             if (getArguments().getBoolean(Constants.Extras.IS_MEMORY)) {
@@ -84,7 +88,10 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                 intent.putExtra(Constants.Extras.IS_MEMORY, true);
                 startActivityForResult(intent, Constants.RequestCode.IMAGE_SEARCH);
             } else {
-                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
+//                ((AddMemoryActivity) getActivity()).changeHeadingText(subCategories.title);
+//                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
+                Intent intent = new Intent(getActivityG(), SelectMediaPostActivity.class);
+                startActivityForResult(intent, Constants.RequestCode.SELECT_IMAGES_VIDEOS);
             }
         }
     }
@@ -142,6 +149,11 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                         }
                     }
                 }
+            }
+        }else if (requestCode == Constants.RequestCode.SELECT_IMAGES_VIDEOS) {
+            if (resultCode == RESULT_OK) {
+                ((AddMemoryActivity) getActivity()).changeHeadingText(subCategories.title);
+                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance((List<Pictures>)data.getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
             }
         }
     }

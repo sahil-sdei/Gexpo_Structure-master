@@ -46,7 +46,10 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void initViews() {
-        setupToolbar(getString(R.string.add_memories));
+        if (getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false))
+            setupToolbar(getString(R.string.add_new_memory));
+        else
+            setupToolbar(getString(R.string.post_memory));
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         binding.setData(categories);
@@ -89,7 +92,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
                 onBackPressed();
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
@@ -110,7 +113,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
             return false;
     }
 
-    public void changeHeadingText(String title){
+    public void changeHeadingText(String title) {
         getDataBinder().textViewSubCategories.setText(title);
     }
 }
