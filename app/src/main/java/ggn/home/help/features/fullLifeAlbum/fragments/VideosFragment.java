@@ -17,11 +17,12 @@ import ggn.home.help.features.fullLifeAlbum.adapters.ImagesAdapter;
 import ggn.home.help.features.fullLifeAlbum.adapters.VideosAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
+import ggn.home.help.features.selectPictures.Pictures;
 
 
 public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView {
 
-    private List<String> list;
+    private List<Pictures> listPictures;
     private VideosAdapter videosAdapter;
 
     public static VideosFragment newInstance() {
@@ -42,18 +43,43 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
 
     @Override
     public void initViews() {
-        list = new ArrayList<>();
-        list.add("pro");
-        list.add("pro");
-        list.add("pro");
-        list.add("pro");
+        listPictures = new ArrayList<>();
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivityG(), 3);
         getDataBinder().recyclerView.setLayoutManager(gridLayoutManager);
-        videosAdapter = new VideosAdapter(list, getActivityG(), getPresenter());
+        videosAdapter = new VideosAdapter(listPictures, getActivityG(), getPresenter());
         videosAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(videosAdapter);
+    }
+
+    public void enableSharePost() {
+        for(Pictures pictures : listPictures){
+            pictures.isCheckVisible = true;
+        }
+        videosAdapter.notifyDataSetChanged();
+    }
+
+    public List<Pictures> getListVideos(){
+        return listPictures;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        resetData();
+    }
+
+    public void resetData() {
+        for(Pictures pictures : listPictures){
+            pictures.isCheckVisible = false;
+            pictures.isSelected = false;
+        }
+        videosAdapter.notifyDataSetChanged();
     }
 }

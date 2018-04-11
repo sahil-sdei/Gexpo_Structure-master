@@ -37,6 +37,7 @@ import ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileFra
 import ggn.home.help.features.dashboard.export.ExportFragment;
 import ggn.home.help.features.dashboard.familyTree.FamilyTreeActivity;
 import ggn.home.help.features.dashboard.menu.AccountsAdapter;
+import ggn.home.help.features.dashboard.menu.AccountsAdapterBinder;
 import ggn.home.help.features.dashboard.menu.DrawerAdapter;
 import ggn.home.help.features.dashboard.menu.DrawerItem;
 import ggn.home.help.features.dashboard.menu.SimpleItem;
@@ -50,7 +51,7 @@ import ggn.home.help.utils.Constants;
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
 import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
 
-public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener, AccountsAdapterBinder{
 
     private boolean doubleBackToExitPressedOnce = false;
     private static final int POS_DASHBOARD = 0;
@@ -246,8 +247,11 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             public void onClick(View view) {
                 if (slidingRootNav.isMenuOpened())
                     slidingRootNav.closeMenu();
-                else
+                else {
                     slidingRootNav.openMenu();
+                    findViewById(R.id.listAccounts).setVisibility(View.GONE);
+                    findViewById(R.id.list).setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -311,6 +315,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.VERTICAL, false));
         AccountsAdapter accountsAdapter = new AccountsAdapter(list, DashboardActivity.this);
         accountsAdapter.setShouldLoadMore(false);
+        accountsAdapter.setAccountsAdapterBinder(this);
         recyclerView.setAdapter(accountsAdapter);
     }
 
@@ -359,5 +364,13 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 //                doubleBackToExitPressedOnce = false;
 //            }
 //        }, 2000);
+    }
+
+    @Override
+    public void onAccountClicked() {
+        if (slidingRootNav.isMenuOpened())
+            slidingRootNav.closeMenu();
+        showFragment(MemoriesFragment.newInstance());
+        setupToolbar("", true, false);
     }
 }

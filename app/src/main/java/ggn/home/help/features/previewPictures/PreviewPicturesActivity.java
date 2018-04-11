@@ -51,7 +51,7 @@ public class PreviewPicturesActivity extends BaseActivity<ActivityPreviewPicture
 
     @Override
     public void initViews() {
-        setupToolbar("Preview Pictures");
+        setupToolbar("Review Pictures");
 
         listPictures = (List<Pictures>) getIntent().getSerializableExtra(Constants.Extras.DATA);
         for (Pictures pictures : listPictures) {

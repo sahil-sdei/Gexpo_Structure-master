@@ -249,9 +249,9 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
 
     private void setUpMatisse() {
         int maxSelectable = 5;
-        if (getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)) {
-            maxSelectable = 1;
-        }
+//        if (getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)) {
+//            maxSelectable = 1;
+//        }
 
         Matisse.from(AddMediaActivity.this)
                 .choose(MimeType.ofAll(), false)

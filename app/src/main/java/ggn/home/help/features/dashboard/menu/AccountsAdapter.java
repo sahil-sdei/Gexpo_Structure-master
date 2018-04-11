@@ -1,6 +1,7 @@
 package ggn.home.help.features.dashboard.menu;
 
 import android.content.Context;
+import android.view.View;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class AccountsAdapter extends InfiniteAdapterG<ItemAccountsBinding> {
 
     private List<String> dataList;
     private Context context;
+    private AccountsAdapterBinder accountsAdapterBinder;
 
     public AccountsAdapter(List<String> dataList, Context context) {
         this.dataList = dataList;
@@ -31,6 +33,16 @@ public class AccountsAdapter extends InfiniteAdapterG<ItemAccountsBinding> {
     @Override
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
+        baseViewHolder.binding.relativeLayoutParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accountsAdapterBinder.onAccountClicked();
+            }
+        });
         baseViewHolder.binding.executePendingBindings();
+    }
+
+    public void setAccountsAdapterBinder(AccountsAdapterBinder accountsAdapterBinder) {
+        this.accountsAdapterBinder = accountsAdapterBinder;
     }
 }

@@ -25,6 +25,7 @@ public @interface Constants {
         String IS_MEMORY = "is_memory";
         String SCREEN_NUMBER = "screen_number";
         String SELECTED_MEDIA = "selected_media";
+        String POST_FROM_ALBUM = "post_from_album";
     }
 
     @interface RequestCode {
@@ -41,6 +42,7 @@ public @interface Constants {
         int PRIVACY = 509;
         int SELECT_FAMILY_MEMBERS = 510;
         int SELECT_IMAGES_VIDEOS = 511;
+        int POST_VIA_MEMORY = 512;
     }
 
 }

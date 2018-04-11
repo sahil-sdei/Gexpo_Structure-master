@@ -78,7 +78,7 @@
     <string name="export">Export</string>
     <string name="family_tree">Family Tree</string>
     <string name="enter_sub_category_name">Enter Sub Category Name</string>
-    <string name="success_admin_sub_category">Your suggested sub category successfully has been sent to admin</string>
+    <string name="success_admin_sub_category">Your suggested sub category has been </string>
     <string name="sign_in_with_facebook">Sign In With Facebook</string>
     <string name="no_internet_connection">No Internet connection!</string>
     <string name="create_an_account">Create An Account</string>
@@ -93,7 +93,7 @@
     <string name="friend">Friend</string>
     <string name="done">Done</string>
     <string name="select_categories">Select Categories</string>
-    <string name="select_sub_categories">Select Sub Categories</string>
+    <string name="select_sub_categories">Select Sub Category</string>
     <string name="full_life_album">Full Life Album</string>
     <string name="photos">Photos</string>
     <string name="videos">Videos</string>
@@ -103,7 +103,7 @@
     <string name="request_password">Request Password</string>
     <string name="write_comment_here">Write comment here</string>
     <string name="next">Next</string>
-    <string name="post_memory">Post Memory</string>
+    <string name="post_memory">Post Your Memory</string>
     <string name="add_new_memory">Add New Memory</string>
 
 </resources>

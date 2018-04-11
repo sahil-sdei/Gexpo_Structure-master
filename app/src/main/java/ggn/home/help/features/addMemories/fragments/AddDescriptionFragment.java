@@ -82,7 +82,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         getDataBinder().buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivityG(), "Memory Posted Successfully.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivityG(), "Your memory has been posted successfully.", Toast.LENGTH_LONG).show();
                 Intent resultIntent = getActivity().getIntent();
                 getActivity().setResult(RESULT_OK, resultIntent);
                 getActivity().finish();

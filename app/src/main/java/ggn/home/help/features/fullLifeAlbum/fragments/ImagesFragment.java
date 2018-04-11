@@ -16,11 +16,12 @@ import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumView;
 import ggn.home.help.features.fullLifeAlbum.adapters.ImagesAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
+import ggn.home.help.features.selectPictures.Pictures;
 
 
 public class ImagesFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView {
 
-    private List<String> list;
+    private List<Pictures> listPictures;
     private ImagesAdapter imagesAdapter;
 
     public static ImagesFragment newInstance() {
@@ -41,18 +42,46 @@ public class ImagesFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
 
     @Override
     public void initViews() {
-        list = new ArrayList<>();
-        list.add("pro");
-        list.add("pro");
-        list.add("pro");
-        list.add("pro");
+        listPictures = new ArrayList<>();
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
+        listPictures.add(new Pictures("pro", false));
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivityG(), 3);
         getDataBinder().recyclerView.setLayoutManager(gridLayoutManager);
-        imagesAdapter = new ImagesAdapter(list, getActivityG(), getPresenter());
+        imagesAdapter = new ImagesAdapter(listPictures, getActivityG(), getPresenter());
         imagesAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(imagesAdapter);
+    }
+
+    public void enableSharePost() {
+        for(Pictures pictures : listPictures){
+            pictures.isCheckVisible = true;
+        }
+        imagesAdapter.notifyDataSetChanged();
+    }
+
+    public List<Pictures> getListPictures(){
+        return listPictures;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        resetData();
+    }
+
+    public void resetData() {
+        for(Pictures pictures : listPictures){
+            pictures.isCheckVisible = false;
+            pictures.isSelected = false;
+        }
+        imagesAdapter.notifyDataSetChanged();
     }
 }

@@ -7,4 +7,17 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_add_white"
         android:title="@string/add" />
+
+    <item
+        android:id="@+id/action_post"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_post"
+        android:title="@string/post" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/action_next"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_arrow_forward"
+        android:title="@string/next" />
 </menu>

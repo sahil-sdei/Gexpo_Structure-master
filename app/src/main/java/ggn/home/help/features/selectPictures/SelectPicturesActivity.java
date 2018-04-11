@@ -60,7 +60,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
-                final String[] animals = {"All", "Pre Birth", "Birth", "Infancy", "Early Childhood", "Middle Childhood", "Late Childhood", "Adolescence"};
+                final String[] animals = {"All", "Pre Birth", "Birth", "Infancy (0-3 years)", "Early Childhood (3-6 years)", "Middle Childhood (6-8 years)", "Late Childhood (9-11 years)", "Adolescence (12-22 years)"};
                 int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override

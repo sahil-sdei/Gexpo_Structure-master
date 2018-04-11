@@ -49,7 +49,7 @@ public class ShareActivity extends BaseActivity<ActivityShareBinding, SharePrese
                 Intent intent = new Intent(getActivityG(), PrivacyActivity.class);
                 startActivityForResult(intent, Constants.RequestCode.PRIVACY);
                 break;
-            case R.id.button:
+            case R.id.buttonShare:
                 Toast.makeText(getActivityG(), "Shared successfully.", Toast.LENGTH_SHORT).show();
                 finish();
                 break;

@@ -42,7 +42,7 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
 
     @Override
     public void initViews() {
-        setupToolbar(getString(R.string.notifications));
+        setupToolbar("Comments");
 
         list = new ArrayList<>();
         list.add(new Comments("Andre Nil", "Nice!", "1h", "img1"));

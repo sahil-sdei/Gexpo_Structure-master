@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryPreviewBinding;
-import ggn.home.help.databinding.ActivityShareBinding;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
-import ggn.home.help.features.privacy.PrivacyActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
 
@@ -42,15 +43,32 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
         setupToolbar("Add Memory");
         getDataBinder().buttonShare.setOnClickListener(this);
 
+        int size = getIntent().getIntExtra("images_size", 0);
+        List<String> listImages = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            listImages.add("pro");
+        }
+
+        if (size == 1) {
+            getDataBinder().indicator.setVisibility(View.GONE);
+        }
+
+        SlidingMemoryPreviewAdapter slidingImageAdapter = new SlidingMemoryPreviewAdapter(getActivityG(), listImages);
+        getDataBinder().viewPagerMedia.setAdapter(slidingImageAdapter);
+        getDataBinder().indicator.setViewPager(getDataBinder().viewPagerMedia);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonShare:
-                Toast.makeText(getActivityG(), "Memory Added Successfully.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivityG(), "Your new memory has been added successfully.", Toast.LENGTH_LONG).show();
                 UtillsG.finishAll(getActivityG());
-                DashboardActivity.start(getActivityG(), 1);
+
+//                if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
+                    DashboardActivity.start(getActivityG());
+//                }else
+//                DashboardActivity.start(getActivityG(), 1);
                 break;
         }
     }

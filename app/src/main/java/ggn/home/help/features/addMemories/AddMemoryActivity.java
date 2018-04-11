@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.MenuItem;
+
+import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryBinding;
@@ -14,6 +17,7 @@ import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.memoryCategories.Categories;
 import ggn.home.help.features.memoryCategories.SubCategories;
+import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 
@@ -37,6 +41,8 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         getPresenter().attachView(this);
 
         categories = (Categories) getIntent().getSerializableExtra(Constants.Extras.DATA);
+
+
     }
 
     @Override
@@ -55,7 +61,18 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         binding.setData(categories);
         binding.executePendingBindings();
 
+        if(!TextUtils.isEmpty(categories.years))
+        binding.textViewTitle.setText(categories.title+" ("+categories.years+" years)");
+        else
+            binding.textViewTitle.setText(categories.title);
+
         ImageLoader.loadFullWidthImageBG(binding.relativeLayoutPicture, categories.listSubcategories.get(0).background);
+
+        if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
+            changeHeadingText("Pregnancy Moments");
+            showFragment(AddDescriptionFragment.newInstance((List<Pictures>)getIntent().getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
+            return;
+        }
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);
@@ -97,6 +114,13 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void onBackPressed() {
+//        if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
+//            Intent resultIntent = getIntent();
+//            setResult(RESULT_OK, resultIntent);
+//            finish();
+//            return;
+//        }
+
         if (!isFragmentPresent(AddDescriptionFragment.class.getName())) {
             Intent resultIntent = getIntent();
             setResult(RESULT_CANCELED, resultIntent);

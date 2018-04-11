@@ -139,13 +139,24 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                     List<String> pathList = Matisse.obtainPathResult(data);
 //                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
 //                    String path = pathList.get(0);
-                    MemoryPreviewActivity.start(getActivityG());
+//                    MemoryPreviewActivity.start(getActivityG());
+                    Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                    intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
+                    intent.putExtra("images_size", uriList.size());
+                    startActivity(intent);
                 } else {
                     if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
                         if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
-                            MemoryPreviewActivity.start(getActivityG());
+//                            MemoryPreviewActivity.start(getActivityG());
+                            Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                            intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
+                            intent.putExtra("images_size", 1);
+                            startActivity(intent);
                         } else {
-                            MemoryPreviewActivity.start(getActivityG());
+                            Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                            intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
+                            intent.putExtra("images_size", 1);
+                            startActivity(intent);
                         }
                     }
                 }
