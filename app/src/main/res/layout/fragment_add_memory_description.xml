@@ -14,7 +14,58 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/margin10dp">
+            >
+
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/margin1dp"
+                android:id="@+id/relativeLayoutPrivacy"
+                android:padding="@dimen/margin15dp"
+                android:background="@color/backgroundGrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewP"
+                    android:layout_width="wrap_content"
+                    android:text="Privacy"
+                    android:textSize="@dimen/text16sp"
+                    android:layout_centerVertical="false"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content" />
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewPrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_toLeftOf="@+id/imageViewArrow"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bordered_rounded_gray"
+                    android:drawableLeft="@drawable/ic_everyone_in_share_screen"
+                    android:drawablePadding="@dimen/margin5dp"
+                    android:paddingBottom="@dimen/margin1dp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/margin5dp"
+                    android:layout_marginRight="@dimen/margin10dp"
+                    android:paddingRight="@dimen/margin5dp"
+                    android:paddingTop="@dimen/margin1dp"
+                    android:text="Everyone"
+                    android:textSize="@dimen/text12sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewArrow"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_forward"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:padding="@dimen/margin10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
                 style="@style/TextInputLayout"
@@ -105,6 +156,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text16sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </layout>

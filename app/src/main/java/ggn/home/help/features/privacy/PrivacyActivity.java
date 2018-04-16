@@ -39,7 +39,7 @@ public class PrivacyActivity extends BaseActivity<ActivityPrivacyBinding, Privac
 
     @Override
     public void initViews() {
-        setupToolbar("Privacy");
+        setupToolbar("Share With");
         getDataBinder().relativeLayoutEveryone.setOnClickListener(this);
         getDataBinder().relativeLayoutFriends.setOnClickListener(this);
         getDataBinder().relativeLayoutFamily.setOnClickListener(this);

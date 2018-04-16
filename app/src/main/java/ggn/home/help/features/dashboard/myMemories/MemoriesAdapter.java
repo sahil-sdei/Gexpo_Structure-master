@@ -44,6 +44,10 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
         baseViewHolder.binding.viewPagerImages.setAdapter(slidingImageAdapter);
         baseViewHolder.binding.indicator.setViewPager(baseViewHolder.binding.viewPagerImages);
 
+//        if(dataList.get(position).isLiked){
+//            baseViewHolder.binding.textViewLikes.setCompoundDrawables(,0, 0, 0);
+//        }
+
         baseViewHolder.binding.imageButtonShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

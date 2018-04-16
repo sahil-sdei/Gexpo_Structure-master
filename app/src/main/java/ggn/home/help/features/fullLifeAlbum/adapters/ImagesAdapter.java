@@ -46,19 +46,60 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
         baseViewHolder.binding.setPictures(dataList.get(position));
         baseViewHolder.binding.setBinder(photoVideoAdapterBinder);
 
-        baseViewHolder.binding.checkBoxSelect.setSelected(pictures.isSelected);
+//        baseViewHolder.binding.checkBoxSelect.setSelected(pictures.isSelected);
+//
+//        baseViewHolder.binding.checkBoxSelect.setVisibility(pictures.isCheckVisible ? View.VISIBLE : View.GONE);
+//
+//        baseViewHolder.binding.checkBoxSelect.setTag(pictures);
+//
+//        baseViewHolder.binding.checkBoxSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                Pictures p = (Pictures) compoundButton.getTag();
+//                p.isSelected = b;
+//            }
+//        });
 
-        baseViewHolder.binding.checkBoxSelect.setVisibility(pictures.isCheckVisible ? View.VISIBLE : View.GONE);
+        if (pictures.isSelected)
+            baseViewHolder.binding.relativeLayoutSelected.setVisibility(View.VISIBLE);
+        else
+            baseViewHolder.binding.relativeLayoutSelected.setVisibility(View.GONE);
 
-        baseViewHolder.binding.checkBoxSelect.setTag(pictures);
-
-        baseViewHolder.binding.checkBoxSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        baseViewHolder.binding.relativeLayoutParent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Pictures p = (Pictures) compoundButton.getTag();
-                p.isSelected = b;
+            public void onClick(View view) {
+                if (pictures.isSelected) {
+                    pictures.isSelected = false;
+                    notifyDataSetChanged();
+                    return;
+                }
+
+                boolean isSelected = false;
+                for (Pictures iObj : dataList) {
+                    if (iObj.isSelected) {
+                        isSelected = true;
+                        break;
+                    }
+                }
+                if (isSelected) {
+                    pictures.isSelected = !pictures.isSelected;
+                    notifyDataSetChanged();
+                } else {
+
+                }
             }
         });
+
+        baseViewHolder.binding.relativeLayoutParent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                pictures.isSelected = !pictures.isSelected;
+                notifyDataSetChanged();
+                return false;
+            }
+        });
+
+
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 

@@ -13,6 +13,7 @@ public class Memory {
     public String likes;
     public String comments;
     public String userPicture;
+    public boolean isLiked;
 
     public Memory(String userName, String image, String likes, String comments, String userPicture, List<String> listImages) {
         this.userName = userName;

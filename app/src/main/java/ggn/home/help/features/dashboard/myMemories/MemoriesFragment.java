@@ -89,4 +89,9 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         return false;
 
     }
+
+    @Override
+    public void onMemoryLiked(Memory memory) {
+        memoriesAdapter.notifyDataSetChanged();
+    }
 }

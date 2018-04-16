@@ -33,6 +33,7 @@ import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.features.previewMedia.PreviewMediaActivity;
+import ggn.home.help.features.privacy.PrivacyActivity;
 import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
@@ -89,8 +90,16 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
             }
         });
 
+        getDataBinder().relativeLayoutPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivityG(), PrivacyActivity.class);
+                startActivityForResult(intent, Constants.RequestCode.PRIVACY);
+            }
+        });
+
         List<Pictures> pictures = (List<Pictures>) getArguments().getSerializable(Constants.Extras.SELECTED_MEDIA);
-        for(Pictures picturesObj : pictures){
+        for (Pictures picturesObj : pictures) {
             addImageToView(picturesObj.picture);
         }
     }
@@ -117,17 +126,6 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 
         ImageView imageView = inflatedLayout.findViewById(R.id.imageViewPicture);
         ImageLoader.songArtSmall(imageView, imagePath);
-//        File file = new File(imagePath);
-//        Uri imageUri = Uri.fromFile(file);
-////        imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
-//        RequestOptions requestOptions = new RequestOptions();
-//        requestOptions.override(100, 100);
-//        requestOptions.transforms(new CenterCrop(), new RoundedCorners(10));
-//        Glide
-//                .with(imageView.getContext())
-//                .load(imageUri)
-//                .apply(requestOptions)
-//                .into((imageView));
         inflatedLayout.setLayoutParams(new FlowLayout.LayoutParams((width / 4) - UtillsG.dipToPixels(getActivity(), 15),
                 (width / 4) - UtillsG.dipToPixels(getActivity(), 15)));
         getDataBinder().flowLayoutAttachments.addView(inflatedLayout);
@@ -142,7 +140,7 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
                     List<Uri> uriList = Matisse.obtainResult(data);
                     List<String> pathList = Matisse.obtainPathResult(data);
 //                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
-                    for(String paths : pathList){
+                    for (String paths : pathList) {
                         addImageToView(paths);
                     }
 
@@ -162,6 +160,27 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
             if (resultCode == RESULT_OK) {
                 addImageToView(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
             }
+        } else if (requestCode == Constants.RequestCode.PRIVACY) {
+            if (resultCode == RESULT_OK) {
+                int privacyType = data.getIntExtra(Constants.Extras.PRIVACY, 0);
+                updatePrivacy(privacyType);
+            }
+        }
+    }
+
+    private void updatePrivacy(int privacyType) {
+        if (privacyType == 0) {
+            getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_everyone_in_share_screen, 0, 0, 0);
+            getDataBinder().textViewPrivacy.setText("Everyone");
+        } else if (privacyType == 1) {
+            getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_friends_small, 0, 0, 0);
+            getDataBinder().textViewPrivacy.setText("Friends");
+        } else if (privacyType == 2) {
+            getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_family_small, 0, 0, 0);
+            getDataBinder().textViewPrivacy.setText("Family");
+        } else if (privacyType == 3) {
+            getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_only_me_small, 0, 0, 0);
+            getDataBinder().textViewPrivacy.setText("Only Me");
         }
     }
 }

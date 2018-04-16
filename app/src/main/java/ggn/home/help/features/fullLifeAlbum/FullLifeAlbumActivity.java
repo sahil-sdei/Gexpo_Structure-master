@@ -77,7 +77,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
-                final String[] animals = {"All", "Pre Birth", "Birth", "Infancy (0-3 years)", "Early Childhood (3-6 years)", "Middle Childhood (6-8 years)", "Late Childhood (9-11 years)", "Adolescence (12-22 years)"};
+                final String[] animals = {"All", "Pre Birth", "Birth", "Infancy (0-3 y)", "Early Childhood (3-6 y)", "Middle Childhood (6-8 y)", "Late Childhood (9-11 y)", "Adolescence (12-22 y)"};
                 int checkedItem = 0; // cow
                 builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
@@ -237,7 +237,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                     preBirth.add(new SubCategories("Baby Inside Me", "ic_miscellaneous", "demo_add_mem"));
                     preBirth.add(new SubCategories("Miscellaneous", "ic_miscellaneous", "demo_add_mem"));
                     preBirth.add(new SubCategories("Suggest Sub Category", "ic_miscellaneous", "demo_add_mem"));
-                    Categories categories = new Categories("Pre Birth", "Potentiality", "layer_2", null, preBirth);
+                    Categories categories = new Categories(checkedItemCategory, checkedItemSubCategory, "layer_2", null, preBirth);
 
                     Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
                     intent.putExtra(Constants.Extras.IS_MEMORY, false);

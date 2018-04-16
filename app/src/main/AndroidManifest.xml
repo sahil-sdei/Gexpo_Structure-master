@@ -28,11 +28,13 @@
         </activity>
 
         <activity
+            android:theme="@style/FullscreenTheme"
             android:name=".features.signIn.SignInActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
+            android:theme="@style/FullscreenTheme"
             android:name=".features.signUp.SignUpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />

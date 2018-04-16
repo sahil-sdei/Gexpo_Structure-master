@@ -153,17 +153,17 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         fullLifeAlbum.add(new SubCategories("Transfer your album to one of your family", "ic_miscellaneous", "a112"));
 
 
-        list.add(new Categories("Pre Birth", "Potentiality", "layer_2", null, preBirth));
-        list.add(new Categories("Birth", "Hope", "a2", null, birth));
-        list.add(new Categories("Infancy", "Vitality", "a3", "0-3", infancy));
-        list.add(new Categories("Early Childhood", "Playfulness", "a4", "3-6", earlyChildhood));
-        list.add(new Categories("Middle Childhood", "Imagination", "a5", "6-8", middleChildhood));
-        list.add(new Categories("Late Childhood", "Ingenuity", "a6", "9-11", lateChildhood));
-        list.add(new Categories("Adolescence", "Passion", "a7", "12-20", adolescence));
-        list.add(new Categories("Early Adulthood", "Enterprise", "a8", "20-35", earlyAdulthood));
-        list.add(new Categories("Midlife", "Contemplation", "a9", "35-50", midlife));
-        list.add(new Categories("Mature Adulthood", "Benevolence", "a10", "50-80", matureAdulthood));
-        list.add(new Categories("Late Adulthood", "Wisdom", "a11", "80+", lateAdulthood));
+        list.add(new Categories("Pre Birth", "Future", "layer_2", null, preBirth));
+        list.add(new Categories("Birth", "Life", "a2", null, birth));
+        list.add(new Categories("Infancy", "Energy", "a3", "0-3", infancy));
+        list.add(new Categories("Early Childhood", "Play", "a4", "3-6", earlyChildhood));
+        list.add(new Categories("Middle Childhood", "Creation", "a5", "6-8", middleChildhood));
+        list.add(new Categories("Late Childhood", "Talent", "a6", "9-11", lateChildhood));
+        list.add(new Categories("Adolescence", "Emotion", "a7", "12-20", adolescence));
+        list.add(new Categories("Early Adulthood", "Establishment", "a8", "20-35", earlyAdulthood));
+        list.add(new Categories("Midlife", "Planning", "a9", "35-50", midlife));
+        list.add(new Categories("Mature Adulthood", "Charity", "a10", "50-80", matureAdulthood));
+        list.add(new Categories("Late Adulthood", "Experience", "a11", "80+", lateAdulthood));
         list.add(new Categories("Full Life Album", null, "a12", null, fullLifeAlbum));
 
         getDataBinder().recyclerView.setHasFixedSize(true);

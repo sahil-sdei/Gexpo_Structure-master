@@ -11,4 +11,10 @@ public class MemoriesPresenter extends BasePresenter<MemoriesView> implements Me
     public void onProfileClicked(Memory memory) {
         UserProfileActivity.start(getView().getActivityG());
     }
+
+    @Override
+    public void onLikeClicked(Memory memory) {
+        memory.isLiked = true;
+        getView().onMemoryLiked(memory);
+    }
 }

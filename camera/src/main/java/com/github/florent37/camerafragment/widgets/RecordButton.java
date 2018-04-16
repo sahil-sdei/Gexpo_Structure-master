@@ -41,9 +41,9 @@ public class RecordButton extends ImageButton {
 
     public RecordButton(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        takePhotoDrawable = ContextCompat.getDrawable(context, R.drawable.take_photo_button);
-        startRecordDrawable = ContextCompat.getDrawable(context, R.drawable.start_video_record_button);
-        stopRecordDrawable = ContextCompat.getDrawable(context, R.drawable.stop_button_background);
+        takePhotoDrawable = ContextCompat.getDrawable(context, R.drawable.button);
+        startRecordDrawable = ContextCompat.getDrawable(context, R.drawable.button);
+        stopRecordDrawable = ContextCompat.getDrawable(context, R.drawable.button);
 
         if (Build.VERSION.SDK_INT > 15)
             setBackground(ContextCompat.getDrawable(context, R.drawable.circle_frame_background));

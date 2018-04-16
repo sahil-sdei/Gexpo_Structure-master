@@ -102,6 +102,7 @@
                 <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewLikes"
                     android:layout_width="wrap_content"
+                    android:onClick="@{() -> binder.onProfileClicked(data)}"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:drawablePadding="@dimen/margin5dp"
