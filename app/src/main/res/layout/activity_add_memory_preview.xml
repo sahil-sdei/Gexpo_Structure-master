@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin10dp"
                         android:background="@drawable/round_bordered_button_blue"
-                        android:text="@string/save"
+                        android:text="Add Memory"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text14sp" />

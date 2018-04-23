@@ -45,7 +45,7 @@ public class SlidingMemoryPreviewAdapter extends PagerAdapter {
         assert imageLayout != null;
         final ImageView imageView = imageLayout
                 .findViewById(R.id.imageViewPicture);
-        ImageLoader.loadFullWidthImage(imageView, listImages.get(position));
+        ImageLoader.loadFullImageSDCard(imageView, listImages.get(position));
 
         view.addView(imageLayout, 0);
 

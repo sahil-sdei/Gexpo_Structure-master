@@ -2,6 +2,7 @@ package ggn.home.help.features.comments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -65,6 +66,13 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
                 list.add(new Comments("Andre Nil", getDataBinder().editTextComment.getText().toString(), "just now", "img1"));
                 commentsAdapter.notifyDataSetChanged();
                 getDataBinder().editTextComment.setText("");
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getDataBinder().recyclerView.smoothScrollToPosition(list.size() - 1);
+                    }
+                }, 100);
                 break;
         }
     }

@@ -23,10 +23,12 @@ import java.util.Arrays;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySignInBinding;
+import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.forgotPassword.ForgetPasswordActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signUp.SignUpActivity;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.response.LoginResponse;
 
 public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPresenter> implements SignInView {
 
@@ -106,10 +108,13 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
         this.finish();
     }
 
-//    @Override
-//    public void saveDataLocally(UserModel data) {
-//        getLocalData().setUserData(data);
-//    }
+    @Override
+    public void saveDataLocally(LoginResponse loginResponse) {
+        getLocalData().setSetRememberMe(getDataBinder().checkBoxRememberMe.isChecked());
+        getLocalData().saveUser(loginResponse);
+        DashboardActivity.start(getActivityG());
+        finish();
+    }
 
     @Override
     public void hideKeyboard(View view) {

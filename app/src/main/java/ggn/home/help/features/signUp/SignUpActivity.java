@@ -27,6 +27,7 @@ import ggn.home.help.features.forgotPassword.ForgetPasswordActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signIn.SignInActivity;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.response.LoginResponse;
 
 public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPresenter> implements SignUpView {
 
@@ -100,14 +101,16 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
         this.finish();
     }
 
-//    @Override
-//    public void saveDataLocally(UserModel data) {
-//        getLocalData().setUserData(data);
-//    }
-
     @Override
     public void hideKeyboard(View view) {
         UtillsG.hideKeyboard(getActivityG(), view);
+    }
+
+    @Override
+    public void saveDataLocally(LoginResponse output) {
+        Toast.makeText(getActivityG(), output.message, Toast.LENGTH_LONG).show();
+        SignInActivity.start(getActivityG());
+        finish();
     }
 
     @Override

@@ -9,12 +9,18 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
 import ggn.home.help.R;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BasePresenter;
+import ggn.home.help.utils.CallBackG;
+import ggn.home.help.web.apiInterfaces.LoginSignUpAPI;
+import ggn.home.help.web.request.LoginRequest;
+import ggn.home.help.web.request.SignUpRequest;
+import ggn.home.help.web.response.LoginResponse;
 
 public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUpBinder {
     public ObservableField<String> email =
@@ -42,29 +48,40 @@ public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUp
 
     @Override
     public ObservableField<String> getFullName() {
-        return null;
+        return fullName;
     }
 
     @Override
     public void signUpClicked(View view) {
-        if (email.get().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.get()).matches()) {
+        if (fullName.get().isEmpty()) {
+            getView().displayError(getView().getActivityG().getString(R.string.please_enter_full_name));
+        } else if (email.get().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email.get()).matches()) {
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_valid_email));
         } else if (password.get().isEmpty()) {
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_password));
-        } else if (fullName.get().isEmpty()) {
-            getView().displayError(getView().getActivityG().getString(R.string.please_enter_full_name));
         } else {
             getView().hideKeyboard(view);
-            DashboardActivity.start(getView().getActivityG());
-//                    getView().showLoading(getView().getActivityG().getString(R.string.registering_user), getView().getActivityG().getString(R.string.please_wait));
-//                    createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
-//                            .register(getEmail().get(), getPassword().get(), getUserName().get()), new CallBackG<UserModel>() {
-//                        @Override
-//                        public void callBack(UserModel output) {
-//                            getView().saveDataLocally(output);
-//                            DashboardActivity.start(getView().getActivityG());
-//                        }
-//                    });
+            SignUpRequest signUpRequest = new SignUpRequest();
+            signUpRequest.name = getFullName().get();
+            signUpRequest.email = getEmail().get();
+            signUpRequest.password = getPassword().get();
+            signUpRequest.result = true;
+            signUpRequest.registrationType = 1;
+            signUpRequest.deviceToken = "121212121";
+            Gson gson = new Gson();
+
+            getView().showLoading(getView().getActivityG().getString(R.string.loading), getView().getActivityG().getString(R.string.please_wait));
+            createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
+                    .register(gson.toJson(signUpRequest)), new CallBackG<LoginResponse>() {
+                @Override
+                public void callBack(LoginResponse output) {
+                    getView().hideLoading();
+                    if (output.status == 1)
+                        getView().saveDataLocally(output);
+                    else
+                        getView().displayError(output.message);
+                }
+            });
         }
     }
 

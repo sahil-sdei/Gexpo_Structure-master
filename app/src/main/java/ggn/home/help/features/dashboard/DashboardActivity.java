@@ -46,7 +46,12 @@ import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumActivity;
 import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.features.profile.ProfileActivity;
+import ggn.home.help.features.signIn.SignInActivity;
+import ggn.home.help.utils.CallBackG;
 import ggn.home.help.utils.Constants;
+import ggn.home.help.utils.DialogHelper;
+import ggn.home.help.utils.LocalDataHelper;
+import ggn.home.help.utils.SharedPrefHelper;
 
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
 import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
@@ -172,7 +177,18 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     @Override
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
-            finish();
+            slidingRootNav.closeMenu();
+            DialogHelper.getInstance().showWithAction(DashboardActivity.this, "Log out from the app?", new CallBackG<String>() {
+                @Override
+                public void callBack(String output) {
+                    SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(DashboardActivity.this);
+                    sharedPrefHelper.logout();
+                    SignInActivity.start(DashboardActivity.this);
+
+                    finish();
+                }
+            });
+            return;
         }
         slidingRootNav.closeMenu();
 
@@ -351,6 +367,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
 //        if (doubleBackToExitPressedOnce) {
 //            super.onBackPressed();
 //            return;

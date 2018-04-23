@@ -1,31 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_marginRight="@dimen/margin5dp"
-    android:id="@+id/frameLayoutParent"
-    android:layout_height="120dp"
-    >
+<layout>
 
-    <ImageView
-        android:id="@+id/imageViewPicture"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin10dp"
-        android:layout_height="match_parent"
-        android:layout_marginRight="@dimen/margin10dp"
-         />
+    <data>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin10dp"
-        android:layout_marginRight="@dimen/margin10dp"
-        android:background="@drawable/gradient_black_rounded"/>
+        <variable
+            name="data"
+            type="String"/>
+    </data>
 
-    <ImageView
-        android:layout_gravity="top|right"
-        android:background="@drawable/ic_delete_photo"
-        android:id="@+id/imageViewDelete"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frameLayoutParent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/margin10dp">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margin10dp"
+            android:layout_marginTop="@dimen/margin10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margin10dp"
+            android:layout_marginTop="@dimen/margin10dp"
+            android:background="@drawable/gradient_black_rounded" />
+
+        <ImageView
+            android:id="@+id/imageViewDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:background="@drawable/ic_delete_photo" />
+
+    </FrameLayout>
+</layout>

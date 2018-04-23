@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="ggn.home.help.features.memoryCategories.Categories" />
+            type="ggn.home.help.web.response.CategoryResponse.Datum" />
 
         <variable
             name="binder"
@@ -17,66 +17,78 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_marginBottom="@dimen/margin1dp"
+        android:background="@color/greyDark"
         android:onClick="@{() -> binder.onItemClicked(data)}"
-        android:padding="@dimen/margin20dp"
-        app:fullWidthBG="@{data.image}">
 
-        <ggn.home.help.utils.widgets.CustomTextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="@dimen/margin20dp"
-            android:layout_toLeftOf="@+id/relativeLayoutYears"
-            android:text="@{data.title}"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text20sp"
-            app:fontG="Quicksand-Bold.ttf"
-             />
+        >
 
-        <ggn.home.help.utils.widgets.CustomTextView
-            android:id="@+id/textViewDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/textViewTitle"
-            android:layout_marginRight="@dimen/margin20dp"
-            android:layout_toLeftOf="@+id/relativeLayoutYears"
-            android:text="@{data.subTitle}"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text14sp"
-            android:visibility="@{data.subTitle == null ? View.GONE : View.VISIBLE}" />
+        <ImageView
+            android:id="@+id/imageViewBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
-            android:id="@+id/relativeLayoutYears"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:visibility="@{data.years == null ? View.GONE : View.VISIBLE}">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin20dp">
 
             <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewYear"
+                android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:fontG="Quicksand-Bold.ttf"
-                android:layout_centerHorizontal="true"
-                android:text="@{data.years}"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="@dimen/margin20dp"
+                android:layout_toLeftOf="@+id/relativeLayoutYears"
+                android:text="@{data.category.name}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text20sp"
-                android:textStyle="bold" />
+                app:fontG="Quicksand-Bold.ttf" />
 
             <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewYearsPH"
+                android:id="@+id/textViewDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewYear"
-                android:text="years"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textViewTitle"
+                android:layout_marginRight="@dimen/margin20dp"
+                android:layout_toLeftOf="@+id/relativeLayoutYears"
+                android:text="@{data.category.subTitle}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text14sp" />
+                android:textSize="@dimen/text14sp"
+                android:visibility="@{data.category.subTitle == null ? View.GONE : View.VISIBLE}" />
 
+            <RelativeLayout
+                android:id="@+id/relativeLayoutYears"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                >
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@{data.category.years}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text20sp"
+                    android:textStyle="bold"
+                    app:fontG="Quicksand-Bold.ttf" />
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewYearsPH"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewYear"
+                    android:text="years"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text14sp" />
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 </layout>

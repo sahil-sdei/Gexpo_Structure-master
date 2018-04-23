@@ -8,7 +8,5 @@
         android:startColor="@color/blackGradient"
         android:type="linear" />
 
-    <corners
-        android:radius="10dp"/>
 
 </shape>

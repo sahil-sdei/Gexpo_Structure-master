@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import ggn.home.help.R;
+import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivityNoBinding;
 import ggn.home.help.features.signIn.SignInActivity;
+import ggn.home.help.utils.NetworkReceiver;
 import ggn.home.help.utils.UtillsG;
 
 public class SplashActivity extends BaseActivityNoBinding<SplashPresenter> implements SplashView {
@@ -63,13 +65,19 @@ public class SplashActivity extends BaseActivityNoBinding<SplashPresenter> imple
 
     @Override
     public void showOptions() {
-        SignInActivity.start(getActivityG());
+        if (getLocalData().getRememberMe())
+            DashboardActivity.start(getActivityG());
+        else
+            SignInActivity.start(getActivityG());
         finish();
     }
 
     @Override
     public void openDashBoard() {
-        SignInActivity.start(getActivityG());
+        if (getLocalData().getRememberMe())
+            DashboardActivity.start(getActivityG());
+        else
+            SignInActivity.start(getActivityG());
         finish();
     }
 

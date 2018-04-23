@@ -3,13 +3,10 @@ package ggn.home.help.features.selectPictures;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +25,8 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
 
     private SelectPicturesAdapter selectPicturesAdapter;
     private List<Pictures> listPictures;
+    private int selectedCategory;
+    private int selectedSubCategory;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SelectPicturesActivity.class);
@@ -52,7 +51,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
 
     @Override
     public void initViews() {
-        setupToolbar("Select Pictures");
+        setupToolbar("Select Your Memories");
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         getDataBinder().textViewCategory.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +60,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
                 final String[] animals = {"All", "Pre Birth", "Birth", "Infancy (0-3 y)", "Early Childhood (3-6 y)", "Middle Childhood (6-8 y)", "Late Childhood (9-11 y)", "Adolescence (12-22 y)"};
-                int checkedItem = 0; // cow
-                builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
+                builder.setSingleChoiceItems(animals, selectedCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -73,6 +71,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lw = ((AlertDialog) dialog).getListView();
                         String checkedItem = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        selectedCategory = lw.getCheckedItemPosition();
 
                         getDataBinder().textViewCategory.setText(checkedItem);
                     }
@@ -89,8 +88,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Sub Category");
                 final String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
-                int checkedItem = 0; // cow
-                builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
+                builder.setSingleChoiceItems(animals, selectedSubCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -101,6 +99,7 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lw = ((AlertDialog) dialog).getListView();
                         String checkedItem = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        selectedSubCategory = lw.getCheckedItemPosition();
 
                         getDataBinder().textViewSubCategory.setText(checkedItem);
                     }
@@ -133,10 +132,6 @@ public class SelectPicturesActivity extends BaseActivity<ActivitySelectPicturesB
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_next_arrow, menu);
-//        MenuItem item = menu.findItem(R.id.action_edit);
-//        SpannableString s = new SpannableString("Next");
-//        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
-//        item.setTitle(s);
         return true;
     }
 

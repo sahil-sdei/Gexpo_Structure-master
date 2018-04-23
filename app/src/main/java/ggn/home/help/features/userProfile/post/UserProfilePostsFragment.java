@@ -72,4 +72,9 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
         getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
         getDataBinder().recyclerViewPosts.setNestedScrollingEnabled(false);
     }
+
+    @Override
+    public void onMemoryLiked(Memory memory) {
+
+    }
 }

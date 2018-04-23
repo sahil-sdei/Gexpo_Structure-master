@@ -1,7 +1,7 @@
 package ggn.home.help.features.addMemories;
 
-import ggn.home.help.features.memoryCategories.SubCategories;
+import ggn.home.help.web.response.SubCategory;
 
 public interface AddMemoryAdapterBinder {
-    void onSubcategoryItemClicked(SubCategories subCategories);
+    void onSubcategoryItemClicked(SubCategory subCategory);
 }

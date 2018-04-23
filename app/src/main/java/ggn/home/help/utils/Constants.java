@@ -26,6 +26,7 @@ public @interface Constants {
         String SCREEN_NUMBER = "screen_number";
         String SELECTED_MEDIA = "selected_media";
         String POST_FROM_ALBUM = "post_from_album";
+        String BASE_URL_IMAGE = "base_url_image";
     }
 
     @interface RequestCode {

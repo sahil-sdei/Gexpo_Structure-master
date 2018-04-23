@@ -37,10 +37,11 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
 
     private PagerAdapter adapter;
     private boolean isPostEnabled;
-    private MenuItem menuItemPost;
     private MenuItem menuItemNext;
     private String checkedItemCategory = "Choose Category";
     private String checkedItemSubCategory = "Choose Sub Category";
+    private int selectedCategory;
+    private int selectedSubCategory;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, FullLifeAlbumActivity.class);
@@ -78,8 +79,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Category");
                 final String[] animals = {"All", "Pre Birth", "Birth", "Infancy (0-3 y)", "Early Childhood (3-6 y)", "Middle Childhood (6-8 y)", "Late Childhood (9-11 y)", "Adolescence (12-22 y)"};
-                int checkedItem = 0; // cow
-                builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
+                builder.setSingleChoiceItems(animals, selectedCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -90,6 +90,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lw = ((AlertDialog) dialog).getListView();
                         checkedItemCategory = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
+                        selectedCategory = lw.getCheckedItemPosition();
 
                         getDataBinder().textViewCategory.setText(checkedItemCategory);
                     }
@@ -106,8 +107,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
                 builder.setTitle("Choose Sub Category");
                 final String[] animals = {"Pregnancy Moments", "Baby Inside Me"};
-                int checkedItem = 0; // cow
-                builder.setSingleChoiceItems(animals, checkedItem, new DialogInterface.OnClickListener() {
+                builder.setSingleChoiceItems(animals, selectedSubCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -118,7 +118,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lw = ((AlertDialog) dialog).getListView();
                         checkedItemSubCategory = (String) lw.getAdapter().getItem(lw.getCheckedItemPosition());
-
+                        selectedSubCategory = lw.getCheckedItemPosition();
                         getDataBinder().textViewSubCategory.setText(checkedItemSubCategory);
                     }
                 });

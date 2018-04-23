@@ -21,7 +21,6 @@
                 android:layout_marginTop="@dimen/margin1dp"
                 android:id="@+id/relativeLayoutPrivacy"
                 android:padding="@dimen/margin15dp"
-                android:background="@color/backgroundGrey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -133,15 +132,21 @@
                     android:textColor="@color/greyDark"
                     android:textSize="@dimen/text12sp" />
 
-                <com.nex3z.flowlayout.FlowLayout
-                    android:id="@+id/flowLayoutAttachments"
-                    android:layout_width="match_parent"
-                    app:flChildSpacingForLastRow="align"
-                    app:flRowSpacing="8dp"
+                <!--<com.nex3z.flowlayout.FlowLayout-->
+                    <!--android:id="@+id/flowLayoutAttachments"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--app:flChildSpacingForLastRow="align"-->
+                    <!--app:flRowSpacing="8dp"-->
+                    <!--android:layout_marginLeft="@dimen/margin10dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_height="wrap_content"-->
+                     <!--/>-->
+
+                <android.support.v7.widget.RecyclerView
                     android:layout_marginLeft="@dimen/margin10dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                     />
+                    android:id="@+id/recyclerViewMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 

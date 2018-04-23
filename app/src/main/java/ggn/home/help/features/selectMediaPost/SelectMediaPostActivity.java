@@ -50,7 +50,7 @@ public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPos
 
     @Override
     public void initViews() {
-        setupToolbar("Select Images & Videos");
+        setupToolbar("Select Your Memories");
 
         setupViewPager(getDataBinder().viewPager);
         getDataBinder().tabs.setupWithViewPager(getDataBinder().viewPager);

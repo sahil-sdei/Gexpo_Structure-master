@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="ggn.home.help.features.memoryCategories.SubCategories" />
+            type="ggn.home.help.web.response.SubCategory" />
 
         <variable
             name="binder"
@@ -41,7 +41,6 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="35dp"
-                    app:urlSquare="@{data.icon}"
                     android:layout_height="35dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
@@ -55,7 +54,7 @@
                 android:layout_marginLeft="@dimen/margin10dp"
                 android:layout_marginRight="@dimen/margin10dp"
                 android:layout_toRightOf="@+id/relativeLayoutProfilePic"
-                android:text="@{data.title}"
+                android:text="@{data.name}"
                 android:textColor="@color/greyDark"
                 android:textSize="@dimen/text16sp" />
         </RelativeLayout>

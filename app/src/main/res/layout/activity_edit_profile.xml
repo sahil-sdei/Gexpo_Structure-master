@@ -102,21 +102,52 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <android.support.design.widget.TextInputLayout
-                        style="@style/TextInputLayout"
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--style="@style/TextInputLayout"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/editTextGender"-->
+                            <!--style="@style/editTextThemeSingleLine"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:hint="@string/gender"-->
+                            <!--android:textColor="@color/black" />-->
+
+                    <!--</android.support.design.widget.TextInputLayout>-->
+
+                    <ggn.home.help.utils.widgets.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:text="Gender"
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:textSize="@dimen/text16sp"
+                        android:textColor="@color/greyDark"
+                        android:padding="@dimen/margin5dp"
+                        android:layout_height="wrap_content" />
+
+                    <RadioGroup
+                        android:id="@+id/radioButtonGender"
                         android:layout_width="match_parent"
+                        android:orientation="horizontal"
                         android:layout_height="wrap_content">
 
-                        <EditText
-                            android:id="@+id/editTextGender"
-                            style="@style/editTextThemeSingleLine"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/gender"
-                            android:textColor="@color/black" />
+                        <ggn.home.help.utils.widgets.CustomRadioButton
+                            android:layout_width="wrap_content"
+                            android:id="@+id/radioButtonMale"
+                            android:text="@string/male"
+                            android:textSize="@dimen/text16sp"
+                            android:layout_height="wrap_content" />
 
-                    </android.support.design.widget.TextInputLayout>
+                        <ggn.home.help.utils.widgets.CustomRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="@dimen/margin10dp"
+                            android:id="@+id/radioButtonFemale"
+                            android:text="@string/female"
+                            android:textSize="@dimen/text16sp"
+                            android:layout_height="wrap_content" />
 
+                    </RadioGroup>
 
                     <android.support.design.widget.TextInputLayout
                         style="@style/TextInputLayout"

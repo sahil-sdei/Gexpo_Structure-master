@@ -143,4 +143,14 @@ public class ImageLoader {
         view.setImageResource(resDrawable);
     }
 
+    public static void loadFullImageSDCard(View imageView, String path) {
+            Glide
+                    .with(imageView.getContext())
+                    .load(path)
+                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(((ImageView) imageView));
+
+    }
+
 }

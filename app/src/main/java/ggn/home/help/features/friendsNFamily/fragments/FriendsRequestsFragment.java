@@ -9,6 +9,7 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentFriendsFamilyRequestsBinding;
 import ggn.home.help.features.dashboard.myMemories.MemoriesPresenter;
 import ggn.home.help.features.dashboard.myMemories.MemoriesView;
+import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
 
@@ -56,5 +57,10 @@ public class FriendsRequestsFragment extends BaseFragment<FragmentFriendsFamilyR
         familyAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewRequests.setAdapter(familyAdapter);
         getDataBinder().recyclerViewRequests.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    public void onMemoryLiked(Memory memory) {
+
     }
 }

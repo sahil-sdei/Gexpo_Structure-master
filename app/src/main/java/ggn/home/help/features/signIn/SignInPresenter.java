@@ -9,12 +9,17 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
 import ggn.home.help.R;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BasePresenter;
+import ggn.home.help.utils.CallBackG;
+import ggn.home.help.web.apiInterfaces.LoginSignUpAPI;
+import ggn.home.help.web.request.LoginRequest;
+import ggn.home.help.web.response.LoginResponse;
 
 public class SignInPresenter extends BasePresenter<SignInView> implements SignInBinder {
     public ObservableField<String> email =
@@ -45,19 +50,28 @@ public class SignInPresenter extends BasePresenter<SignInView> implements SignIn
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_password));
         } else {
             getView().hideKeyboard(view);
-            DashboardActivity.start(getView().getActivityG());
-//                getView().showLoading(getView().getActivityG().getString(R.string.validating_user), getView().getActivityG().getString(R.string.please_wait));
-//                createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
-//                        .login(getEmail().get(), getPassword().get()), new CallBackG<UserModel>() {
-//                    @Override
-//                    public void callBack(UserModel output) {
-//                        getView().saveDataLocally(output);
-//                        DashboardActivity.start(getView().getActivityG());
-//                    }
-//                });
-//        }
+            LoginRequest loginRequest = new LoginRequest();
+            loginRequest.email = getEmail().get();
+            loginRequest.password = getPassword().get();
+            loginRequest.loginType = "0";
+            loginRequest.registrationType = 1;
+            Gson gson = new Gson();
+
+            getView().showLoading(getView().getActivityG().getString(R.string.validating_user), getView().getActivityG().getString(R.string.please_wait));
+            createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
+                    .login(gson.toJson(loginRequest)), new CallBackG<LoginResponse>() {
+                @Override
+                public void callBack(LoginResponse output) {
+                    getView().hideLoading();
+                    if (output.status == 1)
+                        getView().saveDataLocally(output);
+                    else
+                        getView().displayError(output.message);
+                }
+            });
         }
     }
+
 
     public FacebookCallback<LoginResult> getFbCallback() {
         return new FacebookCallback<LoginResult>() {

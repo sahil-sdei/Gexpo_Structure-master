@@ -51,6 +51,27 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         setupViewPager(getDataBinder().viewPager);
         getDataBinder().tabs.setupWithViewPager(getDataBinder().viewPager);
         getDataBinder().viewPager.setOffscreenPageLimit(4);
+
+        getDataBinder().viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0){
+                    menuItemEdit.setVisible(true);
+                }else{
+                    menuItemEdit.setVisible(false);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override

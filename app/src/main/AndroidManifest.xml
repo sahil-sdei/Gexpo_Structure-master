@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ggn.home.help">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,15 +29,15 @@
         </activity>
 
         <activity
-            android:theme="@style/FullscreenTheme"
             android:name=".features.signIn.SignInActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:theme="@style/FullscreenTheme"
             android:name=".features.signUp.SignUpActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
@@ -162,13 +163,15 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="ggn.home.help.fileprovider"
+            android:authorities="com.mvc.imagepicker.provider"
             android:exported="false"
+            tools:replace="android:authorities"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths_public"></meta-data>
+                android:resource="@xml/provider_paths" />
         </provider>
+
     </application>
 
 </manifest>

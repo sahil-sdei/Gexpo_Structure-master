@@ -12,8 +12,10 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryPreviewBinding;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.features.memoryCategories.Categories;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.response.CategoryResponse;
 
 public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreviewBinding, MemoryPreviewPresenter> implements MemoryPreviewView, View.OnClickListener {
 
@@ -40,7 +42,7 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
 
     @Override
     public void initViews() {
-        setupToolbar("Add Memory");
+        setupToolbar("Add New Memory");
         getDataBinder().buttonShare.setOnClickListener(this);
 
         int size = getIntent().getIntExtra("images_size", 0);
@@ -53,20 +55,23 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
             getDataBinder().indicator.setVisibility(View.GONE);
         }
 
-        SlidingMemoryPreviewAdapter slidingImageAdapter = new SlidingMemoryPreviewAdapter(getActivityG(), listImages);
+        SlidingMemoryPreviewAdapter slidingImageAdapter = new SlidingMemoryPreviewAdapter(getActivityG(), getIntent().getStringArrayListExtra("list_images"));
         getDataBinder().viewPagerMedia.setAdapter(slidingImageAdapter);
         getDataBinder().indicator.setViewPager(getDataBinder().viewPagerMedia);
+
+        CategoryResponse.Datum categoriesObj = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
+        getDataBinder().textViewTitle.setText(categoriesObj.category.name + " > " + categoriesObj.category.subTitle);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonShare:
-                Toast.makeText(getActivityG(), "Your new memory has been added successfully.", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivityG(), "Your new memory has been added successfully.", Toast.LENGTH_LONG).show();
                 UtillsG.finishAll(getActivityG());
 
 //                if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
-                    DashboardActivity.start(getActivityG());
+                DashboardActivity.start(getActivityG());
 //                }else
 //                DashboardActivity.start(getActivityG(), 1);
                 break;

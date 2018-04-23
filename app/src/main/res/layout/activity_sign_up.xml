@@ -54,11 +54,12 @@
                     style="@style/editTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={binder.fullName}"
                     android:layout_marginTop="@dimen/margin15dp"
                     android:background="@color/whiteTransparent"
                     android:hint="@string/full_name"
                     android:imeOptions="actionNext"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName|textCapWords" />
 
                 <ggn.home.help.utils.widgets.CustomEditText
                     android:id="@+id/editTextEmail"
@@ -66,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin3dp"
+                    android:text="@={binder.email}"
                     android:background="@color/whiteTransparent"
                     android:hint="@string/email_address"
                     android:imeOptions="actionNext"
@@ -75,6 +77,7 @@
                     android:id="@+id/editTextPassword"
                     style="@style/editTextTheme"
                     android:layout_width="match_parent"
+                    android:text="@={binder.password}"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin3dp"
                     android:background="@color/whiteTransparent"

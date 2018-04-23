@@ -20,10 +20,12 @@ import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
+import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.SubCategory;
 
 public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, AddMemoryPresenter> implements AddMemoryView {
 
-    private Categories categories;
+    private CategoryResponse.Datum categories;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, AddMemoryActivity.class);
@@ -40,8 +42,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         injectPresenter(new AddMemoryPresenter());
         getPresenter().attachView(this);
 
-        categories = (Categories) getIntent().getSerializableExtra(Constants.Extras.DATA);
-
+        categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
 
     }
 
@@ -61,12 +62,12 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         binding.setData(categories);
         binding.executePendingBindings();
 
-        if(!TextUtils.isEmpty(categories.years))
-        binding.textViewTitle.setText(categories.title+" ("+categories.years+" years)");
+        if(!TextUtils.isEmpty(categories.category.years))
+        binding.textViewTitle.setText(categories.category.name+" ("+categories.category.years+" years)");
         else
-            binding.textViewTitle.setText(categories.title);
+            binding.textViewTitle.setText(categories.category.name);
 
-        ImageLoader.loadFullWidthImageBG(binding.relativeLayoutPicture, categories.listSubcategories.get(0).background);
+        ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE)+categories.category.image);
 
         if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
             changeHeadingText("Pregnancy Moments");
@@ -76,6 +77,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);
+        bundle.putString(Constants.Extras.BASE_URL_IMAGE, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE));
         bundle.putBoolean(Constants.Extras.IS_MEMORY, getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false));
         showFragment(SubCategoriesFragment.newInstance(bundle));
     }
@@ -91,10 +93,6 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
                 .add(R.id.container, fragment, fragment.getClass().getName())
                 .addToBackStack(null)
                 .commit();
-    }
-
-    @Override
-    public void showDescriptionFragment(SubCategories subCategories) {
     }
 
     @Override
@@ -139,5 +137,10 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     public void changeHeadingText(String title) {
         getDataBinder().textViewSubCategories.setText(title);
+    }
+
+    @Override
+    public void showDescriptionFragment(SubCategory subCategory) {
+
     }
 }

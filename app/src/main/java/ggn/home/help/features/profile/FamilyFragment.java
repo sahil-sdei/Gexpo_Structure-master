@@ -10,6 +10,7 @@ import ggn.home.help.databinding.FragmentMemoriesBinding;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
 import ggn.home.help.features.dashboard.myMemories.MemoriesPresenter;
 import ggn.home.help.features.dashboard.myMemories.MemoriesView;
+import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
 
 
@@ -47,5 +48,10 @@ public class FamilyFragment extends BaseFragment<FragmentRecyclerViewBinding, Me
         familyAdapter = new FamilyAdapter(list, getActivityG(), getPresenter());
         familyAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(familyAdapter);
+    }
+
+    @Override
+    public void onMemoryLiked(Memory memory) {
+
     }
 }

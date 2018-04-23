@@ -2,6 +2,7 @@ package ggn.home.help.utils;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +30,7 @@ public class DialogHelper
     {
         final CharSequence[] reportMessage = {"Spam", "Fake Account", "Inappropriate content", "Other"};
 
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setItems(reportMessage, new DialogInterface.OnClickListener()
         {
@@ -44,12 +45,12 @@ public class DialogHelper
 
     public void showInformation(Context context, String message, final CallBackG<String> callBackG)
     {
-        showInformation(context, "WishDrop", message, callBackG);
+        showInformation(context, "Memoreeta", message, callBackG);
     }
 
     public void showInformation(Context context, String title, String message, final CallBackG<String> callBackG)
     {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setCancelable(false);
@@ -66,7 +67,7 @@ public class DialogHelper
 
     public void showWithAction(Context context, String message, final CallBackG<String> callBackG)
     {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
         builder.setTitle("WishDrop");
         builder.setMessage(message);
         builder.setCancelable(false);

@@ -15,6 +15,7 @@ import com.example.usemedia.ui.MatisseFragment;
 import com.github.florent37.camerafragment.PreviewActivity;
 import com.github.florent37.camerafragment.configuration.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
@@ -32,6 +33,8 @@ import ggn.home.help.features.selectMediaPost.SelectMediaPostActivity;
 import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.SubCategory;
 
 import static android.app.Activity.RESULT_OK;
 import static ggn.home.help.features.addMemories.fragments.AddDescriptionFragment.MEDIA_ACTION_ARG;
@@ -39,8 +42,9 @@ import static ggn.home.help.features.addMemories.fragments.AddDescriptionFragmen
 
 public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBinding, AddMemoryPresenter> implements AddMemoryView {
 
-    private Categories categoriesObj;
-    private SubCategories subCategories;
+    private CategoryResponse.Datum categoriesObj;
+    private SubCategory subCategory;
+    private String baseUrlImage;
 
     public static SubCategoriesFragment newInstance() {
         SubCategoriesFragment subCategoriesFragment = new SubCategoriesFragment();
@@ -63,7 +67,9 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
         injectPresenter(new AddMemoryPresenter());
         getPresenter().attachView(this);
 
-        categoriesObj = (Categories) getArguments().getSerializable(Constants.Extras.DATA);
+        categoriesObj = (CategoryResponse.Datum) getArguments().getSerializable(Constants.Extras.DATA);
+        baseUrlImage = getArguments().getString(Constants.Extras.BASE_URL_IMAGE);
+
     }
 
     @Override
@@ -72,15 +78,16 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(categoriesObj.listSubcategories, getActivityG(), getPresenter());
+        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(categoriesObj.subCategory, getActivityG(), getPresenter());
+        subCategoriesAdapter.setBaseUrl(baseUrlImage);
         subCategoriesAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(subCategoriesAdapter);
     }
 
     @Override
-    public void showDescriptionFragment(SubCategories subCategories) {
-        this.subCategories = subCategories;
-        if (subCategories.title.equalsIgnoreCase("Suggest Sub Category")) {
+    public void showDescriptionFragment(SubCategory subCategory) {
+        this.subCategory = subCategory;
+        if (subCategory.name.equalsIgnoreCase("Suggest Sub Category")) {
             addSubCategory();
         } else {
             if (getArguments().getBoolean(Constants.Extras.IS_MEMORY)) {
@@ -143,19 +150,34 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                     Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
                     intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                     intent.putExtra("images_size", uriList.size());
+                    intent.putExtra(Constants.Extras.DATA, categoriesObj);
+                    intent.putStringArrayListExtra("list_images", (ArrayList<String>) pathList);
                     startActivity(intent);
                 } else {
                     if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
                         if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
 //                            MemoryPreviewActivity.start(getActivityG());
+
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+
                             Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
                             intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                             intent.putExtra("images_size", 1);
+                            intent.putExtra(Constants.Extras.DATA, categoriesObj);
+
+                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
                             startActivity(intent);
                         } else {
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+
                             Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
                             intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                             intent.putExtra("images_size", 1);
+                            intent.putExtra(Constants.Extras.DATA, categoriesObj);
+
+                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
                             startActivity(intent);
                         }
                     }
@@ -163,7 +185,7 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
             }
         }else if (requestCode == Constants.RequestCode.SELECT_IMAGES_VIDEOS) {
             if (resultCode == RESULT_OK) {
-                ((AddMemoryActivity) getActivity()).changeHeadingText(subCategories.title);
+                ((AddMemoryActivity) getActivity()).changeHeadingText(subCategory.name);
                 ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance((List<Pictures>)data.getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
             }
         }

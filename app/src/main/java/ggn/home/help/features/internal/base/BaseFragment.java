@@ -119,8 +119,8 @@ public abstract class BaseFragment<B extends ViewDataBinding, T extends Presenta
 
             Snackbar snackbar = Snackbar.make(getParentView(), message, Snackbar.LENGTH_LONG);
             TextView tv = (TextView) (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
-            Typeface font = Typeface.createFromAsset(getActivityG().getAssets(), "fonts/vegur_medium.otf");
-            tv.setTypeface(font);
+//            Typeface font = Typeface.createFromAsset(getActivityG().getAssets(), "fonts/vegur_medium.otf");
+//            tv.setTypeface(font);
             snackbar.show();
         }
     }

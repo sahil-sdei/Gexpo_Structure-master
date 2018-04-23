@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="ggn.home.help.features.memoryCategories.Categories"/>
+            type="ggn.home.help.web.response.CategoryResponse.Datum" />
 
     </data>
 
@@ -19,30 +19,42 @@
         <RelativeLayout
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:padding="@dimen/margin15dp">
+            android:background="@color/greyDark"
+            android:layout_height="150dp">
 
-            <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/textViewDesc"
-                android:layout_alignParentLeft="true"
-                android:text="@{data.title}"
-                android:textColor="@color/white"
-                app:fontG="Roboto-Medium.ttf"
-                android:textSize="@dimen/text24sp"
-                 />
+            <ImageView
+                android:id="@+id/imageViewBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
 
-            <ggn.home.help.utils.widgets.CustomTextView
-                android:id="@+id/textViewDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:text="@{data.subTitle}"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text14sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin15dp">
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textViewDesc"
+                    android:layout_alignParentLeft="true"
+                    android:text="@{data.category.name}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text24sp"
+                    app:fontG="Roboto-Medium.ttf" />
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="@{data.category.subTitle}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text14sp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
