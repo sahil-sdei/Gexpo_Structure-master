@@ -8,14 +8,16 @@ import java.util.List;
 import ggn.home.help.R;
 import ggn.home.help.databinding.ItemAccountsBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
+import ggn.home.help.web.response.Child;
 
 public class AccountsAdapter extends InfiniteAdapterG<ItemAccountsBinding> {
 
-    private List<String> dataList;
+    private List<Child> dataList;
     private Context context;
     private AccountsAdapterBinder accountsAdapterBinder;
 
-    public AccountsAdapter(List<String> dataList, Context context) {
+    public AccountsAdapter(List<Child> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
     }
@@ -39,6 +41,10 @@ public class AccountsAdapter extends InfiniteAdapterG<ItemAccountsBinding> {
                 accountsAdapterBinder.onAccountClicked();
             }
         });
+
+        ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/"+dataList.get(position).profileImage);
+
+
         baseViewHolder.binding.executePendingBindings();
     }
 

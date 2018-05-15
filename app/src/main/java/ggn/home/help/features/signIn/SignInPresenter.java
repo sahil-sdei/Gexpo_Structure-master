@@ -2,6 +2,7 @@ package ggn.home.help.features.signIn;
 
 import android.databinding.ObservableField;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.facebook.FacebookCallback;
@@ -11,6 +12,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import ggn.home.help.R;
@@ -19,6 +21,7 @@ import ggn.home.help.features.internal.base.BasePresenter;
 import ggn.home.help.utils.CallBackG;
 import ggn.home.help.web.apiInterfaces.LoginSignUpAPI;
 import ggn.home.help.web.request.LoginRequest;
+import ggn.home.help.web.request.SocialLoginRequest;
 import ggn.home.help.web.response.LoginResponse;
 
 public class SignInPresenter extends BasePresenter<SignInView> implements SignInBinder {
@@ -84,8 +87,10 @@ public class SignInPresenter extends BasePresenter<SignInView> implements SignIn
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 try {
-                                    getView().hideLoading();
 //                                    AccessToken token = AccessToken.getCurrentAccessToken();
+                                    facebookLogin(response.getJSONObject());
+                                    Log.d("JSON", object.toString());
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -108,5 +113,34 @@ public class SignInPresenter extends BasePresenter<SignInView> implements SignIn
                 getView().displayError(error.getMessage());
             }
         };
+    }
+
+    private void facebookLogin(JSONObject jsonObject) {
+        SocialLoginRequest socialLoginRequest = new SocialLoginRequest();
+        try {
+            socialLoginRequest.socialId = jsonObject.getString("id");
+            socialLoginRequest.name = jsonObject.getString("name");
+            if (jsonObject.getString("email") != null)
+                socialLoginRequest.email = jsonObject.getString("email");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        socialLoginRequest.deviceToken = "1212121212";
+        socialLoginRequest.loginType = "1";
+        socialLoginRequest.registrationType = 1;
+
+        Gson gson = new Gson();
+        createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
+                .socialLogin(gson.toJson(socialLoginRequest)), new CallBackG<LoginResponse>() {
+            @Override
+            public void callBack(LoginResponse output) {
+                getView().hideLoading();
+                if (output.status == 1)
+                    getView().saveDataLocallyFacebook(output);
+                else
+                    getView().displayError(output.message);
+            }
+        });
     }
 }

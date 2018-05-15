@@ -15,6 +15,7 @@ import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.features.notifications.NotificationActivity;
+import ggn.home.help.web.response.ChildAccountsResponse;
 
 
 public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoriesPresenter> implements MemoriesView {
@@ -42,6 +43,8 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
 
     @Override
     public void initViews() {
+        getPresenter().getChildAccounts();
+
         list = new ArrayList<>();
         List<String> listImages = new ArrayList<>();
         listImages.add("pro");
@@ -50,11 +53,11 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         listImages.add("pro");
 
 
-        list.add(new Memory("Stan Smith", "pro", "5", "2", "img1", listImages));
-        list.add(new Memory("John Smith", "pro", "13", "3", "img2", listImages));
-        list.add(new Memory("Steve Smith", "pro", "2", "4", "img3", listImages));
-        list.add(new Memory("John Ward", "pro", "3", "6", "img4", listImages));
-        list.add(new Memory("Alexander", "pro", "13", "2", "img5", listImages));
+        list.add(new Memory("Stan Smith", "pro", "5", "2", "demo_image_wall", listImages));
+        list.add(new Memory("John Smith", "pro", "13", "3", "demo_image_wall", listImages));
+        list.add(new Memory("Steve Smith", "pro", "2", "4", "demo_image_wall", listImages));
+        list.add(new Memory("John Ward", "pro", "3", "6", "demo_image_wall", listImages));
+        list.add(new Memory("Alexander", "pro", "13", "2", "demo_image_wall", listImages));
 
 
         getDataBinder().recyclerViewMemories.setHasFixedSize(true);
@@ -93,5 +96,10 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     @Override
     public void onMemoryLiked(Memory memory) {
         memoriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showChildAccounts(ChildAccountsResponse output) {
+        ((DashboardActivity)getActivity()).setUpAccounts(output.data.childs);
     }
 }

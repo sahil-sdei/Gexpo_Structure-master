@@ -3,6 +3,7 @@ package ggn.home.help.features.addMemories;
 import android.content.Context;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -52,9 +53,16 @@ public class SubCategoriesAdapter extends InfiniteAdapterG<ItemSubCategoriesBind
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
 
-//        ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, baseUrl + dataList.get(position).image);
-        Uri uri = Uri.parse(baseUrl + dataList.get(position).image);
-        requestBuilder.load(uri).into(baseViewHolder.binding.imageViewProfilePic);
+        ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, baseUrl + dataList.get(position).image);
+//        Uri uri = Uri.parse(baseUrl + dataList.get(position).image);
+//        requestBuilder.load(uri).into(baseViewHolder.binding.imageViewProfilePic);
+
+        if(dataList.get(position).name.equalsIgnoreCase("Suggest Sub Category")){
+            baseViewHolder.binding.relativeLayoutProfilePic.setVisibility(View.INVISIBLE);
+        }else{
+            baseViewHolder.binding.relativeLayoutProfilePic.setVisibility(View.VISIBLE);
+
+        }
 
         baseViewHolder.binding.setBinder(addMemoryAdapterBinder);
         baseViewHolder.binding.executePendingBindings();

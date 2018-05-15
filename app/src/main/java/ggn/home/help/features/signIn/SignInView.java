@@ -8,4 +8,6 @@ import ggn.home.help.web.response.LoginResponse;
 public interface SignInView extends Viewable<SignInPresenter> {
     void saveDataLocally(LoginResponse loginResponse);
     void hideKeyboard(View view);
+
+    void saveDataLocallyFacebook(LoginResponse output);
 }

@@ -1,44 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
-    <ImageView
+    <data></data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:background="@color/black"
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_black"/>
+        <ImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="visible" />
 
-    <ggn.home.help.utils.widgets.CustomTextView
-        android:id="@+id/textViewTitle"
-        android:layout_marginLeft="@dimen/margin15dp"
-        android:layout_marginRight="@dimen/margin15dp"
-        app:fontG="Roboto-Medium.ttf"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text16sp"
-        android:layout_marginBottom="@dimen/margin5dp"
-        android:layout_above="@+id/textViewDescription"
-        android:text="Lorem Ipsum text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    
-    <TextView
-        android:id="@+id/textViewDescription"
-        android:layout_marginBottom="@dimen/margin15dp"
-        android:layout_marginLeft="@dimen/margin15dp"
-        android:layout_marginRight="@dimen/margin15dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text14sp"
-        android:text="Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text "
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_black" />
+
+        <com.github.florent37.camerafragment.internal.ui.view.AspectFrameLayout
+            android:id="@+id/previewAspectFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/textViewTitle"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/margin10dp">
+
+            <SurfaceView
+                android:layout_gravity="center"
+                android:id="@+id/video_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.github.florent37.camerafragment.internal.ui.view.AspectFrameLayout>
 
 
-</RelativeLayout>
+        <ggn.home.help.utils.widgets.CustomTextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewCategory"
+            android:layout_marginLeft="@dimen/margin15dp"
+            android:layout_marginRight="@dimen/margin15dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/text16sp"
+            app:fontG="Roboto-Bold.ttf" />
+
+        <ggn.home.help.utils.widgets.CustomTextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewDescription"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin15dp"
+            android:layout_marginLeft="@dimen/margin15dp"
+            android:layout_marginRight="@dimen/margin15dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/text15sp"
+            app:fontG="Roboto-Medium.ttf" />
+
+
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin15dp"
+            android:layout_marginLeft="@dimen/margin15dp"
+            android:layout_marginRight="@dimen/margin15dp"
+            android:text="Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text "
+            android:textColor="@color/white"
+            android:textSize="@dimen/text14sp"
+            android:visibility="gone" />
+
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout_transparent" />
+
+    </RelativeLayout>
+</layout>

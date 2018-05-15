@@ -2,8 +2,9 @@ package ggn.home.help.features.addMemoryPreview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,16 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityAddMemoryPreviewBinding;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
-import ggn.home.help.features.memoryCategories.Categories;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.request.AddMemoryRequest;
 import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.SubCategory;
 
 public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreviewBinding, MemoryPreviewPresenter> implements MemoryPreviewView, View.OnClickListener {
+
+    private CategoryResponse.Datum categoriesObj;
+    private SubCategory subCategoryObj;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, MemoryPreviewActivity.class);
@@ -59,22 +64,41 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
         getDataBinder().viewPagerMedia.setAdapter(slidingImageAdapter);
         getDataBinder().indicator.setViewPager(getDataBinder().viewPagerMedia);
 
-        CategoryResponse.Datum categoriesObj = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
+        categoriesObj = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
+        subCategoryObj = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
         getDataBinder().textViewTitle.setText(categoriesObj.category.name + " > " + categoriesObj.category.subTitle);
+
+        getDataBinder().textViewUserName.setText(getLocalData().getUserName());
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonShare:
-//                Toast.makeText(getActivityG(), "Your new memory has been added successfully.", Toast.LENGTH_LONG).show();
-                UtillsG.finishAll(getActivityG());
-
-//                if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
-                DashboardActivity.start(getActivityG());
-//                }else
-//                DashboardActivity.start(getActivityG(), 1);
+                if (!TextUtils.isEmpty(getDataBinder().editTextTitle.getText().toString())) {
+                    AddMemoryRequest addMemoryRequest = new AddMemoryRequest();
+                    addMemoryRequest.userId = Integer.parseInt(getLocalData().getUserId());
+                    addMemoryRequest.token = getLocalData().getAuthToken();
+                    addMemoryRequest.categoryId = categoriesObj.category.id;
+                    addMemoryRequest.subCategoryId = subCategoryObj.id;
+                    addMemoryRequest.title = getDataBinder().editTextTitle.getText().toString();
+                    getPresenter().addMemory(addMemoryRequest, getIntent().getStringArrayListExtra("list_images"));
+                } else {
+                    displayError("Please enter title for your memory.");
+                }
                 break;
         }
+    }
+
+    @Override
+    public void memoryPostedSuccessfully() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                UtillsG.finishAll(getActivityG());
+                DashboardActivity.start(getActivityG());
+            }
+        }, 1000);
     }
 }

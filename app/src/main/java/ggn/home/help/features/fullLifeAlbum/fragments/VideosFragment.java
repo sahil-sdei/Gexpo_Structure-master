@@ -1,7 +1,8 @@
 package ggn.home.help.features.fullLifeAlbum.fragments;
 
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -9,25 +10,29 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
-import ggn.home.help.features.dashboard.myMemories.MemoriesPresenter;
-import ggn.home.help.features.dashboard.myMemories.MemoriesView;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumPresenter;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumView;
-import ggn.home.help.features.fullLifeAlbum.adapters.ImagesAdapter;
 import ggn.home.help.features.fullLifeAlbum.adapters.VideosAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
-import ggn.home.help.features.profile.FamilyAdapter;
-import ggn.home.help.features.selectPictures.Pictures;
+import ggn.home.help.utils.Constants;
+import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
 
-public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView {
+public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView, SwipeRefreshLayout.OnRefreshListener {
 
-    private List<Pictures> listPictures;
+    private List<FullLifeAlbumResponse.Datum> listPictures;
     private VideosAdapter videosAdapter;
+    private String categoryId;
+    private String subCategoryId;
 
-    public static VideosFragment newInstance() {
-        VideosFragment activityFragment = new VideosFragment();
-        return activityFragment;
+    public static VideosFragment newInstance(String categoryId, String subCategoryId) {
+        VideosFragment videosFragment = new VideosFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.Extras.CATEGORY_ID, categoryId);
+        bundle.putString(Constants.Extras.SUB_CATEGORY_ID, subCategoryId);
+        videosFragment.setArguments(bundle);
+        return videosFragment;
     }
 
     @Override
@@ -44,10 +49,6 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
     @Override
     public void initViews() {
         listPictures = new ArrayList<>();
-        listPictures.add(new Pictures("pro", false));
-        listPictures.add(new Pictures("pro", false));
-        listPictures.add(new Pictures("pro", false));
-        listPictures.add(new Pictures("pro", false));
 
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
@@ -56,30 +57,63 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
         videosAdapter = new VideosAdapter(listPictures, getActivityG(), getPresenter());
         videosAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(videosAdapter);
+
+        getDataBinder().swipeRefreshLayout.setOnRefreshListener(this);
+
+        getDataBinder().swipeRefreshLayout.setRefreshing(true);
+        getPresenter().getFullLifeAlbum(getArguments().getString(Constants.Extras.CATEGORY_ID), getArguments().getString(Constants.Extras.SUB_CATEGORY_ID), "video", 1);
     }
 
     public void enableSharePost() {
-        for(Pictures pictures : listPictures){
-            pictures.isCheckVisible = true;
-        }
-        videosAdapter.notifyDataSetChanged();
+//        for(FullLifeAlbumResponse.Datum pictures : listPictures){
+//            pictures.isCheckVisible = true;
+//        }
+//        videosAdapter.notifyDataSetChanged();
     }
 
-    public List<Pictures> getListVideos(){
+    public List<FullLifeAlbumResponse.Datum> getListVideos() {
         return listPictures;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        resetData();
-    }
-
     public void resetData() {
-        for(Pictures pictures : listPictures){
-            pictures.isCheckVisible = false;
+        for (FullLifeAlbumResponse.Datum pictures : listPictures) {
+//            pictures.isCheckVisible = false;
             pictures.isSelected = false;
         }
         videosAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategories(CategoryResponse output) {
+
+    }
+
+    @Override
+    public void showFullLifeAlbum(FullLifeAlbumResponse output) {
+        listPictures.clear();
+        listPictures.addAll(output.data);
+        videosAdapter.notifyDataSetChanged();
+        getDataBinder().swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void noDataFound() {
+        getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        listPictures.clear();
+    }
+
+    public void setCategoryIds(String id, String id1) {
+        this.categoryId = id;
+        this.subCategoryId = id1;
+
+        getDataBinder().swipeRefreshLayout.setRefreshing(true);
+        getPresenter().getFullLifeAlbum(categoryId, subCategoryId, "video", 1);
+    }
+
+    @Override
+    public void onRefresh() {
+        listPictures.clear();
+        getDataBinder().swipeRefreshLayout.setRefreshing(true);
+        getPresenter().getFullLifeAlbum(categoryId, subCategoryId, "video", 1);
     }
 }

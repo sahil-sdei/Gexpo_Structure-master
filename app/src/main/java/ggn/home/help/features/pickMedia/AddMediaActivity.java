@@ -59,6 +59,8 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_media);
 
+        this.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.black));
+
         permissionStatus = getSharedPreferences("permissionStatus", MODE_PRIVATE);
 
         if (ActivityCompat.checkSelfPermission(AddMediaActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -216,6 +218,26 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
 
             @Override
             public void onPageSelected(int position) {
+                if (ActivityCompat.checkSelfPermission(AddMediaActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AddMediaActivity.this);
+                    builder.setTitle("Need Storage Permission");
+                    builder.setMessage("This app needs storage permission.");
+                    builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            ActivityCompat.requestPermissions(AddMediaActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
+                    return;
+                }
                 if (position == 1) {
                     PhotoFragment photoFragment = (PhotoFragment) adapter.getItem(1);
                     photoFragment.addCamera();

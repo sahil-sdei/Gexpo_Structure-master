@@ -27,6 +27,12 @@ public @interface Constants {
         String SELECTED_MEDIA = "selected_media";
         String POST_FROM_ALBUM = "post_from_album";
         String BASE_URL_IMAGE = "base_url_image";
+        String SUB_CATEGORY = "sub_category";
+        String CATEGORY_ID = "category_id";
+        String SUB_CATEGORY_ID = "sub_category_id";
+        String IS_IMAGE = "is_image";
+        String MEDIA_URL = "media_url";
+
     }
 
     @interface RequestCode {

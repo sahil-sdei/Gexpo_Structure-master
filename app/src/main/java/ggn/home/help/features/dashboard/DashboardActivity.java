@@ -52,6 +52,7 @@ import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.DialogHelper;
 import ggn.home.help.utils.LocalDataHelper;
 import ggn.home.help.utils.SharedPrefHelper;
+import ggn.home.help.web.response.Child;
 
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
 import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
@@ -75,6 +76,8 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private SlidingRootNav slidingRootNav;
 
+    private SharedPrefHelper sharedPrefHelper;
+
     public static void start(Context context) {
         Intent starter = new Intent(context, DashboardActivity.class);
         context.startActivity(starter);
@@ -96,6 +99,8 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        sharedPrefHelper = new SharedPrefHelper(DashboardActivity.this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -162,7 +167,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
         adapter.setSelected(POS_DASHBOARD);
 
-        setUpAccounts();
+        showUserNameOnNav();
 
         if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
             showFragment(MemoryCategoriesFragment.newInstance(true));
@@ -181,7 +186,6 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             DialogHelper.getInstance().showWithAction(DashboardActivity.this, "Log out from the app?", new CallBackG<String>() {
                 @Override
                 public void callBack(String output) {
-                    SharedPrefHelper sharedPrefHelper = new SharedPrefHelper(DashboardActivity.this);
                     sharedPrefHelper.logout();
                     SignInActivity.start(DashboardActivity.this);
 
@@ -320,16 +324,15 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         return ContextCompat.getColor(this, res);
     }
 
-    private void setUpAccounts() {
-        List<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-        list.add("a");
+    private void showUserNameOnNav(){
+        ((TextView)findViewById(R.id.textViewUserName)).setText(sharedPrefHelper.getUserName());
+    }
 
+    public void setUpAccounts(List<Child> child) {
         RecyclerView recyclerView = findViewById(R.id.listAccounts);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this, LinearLayoutManager.VERTICAL, false));
-        AccountsAdapter accountsAdapter = new AccountsAdapter(list, DashboardActivity.this);
+        AccountsAdapter accountsAdapter = new AccountsAdapter(child, DashboardActivity.this);
         accountsAdapter.setShouldLoadMore(false);
         accountsAdapter.setAccountsAdapterBinder(this);
         recyclerView.setAdapter(accountsAdapter);
@@ -390,4 +393,5 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         showFragment(MemoriesFragment.newInstance());
         setupToolbar("", true, false);
     }
+
 }

@@ -11,6 +11,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import ggn.home.help.R;
@@ -20,6 +21,7 @@ import ggn.home.help.utils.CallBackG;
 import ggn.home.help.web.apiInterfaces.LoginSignUpAPI;
 import ggn.home.help.web.request.LoginRequest;
 import ggn.home.help.web.request.SignUpRequest;
+import ggn.home.help.web.request.SocialLoginRequest;
 import ggn.home.help.web.response.LoginResponse;
 
 public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUpBinder {
@@ -77,7 +79,7 @@ public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUp
                 public void callBack(LoginResponse output) {
                     getView().hideLoading();
                     if (output.status == 1)
-                        getView().saveDataLocally(output);
+                        getView().goToSignIn(output);
                     else
                         getView().displayError(output.message);
                 }
@@ -96,8 +98,9 @@ public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUp
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 try {
-                                    getView().hideLoading();
+//                                    getView().hideLoading();
 //                                    AccessToken token = AccessToken.getCurrentAccessToken();
+                                    facebookLogin(response.getJSONObject());
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -120,6 +123,34 @@ public class SignUpPresenter extends BasePresenter<SignUpView> implements SignUp
                 getView().displayError(error.getMessage());
             }
         };
+    }
+
+    private void facebookLogin(JSONObject jsonObject) {
+        SocialLoginRequest socialLoginRequest = new SocialLoginRequest();
+        try {
+            socialLoginRequest.socialId = jsonObject.getString("id");
+            socialLoginRequest.name = jsonObject.getString("name");
+            if (jsonObject.getString("email") != null)
+                socialLoginRequest.email = jsonObject.getString("email");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        socialLoginRequest.deviceToken = "1212121212";
+        socialLoginRequest.loginType = "1";
+        socialLoginRequest.registrationType = 1;
+
+        Gson gson = new Gson();
+        createApiRequest(getRetrofitInstance(LoginSignUpAPI.class)
+                .socialLogin(gson.toJson(socialLoginRequest)), new CallBackG<LoginResponse>() {
+            @Override
+            public void callBack(LoginResponse output) {
+                getView().hideLoading();
+                if (output.status == 1)
+                    getView().saveDataLocally(output);
+                else
+                    getView().displayError(output.message);
+            }
+        });
     }
 }
 

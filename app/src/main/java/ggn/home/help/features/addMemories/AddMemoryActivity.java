@@ -70,7 +70,8 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE)+categories.category.image);
 
         if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
-            changeHeadingText("Pregnancy Moments");
+            SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
+            changeHeadingText(subCategory.name);
             showFragment(AddDescriptionFragment.newInstance((List<Pictures>)getIntent().getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
             return;
         }

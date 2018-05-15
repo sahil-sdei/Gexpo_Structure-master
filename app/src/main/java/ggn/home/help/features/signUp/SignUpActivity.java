@@ -2,7 +2,6 @@ package ggn.home.help.features.signUp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
@@ -23,7 +22,7 @@ import java.util.Arrays;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySignUpBinding;
-import ggn.home.help.features.forgotPassword.ForgetPasswordActivity;
+import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signIn.SignInActivity;
 import ggn.home.help.utils.UtillsG;
@@ -91,7 +90,7 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
             }
         };
         signIn.setSpan(new StyleSpan(Typeface.ITALIC), 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signIn.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivityG(), R.color.textBlue)), 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signIn.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivityG(), R.color.black)), 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signIn.setSpan(clickableSpanSignIn, 16, 24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         getDataBinder().textViewSignIn.setText(signIn);
         getDataBinder().textViewSignIn.setMovementMethod(LinkMovementMethod.getInstance());
@@ -107,7 +106,15 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
     }
 
     @Override
-    public void saveDataLocally(LoginResponse output) {
+    public void saveDataLocally(LoginResponse loginResponse) {
+        getLocalData().setSetRememberMe(true);
+        getLocalData().saveUser(loginResponse);
+        DashboardActivity.start(getActivityG());
+        finish();
+    }
+
+    @Override
+    public void goToSignIn(LoginResponse output) {
         Toast.makeText(getActivityG(), output.message, Toast.LENGTH_LONG).show();
         SignInActivity.start(getActivityG());
         finish();

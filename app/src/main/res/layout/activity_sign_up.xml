@@ -123,7 +123,7 @@
                     android:background="@drawable/rounded_fb_blue"
                     android:drawableLeft="@drawable/ic_if_facebook"
                     android:padding="@dimen/margin10dp"
-                    android:text="@string/sign_up_with_facebook"
+                    android:text="@string/sign_in_with_facebook"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text14sp" />

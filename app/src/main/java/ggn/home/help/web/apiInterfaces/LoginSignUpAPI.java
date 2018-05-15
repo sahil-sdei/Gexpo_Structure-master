@@ -26,4 +26,8 @@ public interface LoginSignUpAPI {
     @POST(Web.Path.CHANGE_PASSWORD)
     Observable<BasicResponse> changePassword(@Field(Web.Keys.DETAILS) String details);
 
+    @FormUrlEncoded
+    @POST(Web.Path.SOCIAL_LOGIN)
+    Observable<LoginResponse> socialLogin(@Field(Web.Keys.LOGIN_DETAILS) String details);
+
 }

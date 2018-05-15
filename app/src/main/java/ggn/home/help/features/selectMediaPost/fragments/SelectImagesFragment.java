@@ -14,6 +14,8 @@ import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.selectMediaPost.PicturesSelectedListener;
 import ggn.home.help.features.selectMediaPost.adapters.SelectImagesAdapter;
 import ggn.home.help.features.selectPictures.Pictures;
+import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
 
 public class SelectImagesFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView, PicturesSelectedListener {
@@ -65,5 +67,20 @@ public class SelectImagesFragment extends BaseFragment<FragmentRecyclerViewBindi
 
     public List<Pictures> getPictures(){
         return listPictures;
+    }
+
+    @Override
+    public void showCategories(CategoryResponse output) {
+
+    }
+
+    @Override
+    public void showFullLifeAlbum(FullLifeAlbumResponse output) {
+
+    }
+
+    @Override
+    public void noDataFound() {
+
     }
 }

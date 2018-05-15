@@ -9,4 +9,6 @@ public interface SignUpView extends Viewable<SignUpPresenter> {
     void hideKeyboard(View view);
 
     void saveDataLocally(LoginResponse output);
+
+    void goToSignIn(LoginResponse output);
 }

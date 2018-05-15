@@ -28,5 +28,12 @@ public class CategoryResponse implements Serializable{
         @SerializedName("SubCategory")
         @Expose
         public List<SubCategory> subCategory = null;
+
+        public Datum(Category category, List<SubCategory> subCategory) {
+            this.category = category;
+            this.subCategory = subCategory;
+        }
     }
+
+
 }

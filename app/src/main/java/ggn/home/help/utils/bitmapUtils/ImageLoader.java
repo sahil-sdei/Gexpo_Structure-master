@@ -12,6 +12,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 
+import ggn.home.help.R;
+
 public class ImageLoader {
     private static final ImageLoader ourInstance = new ImageLoader();
 
@@ -35,7 +37,8 @@ public class ImageLoader {
             Glide
                     .with(imageView.getContext())
                     .load(url)
-                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).override(100, 100))
+                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).override(50, 50)
+                            )
                     .into(((ImageView) imageView));
         }
     }
@@ -48,7 +51,7 @@ public class ImageLoader {
         Glide
                 .with(imageView.getContext())
                 .load(url)
-                .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL).override(200, 200))
+                .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL).override(100, 100))
                 .into(((ImageView) imageView));
 
     }

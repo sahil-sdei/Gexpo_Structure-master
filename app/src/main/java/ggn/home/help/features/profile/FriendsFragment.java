@@ -11,6 +11,7 @@ import ggn.home.help.features.dashboard.myMemories.MemoriesPresenter;
 import ggn.home.help.features.dashboard.myMemories.MemoriesView;
 import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
+import ggn.home.help.web.response.ChildAccountsResponse;
 
 
 public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, MemoriesPresenter> implements MemoriesView {
@@ -52,6 +53,11 @@ public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, M
 
     @Override
     public void onMemoryLiked(Memory memory) {
+
+    }
+
+    @Override
+    public void showChildAccounts(ChildAccountsResponse output) {
 
     }
 }

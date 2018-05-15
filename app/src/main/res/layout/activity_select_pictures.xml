@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/margin5dp"
                 android:drawablePadding="@dimen/margin5dp"
                 android:drawableRight="@drawable/ic_down_arrow_small"
                 android:text="@string/select_sub_categories"

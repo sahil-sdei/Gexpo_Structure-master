@@ -32,6 +32,7 @@
         android:drawablePadding="@dimen/margin5dp"
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
+        android:maxWidth="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin20dp"
         android:layout_marginTop="@dimen/margin10dp"

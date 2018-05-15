@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.usemedia.Matisse;
@@ -26,8 +28,6 @@ import ggn.home.help.features.addMemories.AddMemoryView;
 import ggn.home.help.features.addMemories.SubCategoriesAdapter;
 import ggn.home.help.features.addMemoryPreview.MemoryPreviewActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
-import ggn.home.help.features.memoryCategories.Categories;
-import ggn.home.help.features.memoryCategories.SubCategories;
 import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.features.selectMediaPost.SelectMediaPostActivity;
 import ggn.home.help.features.selectPictures.Pictures;
@@ -76,9 +76,13 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
     public void initViews() {
         ((AddMemoryActivity) getActivity()).changeHeadingText(getString(R.string.sub_categories));
 
+        List<SubCategory> listSubCategory = new ArrayList<>();
+        listSubCategory.addAll(categoriesObj.subCategory);
+        listSubCategory.add(new SubCategory("Suggest Sub Category"));
+
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(categoriesObj.subCategory, getActivityG(), getPresenter());
+        SubCategoriesAdapter subCategoriesAdapter = new SubCategoriesAdapter(listSubCategory, getActivityG(), getPresenter());
         subCategoriesAdapter.setBaseUrl(baseUrlImage);
         subCategoriesAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(subCategoriesAdapter);
@@ -121,13 +125,19 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_add_sub_category, null);
+        final EditText editText = dialogView.findViewById(R.id.editTextName);
         dialogBuilder.setView(dialogView);
         dialogBuilder.setTitle("Suggest Sub Category");
         dialogBuilder.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getActivityG(), getString(R.string.success_admin_sub_category), Toast.LENGTH_LONG).show();
-                UtillsG.hideKeyboard(getActivityG(), dialogView);
+                String name = editText.getText().toString();
+                if (!TextUtils.isEmpty(name)) {
+                    getPresenter().addSubCategory(name, categoriesObj.category.id);
+                    UtillsG.hideKeyboard(getActivityG(), dialogView);
+                } else {
+                    Toast.makeText(getActivityG(), "Please enter sub category title.", Toast.LENGTH_LONG).show();
+                }
             }
         });
         dialogBuilder.setNegativeButton("CANCEL", null);
@@ -144,20 +154,16 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                 if (data.getBooleanExtra(MatisseFragment.EXTRA_IS_GALLERY, false)) {
                     List<Uri> uriList = Matisse.obtainResult(data);
                     List<String> pathList = Matisse.obtainPathResult(data);
-//                    Toast.makeText(getActivityG(), "Got the data " + uriList.size() + " - - " + pathList.size(), Toast.LENGTH_SHORT).show();
-//                    String path = pathList.get(0);
-//                    MemoryPreviewActivity.start(getActivityG());
                     Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
                     intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                     intent.putExtra("images_size", uriList.size());
                     intent.putExtra(Constants.Extras.DATA, categoriesObj);
+                    intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
                     intent.putStringArrayListExtra("list_images", (ArrayList<String>) pathList);
                     startActivity(intent);
                 } else {
                     if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
                         if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
-//                            MemoryPreviewActivity.start(getActivityG());
-
                             List<String> list = new ArrayList<>();
                             list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
 
@@ -165,7 +171,7 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                             intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                             intent.putExtra("images_size", 1);
                             intent.putExtra(Constants.Extras.DATA, categoriesObj);
-
+                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
                             intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
                             startActivity(intent);
                         } else {
@@ -176,17 +182,17 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                             intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_MEMORY));
                             intent.putExtra("images_size", 1);
                             intent.putExtra(Constants.Extras.DATA, categoriesObj);
-
+                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
                             intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
                             startActivity(intent);
                         }
                     }
                 }
             }
-        }else if (requestCode == Constants.RequestCode.SELECT_IMAGES_VIDEOS) {
+        } else if (requestCode == Constants.RequestCode.SELECT_IMAGES_VIDEOS) {
             if (resultCode == RESULT_OK) {
                 ((AddMemoryActivity) getActivity()).changeHeadingText(subCategory.name);
-                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance((List<Pictures>)data.getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
+                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance((List<Pictures>) data.getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
             }
         }
     }

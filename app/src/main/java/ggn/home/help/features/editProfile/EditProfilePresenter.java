@@ -3,8 +3,16 @@ package ggn.home.help.features.editProfile;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import ggn.home.help.R;
 import ggn.home.help.features.internal.base.BasePresenter;
+import ggn.home.help.utils.CallBackG;
+import ggn.home.help.web.apiInterfaces.UserAPI;
+import ggn.home.help.web.request.BasicRequest;
+import ggn.home.help.web.request.ChildAccountsRequest;
+import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.ProfileResponse;
 
 public class EditProfilePresenter extends BasePresenter<EditProfileView> implements EditProfileBinder {
     public ObservableField<String> name =
@@ -66,5 +74,22 @@ public class EditProfilePresenter extends BasePresenter<EditProfileView> impleme
 //                });
 //        }
         }
+    }
+
+    public void getProfile(BasicRequest basicRequest) {
+        Gson gson = new Gson();
+        createApiRequest(getRetrofitInstance(UserAPI.class)
+                .getProfile(gson.toJson(basicRequest)), new CallBackG<ProfileResponse>() {
+            @Override
+            public void callBack(ProfileResponse output) {
+                if (output.status == 1)
+                    setProfile(output);
+                else
+                    getView().displayError(output.message);
+            }
+        });
+    }
+
+    public void setProfile(ProfileResponse profile) {
     }
 }

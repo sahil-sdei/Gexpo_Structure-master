@@ -68,7 +68,7 @@ public class DialogHelper
     public void showWithAction(Context context, String message, final CallBackG<String> callBackG)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
-        builder.setTitle("WishDrop");
+        builder.setTitle("Memoreeta");
         builder.setMessage(message);
         builder.setCancelable(false);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()

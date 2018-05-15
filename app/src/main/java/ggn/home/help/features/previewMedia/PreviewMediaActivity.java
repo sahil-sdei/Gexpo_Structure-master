@@ -2,8 +2,12 @@ package ggn.home.help.features.previewMedia;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.media.AudioManager;
+import android.media.ExifInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +24,8 @@ import com.github.florent37.camerafragment.PreviewActivity;
 import com.github.florent37.camerafragment.configuration.Configuration;
 import com.github.florent37.camerafragment.internal.ui.view.AspectFrameLayout;
 import com.github.florent37.camerafragment.internal.utils.ImageLoader;
+
+import java.io.IOException;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityPreviewMediaBinding;
@@ -141,13 +147,54 @@ public class PreviewMediaActivity extends BaseActivity<ActivityPreviewMediaBindi
     }
 
     private void showImagePreview() {
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(previewFilePath, bmOptions);
+        bitmap = Bitmap.createScaledBitmap(bitmap,200,200,true);
+        ExifInterface ei = null;
+        try {
+            ei = new ExifInterface(previewFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
+
+        Bitmap rotatedBitmap = null;
+        switch(orientation) {
+
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotatedBitmap = rotateImage(bitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotatedBitmap = rotateImage(bitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotatedBitmap = rotateImage(bitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                rotatedBitmap = bitmap;
+        }
+
         imagePreview = new ImageView(this);
         imagePreview.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         imagePreview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ImageLoader.Builder builder = new ImageLoader.Builder(this);
-        builder.load(previewFilePath).build().into(imagePreview);
+
+        imagePreview.setImageBitmap(rotatedBitmap);
+//        ImageLoader.Builder builder = new ImageLoader.Builder(this);
+//        builder.load(previewFilePath).build().into(imagePreview);
         photoPreviewContainer.removeAllViews();
         photoPreviewContainer.addView(imagePreview);
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 
     private void displayVideo(Bundle savedInstanceState) {

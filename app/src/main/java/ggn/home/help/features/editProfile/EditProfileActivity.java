@@ -20,6 +20,7 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityEditProfileBinding;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.web.request.BasicRequest;
 
 public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding, EditProfilePresenter> implements EditProfileView {
 
@@ -59,6 +60,11 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
                 ImagePicker.pickImage(EditProfileActivity.this, "Select Image");
             }
         });
+
+        BasicRequest basicRequest = new BasicRequest();
+        basicRequest.token = getLocalData().getAuthToken();
+        basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
+        getPresenter().getProfile(basicRequest);
     }
 
     @Override

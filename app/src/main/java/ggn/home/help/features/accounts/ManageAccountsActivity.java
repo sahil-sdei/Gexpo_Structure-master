@@ -6,12 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityManageAccountsBinding;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.web.response.ChildAccountsResponse;
 
 public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsBinding, ManageAccountsPresenter> implements ManageAccountsView {
 
@@ -40,15 +38,7 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
     public void initViews() {
         setupToolbar(getString(R.string.manage_accounts));
 
-        List<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-
-        getDataBinder().recyclerViewAccounts.setHasFixedSize(true);
-        getDataBinder().recyclerViewAccounts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        ManageAccountsAdapter manageAccountsAdapter = new ManageAccountsAdapter(list, getActivityG(), getPresenter());
-        manageAccountsAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewAccounts.setAdapter(manageAccountsAdapter);
+        getPresenter().getChildAccounts();
     }
 
     @Override
@@ -59,7 +49,7 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add:
                 Intent resultIntent = getIntent();
                 setResult(RESULT_OK, resultIntent);
@@ -67,5 +57,14 @@ public class ManageAccountsActivity extends BaseActivity<ActivityManageAccountsB
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showChildAccounts(ChildAccountsResponse output) {
+        getDataBinder().recyclerViewAccounts.setHasFixedSize(true);
+        getDataBinder().recyclerViewAccounts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+        ManageAccountsAdapter manageAccountsAdapter = new ManageAccountsAdapter(output.data.childs, getActivityG(), getPresenter());
+        manageAccountsAdapter.setShouldLoadMore(false);
+        getDataBinder().recyclerViewAccounts.setAdapter(manageAccountsAdapter);
     }
 }

@@ -28,5 +28,19 @@ public class SubCategory implements Serializable{
     @SerializedName("image")
     @Expose
     public String image;
+    public boolean isSelected;
 
+    public SubCategory(String id, String parentId, String name, String subTitle, String years, String status, String image) {
+        this.id = id;
+        this.parentId = parentId;
+        this.name = name;
+        this.subTitle = subTitle;
+        this.years = years;
+        this.status = status;
+        this.image = image;
+    }
+
+    public SubCategory(String name) {
+        this.name = name;
+    }
 }

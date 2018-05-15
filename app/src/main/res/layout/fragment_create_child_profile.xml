@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
-    <data></data>
+    <data>
+        <variable
+            name="binder"
+            type="ggn.home.help.features.dashboard.createChildProfile.CreateChildProfileBinder"/>
+
+        <variable
+            name="handler"
+            type="ggn.home.help.features.dashboard.createChildProfile.RadioButtonHandler"/>
+    </data>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -69,6 +77,9 @@
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:text="@={binder.name}"
+                        android:inputType="textCapWords"
                         android:hint="@string/name"
                         android:textColor="@color/black" />
 
@@ -85,6 +96,9 @@
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:imeOptions="actionNext"
+                        android:text="@={binder.nickName}"
                         android:hint="@string/nick_name"
                         android:textColor="@color/black" />
 
@@ -100,27 +114,63 @@
                         android:id="@+id/editTextDateOfBirth"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
+                        android:text="@={binder.DOB}"
+                        android:editable="false"
+                        android:focusable="false"
                         android:layout_height="wrap_content"
                         android:hint="@string/date_of_birth"
                         android:textColor="@color/black" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    style="@style/TextInputLayout"
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--style="@style/TextInputLayout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<ggn.home.help.utils.widgets.CustomEditText-->
+                        <!--android:id="@+id/editTextGender"-->
+                        <!--style="@style/editTextThemeSingleLine"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="@string/gender"-->
+                        <!--android:textColor="@color/black" />-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:text="Gender"
+                    android:layout_marginTop="@dimen/margin5dp"
+                    android:textSize="@dimen/text16sp"
+                    android:textColor="@color/greyDark"
+                    android:padding="@dimen/margin5dp"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupGender"
                     android:layout_width="match_parent"
+                    android:onCheckedChanged="@{handler.onGenderChanged}"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
-                    <ggn.home.help.utils.widgets.CustomEditText
-                        android:id="@+id/editTextGender"
-                        style="@style/editTextThemeSingleLine"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/gender"
-                        android:textColor="@color/black" />
+                    <ggn.home.help.utils.widgets.CustomRadioButton
+                        android:layout_width="wrap_content"
+                        android:id="@+id/radioButtonMale"
+                        android:text="@string/male"
+                        android:checked="true"
+                        android:textSize="@dimen/text16sp"
+                        android:layout_height="wrap_content" />
 
-                </android.support.design.widget.TextInputLayout>
+                    <ggn.home.help.utils.widgets.CustomRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/margin10dp"
+                        android:id="@+id/radioButtonFemale"
+                        android:text="@string/female"
+                        android:textSize="@dimen/text16sp"
+                        android:layout_height="wrap_content" />
 
+                </RadioGroup>
 
                 <android.support.design.widget.TextInputLayout
                     style="@style/TextInputLayout"
@@ -129,6 +179,9 @@
 
                     <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextAddress"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:text="@={binder.address}"
                         style="@style/editTextThemeSingleLine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -149,7 +202,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="top|left"
                         android:hint="@string/life_lesson"
-                        android:inputType="textMultiLine"
+                        android:imeOptions="actionDone"
+                        android:text="@={binder.lifeLesson}"
+                        android:inputType="textMultiLine|textCapSentences"
                         android:lines="5"
                         android:maxLines="6"
                         android:minLines="3"
@@ -169,6 +224,7 @@
                     android:layout_marginTop="@dimen/margin10dp"
                     android:background="@drawable/round_bordered_button_blue"
                     android:text="@string/save"
+                    android:onClick="@{binder::saveClicked}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text16sp" />

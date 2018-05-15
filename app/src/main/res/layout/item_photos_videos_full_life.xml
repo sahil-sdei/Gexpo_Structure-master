@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="ggn.home.help.web.response.FullLifeAlbumResponse.Datum" />
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayoutParent"
+        android:layout_width="130dp"
+        android:layout_height="130dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_crop_original"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:urlFullWidth="@{data.gallery}" />
+
+        <ImageView
+            android:id="@+id/imageViewVideoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_video"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparentBlack"
+            android:padding="@dimen/margin7dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_select" />
+
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/checkBoxSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:buttonTint="@color/buttonBlue"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</layout>

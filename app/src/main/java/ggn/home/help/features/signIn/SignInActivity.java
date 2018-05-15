@@ -98,7 +98,7 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
             }
         };
         signUp.setSpan(new StyleSpan(Typeface.ITALIC), 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        signUp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivityG(), R.color.textBlue)), 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        signUp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivityG(), R.color.black)), 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         signUp.setSpan(clickableSpanSignUp, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         getDataBinder().textViewSignUp.setText(signUp);
         getDataBinder().textViewSignUp.setMovementMethod(LinkMovementMethod.getInstance());
@@ -119,6 +119,14 @@ public class SignInActivity extends BaseActivity<ActivitySignInBinding, SignInPr
     @Override
     public void hideKeyboard(View view) {
         UtillsG.hideKeyboard(getActivityG(), view);
+    }
+
+    @Override
+    public void saveDataLocallyFacebook(LoginResponse loginResponse) {
+        getLocalData().setSetRememberMe(true);
+        getLocalData().saveUser(loginResponse);
+        DashboardActivity.start(getActivityG());
+        finish();
     }
 
     @Override

@@ -18,6 +18,12 @@ public @interface Web {
         String FORGOT_PASSWORD = "forgot_password";
         String CHANGE_PASSWORD = "change_password";
         String CATEGORIES = "categories";
-
+        String SOCIAL_LOGIN = "social_login";
+        String ADD_SUGGESTION = "add_suggestion";
+        String ADD_CHILD = "add_child";
+        String ADD_MEMORY = "add_memory";
+        String FULL_LIFE_ALBUM = "full_life_album";
+        String CHILD_ACCOUNTS = "child_accounts";
+        String PROFILE = "profile";
     }
 }

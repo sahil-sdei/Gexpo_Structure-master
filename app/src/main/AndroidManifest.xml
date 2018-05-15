@@ -43,6 +43,7 @@
         <activity
             android:name=".features.forgotPassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
@@ -115,6 +116,7 @@
 
         <activity
             android:name=".features.addMemoryPreview.MemoryPreviewActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
 
         <activity
@@ -143,6 +145,11 @@
 
         <activity
             android:name=".features.selectMediaPost.SelectMediaPostActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".features.memoryViewer.MemoryViewerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 

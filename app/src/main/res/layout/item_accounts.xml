@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="String" />
+            type="ggn.home.help.web.response.Child" />
 
     </data>
 
@@ -36,11 +36,10 @@
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/demo_image_wall"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
-            <TextView
+            <ggn.home.help.utils.widgets.CustomTextView
                 android:id="@+id/textViewUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +49,7 @@
                 android:layout_marginRight="@dimen/margin10dp"
                 android:layout_toRightOf="@+id/relativeLayoutProfilePic"
                 android:lines="1"
-                android:text="Stan Smith"
+                android:text="@{data.userProfile.name}"
                 android:textColor="@color/greyDark"
                 android:textSize="@dimen/text16sp" />
         </RelativeLayout>

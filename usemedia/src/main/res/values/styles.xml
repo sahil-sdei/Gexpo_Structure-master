@@ -45,11 +45,10 @@
         </item>
         <item name="listPopupWindowStyle">@style/Popup.Zhihu</item>
         <item name="capture.textColor">@color/zhihu_capture</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:colorBackgroundCacheHint">@android:color/black</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 

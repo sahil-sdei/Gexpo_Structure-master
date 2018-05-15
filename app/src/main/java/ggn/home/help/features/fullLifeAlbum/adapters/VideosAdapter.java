@@ -2,28 +2,28 @@ package ggn.home.help.features.fullLifeAlbum.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import java.util.List;
 
 import ggn.home.help.R;
-import ggn.home.help.databinding.ItemPhotosVideosBinding;
+import ggn.home.help.databinding.ItemPhotosVideosFullLifeBinding;
 import ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
-import ggn.home.help.features.selectPictures.Pictures;
+import ggn.home.help.features.memoryViewer.MemoryViewerActivity;
+import ggn.home.help.utils.Constants;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
-public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
+public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBinding> {
 
-    private List<Pictures> dataList;
+    private List<FullLifeAlbumResponse.Datum> dataList;
     private Context context;
     private PhotoVideoAdapterBinder photoVideoAdapterBinder;
     private DisplayMetrics displayMetrics;
-    Pictures pictures;
 
-
-    public VideosAdapter(List<Pictures> dataList, Context context, PhotoVideoAdapterBinder photoVideoAdapterBinder) {
+    public VideosAdapter(List<FullLifeAlbumResponse.Datum> dataList, Context context, PhotoVideoAdapterBinder photoVideoAdapterBinder) {
         this.dataList = dataList;
         this.context = context;
         this.photoVideoAdapterBinder = photoVideoAdapterBinder;
@@ -32,7 +32,7 @@ public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
 
     @Override
     public int getInflateLayout() {
-        return R.layout.item_photos_videos;
+        return R.layout.item_photos_videos_full_life;
     }
 
     @Override
@@ -42,25 +42,10 @@ public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
 
     @Override
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
-        final Pictures pictures = dataList.get(position);
-
-        baseViewHolder.binding.setPictures(dataList.get(position));
+        final FullLifeAlbumResponse.Datum pictures = dataList.get(position);
+        baseViewHolder.binding.setData(pictures);
         baseViewHolder.binding.setBinder(photoVideoAdapterBinder);
         baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
-
-//        baseViewHolder.binding.checkBoxSelect.setSelected(pictures.isSelected);
-//
-//        baseViewHolder.binding.checkBoxSelect.setVisibility(pictures.isCheckVisible ? View.VISIBLE : View.GONE);
-//
-//        baseViewHolder.binding.checkBoxSelect.setTag(pictures);
-//
-//        baseViewHolder.binding.checkBoxSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                Pictures p = (Pictures) compoundButton.getTag();
-//                p.isSelected = b;
-//            }
-//        });
 
         if (pictures.isSelected)
             baseViewHolder.binding.relativeLayoutSelected.setVisibility(View.VISIBLE);
@@ -77,7 +62,7 @@ public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
                 }
 
                 boolean isSelected = false;
-                for (Pictures iObj : dataList) {
+                for (FullLifeAlbumResponse.Datum iObj : dataList) {
                     if (iObj.isSelected) {
                         isSelected = true;
                         break;
@@ -106,6 +91,17 @@ public class VideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
 
         baseViewHolder.binding.relativeLayoutParent.getLayoutParams().height = (width / 3);
         baseViewHolder.binding.relativeLayoutParent.getLayoutParams().width = (width / 3) - 2;
+
+        baseViewHolder.binding.relativeLayoutParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MemoryViewerActivity.class);
+                intent.putExtra(Constants.Extras.IS_IMAGE, false);
+                intent.putExtra(Constants.Extras.MEDIA_URL, pictures.gallery);
+                intent.putExtra(Constants.Extras.DATA, pictures);
+                context.startActivity(intent);
+            }
+        });
 
         baseViewHolder.binding.executePendingBindings();
     }
