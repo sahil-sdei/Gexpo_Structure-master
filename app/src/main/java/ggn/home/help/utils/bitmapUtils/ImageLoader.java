@@ -125,6 +125,26 @@ public class ImageLoader {
 
     }
 
+    public static void loadFullImage(View imageView, String url) {
+
+        if (url == null || url.isEmpty()) {
+            return;
+        }
+        if (!url.contains("http")) {
+            int id = (imageView).getContext().getResources().getIdentifier(url, "drawable", imageView.getContext().getPackageName());
+            ((ImageView) imageView).setImageResource(id);
+        } else {
+
+            Glide
+                    .with(imageView.getContext())
+                    .load(url)
+                    .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(((ImageView) imageView));
+        }
+
+    }
+
     @BindingAdapter({"bind:fullWidthBG"})
     public static void loadFullWidthImageBG(View background, String image) {
 

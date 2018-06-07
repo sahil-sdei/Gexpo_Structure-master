@@ -45,8 +45,7 @@
                             android:id="@+id/imageViewProfilePic"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/demo_image_wall" />
+                            android:scaleType="centerCrop" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -68,7 +67,6 @@
                             android:textSize="@dimen/text14sp" />
 
 
-
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -85,8 +83,7 @@
                         <android.support.v4.view.ViewPager
                             android:id="@+id/viewPagerMedia"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
+                            android:layout_height="match_parent" />
 
 
                     </RelativeLayout>
@@ -98,11 +95,11 @@
 
                     <me.relex.circleindicator.CircleIndicator
                         android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_above="@+id/textViewTitle"
                         app:ci_drawable="@drawable/circle_blue"
-                        app:ci_drawable_unselected="@drawable/circle_gray"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"/>
+                        app:ci_drawable_unselected="@drawable/circle_gray" />
 
                     <ggn.home.help.utils.widgets.CustomTextView
                         android:id="@+id/textViewTitle"
@@ -111,9 +108,9 @@
                         android:layout_above="@+id/textViewDescription"
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="@dimen/margin5dp"
-                        android:padding="@dimen/margin5dp"
                         android:layout_marginLeft="@dimen/margin15dp"
                         android:layout_marginRight="@dimen/margin15dp"
+                        android:padding="@dimen/margin5dp"
                         android:text="Pre Birth > Pregnancy moments"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text16sp"
@@ -132,14 +129,14 @@
 
                     <ggn.home.help.utils.widgets.CustomEditText
                         android:id="@+id/editTextTitle"
-                        android:singleLine="true"
                         style="@style/editTextTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:hint="Title"
+                        android:imeOptions="actionDone"
                         android:inputType="textCapWords"
                         android:maxLength="20"
-                        android:imeOptions="actionDone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:singleLine="true" />
 
                     <Button
                         android:id="@+id/buttonShare"

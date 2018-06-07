@@ -10,8 +10,10 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentRecyclerViewBinding;
+import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumActivity;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumPresenter;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumView;
+import ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder;
 import ggn.home.help.features.fullLifeAlbum.adapters.VideosAdapter;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.utils.Constants;
@@ -19,7 +21,7 @@ import ggn.home.help.web.response.CategoryResponse;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
 
 
-public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView, SwipeRefreshLayout.OnRefreshListener {
+public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView, SwipeRefreshLayout.OnRefreshListener, PhotoVideoAdapterBinder {
 
     private List<FullLifeAlbumResponse.Datum> listPictures;
     private VideosAdapter videosAdapter;
@@ -56,6 +58,7 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
         getDataBinder().recyclerView.setLayoutManager(gridLayoutManager);
         videosAdapter = new VideosAdapter(listPictures, getActivityG(), getPresenter());
         videosAdapter.setShouldLoadMore(false);
+        videosAdapter.setPhotoVideoAdapterBinder(this);
         getDataBinder().recyclerView.setAdapter(videosAdapter);
 
         getDataBinder().swipeRefreshLayout.setOnRefreshListener(this);
@@ -115,5 +118,10 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
         listPictures.clear();
         getDataBinder().swipeRefreshLayout.setRefreshing(true);
         getPresenter().getFullLifeAlbum(categoryId, subCategoryId, "video", 1);
+    }
+
+    @Override
+    public void onPictureVideoSelected(boolean isSelected) {
+        ((FullLifeAlbumActivity)getActivity()).setPostEnabled(isSelected);
     }
 }

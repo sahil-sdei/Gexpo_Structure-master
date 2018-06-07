@@ -2,37 +2,41 @@ package ggn.home.help.features.selectMediaPost.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 import java.util.List;
 
 import ggn.home.help.R;
-import ggn.home.help.databinding.ItemPhotosVideosBinding;
+import ggn.home.help.databinding.ItemPhotosVideosFullLifeBinding;
 import ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
-import ggn.home.help.features.selectMediaPost.PicturesSelectedListener;
-import ggn.home.help.features.selectPictures.Pictures;
+import ggn.home.help.features.memoryViewer.MemoryViewerActivity;
+import ggn.home.help.utils.Constants;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
-public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBinding> {
+public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBinding> {
 
-    private List<Pictures> dataList;
+    private List<FullLifeAlbumResponse.Datum> dataList;
     private Context context;
     private PhotoVideoAdapterBinder photoVideoAdapterBinder;
     private DisplayMetrics displayMetrics;
-    private PicturesSelectedListener picturesSelectedListener;
 
-
-    public SelectVideosAdapter(List<Pictures> dataList, Context context, PhotoVideoAdapterBinder photoVideoAdapterBinder) {
+    public SelectVideosAdapter(List<FullLifeAlbumResponse.Datum> dataList, Context context, PhotoVideoAdapterBinder photoVideoAdapterBinder) {
         this.dataList = dataList;
         this.context = context;
         this.photoVideoAdapterBinder = photoVideoAdapterBinder;
         displayMetrics = new DisplayMetrics();
     }
 
+    public void setPhotoVideoAdapterBinder(PhotoVideoAdapterBinder photoVideoAdapterBinder) {
+        this.photoVideoAdapterBinder = photoVideoAdapterBinder;
+    }
+
     @Override
     public int getInflateLayout() {
-        return R.layout.item_photos_videos;
+        return R.layout.item_photos_videos_full_life;
     }
 
     @Override
@@ -42,9 +46,8 @@ public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBindin
 
     @Override
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
-        final Pictures pictures = dataList.get(position);
-
-        baseViewHolder.binding.setPictures(dataList.get(position));
+        final FullLifeAlbumResponse.Datum pictures = dataList.get(position);
+        baseViewHolder.binding.setData(pictures);
         baseViewHolder.binding.setBinder(photoVideoAdapterBinder);
         baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
 
@@ -58,23 +61,31 @@ public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBindin
             public void onClick(View view) {
                 if (pictures.isSelected) {
                     pictures.isSelected = false;
+                    photoVideoAdapterBinder.onPictureVideoSelected(false);
                     notifyDataSetChanged();
                     return;
                 }
 
                 boolean isSelected = false;
-                for (Pictures iObj : dataList) {
+                for (FullLifeAlbumResponse.Datum iObj : dataList) {
                     if (iObj.isSelected) {
                         isSelected = true;
                         break;
                     }
                 }
+
                 if (isSelected) {
                     pictures.isSelected = !pictures.isSelected;
                     notifyDataSetChanged();
                 } else {
-
+                    Intent intent = new Intent(context, MemoryViewerActivity.class);
+                    intent.putExtra(Constants.Extras.IS_IMAGE, false);
+                    intent.putExtra(Constants.Extras.MEDIA_URL, pictures.gallery);
+                    intent.putExtra(Constants.Extras.DATA, pictures);
+                    context.startActivity(intent);
                 }
+
+                photoVideoAdapterBinder.onPictureVideoSelected(isSelected);
             }
         });
 
@@ -83,6 +94,7 @@ public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBindin
             public boolean onLongClick(View view) {
                 pictures.isSelected = !pictures.isSelected;
                 notifyDataSetChanged();
+                photoVideoAdapterBinder.onPictureVideoSelected(pictures.isSelected);
                 return false;
             }
         });
@@ -94,9 +106,5 @@ public class SelectVideosAdapter extends InfiniteAdapterG<ItemPhotosVideosBindin
         baseViewHolder.binding.relativeLayoutParent.getLayoutParams().width = (width / 3) - 2;
 
         baseViewHolder.binding.executePendingBindings();
-    }
-
-    public void setPicturesSelectedListener(PicturesSelectedListener picturesSelectedListener) {
-        this.picturesSelectedListener = picturesSelectedListener;
     }
 }

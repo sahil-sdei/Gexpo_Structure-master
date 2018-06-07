@@ -52,9 +52,12 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
         setupToolbar("");
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        FullLifeAlbumResponse.Datum dataObj = (FullLifeAlbumResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
-        getDataBinder().textViewTitle.setText(dataObj.title);
-        getDataBinder().textViewCategory.setText(dataObj.categoryName+" > "+dataObj.subCategoryName);
+        FullLifeAlbumResponse.Datum dataObj;
+        if (getIntent().hasExtra(Constants.Extras.DATA)) {
+            dataObj = (FullLifeAlbumResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
+            getDataBinder().textViewTitle.setText(dataObj.title);
+            getDataBinder().textViewCategory.setText(dataObj.categoryName + " > " + dataObj.subCategoryName);
+        }
 
         getDataBinder().videoPreview.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -69,10 +72,10 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
             }
         });
 
-        if(getIntent().getBooleanExtra(Constants.Extras.IS_IMAGE, true)){
-            ImageLoader.loadFullWidthImage(getDataBinder().imageViewPicture, getIntent().getStringExtra(Constants.Extras.MEDIA_URL));
+        if (getIntent().getBooleanExtra(Constants.Extras.IS_IMAGE, true)) {
+            ImageLoader.loadFullImage(getDataBinder().imageViewPicture, getIntent().getStringExtra(Constants.Extras.MEDIA_URL));
             getDataBinder().previewAspectFrameLayout.setVisibility(View.GONE);
-        }else{
+        } else {
             getDataBinder().imageViewPicture.setVisibility(View.GONE);
             displayVideo();
         }

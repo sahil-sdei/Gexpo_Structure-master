@@ -5,6 +5,7 @@ import ggn.home.help.web.response.BasicResponse;
 import ggn.home.help.web.response.ChildAccountsResponse;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.ProfileResponse;
+import ggn.home.help.web.response.SearchUserResponse;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -31,4 +32,12 @@ public interface UserAPI {
     @FormUrlEncoded
     @POST(Web.Path.PROFILE)
     Observable<ProfileResponse> getProfile(@Field(Web.Keys.DETAILS) String details);
+
+    @Multipart
+    @POST(Web.Path.EDIT_PROFILE)
+    Observable<BasicResponse> editProfile(@Part MultipartBody.Part file, @Part("user_details") RequestBody details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.SEARCH_USERS)
+    Observable<SearchUserResponse> searchUser(@Field(Web.Keys.DETAILS) String details);
 }

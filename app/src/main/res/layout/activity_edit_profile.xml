@@ -7,6 +7,10 @@
             name="binder"
             type="ggn.home.help.features.editProfile.EditProfileBinder" />
 
+        <variable
+            name="handler"
+            type="ggn.home.help.features.editProfile.RadioButtonHandler"/>
+
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,6 +85,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/name"
+                            android:inputType="textCapWords"
                             android:text="@={binder.name}"
                             android:textColor="@color/black" />
 
@@ -92,6 +97,9 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:editable="false"
+                            android:text="@={binder.DOB}"
+                            android:focusable="false"
                             android:id="@+id/editTextDateOfBirth"
                             style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
@@ -129,6 +137,7 @@
                     <RadioGroup
                         android:id="@+id/radioButtonGender"
                         android:layout_width="match_parent"
+                        android:onCheckedChanged="@{handler.onGenderChanged}"
                         android:orientation="horizontal"
                         android:layout_height="wrap_content">
 
@@ -136,6 +145,7 @@
                             android:layout_width="wrap_content"
                             android:id="@+id/radioButtonMale"
                             android:text="@string/male"
+                            android:checked="true"
                             android:textSize="@dimen/text16sp"
                             android:layout_height="wrap_content" />
 
@@ -156,7 +166,7 @@
 
                         <EditText
                             android:id="@+id/editTextAddress"
-
+                            android:inputType="textCapWords"
                             style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -175,7 +185,7 @@
                             android:id="@+id/editTextLifeLesson"
                             style="@style/editTextThemeSingleLine"
                             android:layout_width="match_parent"
-                            android:inputType="textMultiLine"
+                            android:inputType="textMultiLine|textCapSentences"
                             android:lines="5"
                             android:maxLines="6"
                             android:minLines="3"

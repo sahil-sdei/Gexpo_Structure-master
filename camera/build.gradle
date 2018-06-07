@@ -14,9 +14,16 @@ android {
     buildToolsVersion '26.0.2'
 }
 
+ext {
+    leakCanaryVersion = '1.5.4'
+}
+
 dependencies {
     compile "com.android.support:support-v4:" + project.supportVersion
     compile "com.android.support:appcompat-v7:" + project.supportVersion
+//    compile 'com.simplemobiletools:commons:4.0.14'
+//    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+//    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
 }
 
 task wrapper(type: Wrapper) {

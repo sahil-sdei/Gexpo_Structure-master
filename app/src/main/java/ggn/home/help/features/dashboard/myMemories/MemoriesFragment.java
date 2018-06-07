@@ -1,27 +1,26 @@
 package ggn.home.help.features.dashboard.myMemories;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentMemoriesBinding;
-import ggn.home.help.features.addMemories.AddMemoryActivity;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.features.notifications.NotificationActivity;
 import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.PostsResponse;
 
 
-public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoriesPresenter> implements MemoriesView {
+public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, MemoriesPresenter> implements MemoriesView, SwipeRefreshLayout.OnRefreshListener {
 
-    private List<Memory> list;
     private MemoriesAdapter memoriesAdapter;
+    private int PAGE_NO = 1;
 
     public static MemoriesFragment newInstance() {
         MemoriesFragment activityFragment = new MemoriesFragment();
@@ -45,33 +44,24 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     public void initViews() {
         getPresenter().getChildAccounts();
 
-        list = new ArrayList<>();
-        List<String> listImages = new ArrayList<>();
-        listImages.add("pro");
-        listImages.add("pro");
-        listImages.add("pro");
-        listImages.add("pro");
+        getDataBinder().textViewAddYourMemories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((DashboardActivity) getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.post_memory));
 
+            }
+        });
 
-        list.add(new Memory("Stan Smith", "pro", "5", "2", "demo_image_wall", listImages));
-        list.add(new Memory("John Smith", "pro", "13", "3", "demo_image_wall", listImages));
-        list.add(new Memory("Steve Smith", "pro", "2", "4", "demo_image_wall", listImages));
-        list.add(new Memory("John Ward", "pro", "3", "6", "demo_image_wall", listImages));
-        list.add(new Memory("Alexander", "pro", "13", "2", "demo_image_wall", listImages));
-
-
-        getDataBinder().recyclerViewMemories.setHasFixedSize(true);
-        getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        memoriesAdapter = new MemoriesAdapter(list, getActivityG(), getPresenter());
-        memoriesAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewMemories.setAdapter(memoriesAdapter);
+        getDataBinder().swipeRefreshLayout.setOnRefreshListener(this);
+        getDataBinder().swipeRefreshLayout.setRefreshing(true);
+        getPresenter().getUserPosts(PAGE_NO);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.menu_memories, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -79,7 +69,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         switch (item.getItemId()) {
 
             case R.id.action_add:
-                ((DashboardActivity)getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.post_memory));
+                ((DashboardActivity) getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.post_memory));
                 return true;
             case R.id.action_notifications:
                 NotificationActivity.start(getActivityG());
@@ -94,12 +84,33 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
     }
 
     @Override
-    public void onMemoryLiked(Memory memory) {
+    public void onMemoryLiked(PostsResponse.Datum memory) {
         memoriesAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showChildAccounts(ChildAccountsResponse output) {
-        ((DashboardActivity)getActivity()).setUpAccounts(output.data.childs);
+        ((DashboardActivity) getActivity()).setUpAccounts(output.data.childs);
+    }
+
+    @Override
+    public void showUserPosts(PostsResponse output) {
+        if (output.data != null) {
+            getDataBinder().swipeRefreshLayout.setRefreshing(false);
+            getDataBinder().recyclerViewMemories.setHasFixedSize(true);
+            getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+            memoriesAdapter = new MemoriesAdapter(output.data, getActivityG(), getPresenter());
+            memoriesAdapter.setShouldLoadMore(false);
+            getDataBinder().recyclerViewMemories.setAdapter(memoriesAdapter);
+            getDataBinder().textViewAddYourMemories.setVisibility(View.INVISIBLE);
+        } else {
+            getDataBinder().textViewAddYourMemories.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        getDataBinder().swipeRefreshLayout.setRefreshing(true);
+        getPresenter().getUserPosts(PAGE_NO);
     }
 }

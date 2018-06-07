@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="ggn.home.help.features.dashboard.myMemories.Memory" />
+            type="ggn.home.help.web.response.PostsResponse.Datum" />
 
         <variable
             name="binder"
@@ -33,21 +33,22 @@
 
                 <RelativeLayout
                     android:id="@+id/relativeLayoutProfilePic"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:onClick="@{() -> binder.onProfileClicked(data)}"
-                    android:layout_height="50dp">
+                    android:layout_height="40dp">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/bordered_circle" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewProfilePic"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:urlSquare="@{data.user.profileImage}"
                         android:scaleType="centerCrop"
-                        app:urlSquare="@{data.userPicture}" />
+                         />
                 </RelativeLayout>
 
                 <ggn.home.help.utils.widgets.CustomTextView
@@ -61,7 +62,7 @@
                     android:layout_toLeftOf="@+id/textViewTimeAgo"
                     android:layout_toRightOf="@+id/relativeLayoutProfilePic"
                     android:lines="1"
-                    android:text="@{data.userName}"
+                    android:text="@{data.user.name}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text16sp" />
 
@@ -75,7 +76,6 @@
                     android:layout_marginLeft="@dimen/margin15dp"
                     android:layout_marginRight="@dimen/margin10dp"
                     android:lines="1"
-                    android:text="3h"
                     android:textColor="@color/greyDark"
                     android:textSize="@dimen/text14sp" />
 
@@ -84,13 +84,13 @@
             <RelativeLayout
                 android:id="@+id/relativeLayoutPicture"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:layout_below="@+id/relativeLayoutProfile">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewPagerImages"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="300dp"/>
 
 
 
@@ -102,13 +102,13 @@
                 <ggn.home.help.utils.widgets.CustomTextView
                     android:id="@+id/textViewLikes"
                     android:layout_width="wrap_content"
-                    android:onClick="@{() -> binder.onProfileClicked(data)}"
+                    android:onClick="@{() -> binder.onLikeClicked(data)}"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:drawablePadding="@dimen/margin5dp"
                     android:drawableRight="@drawable/ic_smile_unlike"
                     android:padding="@dimen/margin15dp"
-                    android:text="@{data.likes}"
+                    android:text="@{data.likeCount}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text15sp" />
 
@@ -116,6 +116,7 @@
                     android:id="@+id/textViewComments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{data.commentCount}"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/textViewLikes"
                     android:drawablePadding="@dimen/margin5dp"
@@ -123,7 +124,6 @@
                     android:paddingBottom="@dimen/margin15dp"
                     android:paddingRight="@dimen/margin15dp"
                     android:paddingTop="@dimen/margin15dp"
-                    android:text="@{data.comments}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text15sp" />
 
@@ -160,7 +160,7 @@
                     android:paddingLeft="@dimen/margin20dp"
                     android:paddingRight="@dimen/margin20dp"
                     android:paddingTop="@dimen/margin10dp"
-                    android:text="Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text Lorem Ipsum text "
+                    android:text="@{data.description}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text14sp" />
 

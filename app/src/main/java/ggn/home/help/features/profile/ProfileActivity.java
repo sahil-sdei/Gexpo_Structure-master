@@ -1,9 +1,8 @@
 package ggn.home.help.features.profile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
@@ -14,7 +13,11 @@ import ggn.home.help.databinding.ActivityProfileBinding;
 import ggn.home.help.features.editProfile.EditProfileActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.share.ShareActivity;
+import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.PagerAdapter;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
+import ggn.home.help.web.request.BasicRequest;
+import ggn.home.help.web.response.ProfileResponse;
 
 public class ProfileActivity extends BaseActivity<ActivityProfileBinding, ProfilePresenter> implements ProfileView {
 
@@ -60,9 +63,9 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0){
+                if (position == 0) {
                     menuItemEdit.setVisible(true);
-                }else{
+                } else {
                     menuItemEdit.setVisible(false);
                 }
             }
@@ -72,6 +75,11 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
 
             }
         });
+
+        BasicRequest basicRequest = new BasicRequest();
+        basicRequest.token = getLocalData().getAuthToken();
+        basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
+        getPresenter().getProfile(basicRequest);
     }
 
     @Override
@@ -85,9 +93,11 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_edit:
-                EditProfileActivity.start(getActivityG());
+//                EditProfileActivity.start(getActivityG());
+                Intent intent = new Intent(getActivityG(), EditProfileActivity.class);
+                startActivityForResult(intent, Constants.RequestCode.EDIT_PROFILE);
                 break;
             case R.id.action_share:
                 PopupMenu popup = new PopupMenu(getActivityG(), findViewById(R.id.action_share));
@@ -95,9 +105,9 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getTitle().toString().equalsIgnoreCase(getString(R.string.share_in_the_memoreeta))){
+                        if (item.getTitle().toString().equalsIgnoreCase(getString(R.string.share_in_the_memoreeta))) {
                             ShareActivity.start(getActivityG());
-                        }else{
+                        } else {
                             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                             sharingIntent.setType("text/plain");
                             String shareBody = "Here is the share content body";
@@ -126,5 +136,25 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         menuItemEdit.setVisible(!isSelected);
         menuItemShare.setVisible(isSelected);
         menuItemDelete.setVisible(isSelected);
+    }
+
+    @Override
+    public void showProfileData(ProfileResponse output) {
+        ((ProfileAboutFragment) adapter.getItem(0)).showProfileData(output);
+        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        getLocalData().setProfileImage(output.about.profileImage);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.RequestCode.EDIT_PROFILE) {
+            if (resultCode == Activity.RESULT_OK) {
+                BasicRequest basicRequest = new BasicRequest();
+                basicRequest.token = getLocalData().getAuthToken();
+                basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
+                getPresenter().getProfile(basicRequest);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

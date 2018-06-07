@@ -13,6 +13,7 @@ import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
 import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.PostsResponse;
 
 
 public class FriendsRequestsFragment extends BaseFragment<FragmentFriendsFamilyRequestsBinding, MemoriesPresenter> implements MemoriesView {
@@ -61,12 +62,17 @@ public class FriendsRequestsFragment extends BaseFragment<FragmentFriendsFamilyR
     }
 
     @Override
-    public void onMemoryLiked(Memory memory) {
+    public void onMemoryLiked(PostsResponse.Datum memory) {
 
     }
 
     @Override
     public void showChildAccounts(ChildAccountsResponse output) {
+
+    }
+
+    @Override
+    public void showUserPosts(PostsResponse output) {
 
     }
 }

@@ -37,6 +37,16 @@ public class SharedPrefHelper {
         return preferences.getString("userName", "");
     }
 
+    public void setProfileImage(String profileImage) {
+        edit = preferences.edit();
+        edit.putString("profileImage", profileImage);
+        edit.apply();
+    }
+
+    public String getProfileImage() {
+        return preferences.getString("profileImage", "");
+    }
+
     private void setEmail(String userName) {
         edit = preferences.edit();
         edit.putString("email", userName);

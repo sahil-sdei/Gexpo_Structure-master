@@ -19,8 +19,8 @@
         <RelativeLayout
             android:id="@+id/relativeLayoutPicture"
             android:layout_width="match_parent"
-            android:background="@color/greyDark"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            android:background="@color/greyDark">
 
             <ImageView
                 android:id="@+id/imageViewBg"
@@ -65,10 +65,11 @@
         <TextView
             android:id="@+id/textViewSubCategories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_below="@+id/relativeLayoutPicture"
             android:background="@android:color/transparent"
             android:padding="@dimen/margin15dp"
+            android:gravity="center|left"
             android:text="Sub Categories"
             android:textColor="@color/black"
             android:textSize="@dimen/text16sp" />

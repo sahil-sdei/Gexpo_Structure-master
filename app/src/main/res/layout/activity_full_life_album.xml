@@ -59,7 +59,7 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
-            android:background="@color/backgroundGrey"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/CustomTabText"

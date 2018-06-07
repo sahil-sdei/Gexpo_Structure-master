@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.SubCategory;
 
 public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, AddMemoryPresenter> implements AddMemoryView {
@@ -41,9 +44,6 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
     protected void onCreateActivityG() {
         injectPresenter(new AddMemoryPresenter());
         getPresenter().attachView(this);
-
-        categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
-
     }
 
     @Override
@@ -57,24 +57,30 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
             setupToolbar(getString(R.string.add_new_memory));
         else
             setupToolbar(getString(R.string.post_memory));
+
+        if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
+            toolbar.setBackgroundResource(R.color.white);
+            toolbarText.setTextColor(ContextCompat.getColor(getActivityG(), R.color.black));
+            getDataBinder().relativeLayoutPicture.setVisibility(View.GONE);
+            getDataBinder().textViewSubCategories.setVisibility(View.INVISIBLE);
+//            SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
+//            changeHeadingText(subCategory.name);
+            showFragment(AddDescriptionFragment.newInstance((List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA)));
+            return;
+        }
+
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
+        categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.DATA);
         binding.setData(categories);
         binding.executePendingBindings();
 
         if(!TextUtils.isEmpty(categories.category.years))
-        binding.textViewTitle.setText(categories.category.name+" ("+categories.category.years+" years)");
+            binding.textViewTitle.setText(categories.category.name+" ("+categories.category.years+" years)");
         else
             binding.textViewTitle.setText(categories.category.name);
 
         ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE)+categories.category.image);
-
-        if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
-            SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
-            changeHeadingText(subCategory.name);
-            showFragment(AddDescriptionFragment.newInstance((List<Pictures>)getIntent().getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
-            return;
-        }
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);
@@ -142,6 +148,11 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void showDescriptionFragment(SubCategory subCategory) {
+
+    }
+
+    @Override
+    public void memoryPostedSuccessfully() {
 
     }
 }

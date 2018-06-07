@@ -16,7 +16,7 @@
         android:title="@string/post" />
 
     <item
-        android:visible="true"
+        android:visible="false"
         android:id="@+id/action_next"
         app:showAsAction="always"
         android:icon="@drawable/ic_arrow_forward"

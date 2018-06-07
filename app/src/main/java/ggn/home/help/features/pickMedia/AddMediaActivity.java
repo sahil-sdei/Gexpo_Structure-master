@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -17,6 +18,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.usemedia.Matisse;
@@ -36,6 +39,7 @@ import ggn.home.help.R;
 import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.pickMedia.adapters.PagerAdapter;
 import ggn.home.help.features.pickMedia.fragments.PhotoFragment;
+import ggn.home.help.features.pickMedia.fragments.PhotoNewFragment;
 import ggn.home.help.features.pickMedia.fragments.VideoFragment;
 import ggn.home.help.utils.Constants;
 
@@ -48,6 +52,7 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
     private SharedPreferences permissionStatus;
     private PagerAdapter adapter;
     private ViewPager viewPager;
+    boolean isVideoClicked = false;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, AddMediaActivity.class);
@@ -196,19 +201,68 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
 
     private void setUpViewPager() {
         viewPager = findViewById(R.id.viewPager);
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        final TabLayout tabLayout = findViewById(R.id.tabs);
 
         setUpMatisse();
 
         adapter = new PagerAdapter(getSupportFragmentManager());
         adapter.addFrag(MatisseFragment.newInstance(), "Gallery");
-        adapter.addFrag(PhotoFragment.newInstance(), "Photo");
-        adapter.addFrag(VideoFragment.newInstance(), "Video");
+        adapter.addFrag(PhotoNewFragment.newInstance(), "Photo");
+//        adapter.addFrag(VideoFragment.newInstance(), "Video");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(2);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
+                        ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                        break;
+                    case 1:
+                        if (isVideoClicked) {
+                            tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#000000"));
+                            ((PhotoNewFragment) adapter.getItem(1)).setVideoView();
+                            isVideoClicked = false;
+                        } else {
+                            ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                            tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
+                            ((PhotoNewFragment) adapter.getItem(1)).setPictureView();
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
+                        ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                        break;
+                    case 1:
+                        if (isVideoClicked) {
+                            tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#000000"));
+                            ((PhotoNewFragment) adapter.getItem(1)).setVideoView();
+                            isVideoClicked = false;
+                        } else {
+                            ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                            tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
+                            ((PhotoNewFragment) adapter.getItem(1)).setPictureView();
+                        }
+                        break;
+                }
+            }
+        });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -218,38 +272,48 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
 
             @Override
             public void onPageSelected(int position) {
-                if (ActivityCompat.checkSelfPermission(AddMediaActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AddMediaActivity.this);
-                    builder.setTitle("Need Storage Permission");
-                    builder.setMessage("This app needs storage permission.");
-                    builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            ActivityCompat.requestPermissions(AddMediaActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
-                    return;
-                }
-                if (position == 1) {
-                    PhotoFragment photoFragment = (PhotoFragment) adapter.getItem(1);
-                    photoFragment.addCamera();
-                } else if (position == 2) {
-                    VideoFragment videoFragment = (VideoFragment) adapter.getItem(2);
-                    videoFragment.addCamera();
-                }
+//                if (ActivityCompat.checkSelfPermission(AddMediaActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(AddMediaActivity.this);
+//                    builder.setTitle("Need Storage Permission");
+//                    builder.setMessage("This app needs storage permission.");
+//                    builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                            ActivityCompat.requestPermissions(AddMediaActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
+//                        }
+//                    });
+//                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//                    builder.show();
+//                    return;
+//                }
+//                if (position == 1) {
+//                    PhotoFragment photoFragment = (PhotoFragment) adapter.getItem(1);
+//                    photoFragment.addCamera();
+//                } else if (position == 2) {
+//                    VideoFragment videoFragment = (VideoFragment) adapter.getItem(2);
+//                    videoFragment.addCamera();
+//                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+
+        findViewById(R.id.textViewVideo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(1, true);
+                ((PhotoNewFragment) adapter.getItem(1)).setVideoView();
+                ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#212D9D"));
+                tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#000000"));
             }
         });
     }

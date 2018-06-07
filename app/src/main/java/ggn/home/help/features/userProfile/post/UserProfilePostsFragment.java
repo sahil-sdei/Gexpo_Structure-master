@@ -13,10 +13,12 @@ import ggn.home.help.features.dashboard.myMemories.MemoriesView;
 import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
+import ggn.home.help.features.userProfile.UserProfilePresenter;
+import ggn.home.help.features.userProfile.UserProfileView;
 import ggn.home.help.web.response.ChildAccountsResponse;
 
 
-public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsBinding, MemoriesPresenter> implements MemoriesView {
+public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsBinding, UserProfilePresenter> implements UserProfileView {
 
     private List<String> list;
     private UserFriendsAdapter userFriendsAdapter;
@@ -34,7 +36,7 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
 
     @Override
     protected void onCreateFragmentG() {
-        injectPresenter(new MemoriesPresenter());
+        injectPresenter(new UserProfilePresenter());
         getPresenter().attachView(this);
     }
 
@@ -68,19 +70,9 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
 
         getDataBinder().recyclerViewPosts.setHasFixedSize(true);
         getDataBinder().recyclerViewPosts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        memoriesAdapter = new MemoriesAdapter(listM, getActivityG(), getPresenter());
-        memoriesAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
-        getDataBinder().recyclerViewPosts.setNestedScrollingEnabled(false);
-    }
-
-    @Override
-    public void onMemoryLiked(Memory memory) {
-
-    }
-
-    @Override
-    public void showChildAccounts(ChildAccountsResponse output) {
-
+//        memoriesAdapter = new MemoriesAdapter(listM, getActivityG(), getPresenter());
+//        memoriesAdapter.setShouldLoadMore(false);
+//        getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
+//        getDataBinder().recyclerViewPosts.setNestedScrollingEnabled(false);
     }
 }

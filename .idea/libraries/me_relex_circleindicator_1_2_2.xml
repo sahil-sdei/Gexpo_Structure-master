@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="me.relex:circleindicator-1.2.2">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.relex/circleindicator/1.2.2/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.relex/circleindicator/1.2.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/f349e95eeb43554b5c65bd801940e75b99de046c/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/f349e95eeb43554b5c65bd801940e75b99de046c/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

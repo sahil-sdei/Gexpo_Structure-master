@@ -12,16 +12,17 @@ import ggn.home.help.databinding.FlowItemImageBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.searchUser.SearchUserAdapterBinder;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
 public class ShowMediaAdapter extends InfiniteAdapterG<FlowItemImageBinding> {
 
-    private List<String> dataList;
+    private List<FullLifeAlbumResponse.Datum> dataList;
     private SearchUserAdapterBinder searchUserAdapterBinder;
     private Context context;
     private DisplayMetrics displayMetrics;
 
 
-    public ShowMediaAdapter(List<String> dataList, Context context, SearchUserAdapterBinder searchUserAdapterBinder) {
+    public ShowMediaAdapter(List<FullLifeAlbumResponse.Datum> dataList, Context context, SearchUserAdapterBinder searchUserAdapterBinder) {
         this.dataList = dataList;
         this.searchUserAdapterBinder = searchUserAdapterBinder;
         this.context = context;
@@ -42,7 +43,13 @@ public class ShowMediaAdapter extends InfiniteAdapterG<FlowItemImageBinding> {
     @Override
     protected void bindData(final int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
-        ImageLoader.loadFullWidthImage(baseViewHolder.binding.imageViewPicture, dataList.get(position));
+        ImageLoader.loadFullWidthImage(baseViewHolder.binding.imageViewPicture, dataList.get(position).gallery);
+
+        if(dataList.get(position).memoryType.equalsIgnoreCase("image")){
+            baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.GONE);
+        }else{
+            baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
+        }
 //        baseViewHolder.binding.setBinder(searchUserAdapterBinder);
 
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

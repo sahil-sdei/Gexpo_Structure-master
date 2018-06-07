@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ggn.home.help.R;
-import ggn.home.help.databinding.ActivityManageAccountsBinding;
 import ggn.home.help.databinding.ActivitySearchUserBinding;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.web.response.SearchUserResponse;
 
 public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, SearchUserPresenter> implements SearchUserView {
 
@@ -49,9 +45,10 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length()>0)
+                if (charSequence.length() > 0) {
                     getDataBinder().recyclerViewUsers.setVisibility(View.VISIBLE);
-                else
+                    getPresenter().searchUser(charSequence.toString());
+                } else
                     getDataBinder().recyclerViewUsers.setVisibility(View.GONE);
             }
 
@@ -60,16 +57,13 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
             }
         });
+    }
 
-
-        List<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-        list.add("a");
-
+    @Override
+    public void showUsers(SearchUserResponse output) {
         getDataBinder().recyclerViewUsers.setHasFixedSize(true);
         getDataBinder().recyclerViewUsers.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        SearchUserAdapter searchUserAdapter = new SearchUserAdapter(list, getActivityG(), getPresenter());
+        SearchUserAdapter searchUserAdapter = new SearchUserAdapter(output.data, getActivityG(), getPresenter());
         searchUserAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewUsers.setAdapter(searchUserAdapter);
     }

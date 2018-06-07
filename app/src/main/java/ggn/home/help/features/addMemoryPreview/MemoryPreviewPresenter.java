@@ -27,17 +27,17 @@ public class MemoryPreviewPresenter extends BasePresenter<MemoryPreviewView> {
         if (listImages.size() > 0) {
             fileParts = new MultipartBody.Part[listImages.size()];
             for (int index = 0; index < listImages.size(); index++) {
-                Log.d("MemoryPreviewPresenter", "requestUploadSurvey: " + index + "  " + listImages.get(index));
+                Log.d("PostPreviewPresenter", "requestUploadSurvey: " + index + "  " + listImages.get(index));
                 File file = null;
                 RequestBody surveyBody = null;
                 if (isImageFile(listImages.get(index))) {
                     file = new File(listImages.get(index));
                     surveyBody = RequestBody.create(MediaType.parse("image/*"), file);
-                    Log.d("MemoryPreviewPresenter", "Image " + listImages.get(index));
+                    Log.d("PostPreviewPresenter", "Image " + listImages.get(index));
                 } else if (isVideoFile(listImages.get(index))) {
                     file = new File(listImages.get(index));
                     surveyBody = RequestBody.create(MediaType.parse("video/*"), file);
-                    Log.d("MemoryPreviewPresenter", "Video " + listImages.get(index));
+                    Log.d("PostPreviewPresenter", "Video " + listImages.get(index));
                 }
                 fileParts[index] = MultipartBody.Part.createFormData("galleries[]", file.getName(), surveyBody);
             }

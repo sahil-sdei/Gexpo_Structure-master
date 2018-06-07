@@ -7,4 +7,6 @@ import ggn.home.help.web.response.SubCategory;
 public interface AddMemoryView extends Viewable<AddMemoryPresenter> {
 
     void showDescriptionFragment(SubCategory subCategory);
+
+    void memoryPostedSuccessfully();
 }

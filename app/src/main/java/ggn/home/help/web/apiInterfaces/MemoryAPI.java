@@ -3,6 +3,7 @@ package ggn.home.help.web.apiInterfaces;
 import ggn.home.help.web.Web;
 import ggn.home.help.web.response.BasicResponse;
 import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.PostsResponse;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

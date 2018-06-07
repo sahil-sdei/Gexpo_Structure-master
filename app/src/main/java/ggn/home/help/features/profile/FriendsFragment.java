@@ -12,9 +12,10 @@ import ggn.home.help.features.dashboard.myMemories.MemoriesView;
 import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.ProfileResponse;
 
 
-public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, MemoriesPresenter> implements MemoriesView {
+public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, ProfilePresenter> implements ProfileView {
 
     private List<String> list;
     private FriendsAdapter friendsAdapter;
@@ -31,12 +32,15 @@ public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, M
 
     @Override
     protected void onCreateFragmentG() {
-        injectPresenter(new MemoriesPresenter());
+        injectPresenter(new ProfilePresenter());
         getPresenter().attachView(this);
     }
 
     @Override
     public void initViews() {
+        getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().swipeRefreshLayout.setEnabled(false);
+
         list = new ArrayList<>();
         list.add("a");
         list.add("a");
@@ -52,12 +56,7 @@ public class FriendsFragment extends BaseFragment<FragmentRecyclerViewBinding, M
     }
 
     @Override
-    public void onMemoryLiked(Memory memory) {
-
-    }
-
-    @Override
-    public void showChildAccounts(ChildAccountsResponse output) {
+    public void showProfileData(ProfileResponse output) {
 
     }
 }

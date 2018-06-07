@@ -27,7 +27,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
     private ProgressDialog progressDialog;
     private CharSequence progressTitle = "Loading";
     private CharSequence progressMessage = "";
-    private TextView toolbarText;
+    public TextView toolbarText;
 
     public Toolbar toolbar;
     public Bundle savedInstanceState;

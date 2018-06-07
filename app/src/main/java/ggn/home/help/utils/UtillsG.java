@@ -153,7 +153,7 @@ public class UtillsG {
 
 
     public static String getTimeAgo(String dateTime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date dateFromServer = null;
         try {

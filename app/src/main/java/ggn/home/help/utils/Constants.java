@@ -32,6 +32,7 @@ public @interface Constants {
         String SUB_CATEGORY_ID = "sub_category_id";
         String IS_IMAGE = "is_image";
         String MEDIA_URL = "media_url";
+        String POST_ID = "post_id";
 
     }
 
@@ -50,6 +51,7 @@ public @interface Constants {
         int SELECT_FAMILY_MEMBERS = 510;
         int SELECT_IMAGES_VIDEOS = 511;
         int POST_VIA_MEMORY = 512;
+        int EDIT_PROFILE = 513;
     }
 
 }

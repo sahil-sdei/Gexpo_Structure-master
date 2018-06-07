@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/release/drawable-v21/notification_action_background.xml",
+        "source": "/Users/maverick/.android/build-cache/91dd682ede37e7b0a4803a26da3070c99aff96bc/output/res/drawable-v21/notification_action_background.xml"
+    }
+]

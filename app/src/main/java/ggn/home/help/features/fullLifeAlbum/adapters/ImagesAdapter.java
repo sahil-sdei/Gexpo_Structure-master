@@ -35,6 +35,10 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBind
         displayMetrics = new DisplayMetrics();
     }
 
+    public void setPhotoVideoAdapterBinder(PhotoVideoAdapterBinder photoVideoAdapterBinder) {
+        this.photoVideoAdapterBinder = photoVideoAdapterBinder;
+    }
+
     @Override
     public int getInflateLayout() {
         return R.layout.item_photos_videos_full_life;
@@ -61,6 +65,7 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBind
             public void onClick(View view) {
                 if (pictures.isSelected) {
                     pictures.isSelected = false;
+                    photoVideoAdapterBinder.onPictureVideoSelected(false);
                     notifyDataSetChanged();
                     return;
                 }
@@ -72,12 +77,19 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBind
                         break;
                     }
                 }
+
                 if (isSelected) {
                     pictures.isSelected = !pictures.isSelected;
                     notifyDataSetChanged();
                 } else {
-
+                    Intent intent = new Intent(context, MemoryViewerActivity.class);
+                    intent.putExtra(Constants.Extras.IS_IMAGE, true);
+                    intent.putExtra(Constants.Extras.DATA, pictures);
+                    intent.putExtra(Constants.Extras.MEDIA_URL, pictures.gallery);
+                    context.startActivity(intent);
                 }
+
+                photoVideoAdapterBinder.onPictureVideoSelected(isSelected);
             }
         });
 
@@ -86,6 +98,7 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBind
             public boolean onLongClick(View view) {
                 pictures.isSelected = !pictures.isSelected;
                 notifyDataSetChanged();
+                photoVideoAdapterBinder.onPictureVideoSelected(pictures.isSelected);
                 return false;
             }
         });
@@ -96,17 +109,6 @@ public class ImagesAdapter extends InfiniteAdapterG<ItemPhotosVideosFullLifeBind
 
         baseViewHolder.binding.relativeLayoutParent.getLayoutParams().height = (width / 3);
         baseViewHolder.binding.relativeLayoutParent.getLayoutParams().width = (width / 3) - 2;
-
-        baseViewHolder.binding.relativeLayoutParent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MemoryViewerActivity.class);
-                intent.putExtra(Constants.Extras.IS_IMAGE, true);
-                intent.putExtra(Constants.Extras.DATA, pictures);
-                intent.putExtra(Constants.Extras.MEDIA_URL, pictures.gallery);
-                context.startActivity(intent);
-            }
-        });
 
         baseViewHolder.binding.executePendingBindings();
     }

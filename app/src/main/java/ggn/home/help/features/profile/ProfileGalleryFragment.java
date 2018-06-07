@@ -15,6 +15,7 @@ import ggn.home.help.features.profile.model.GridItem;
 import ggn.home.help.features.profile.model.HeaderItem;
 import ggn.home.help.features.profile.model.Item;
 import ggn.home.help.utils.SpacesItemDecoration;
+import ggn.home.help.web.response.ProfileResponse;
 
 
 public class ProfileGalleryFragment extends BaseFragment<FragmentProfileGalleryBinding, ProfilePresenter> implements ProfileView, GalleryItemSelected {
@@ -99,5 +100,10 @@ public class ProfileGalleryFragment extends BaseFragment<FragmentProfileGalleryB
             }
         }
         ((ProfileActivity) getActivity()).updateActionsMenu(isSelected);
+    }
+
+    @Override
+    public void showProfileData(ProfileResponse output) {
+
     }
 }

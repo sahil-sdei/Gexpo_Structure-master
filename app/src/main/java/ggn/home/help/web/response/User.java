@@ -53,5 +53,7 @@ public class User {
     @SerializedName("created_at")
     @Expose
     public String createdAt;
-
+    @SerializedName("name")
+    @Expose
+    public String name;
 }

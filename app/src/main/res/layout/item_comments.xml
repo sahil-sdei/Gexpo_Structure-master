@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="data"
-            type="ggn.home.help.features.comments.Comments" />
+            type="ggn.home.help.web.response.CommentListResponse.Datum" />
 
         <variable
             name="binder"
@@ -40,8 +41,8 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="45dp"
+                    bind:urlSquare="@{data.user.profileImage}"
                     android:layout_height="45dp"
-                    app:urlSquare="@{data.userPicture}"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
 
@@ -68,7 +69,6 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:lines="1"
-                    android:text="@{data.time}"
                     android:layout_below="@+id/textViewNotification"
                     android:textColor="@color/greyLight"
                     android:textSize="@dimen/text14sp" />

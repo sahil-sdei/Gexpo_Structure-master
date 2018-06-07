@@ -64,4 +64,9 @@ public class FullLifeAlbumPresenter extends BasePresenter<FullLifeAlbumView> imp
             }
         });
     }
+
+    @Override
+    public void onPictureVideoSelected(boolean isSelected) {
+
+    }
 }

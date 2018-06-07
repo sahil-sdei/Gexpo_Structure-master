@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/maverick/StudioProjects/GalleryCameraDemo/matisse/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/Users/maverick/.android/build-cache/772e25fe38fd79208a7038ace382422e56d39b6f/output/res/color-v23/abc_tint_default.xml"
+    }
+]

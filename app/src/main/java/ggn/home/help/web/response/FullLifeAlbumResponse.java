@@ -67,5 +67,11 @@ public class FullLifeAlbumResponse implements Serializable {
         public String gallery;
         public boolean isSelected;
 
+
+        public Datum(String categoryName, String subCategoryName, String gallery) {
+            this.categoryName = categoryName;
+            this.subCategoryName = subCategoryName;
+            this.gallery = gallery;
+        }
     }
 }

@@ -10,7 +10,7 @@ import ggn.home.help.features.profile.ProfilePresenter;
 import ggn.home.help.features.profile.ProfileView;
 import ggn.home.help.features.selectPictures.SelectPicturesActivity;
 
-public class ExportFragment extends BaseFragment<FragmentExportBinding, ProfilePresenter> implements ProfileView, View.OnClickListener {
+public class ExportFragment extends BaseFragment<FragmentExportBinding, ExportPresenter> implements ExportView, View.OnClickListener {
 
     public static ExportFragment newInstance() {
         ExportFragment profileFragment = new ExportFragment();
@@ -24,7 +24,7 @@ public class ExportFragment extends BaseFragment<FragmentExportBinding, ProfileP
 
     @Override
     protected void onCreateFragmentG() {
-        injectPresenter(new ProfilePresenter());
+        injectPresenter(new ExportPresenter());
         getPresenter().attachView(this);
     }
 

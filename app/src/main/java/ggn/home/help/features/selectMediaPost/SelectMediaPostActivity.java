@@ -7,25 +7,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.github.florent37.camerafragment.PreviewActivity;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySelectMediaPostBinding;
-import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
+import ggn.home.help.features.addPostPreview.PostPreviewActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.selectMediaPost.fragments.SelectImagesFragment;
 import ggn.home.help.features.selectMediaPost.fragments.SelectVideosFragment;
-import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.PagerAdapter;
+import ggn.home.help.web.response.FullLifeAlbumResponse;
 
 public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPostBinding, SelectMediaPostPresenter> implements SelectMediaPostView {
 
     private PagerAdapter adapter;
+    private List<FullLifeAlbumResponse.Datum> listMedia;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SelectMediaPostActivity.class);
@@ -59,8 +58,8 @@ public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPos
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new PagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(SelectImagesFragment.newInstance(), getString(R.string.photos));
-        adapter.addFrag(SelectVideosFragment.newInstance(), getString(R.string.videos));
+        adapter.addFrag(SelectImagesFragment.newInstance(getIntent().getStringExtra(Constants.Extras.CATEGORY_ID), getIntent().getStringExtra(Constants.Extras.SUB_CATEGORY_ID)), getString(R.string.photos));
+        adapter.addFrag(SelectVideosFragment.newInstance(getIntent().getStringExtra(Constants.Extras.CATEGORY_ID), getIntent().getStringExtra(Constants.Extras.SUB_CATEGORY_ID)), getString(R.string.videos));
         viewPager.setAdapter(adapter);
     }
 
@@ -74,42 +73,35 @@ public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPos
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_next:
-                boolean isFoundImages = false;
-                for (Pictures pictures : ((SelectImagesFragment)adapter.getItem(0)).getPictures()) {
-                    if (pictures.isSelected) {
-                        isFoundImages = true;
+                List<FullLifeAlbumResponse.Datum> listPictures = ((SelectImagesFragment) adapter.getItem(0)).getListPictures();
+                List<FullLifeAlbumResponse.Datum> listVideos = ((SelectVideosFragment) adapter.getItem(1)).getListVideos();
+
+                listMedia = new ArrayList<>();
+                for (FullLifeAlbumResponse.Datum img : listPictures) {
+                    if (img.isSelected) {
+                        listMedia.add(img);
+                    }
+                }
+                for (FullLifeAlbumResponse.Datum vid : listVideos) {
+                    if (vid.isSelected) {
+                        listMedia.add(vid);
+                    }
+                }
+
+                boolean isSelected = false;
+                for (FullLifeAlbumResponse.Datum data : listMedia) {
+                    if (data.isSelected) {
+                        isSelected = true;
                         break;
                     }
                 }
 
-                boolean isFoundVideos = false;
-                for (Pictures pictures : ((SelectVideosFragment)adapter.getItem(1)).getVideos()) {
-                    if (pictures.isSelected) {
-                        isFoundVideos = true;
-                        break;
-                    }
-                }
-
-                if (isFoundImages || isFoundVideos) {
-                    List<Pictures> listSelectedMedia = new ArrayList<>();
-                    for (Pictures pictures : ((SelectImagesFragment)adapter.getItem(0)).getPictures()) {
-                        if (pictures.isSelected) {
-                            listSelectedMedia.add(pictures);
-                        }
-                    }
-
-                    for (Pictures pictures : ((SelectVideosFragment)adapter.getItem(1)).getVideos()) {
-                        if (pictures.isSelected) {
-                            listSelectedMedia.add(pictures);
-                        }
-                    }
-
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra(Constants.Extras.SELECTED_MEDIA, (Serializable) listSelectedMedia);
-                    setResult(RESULT_OK, resultIntent);
-                    finish();
+                if (isSelected) {
+                    Intent intent = new Intent(getActivityG(), PostPreviewActivity.class);
+                    intent.putExtra(Constants.Extras.DATA, (Serializable) listMedia);
+                    startActivity(intent);
                 } else {
-                    Toast.makeText(getActivityG(), "Please select atleast one picture or video.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivityG(), "Please select atleast 1 image or video to post your memory.", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -121,5 +113,15 @@ public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPos
         Intent intent = getIntent();
         setResult(RESULT_CANCELED, intent);
         finish();
+    }
+
+    @Override
+    public void showAlbum(FullLifeAlbumResponse output) {
+
+    }
+
+    @Override
+    public void noDataFound() {
+
     }
 }

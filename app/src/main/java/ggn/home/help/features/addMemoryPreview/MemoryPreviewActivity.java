@@ -15,6 +15,7 @@ import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.request.AddMemoryRequest;
 import ggn.home.help.web.response.CategoryResponse;
 import ggn.home.help.web.response.SubCategory;
@@ -69,6 +70,7 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
         getDataBinder().textViewTitle.setText(categoriesObj.category.name + " > " + categoriesObj.category.subTitle);
 
         getDataBinder().textViewUserName.setText(getLocalData().getUserName());
+        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, getLocalData().getProfileImage());
     }
 
     @Override

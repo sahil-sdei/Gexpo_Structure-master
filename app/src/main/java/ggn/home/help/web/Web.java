@@ -25,5 +25,12 @@ public @interface Web {
         String FULL_LIFE_ALBUM = "full_life_album";
         String CHILD_ACCOUNTS = "child_accounts";
         String PROFILE = "profile";
+        String EDIT_PROFILE = "profile_edit";
+        String POSTS = "posts";
+        String ADD_POST = "add_post";
+        String COMMENT_LIST = "comment_list";
+        String LIKE_POST = "like";
+        String COMMENT = "comment";
+        String SEARCH_USERS = "search_users";
     }
 }

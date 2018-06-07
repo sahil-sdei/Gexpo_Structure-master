@@ -52,6 +52,7 @@ import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.DialogHelper;
 import ggn.home.help.utils.LocalDataHelper;
 import ggn.home.help.utils.SharedPrefHelper;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.Child;
 
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
@@ -167,8 +168,6 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
         adapter.setSelected(POS_DASHBOARD);
 
-        showUserNameOnNav();
-
         if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
             showFragment(MemoryCategoriesFragment.newInstance(true));
             setupToolbar(getString(R.string.add_new_memory), false, false);
@@ -177,6 +176,12 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         if(getIntent().getIntExtra(Constants.Extras.SCREEN_NUMBER, 0)==1){
             FullLifeAlbumActivity.start(DashboardActivity.this);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showUserNameOnNav();
     }
 
     @Override
@@ -326,6 +331,7 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
     private void showUserNameOnNav(){
         ((TextView)findViewById(R.id.textViewUserName)).setText(sharedPrefHelper.getUserName());
+        ImageLoader.loadImageSmall((findViewById(R.id.imageViewProfilePic)), sharedPrefHelper.getProfileImage());
     }
 
     public void setUpAccounts(List<Child> child) {

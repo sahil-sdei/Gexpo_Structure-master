@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="data"
-            type="String" />
+            type="ggn.home.help.web.response.SearchUserResponse.Datum" />
 
         <variable
             name="binder"
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin2dp"
-        android:onClick="@{() -> binder.onItemClicked()}"
+        android:onClick="@{() -> binder.onItemClicked(data)}"
         android:background="@color/white">
 
 
@@ -40,7 +40,7 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="45dp"
-                    android:src="@drawable/demo_image_wall"
+                    app:urlSquare="@{data.profileImage}"
                     android:layout_height="45dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:lines="1"
-                    android:text="Stan Smith"
+                    android:text="@{data.name}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text14sp" />
 
@@ -70,6 +70,7 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:lines="1"
+                    android:visibility="gone"
                     android:layout_below="@+id/textViewUserName"
                     android:text="10 mutual friends"
                     android:textColor="@color/greyLight"

@@ -42,6 +42,9 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
 
     @Override
     public void initViews() {
+        getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().swipeRefreshLayout.setEnabled(false);
+
         /*list = new ArrayList<>();
 
         List<SubCategories> preBirth = new ArrayList<>();

@@ -34,7 +34,6 @@ public class ForgetPasswordPresenter extends BasePresenter<ForgetPasswordView> i
             getView().displayError(getView().getActivityG().getString(R.string.please_enter_valid_email));
         } else {
             getView().hideKeyboard(view);
-            getView().hideKeyboard(view);
             ForgotPasswordRequest forgotPasswordRequest= new ForgotPasswordRequest();
             forgotPasswordRequest.email = getEmail().get();
 
