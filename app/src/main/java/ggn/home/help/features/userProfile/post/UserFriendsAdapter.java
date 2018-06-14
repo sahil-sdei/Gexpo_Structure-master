@@ -33,7 +33,7 @@ public class UserFriendsAdapter extends InfiniteAdapterG<ItemSearchUserBinding> 
 
     @Override
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
-        baseViewHolder.binding.setData(dataList.get(position));
+//        baseViewHolder.binding.setData(dataList.get(position));
 //        baseViewHolder.binding.setBinder(searchUserAdapterBinder);
         baseViewHolder.binding.executePendingBindings();
     }

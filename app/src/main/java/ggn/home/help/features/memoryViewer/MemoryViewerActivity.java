@@ -17,6 +17,7 @@ import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
+import ggn.home.help.web.response.Gallery;
 
 public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, MemoryViewerPresenter> implements MemoryViewerView {
 
@@ -59,6 +60,11 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
             getDataBinder().textViewCategory.setText(dataObj.categoryName + " > " + dataObj.subCategoryName);
         }
 
+        if (getIntent().hasExtra(Constants.Extras.GALLERY_DATA)) {
+            Gallery galleryObj = (Gallery) getIntent().getSerializableExtra(Constants.Extras.GALLERY_DATA);
+            getDataBinder().textViewCategory.setText(galleryObj.categoryName + " > " + galleryObj.subCategoryName);
+        }
+
         getDataBinder().videoPreview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -77,6 +83,7 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
             getDataBinder().previewAspectFrameLayout.setVisibility(View.GONE);
         } else {
             getDataBinder().imageViewPicture.setVisibility(View.GONE);
+            getDataBinder().progressBar.setVisibility(View.VISIBLE);
             displayVideo();
         }
 
@@ -140,6 +147,7 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
 
                         @Override
                         public boolean isPlaying() {
+                            getDataBinder().progressBar.setVisibility(View.GONE);
                             return mediaPlayer.isPlaying();
                         }
 

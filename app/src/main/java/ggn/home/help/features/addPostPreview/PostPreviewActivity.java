@@ -41,9 +41,14 @@ public class PostPreviewActivity extends BaseActivity<ActivityPostPreviewBinding
     public void initViews() {
         setupToolbar("Post Preview");
 
-        SlidingPostPreviewAdapter slidingPostPreviewAdapter = new SlidingPostPreviewAdapter(getActivityG(), (List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA));
+        List<FullLifeAlbumResponse.Datum> listAlbum = (List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA);
+        SlidingPostPreviewAdapter slidingPostPreviewAdapter = new SlidingPostPreviewAdapter(getActivityG(), listAlbum);
         getDataBinder().viewPagerMedia.setAdapter(slidingPostPreviewAdapter);
         getDataBinder().indicator.setViewPager(getDataBinder().viewPagerMedia);
+
+        if (listAlbum.size() == 1) {
+            getDataBinder().indicator.setVisibility(View.INVISIBLE);
+        }
 
         getDataBinder().buttonNext.setOnClickListener(this);
     }
@@ -53,9 +58,14 @@ public class PostPreviewActivity extends BaseActivity<ActivityPostPreviewBinding
         switch (view.getId()) {
             case R.id.buttonNext:
                 Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
-                intent.putExtra(Constants.Extras.POST_FROM_ALBUM, true);
+                intent.putExtra(Constants.Extras.BASE_URL_IMAGE, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE));
+                intent.putExtra(Constants.Extras.POST_FROM_ALBUM, getIntent().getBooleanExtra(Constants.Extras.POST_FROM_ALBUM, false));
                 intent.putExtra(Constants.Extras.IS_MEMORY, false);
                 intent.putExtra(Constants.Extras.DATA, getIntent().getSerializableExtra(Constants.Extras.DATA));
+                if (getIntent().hasExtra(Constants.Extras.CATEGORY_DATA))
+                    intent.putExtra(Constants.Extras.CATEGORY_DATA, getIntent().getSerializableExtra(Constants.Extras.CATEGORY_DATA));
+                if (getIntent().hasExtra(Constants.Extras.SUB_CATEGORY_DATA))
+                    intent.putExtra(Constants.Extras.SUB_CATEGORY_DATA, getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY_DATA));
                 startActivity(intent);
                 break;
         }

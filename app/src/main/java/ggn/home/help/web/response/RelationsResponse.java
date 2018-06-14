@@ -33,5 +33,6 @@ public class RelationsResponse {
         @SerializedName("status")
         @Expose
         public String status;
+        public boolean isSelected;
     }
 }

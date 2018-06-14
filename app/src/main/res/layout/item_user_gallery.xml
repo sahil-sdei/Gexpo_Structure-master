@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="ggn.home.help.web.response.Gallery" />
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.fullLifeAlbum.PhotoVideoAdapterBinder" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayoutParent"
+        android:layout_width="130dp"
+        android:layout_marginBottom="@dimen/margin1dp"
+        android:layout_height="130dp">
+
+        <RelativeLayout
+            android:background="@drawable/gradient_black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_crop_original"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:urlFullWidth="@{data.gallery}" />
+
+        <ImageView
+            android:id="@+id/imageViewVideoIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_video"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/margin10dp"
+            android:text="@{data.categoryName}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text14sp" />
+
+    </RelativeLayout>
+</layout>

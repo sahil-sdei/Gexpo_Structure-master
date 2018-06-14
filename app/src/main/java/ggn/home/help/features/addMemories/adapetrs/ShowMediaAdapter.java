@@ -45,9 +45,15 @@ public class ShowMediaAdapter extends InfiniteAdapterG<FlowItemImageBinding> {
         baseViewHolder.binding.setData(dataList.get(position));
         ImageLoader.loadFullWidthImage(baseViewHolder.binding.imageViewPicture, dataList.get(position).gallery);
 
-        if(dataList.get(position).memoryType.equalsIgnoreCase("image")){
+        if (position == 0) {
+            baseViewHolder.binding.imageViewDelete.setVisibility(View.GONE);
+        } else {
+            baseViewHolder.binding.imageViewDelete.setVisibility(View.VISIBLE);
+        }
+
+        if (dataList.get(position).memoryType.equalsIgnoreCase("image")) {
             baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.GONE);
-        }else{
+        } else {
             baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
         }
 //        baseViewHolder.binding.setBinder(searchUserAdapterBinder);

@@ -13,6 +13,8 @@ import ggn.home.help.web.response.CategoryResponse;
 
 public class MemoryCategoriesPresenter extends BasePresenter<MemoryCategoriesView> implements MemoryCategoriesAdapterBinder {
 
+    private String imageBaseUrl;
+
     public void getCategories() {
         BasicRequest basicRequest= new BasicRequest();
         basicRequest.userId = Integer.parseInt(getView().getLocalData().getUserId());
@@ -40,5 +42,9 @@ public class MemoryCategoriesPresenter extends BasePresenter<MemoryCategoriesVie
             FullLifeAlbumActivity.start(getView().getActivityG());
         else
             getView().goToAddMemories(categories);
+    }
+
+    public void setImageBaseUrl(String imageBaseUrl) {
+        this.imageBaseUrl = imageBaseUrl;
     }
 }

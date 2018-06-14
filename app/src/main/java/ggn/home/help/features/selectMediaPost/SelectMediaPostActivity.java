@@ -98,7 +98,12 @@ public class SelectMediaPostActivity extends BaseActivity<ActivitySelectMediaPos
 
                 if (isSelected) {
                     Intent intent = new Intent(getActivityG(), PostPreviewActivity.class);
+                    intent.putExtra(Constants.Extras.BASE_URL_IMAGE, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE));
                     intent.putExtra(Constants.Extras.DATA, (Serializable) listMedia);
+                    intent.putExtra(Constants.Extras.POST_FROM_ALBUM, false);
+                    intent.putExtra(Constants.Extras.CATEGORY_DATA, getIntent().getSerializableExtra(Constants.Extras.CATEGORY_DATA));
+                    intent.putExtra(Constants.Extras.SUB_CATEGORY_DATA, getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY_DATA));
+
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivityG(), "Please select atleast 1 image or video to post your memory.", Toast.LENGTH_SHORT).show();

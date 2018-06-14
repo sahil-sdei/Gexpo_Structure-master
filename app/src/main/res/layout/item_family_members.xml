@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="data"
-            type="ggn.home.help.features.familyMembers.FamilyMembers" />
+            type="ggn.home.help.web.response.AllFamilyResponse.Datum" />
 
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
         android:id="@+id/relativeLayoutParent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin1dp"
         android:background="@color/white">
@@ -36,7 +36,7 @@
                     android:layout_width="@dimen/margin30dp"
                     android:layout_height="@dimen/margin30dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/demo_image_wall" />
+                    app:urlSquare="@{data.profileImage}" />
 
                 <ggn.home.help.utils.widgets.CustomTextView
                     android:layout_width="wrap_content"
@@ -45,21 +45,21 @@
                     android:layout_marginLeft="@dimen/margin10dp"
                     android:layout_marginRight="@dimen/margin25dp"
                     android:layout_toRightOf="@+id/imageViewAllFamily"
-                    android:text="Sam Smith"
+                    android:text="@{data.name}"
                     android:textColor="#FF434343"
                     android:textSize="@dimen/text16sp" />
 
             </RelativeLayout>
 
             <ImageView
-                android:layout_marginRight="@dimen/margin15dp"
                 android:id="@+id/imageViewSelected"
                 android:layout_width="wrap_content"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_tick_select" />
+                android:layout_marginRight="@dimen/margin15dp"
+                android:src="@drawable/ic_tick_select"
+                android:visibility="gone" />
 
         </RelativeLayout>
     </RelativeLayout>

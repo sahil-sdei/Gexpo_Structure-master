@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayoutParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin3dp">
+
+    <ggn.home.help.utils.widgets.CustomTextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin10dp"
+        android:layout_toLeftOf="@+id/radioButtonSelected"
+        android:gravity="left"
+        android:lines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text16sp" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/buttonBlue"
+        android:padding="@dimen/margin10dp" />
+
+</RelativeLayout>

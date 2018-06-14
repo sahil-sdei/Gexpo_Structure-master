@@ -33,7 +33,11 @@ public @interface Constants {
         String IS_IMAGE = "is_image";
         String MEDIA_URL = "media_url";
         String POST_ID = "post_id";
-
+        String GALLERY_DATA = "gallery_data";
+        String USER_ID = "user_id" ;
+        String TYPE = "type";
+        String CATEGORY_DATA = "category_data";
+        String SUB_CATEGORY_DATA = "sub_category_data";
     }
 
     @interface RequestCode {

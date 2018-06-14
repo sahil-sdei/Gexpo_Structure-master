@@ -3,6 +3,8 @@ package ggn.home.help.web.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ProfileResponse {
     @SerializedName("status")
     @Expose
@@ -15,13 +17,13 @@ public class ProfileResponse {
     public About about;
     @SerializedName("posts")
     @Expose
-    public String posts;
+    public List<PostsResponse.Datum> posts;
     @SerializedName("galleries")
     @Expose
-    public String galleries;
+    public List<Gallery> galleries;
     @SerializedName("friends")
     @Expose
-    public String friends;
+    public List<AllFriendsResponse.Datum> friends;
 
     public class About {
         @SerializedName("name")
@@ -45,5 +47,8 @@ public class ProfileResponse {
         @SerializedName("profile_image")
         @Expose
         public String profileImage;
+        @SerializedName("is_friend")
+        @Expose
+        public int isFriend;
     }
 }

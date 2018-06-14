@@ -43,6 +43,25 @@ public class ImageLoader {
         }
     }
 
+    @BindingAdapter({"bind:urlUser"})
+    public static void loadUserImageSmall(View imageView, String url) {
+        if (url == null || url.isEmpty()) {
+            return;
+        }
+        if (!url.contains("http")) {
+            int id = (imageView).getContext().getResources().getIdentifier(url, "drawable", imageView.getContext().getPackageName());
+            ((ImageView) imageView).setImageResource(id);
+        } else {
+
+            Glide
+                    .with(imageView.getContext())
+                    .load(url)
+                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ic_user_placeholder).override(50, 50)
+                    )
+                    .into(((ImageView) imageView));
+        }
+    }
+
     @BindingAdapter({"bind:small"})
     public static void loadImageVerySmall(View imageView, String url) {
         if (url == null || url.isEmpty()) {

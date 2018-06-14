@@ -113,5 +113,6 @@
     <string name="please_enter_child_name">Please enter child name</string>
     <string name="please_enter_nick_name">Please enter nick name</string>
     <string name="please_select_dob">Please enter date of birth</string>
+    <string name="unfriend">Unfriend</string>
 
 </resources>

@@ -1,10 +1,14 @@
 package ggn.home.help.web.apiInterfaces;
 
 import ggn.home.help.web.Web;
+import ggn.home.help.web.response.AllFamilyResponse;
+import ggn.home.help.web.response.AllFriendsResponse;
 import ggn.home.help.web.response.BasicResponse;
 import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.FriendRequestsResponse;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.ProfileResponse;
+import ggn.home.help.web.response.RelationsResponse;
 import ggn.home.help.web.response.SearchUserResponse;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -40,4 +44,32 @@ public interface UserAPI {
     @FormUrlEncoded
     @POST(Web.Path.SEARCH_USERS)
     Observable<SearchUserResponse> searchUser(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.RELATIONS)
+    Observable<RelationsResponse> getRelations(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.ADD_FRIEND)
+    Observable<BasicResponse> sendRequest(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.FRIEND_REQUEST)
+    Observable<FriendRequestsResponse> getRequests(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.ACCEPT_REQUEST)
+    Observable<BasicResponse> acceptRejectRequest(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.FRIENDS_LIST)
+    Observable<AllFriendsResponse> getFriendsList(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.FAMILY_LIST)
+    Observable<AllFamilyResponse> getFamilyList(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.UNFRIEND)
+    Observable<BasicResponse> unFriend(@Field(Web.Keys.DETAILS) String details);
 }

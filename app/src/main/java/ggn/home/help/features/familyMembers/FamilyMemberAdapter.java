@@ -9,13 +9,14 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.ItemFamilyMembersBinding;
 import ggn.home.help.databinding.ItemRequestsBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
+import ggn.home.help.web.response.AllFamilyResponse;
 
 public class FamilyMemberAdapter extends InfiniteAdapterG<ItemFamilyMembersBinding> {
 
-    private List<FamilyMembers> dataList;
+    private List<AllFamilyResponse.Datum> dataList;
     private Context context;
 
-    public FamilyMemberAdapter(List<FamilyMembers> dataList, Context context) {
+    public FamilyMemberAdapter(List<AllFamilyResponse.Datum> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
     }

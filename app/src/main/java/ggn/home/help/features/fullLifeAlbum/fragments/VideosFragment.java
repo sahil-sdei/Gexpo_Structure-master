@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,12 +98,15 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
         listPictures.addAll(output.data);
         videosAdapter.notifyDataSetChanged();
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().textViewNoRecords.setVisibility(View.GONE);
     }
 
     @Override
     public void noDataFound() {
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
         listPictures.clear();
+        getDataBinder().textViewNoRecords.setText("No videos");
+        getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
     }
 
     public void setCategoryIds(String id, String id1) {
@@ -122,6 +126,6 @@ public class VideosFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
 
     @Override
     public void onPictureVideoSelected(boolean isSelected) {
-        ((FullLifeAlbumActivity)getActivity()).setPostEnabled(isSelected);
+        ((FullLifeAlbumActivity) getActivity()).setPostEnabled(isSelected);
     }
 }

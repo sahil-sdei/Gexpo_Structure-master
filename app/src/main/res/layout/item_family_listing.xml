@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="ggn.home.help.web.response.AllFamilyResponse.Datum" />
+
+        <variable
+            name="binder"
+            type="ggn.home.help.features.familyListing.FamilyAdapterBinder"/>
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:onClick="@{() -> binder.onItemClicked(data)}"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin2dp"
+        android:background="@color/white">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin15dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutProfilePic"
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/bordered_circle" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageViewProfilePic"
+                    android:layout_width="45dp"
+                    app:urlSquare="@{data.profileImage}"
+                    android:layout_height="45dp"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin15dp"
+                android:layout_marginRight="@dimen/margin15dp"
+                android:layout_toRightOf="@+id/relativeLayoutProfilePic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:text="@{data.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text14sp" />
+
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewFamilyRelation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:lines="1"
+                    android:visibility="gone"
+                    android:layout_below="@+id/textViewUserName"
+                    android:text="Son"
+                    android:textColor="@color/greyLight"
+                    android:textSize="@dimen/text14sp" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

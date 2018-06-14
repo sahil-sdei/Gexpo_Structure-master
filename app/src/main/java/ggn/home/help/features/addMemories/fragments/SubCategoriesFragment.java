@@ -81,6 +81,22 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
 
         List<SubCategory> listSubCategory = new ArrayList<>();
         listSubCategory.addAll(categoriesObj.subCategory);
+
+        int index = 0;
+        SubCategory subCategory = null;
+        for (int i = 0; i < listSubCategory.size(); i++) {
+            if (listSubCategory.get(i).name.equalsIgnoreCase("Miscellaneous")) {
+                subCategory = listSubCategory.get(i);
+                index = i;
+                break;
+            }
+        }
+
+        if(subCategory!=null) {
+            listSubCategory.remove(index);
+            listSubCategory.add(listSubCategory.size(), subCategory);
+        }
+
         listSubCategory.add(new SubCategory("Suggest Sub Category"));
 
         getDataBinder().recyclerView.setHasFixedSize(true);
@@ -107,6 +123,9 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                 Intent intent = new Intent(getActivityG(), SelectMediaPostActivity.class);
                 intent.putExtra(Constants.Extras.CATEGORY_ID, categoriesObj.category.id);
                 intent.putExtra(Constants.Extras.SUB_CATEGORY_ID, subCategory.id);
+                intent.putExtra(Constants.Extras.CATEGORY_DATA, categoriesObj);
+                intent.putExtra(Constants.Extras.SUB_CATEGORY_DATA, subCategory);
+                intent.putExtra(Constants.Extras.BASE_URL_IMAGE, baseUrlImage);
                 startActivityForResult(intent, Constants.RequestCode.SELECT_IMAGES_VIDEOS);
             }
         }

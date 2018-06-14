@@ -18,7 +18,7 @@ public class SearchUserPresenter extends BasePresenter<SearchUserView> implement
 
     @Override
     public void onItemClicked(SearchUserResponse.Datum datum) {
-        UserProfileActivity.start(getView().getActivityG());
+        UserProfileActivity.start(getView().getActivityG(), datum.id);
     }
 
     public void searchUser(String keyword) {
@@ -30,7 +30,7 @@ public class SearchUserPresenter extends BasePresenter<SearchUserView> implement
 
         Gson gson = new Gson();
 
-        getView().showLoading(getView().getActivityG().getString(R.string.loading), getView().getActivityG().getString(R.string.please_wait));
+//        getView().showLoading(getView().getActivityG().getString(R.string.loading), getView().getActivityG().getString(R.string.please_wait));
         createApiRequest(getRetrofitInstance(UserAPI.class)
                 .searchUser(gson.toJson(searchUserRequest)), new CallBackG<SearchUserResponse>() {
             @Override
@@ -39,7 +39,7 @@ public class SearchUserPresenter extends BasePresenter<SearchUserView> implement
                 if (output.status == 1)
                     getView().showUsers(output);
                 else
-                    getView().displayError(output.message);
+                    getView().noDataFound();
             }
         });
     }

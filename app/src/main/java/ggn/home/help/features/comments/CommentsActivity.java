@@ -72,7 +72,7 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
     @Override
     public void showComments(CommentListResponse output) {
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
-
+        getDataBinder().imageViewSend.setEnabled(true);
         getDataBinder().recyclerView.setHasFixedSize(true);
         getDataBinder().recyclerView.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
         commentsAdapter = new CommentsAdapter(output.data, getActivityG(), getPresenter());
@@ -94,6 +94,8 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
     @Override
     public void noDataFound() {
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().imageViewSend.setEnabled(true);
+
     }
 
     @Override

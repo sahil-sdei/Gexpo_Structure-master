@@ -193,6 +193,8 @@ public class MemoryCategoriesFragment extends BaseFragment<FragmentRecyclerViewB
         memoryCategoriesAdapter.setBaseUrl(output.imagePath);
         memoryCategoriesAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerView.setAdapter(memoryCategoriesAdapter);
+
+        getPresenter().setImageBaseUrl(output.imagePath);
     }
 
     @Override

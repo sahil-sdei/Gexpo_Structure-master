@@ -144,6 +144,7 @@
     <orderEntry type="library" exported="" name="com.android.support:transition-26.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:design-26.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.github.bumptech.glide:gifdecoder:4.1.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.jsibbold:zoomage-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.facebook.android:facebook-applinks-4.27.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:customtabs-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="me.relex:circleindicator-1.2.2" level="project" />

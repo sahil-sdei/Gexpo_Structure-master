@@ -28,7 +28,6 @@ public class CommentsPresenter extends BasePresenter<CommentsView> implements Co
                 if (output.status == 1)
                     getView().showComments(output);
                 else {
-                    getView().displayError(output.message);
                     getView().noDataFound();
                 }
             }

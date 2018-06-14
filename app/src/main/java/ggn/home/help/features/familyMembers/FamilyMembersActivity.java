@@ -14,10 +14,11 @@ import java.util.List;
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivitySelectFamilyMemberBinding;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.web.response.AllFamilyResponse;
 
 public class FamilyMembersActivity extends BaseActivity<ActivitySelectFamilyMemberBinding, FamilyMembersPresenter> implements FamilyMembersView, View.OnClickListener {
 
-    private List<FamilyMembers> familyMembers;
+    private List<AllFamilyResponse.Datum> familyMembers;
     private FamilyMemberAdapter familyMemberAdapter;
 
     public static void start(Context context) {
@@ -46,17 +47,13 @@ public class FamilyMembersActivity extends BaseActivity<ActivitySelectFamilyMemb
         setupToolbar(getString(R.string.select_family_members));
         getDataBinder().relativeLayoutAllFamily.setOnClickListener(this);
 
-        familyMembers = new ArrayList<>();
-        familyMembers.add(new FamilyMembers("qq", false));
-        familyMembers.add(new FamilyMembers("qq", false));
-        familyMembers.add(new FamilyMembers("qq", false));
+        getPresenter().getFamily(1);
 
+//        familyMembers = new ArrayList<>();
+//        familyMembers.add(new FamilyMembers("qq", false));
+//        familyMembers.add(new FamilyMembers("qq", false));
+//        familyMembers.add(new FamilyMembers("qq", false));
 
-        getDataBinder().recyclerViewFamilyMembers.setHasFixedSize(true);
-        getDataBinder().recyclerViewFamilyMembers.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        familyMemberAdapter = new FamilyMemberAdapter(familyMembers, getActivityG());
-        familyMemberAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewFamilyMembers.setAdapter(familyMemberAdapter);
     }
 
     @Override
@@ -64,7 +61,7 @@ public class FamilyMembersActivity extends BaseActivity<ActivitySelectFamilyMemb
         switch (view.getId()) {
             case R.id.relativeLayoutAllFamily:
                 if (familyMembers != null) {
-                    for (FamilyMembers f : familyMembers) {
+                    for (AllFamilyResponse.Datum f : familyMembers) {
                         f.isSelected = true;
                     }
                 }
@@ -87,7 +84,7 @@ public class FamilyMembersActivity extends BaseActivity<ActivitySelectFamilyMemb
                 break;
             case R.id.action_done:
                 boolean isFound = false;
-                for (FamilyMembers f : familyMembers) {
+                for (AllFamilyResponse.Datum f : familyMembers) {
                     if (f.isSelected) {
                         isFound = true;
                         break;
@@ -111,5 +108,20 @@ public class FamilyMembersActivity extends BaseActivity<ActivitySelectFamilyMemb
         setResult(RESULT_CANCELED, resultIntent);
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    public void showFamily(AllFamilyResponse output) {
+        familyMembers = output.data;
+        getDataBinder().recyclerViewFamilyMembers.setHasFixedSize(true);
+        getDataBinder().recyclerViewFamilyMembers.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+        familyMemberAdapter = new FamilyMemberAdapter(familyMembers, getActivityG());
+        familyMemberAdapter.setShouldLoadMore(false);
+        getDataBinder().recyclerViewFamilyMembers.setAdapter(familyMemberAdapter);
+    }
+
+    @Override
+    public void noDataFound() {
+
     }
 }

@@ -17,6 +17,7 @@ import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.PagerAdapter;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.request.BasicRequest;
+import ggn.home.help.web.request.ProfileRequest;
 import ggn.home.help.web.response.ProfileResponse;
 
 public class ProfileActivity extends BaseActivity<ActivityProfileBinding, ProfilePresenter> implements ProfileView {
@@ -76,10 +77,12 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
             }
         });
 
-        BasicRequest basicRequest = new BasicRequest();
-        basicRequest.token = getLocalData().getAuthToken();
-        basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
-        getPresenter().getProfile(basicRequest);
+        ProfileRequest profileRequest= new ProfileRequest();
+        profileRequest.token = getLocalData().getAuthToken();
+        profileRequest.userId = Integer.parseInt(getLocalData().getUserId());
+        profileRequest.page = 1;
+        profileRequest.tab = 2;
+        getPresenter().getProfile(profileRequest);
     }
 
     @Override
@@ -95,7 +98,6 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit:
-//                EditProfileActivity.start(getActivityG());
                 Intent intent = new Intent(getActivityG(), EditProfileActivity.class);
                 startActivityForResult(intent, Constants.RequestCode.EDIT_PROFILE);
                 break;
@@ -149,10 +151,12 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.RequestCode.EDIT_PROFILE) {
             if (resultCode == Activity.RESULT_OK) {
-                BasicRequest basicRequest = new BasicRequest();
-                basicRequest.token = getLocalData().getAuthToken();
-                basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
-                getPresenter().getProfile(basicRequest);
+                ProfileRequest profileRequest= new ProfileRequest();
+                profileRequest.token = getLocalData().getAuthToken();
+                profileRequest.userId = Integer.parseInt(getLocalData().getUserId());
+                profileRequest.page = 1;
+                profileRequest.tab = 2;
+                getPresenter().getProfile(profileRequest);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

@@ -10,15 +10,18 @@ import ggn.home.help.databinding.ItemSubCategoriesBinding;
 import ggn.home.help.features.addMemories.AddMemoryAdapterBinder;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.memoryCategories.SubCategories;
+import ggn.home.help.web.response.FriendRequestsResponse;
 
 public class RequestsAdapter extends InfiniteAdapterG<ItemRequestsBinding> {
 
-    private List<String> dataList;
+    private List<FriendRequestsResponse.Datum> dataList;
     private Context context;
+    private RequestsAdapterBinder requestsAdapterBinder;
 
-    public RequestsAdapter(List<String> dataList, Context context) {
+    public RequestsAdapter(List<FriendRequestsResponse.Datum> dataList, Context context, RequestsAdapterBinder requestsAdapterBinder) {
         this.dataList = dataList;
         this.context = context;
+        this.requestsAdapterBinder = requestsAdapterBinder;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class RequestsAdapter extends InfiniteAdapterG<ItemRequestsBinding> {
     @Override
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
+        baseViewHolder.binding.setBinder(requestsAdapterBinder);
         baseViewHolder.binding.executePendingBindings();
     }
 }

@@ -1,6 +1,7 @@
 package ggn.home.help.features.accounts;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -37,7 +38,10 @@ public class ManageAccountsAdapter extends InfiniteAdapterG<ItemManageAccountsBi
         baseViewHolder.binding.setData(dataList.get(position));
         baseViewHolder.binding.setBinder(manageAccountsAdapterBinder);
 
-        ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/"+dataList.get(position).profileImage);
+        if (!TextUtils.isEmpty(dataList.get(position).profileImage))
+            ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/" + dataList.get(position).profileImage);
+        else
+            baseViewHolder.binding.imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
 
         baseViewHolder.binding.executePendingBindings();
     }

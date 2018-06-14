@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,7 @@ public class SelectImagesFragment extends BaseFragment<FragmentRecyclerViewBindi
         listPictures.addAll(output.data);
         imagesAdapter.notifyDataSetChanged();
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().textViewNoRecords.setVisibility(View.GONE);
     }
 
     @Override
@@ -88,6 +90,8 @@ public class SelectImagesFragment extends BaseFragment<FragmentRecyclerViewBindi
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
         listPictures.clear();
         imagesAdapter.notifyDataSetChanged();
+        getDataBinder().textViewNoRecords.setText("No pictures");
+        getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
     }
 
     public void setCategoryIds(String id, String id1) {

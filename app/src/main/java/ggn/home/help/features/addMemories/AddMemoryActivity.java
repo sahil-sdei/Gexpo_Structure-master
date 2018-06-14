@@ -17,9 +17,6 @@ import ggn.home.help.databinding.ActivityAddMemoryBinding;
 import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.addMemories.fragments.SubCategoriesFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
-import ggn.home.help.features.memoryCategories.Categories;
-import ggn.home.help.features.memoryCategories.SubCategories;
-import ggn.home.help.features.selectPictures.Pictures;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.CategoryResponse;
@@ -58,14 +55,25 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         else
             setupToolbar(getString(R.string.post_memory));
 
-        if(getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)){
-            toolbar.setBackgroundResource(R.color.white);
-            toolbarText.setTextColor(ContextCompat.getColor(getActivityG(), R.color.black));
-            getDataBinder().relativeLayoutPicture.setVisibility(View.GONE);
-            getDataBinder().textViewSubCategories.setVisibility(View.INVISIBLE);
-//            SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
-//            changeHeadingText(subCategory.name);
-            showFragment(AddDescriptionFragment.newInstance((List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA)));
+        if (getIntent().hasExtra(Constants.Extras.POST_FROM_ALBUM)) {
+            if (getIntent().getBooleanExtra(Constants.Extras.POST_FROM_ALBUM, false)) {
+                toolbar.setBackgroundResource(R.color.white);
+                toolbarText.setTextColor(ContextCompat.getColor(getActivityG(), R.color.black));
+                getDataBinder().relativeLayoutPicture.setVisibility(View.GONE);
+                getDataBinder().textViewSubCategories.setVisibility(View.INVISIBLE);
+                showFragment(AddDescriptionFragment.newInstance((List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA)));
+            } else {
+                showFragment(AddDescriptionFragment.newInstance((List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA)));
+                toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+                categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.CATEGORY_DATA);
+                binding.setData(categories);
+                binding.executePendingBindings();
+                if (!TextUtils.isEmpty(categories.category.years))
+                    binding.textViewTitle.setText(categories.category.name + " (" + categories.category.years + " years)");
+                else
+                    binding.textViewTitle.setText(categories.category.name);
+                ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE) + categories.category.image);
+            }
             return;
         }
 
@@ -75,12 +83,12 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         binding.setData(categories);
         binding.executePendingBindings();
 
-        if(!TextUtils.isEmpty(categories.category.years))
-            binding.textViewTitle.setText(categories.category.name+" ("+categories.category.years+" years)");
+        if (!TextUtils.isEmpty(categories.category.years))
+            binding.textViewTitle.setText(categories.category.name + " (" + categories.category.years + " years)");
         else
             binding.textViewTitle.setText(categories.category.name);
 
-        ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE)+categories.category.image);
+        ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE) + categories.category.image);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.DATA, categories);

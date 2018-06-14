@@ -9,7 +9,7 @@
         android:background="@color/black"
         android:layout_height="match_parent">
 
-        <ImageView
+        <com.jsibbold.zoomage.ZoomageView
             android:id="@+id/imageViewPicture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -84,6 +84,14 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_layout_transparent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:backgroundTint="@color/buttonBlue"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 </layout>

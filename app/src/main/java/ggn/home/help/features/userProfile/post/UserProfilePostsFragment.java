@@ -15,7 +15,11 @@ import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.features.profile.FamilyAdapter;
 import ggn.home.help.features.userProfile.UserProfilePresenter;
 import ggn.home.help.features.userProfile.UserProfileView;
+import ggn.home.help.web.response.BasicResponse;
 import ggn.home.help.web.response.ChildAccountsResponse;
+import ggn.home.help.web.response.PostsResponse;
+import ggn.home.help.web.response.ProfileResponse;
+import ggn.home.help.web.response.RelationsResponse;
 
 
 public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsBinding, UserProfilePresenter> implements UserProfileView {
@@ -54,25 +58,41 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
         userFriendsAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewFriends.setAdapter(userFriendsAdapter);
         getDataBinder().recyclerViewFriends.setNestedScrollingEnabled(false);
+    }
 
-        List<Memory> listM = new ArrayList<>();
-        List<String> listImages = new ArrayList<>();
-        listImages.add("pro");
-        listImages.add("pro");
-        listImages.add("pro");
-        listImages.add("pro");
+    @Override
+    public void showProfileData(ProfileResponse output) {
 
-        listM.add(new Memory("Stan Smith", "pro", "5", "2", "img1", listImages));
-        listM.add(new Memory("John Smith", "pro", "13", "3", "img2", listImages));
-        listM.add(new Memory("Steve Smith", "pro", "2", "4", "img3", listImages));
-        listM.add(new Memory("John Ward", "pro", "3", "6", "img4", listImages));
-        listM.add(new Memory("Alexander", "pro", "13", "2", "img5", listImages));
+    }
 
+    @Override
+    public void showRelations(RelationsResponse output) {
+
+    }
+
+    @Override
+    public void requestSentSuccessfully(BasicResponse output) {
+
+    }
+
+    @Override
+    public void unFriendSuccessfully(BasicResponse output) {
+
+    }
+
+    @Override
+    public void onMemoryLiked(PostsResponse.Datum memory) {
+        memoriesAdapter.notifyDataSetChanged();
+    }
+
+    public void setPostsData(List<PostsResponse.Datum> postsData){
         getDataBinder().recyclerViewPosts.setHasFixedSize(true);
-        getDataBinder().recyclerViewPosts.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-//        memoriesAdapter = new MemoriesAdapter(listM, getActivityG(), getPresenter());
-//        memoriesAdapter.setShouldLoadMore(false);
-//        getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
-//        getDataBinder().recyclerViewPosts.setNestedScrollingEnabled(false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityG());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        getDataBinder().recyclerViewPosts.setLayoutManager(linearLayoutManager);
+        memoriesAdapter = new MemoriesAdapter(postsData, getActivityG(), getPresenter());
+        memoriesAdapter.setShouldLoadMore(false);
+        getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
     }
 }

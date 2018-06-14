@@ -3,20 +3,24 @@ package ggn.home.help.features.friendsNFamily;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import java.util.ArrayList;
+import com.facebook.share.model.AppInviteContent;
+import com.facebook.share.widget.AppInviteDialog;
+
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentFriendsFamilyBinding;
+import ggn.home.help.features.familyListing.FamilyActivity;
+import ggn.home.help.features.friendsListing.FriendsActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
-import ggn.home.help.features.profile.FamilyAdapter;
 import ggn.home.help.features.searchUser.SearchUserActivity;
-import ggn.home.help.utils.PagerAdapter;
+import ggn.home.help.web.response.FriendRequestsResponse;
 
 
 public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBinding, FriendsFamilyPresenter> implements FriendsFamilyView {
 
     private RequestsAdapter requestsAdapter;
+    private List<FriendRequestsResponse.Datum> listRequests;
 
     public static FriendsFamilyFragment newInstance() {
         FriendsFamilyFragment friendsFamilyFragment = new FriendsFamilyFragment();
@@ -44,18 +48,65 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
             }
         });
 
-        List<String> list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
+        getDataBinder().relativeLayoutInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFacebookInviteDialog();
+            }
+        });
 
+        getDataBinder().relativeLayoutFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FriendsActivity.start(getActivityG(), "Friends");
+            }
+        });
 
+        getDataBinder().relativeLayoutFamily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FamilyActivity.start(getActivityG(), "Family");
+            }
+        });
+
+        getPresenter().getRequests(1);
+    }
+
+    private void showFacebookInviteDialog() {
+        String appLinkUrl, previewImageUrl;
+
+        appLinkUrl = "https://www.mydomain.com/myapplink";
+        previewImageUrl = "https://www.mydomain.com/my_invite_image.jpg";
+
+        if (AppInviteDialog.canShow()) {
+            AppInviteContent content = new AppInviteContent.Builder()
+                    .setApplinkUrl(appLinkUrl)
+                    .setPreviewImageUrl(previewImageUrl)
+                    .build();
+            AppInviteDialog.show(this, content);
+        }
+    }
+
+    @Override
+    public void showRequests(FriendRequestsResponse output) {
+        listRequests = output.data;
         getDataBinder().recyclerViewRequests.setHasFixedSize(true);
         getDataBinder().recyclerViewRequests.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
-        requestsAdapter = new RequestsAdapter(list, getActivityG());
+        requestsAdapter = new RequestsAdapter(listRequests, getActivityG(), getPresenter());
         requestsAdapter.setShouldLoadMore(false);
         getDataBinder().recyclerViewRequests.setAdapter(requestsAdapter);
         getDataBinder().recyclerViewRequests.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    public void noRequestsFound() {
+        getDataBinder().recyclerViewRequests.setVisibility(View.GONE);
+        getDataBinder().textViewNoRequests.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void requestAcceptedRejectedSuccessFully(FriendRequestsResponse.Datum datum) {
+        listRequests.remove(datum);
+        requestsAdapter.notifyDataSetChanged();
     }
 }

@@ -32,5 +32,13 @@ public @interface Web {
         String LIKE_POST = "like";
         String COMMENT = "comment";
         String SEARCH_USERS = "search_users";
+        String ADD_FRIEND = "add_friend";
+        String RELATIONS = "relations";
+        String FRIEND_REQUEST = "friend_request";
+        String ACCEPT_REQUEST = "accept_request";
+        String FRIENDS_LIST = "friends_list";
+        String FAMILY_LIST = "family_list";
+        String UNFRIEND = "unfriend";
+
     }
 }

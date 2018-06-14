@@ -6,11 +6,9 @@ import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +25,6 @@ import android.widget.TextView;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +48,6 @@ import ggn.home.help.features.signIn.SignInActivity;
 import ggn.home.help.utils.CallBackG;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.DialogHelper;
-import ggn.home.help.utils.LocalDataHelper;
 import ggn.home.help.utils.SharedPrefHelper;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.Child;
@@ -58,7 +55,7 @@ import ggn.home.help.web.response.Child;
 import static ggn.home.help.utils.Constants.RequestCode.ADD_MEMORY;
 import static ggn.home.help.utils.Constants.RequestCode.MANAGE_ACCOUNTS;
 
-public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener, AccountsAdapterBinder{
+public class DashboardActivity extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener, AccountsAdapterBinder {
 
     private boolean doubleBackToExitPressedOnce = false;
     private static final int POS_DASHBOARD = 0;
@@ -168,12 +165,12 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
 
         adapter.setSelected(POS_DASHBOARD);
 
-        if(getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)){
+        if (getIntent().getBooleanExtra(Constants.Extras.IS_MEMORY, false)) {
             showFragment(MemoryCategoriesFragment.newInstance(true));
             setupToolbar(getString(R.string.add_new_memory), false, false);
         }
 
-        if(getIntent().getIntExtra(Constants.Extras.SCREEN_NUMBER, 0)==1){
+        if (getIntent().getIntExtra(Constants.Extras.SCREEN_NUMBER, 0) == 1) {
             FullLifeAlbumActivity.start(DashboardActivity.this);
         }
     }
@@ -280,10 +277,10 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
             }
         });
 
-        if(isTransparent) {
+        if (isTransparent) {
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
             imageViewMenu.setVisibility(View.GONE);
-        }else{
+        } else {
             imageViewMenu.setVisibility(View.VISIBLE);
         }
 
@@ -293,13 +290,6 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         toolbar.setBackgroundColor(isTransparent ? ContextCompat.getColor(DashboardActivity.this, R.color.transparent) : ContextCompat.getColor(DashboardActivity.this, R.color.white));
 
     }
-
-//    @Override
-//    public boolean onMenuOpened(int featureId, Menu menu) {
-//        findViewById(R.id.listAccounts).setVisibility(View.GONE);
-//        findViewById(R.id.list).setVisibility(View.VISIBLE);
-//        return super.onMenuOpened(featureId, menu);
-//    }
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
@@ -329,9 +319,12 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         return ContextCompat.getColor(this, res);
     }
 
-    private void showUserNameOnNav(){
-        ((TextView)findViewById(R.id.textViewUserName)).setText(sharedPrefHelper.getUserName());
-        ImageLoader.loadImageSmall((findViewById(R.id.imageViewProfilePic)), sharedPrefHelper.getProfileImage());
+    private void showUserNameOnNav() {
+        ((TextView) findViewById(R.id.textViewUserName)).setText(sharedPrefHelper.getUserName());
+        if (!TextUtils.isEmpty(sharedPrefHelper.getProfileImage()))
+            ImageLoader.loadImageSmall((findViewById(R.id.imageViewProfilePic)), sharedPrefHelper.getProfileImage());
+        else
+            ((ImageView) findViewById(R.id.imageViewProfilePic)).setImageResource(R.drawable.ic_user_placeholder);
     }
 
     public void setUpAccounts(List<Child> child) {

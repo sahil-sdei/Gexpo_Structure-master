@@ -50,7 +50,15 @@ public class SlidingImageAdapter extends PagerAdapter {
         assert imageLayout != null;
         final ImageView imageView = imageLayout
                 .findViewById(R.id.imageViewPicture);
+        ImageView imageViewVideoIcon = imageLayout
+                .findViewById(R.id.imageViewVideoIcon);
         ImageLoader.loadFullWidthImage(imageView, listImages.get(position).galleryImage);
+
+        if(listImages.get(position).memoryType.equalsIgnoreCase("image")){
+            imageViewVideoIcon.setVisibility(View.GONE);
+        }else{
+            imageViewVideoIcon.setVisibility(View.VISIBLE);
+        }
 
         imageLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +69,7 @@ public class SlidingImageAdapter extends PagerAdapter {
                         intent.putExtra(Constants.Extras.IS_IMAGE, true);
                     else
                         intent.putExtra(Constants.Extras.IS_IMAGE, false);
-//                intent.putExtra(Constants.Extras.DATA, pictures);
+                intent.putExtra(Constants.Extras.GALLERY_DATA, listImages.get(position));
                 intent.putExtra(Constants.Extras.MEDIA_URL, listImages.get(position).galleryImage);
                 context.startActivity(intent);
             }

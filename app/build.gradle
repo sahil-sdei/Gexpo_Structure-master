@@ -60,5 +60,6 @@ dependencies {
     compile 'com.github.Mariovc:ImagePicker:1.2.2'
     compile 'com.caverock:androidsvg:1.2.1'
     compile 'com.otaliastudios:cameraview:1.5.0'
+    compile 'com.jsibbold:zoomage:1.1.0'
 //    compile 'com.myhexaville:smart-image-picker:1.0.4'
 }

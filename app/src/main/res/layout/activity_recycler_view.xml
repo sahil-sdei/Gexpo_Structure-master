@@ -14,9 +14,28 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar_layout" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewNoRecords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="1"
+                android:layout_marginTop="@dimen/margin20dp"
+                android:padding="@dimen/margin10dp"
+                android:text="No records found"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text16sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
     </LinearLayout>
 </layout>

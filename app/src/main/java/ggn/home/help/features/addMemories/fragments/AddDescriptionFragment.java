@@ -84,9 +84,9 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 //                getActivity().finish();
                 if (TextUtils.isEmpty(getDataBinder().editTextTitle.getText().toString())) {
                     displayError("Please enter title for your memory.");
-                } else if (TextUtils.isEmpty(getDataBinder().editTextDescription.getText().toString())) {
+                } /*else if (TextUtils.isEmpty(getDataBinder().editTextDescription.getText().toString())) {
                     displayError("Please enter description for your memory.");
-                } else {
+                }*/ else {
                     AddPostRequest addPostRequest = new AddPostRequest();
                     addPostRequest.userId = Integer.parseInt(getLocalData().getUserId());
                     addPostRequest.token = getLocalData().getAuthToken();

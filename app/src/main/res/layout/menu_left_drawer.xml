@@ -22,7 +22,6 @@
             android:id="@+id/imageViewProfilePic"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/demo_image_wall"
             android:scaleType="centerCrop" />
 
     </RelativeLayout>

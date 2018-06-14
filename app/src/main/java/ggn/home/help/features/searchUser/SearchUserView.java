@@ -7,4 +7,6 @@ import ggn.home.help.web.response.SearchUserResponse;
 public interface SearchUserView extends Viewable<SearchUserPresenter> {
 
     void showUsers(SearchUserResponse output);
+
+    void noDataFound();
 }

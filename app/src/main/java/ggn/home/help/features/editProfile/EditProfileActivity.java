@@ -22,6 +22,7 @@ import ggn.home.help.utils.DateHelper;
 import ggn.home.help.utils.UtillsG;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.request.BasicRequest;
+import ggn.home.help.web.request.ProfileRequest;
 import ggn.home.help.web.response.ProfileResponse;
 
 public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding, EditProfilePresenter> implements EditProfileView {
@@ -73,10 +74,12 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
             }
         });
 
-        BasicRequest basicRequest = new BasicRequest();
-        basicRequest.token = getLocalData().getAuthToken();
-        basicRequest.userId = Integer.parseInt(getLocalData().getUserId());
-        getPresenter().getProfile(basicRequest);
+        ProfileRequest profileRequest= new ProfileRequest();
+        profileRequest.token = getLocalData().getAuthToken();
+        profileRequest.userId = Integer.parseInt(getLocalData().getUserId());
+        profileRequest.page = 1;
+        profileRequest.tab = 2;
+        getPresenter().getProfile(profileRequest);
     }
 
     @Override

@@ -11,4 +11,10 @@
         android:id="@+id/action_family_member"
         app:showAsAction="always"
         android:title="@string/family_member" />
+
+    <item
+        android:id="@+id/action_un_friend"
+        app:showAsAction="always"
+        android:visible="false"
+        android:title="@string/unfriend" />
 </menu>

@@ -98,7 +98,10 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
         if (output.data != null) {
             getDataBinder().swipeRefreshLayout.setRefreshing(false);
             getDataBinder().recyclerViewMemories.setHasFixedSize(true);
-            getDataBinder().recyclerViewMemories.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityG());
+            linearLayoutManager.setReverseLayout(true);
+            linearLayoutManager.setStackFromEnd(true);
+            getDataBinder().recyclerViewMemories.setLayoutManager(linearLayoutManager);
             memoriesAdapter = new MemoriesAdapter(output.data, getActivityG(), getPresenter());
             memoriesAdapter.setShouldLoadMore(false);
             getDataBinder().recyclerViewMemories.setAdapter(memoriesAdapter);

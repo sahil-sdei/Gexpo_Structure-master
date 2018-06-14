@@ -5,8 +5,8 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:background="@color/backgroundGrey"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundGrey">
 
 
         <LinearLayout
@@ -23,10 +23,10 @@
                 android:background="@color/backgroundGrey"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="@dimen/margin5dp"
-                android:textColor="@color/greyLight"
                 android:imeOptions="actionSearch"
                 android:padding="@dimen/margin13dp"
                 android:text="@string/search_name"
+                android:textColor="@color/greyLight"
                 android:textSize="@dimen/text16sp" />
 
             <LinearLayout
@@ -45,13 +45,30 @@
                     android:textSize="@dimen/text14sp" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:background="@color/backgroundGrey"
                     android:id="@+id/recyclerViewRequests"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundGrey" />
 
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewNoRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="@dimen/margin10dp"
+                    android:text="No new requests"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text16sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/backgroundGrey" />
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayoutFriends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -94,6 +111,7 @@
                     android:background="@color/backgroundGrey" />
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayoutFamily"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"

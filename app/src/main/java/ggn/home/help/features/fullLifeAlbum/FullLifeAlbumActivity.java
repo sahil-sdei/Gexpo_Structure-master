@@ -197,6 +197,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             case R.id.action_post:
                 Intent intent = new Intent(getActivityG(), PostPreviewActivity.class);
                 intent.putExtra(Constants.Extras.DATA, (Serializable) listMedia);
+                intent.putExtra(Constants.Extras.POST_FROM_ALBUM, true);
                 startActivity(intent);
                 break;
         }

@@ -53,6 +53,7 @@ public class SubCategoriesAdapter extends InfiniteAdapterG<ItemSubCategoriesBind
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
 
+        baseViewHolder.binding.textViewUserName.setText(titleize(dataList.get(position).name));
         ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, baseUrl + dataList.get(position).image);
 //        Uri uri = Uri.parse(baseUrl + dataList.get(position).image);
 //        requestBuilder.load(uri).into(baseViewHolder.binding.imageViewProfilePic);
@@ -66,6 +67,30 @@ public class SubCategoriesAdapter extends InfiniteAdapterG<ItemSubCategoriesBind
 
         baseViewHolder.binding.setBinder(addMemoryAdapterBinder);
         baseViewHolder.binding.executePendingBindings();
+    }
+
+    public static String titleize(final String input) {
+        // Initialize the output to the length of the input since we know it and the
+        // output and input will be the same size.
+        StringBuilder output = new StringBuilder(input.length());
+        // This defaults to true because we assume the beginning of the
+        // string also counts as whitespace. This is to make sure the
+        // first word gets capitalized as well.
+        boolean lastCharacterWasWhitespace = true;
+
+        for(int i = 0; i < input.length(); i++) {
+            char currentCharacter = input.charAt(i);
+
+            if(lastCharacterWasWhitespace && Character.isLowerCase(currentCharacter)) {
+                currentCharacter = Character.toTitleCase(currentCharacter);
+            }
+
+            output.append(currentCharacter);
+
+            lastCharacterWasWhitespace = Character.isWhitespace(currentCharacter);
+        }
+
+        return output.toString();
     }
 
     public void setBaseUrl(String baseUrl) {

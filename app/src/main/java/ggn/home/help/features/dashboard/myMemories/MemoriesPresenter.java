@@ -20,7 +20,7 @@ public class MemoriesPresenter extends BasePresenter<MemoriesView> implements Me
 
     @Override
     public void onProfileClicked(PostsResponse.Datum memory) {
-        UserProfileActivity.start(getView().getActivityG());
+        UserProfileActivity.start(getView().getActivityG(), memory.user.id);
     }
 
     @Override

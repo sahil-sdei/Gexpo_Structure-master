@@ -28,7 +28,7 @@ public class Child {
     public String userType;
     @SerializedName("profile_image")
     @Expose
-    public Object profileImage;
+    public String profileImage;
     @SerializedName("registration_type")
     @Expose
     public String registrationType;
