@@ -3,9 +3,10 @@ package ggn.home.help.web.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PostsResponse {
+public class PostsResponse implements Serializable{
 
     @SerializedName("status")
     @Expose
@@ -23,7 +24,7 @@ public class PostsResponse {
     @Expose
     public List<Datum> data = null;
 
-    public class Datum {
+    public class Datum implements Serializable{
         @SerializedName("id")
         @Expose
         public String id;

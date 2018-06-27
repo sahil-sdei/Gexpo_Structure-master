@@ -44,7 +44,45 @@ public class CategoryAdapter extends ArrayAdapter<CategoryResponse.Datum> {
         ImageView imageViewBg = customRow.findViewById(R.id.imageViewBg);
         RadioButton radioButtonSelected = customRow.findViewById(R.id.radioButtonSelected);
 
-        ImageLoader.loadImageVerySmall(imageViewBg, "http://18.216.102.186/memoreeta/files/categories/" + categoryObj.category.image);
+        String drawable = "";
+        switch (position) {
+            case 0:
+                drawable = "pre_birth";
+                break;
+            case 1:
+                drawable = "birth";
+                break;
+            case 2:
+                drawable = "infancy";
+                break;
+            case 3:
+                drawable = "early_childhood";
+                break;
+            case 4:
+                drawable = "middle_childhood";
+                break;
+            case 5:
+                drawable = "late_childhood";
+                break;
+            case 6:
+                drawable = "adolescence";
+                break;
+            case 7:
+                drawable = "early_adulthood";
+                break;
+            case 8:
+                drawable = "midlife";
+                break;
+            case 9:
+                drawable = "mature_adulthood";
+                break;
+            case 10:
+                drawable = "late_adulthood";
+                break;
+        }
+//        ImageLoader.loadImageVerySmall(imageViewBg, "http://18.216.102.186/memoreeta/files/categories/" + categoryObj.category.image);
+
+        ImageLoader.loadImageVerySmall(imageViewBg, drawable);
 
         if (!TextUtils.isEmpty(categoryObj.category.years))
             textViewTitle.setText(categoryObj.category.name + " (" + categoryObj.category.years + " y)");

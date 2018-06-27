@@ -10,4 +10,6 @@ public interface MemoriesView extends Viewable<MemoriesPresenter> {
     void showChildAccounts(ChildAccountsResponse output);
 
     void showUserPosts(PostsResponse output);
+
+    void openComments(PostsResponse.Datum datum);
 }

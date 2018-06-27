@@ -105,7 +105,7 @@ public class ImagesFragment extends BaseFragment<FragmentRecyclerViewBinding, Fu
         getDataBinder().swipeRefreshLayout.setRefreshing(false);
         listPictures.clear();
         imagesAdapter.notifyDataSetChanged();
-        getDataBinder().textViewNoRecords.setText("No pictures");
+        getDataBinder().textViewNoRecords.setText("No photos");
         getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
     }
 

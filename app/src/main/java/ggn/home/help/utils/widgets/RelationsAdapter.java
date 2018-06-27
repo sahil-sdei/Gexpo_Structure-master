@@ -14,10 +14,8 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.utils.RelationSelectedListener;
-import ggn.home.help.utils.SubCategorySelectedListener;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.RelationsResponse;
-import ggn.home.help.web.response.SubCategory;
 
 public class RelationsAdapter extends ArrayAdapter<RelationsResponse.Datum> {
     private RelationSelectedListener relationSelectedListener;
@@ -42,6 +40,10 @@ public class RelationsAdapter extends ArrayAdapter<RelationsResponse.Datum> {
 
         RelativeLayout relativeLayoutParent = customRow.findViewById(R.id.relativeLayoutParent);
         TextView textViewTitle = customRow.findViewById(R.id.textViewTitle);
+        ImageView imageViewProfilePic = customRow.findViewById(R.id.imageViewProfilePic);
+
+        String drawable = dataObj.relation.name.toLowerCase();
+        ImageLoader.loadImageVerySmall(imageViewProfilePic, drawable);
 
         RadioButton radioButtonSelected = customRow.findViewById(R.id.radioButtonSelected);
 

@@ -3,7 +3,9 @@ package ggn.home.help.web.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AddMemoryRequest {
+import java.io.Serializable;
+
+public class AddMemoryRequest implements Serializable{
 
     @SerializedName("token")
     @Expose

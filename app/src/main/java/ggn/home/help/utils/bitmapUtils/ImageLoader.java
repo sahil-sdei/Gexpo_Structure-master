@@ -38,7 +38,7 @@ public class ImageLoader {
                     .with(imageView.getContext())
                     .load(url)
                     .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).override(50, 50)
-                            )
+                    )
                     .into(((ImageView) imageView));
         }
     }
@@ -56,7 +56,7 @@ public class ImageLoader {
             Glide
                     .with(imageView.getContext())
                     .load(url)
-                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ic_user_placeholder).override(50, 50)
+                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ic_user_placeholder).error(R.drawable.ic_user_placeholder).override(50, 50)
                     )
                     .into(((ImageView) imageView));
         }
@@ -67,12 +67,17 @@ public class ImageLoader {
         if (url == null || url.isEmpty()) {
             return;
         }
-        Glide
-                .with(imageView.getContext())
-                .load(url)
-                .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL).override(100, 100))
-                .into(((ImageView) imageView));
 
+        if (!url.contains("http")) {
+            int id = (imageView).getContext().getResources().getIdentifier(url, "drawable", imageView.getContext().getPackageName());
+            ((ImageView) imageView).setImageResource(id);
+        } else {
+            Glide
+                    .with(imageView.getContext())
+                    .load(url)
+                    .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL).override(100, 100))
+                    .into(((ImageView) imageView));
+        }
     }
 
 
@@ -88,7 +93,7 @@ public class ImageLoader {
         } else {
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.override(200, 200);
-            requestOptions.transforms(new CenterCrop(), new RoundedCorners(5));
+            requestOptions.transforms(new CenterCrop());
             Glide
                     .with(imageView.getContext())
                     .load(url)
@@ -98,8 +103,8 @@ public class ImageLoader {
 
     }
 
-    @BindingAdapter({"bind:songArtSmall"})
-    public static void songArtSmall(View imageView, String url) {
+    @BindingAdapter({"bind:artSmall"})
+    public static void artSmall(View imageView, String url) {
 
         if (url == null || url.isEmpty()) {
             return;
@@ -186,12 +191,12 @@ public class ImageLoader {
     }
 
     public static void loadFullImageSDCard(View imageView, String path) {
-            Glide
-                    .with(imageView.getContext())
-                    .load(path)
-                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(((ImageView) imageView));
+        Glide
+                .with(imageView.getContext())
+                .load(path)
+                .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL))
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(((ImageView) imageView));
 
     }
 

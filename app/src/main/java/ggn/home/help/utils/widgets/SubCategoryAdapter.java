@@ -26,7 +26,7 @@ public class SubCategoryAdapter extends ArrayAdapter<SubCategory> {
     }
 
     public SubCategoryAdapter(Context context, List<SubCategory> test) {
-        super(context, R.layout.item_category_sub_category, test);
+        super(context, R.layout.item_sub_category_drop_down, test);
     }
 
     @Override

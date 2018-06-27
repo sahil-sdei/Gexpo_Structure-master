@@ -15,6 +15,7 @@ import ggn.home.help.features.comments.CommentsActivity;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.share.ShareActivity;
 import ggn.home.help.utils.UtillsG;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.PostsResponse;
 
 public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
@@ -46,6 +47,11 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
         SlidingImageAdapter slidingImageAdapter = new SlidingImageAdapter(context, dataList.get(position).galleries);
         baseViewHolder.binding.viewPagerImages.setAdapter(slidingImageAdapter);
         baseViewHolder.binding.indicator.setViewPager(baseViewHolder.binding.viewPagerImages);
+
+        if(!TextUtils.isEmpty(dataList.get(position).user.profileImage))
+            ImageLoader.loadUserImageSmall(baseViewHolder.binding.imageViewProfilePic, dataList.get(position).user.profileImage);
+        else
+            baseViewHolder.binding.imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
 
         if (dataList.get(position).galleries != null) {
             if (dataList.get(position).galleries.size() > 1) {
@@ -91,7 +97,8 @@ public class MemoriesAdapter extends InfiniteAdapterG<ItemMemoriesBinding> {
         baseViewHolder.binding.textViewComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommentsActivity.start(context, dataList.get(position).id);
+//                CommentsActivity.start(context, dataList.get(position).id);
+                memoriesAdapterBinder.showComments(dataList.get(position));
             }
         });
 

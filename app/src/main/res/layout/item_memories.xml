@@ -46,7 +46,6 @@
                         android:id="@+id/imageViewProfilePic"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        app:urlSquare="@{data.user.profileImage}"
                         android:scaleType="centerCrop"
                          />
                 </RelativeLayout>

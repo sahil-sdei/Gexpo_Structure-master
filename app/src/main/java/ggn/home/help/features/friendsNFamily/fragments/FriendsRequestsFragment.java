@@ -75,4 +75,9 @@ public class FriendsRequestsFragment extends BaseFragment<FragmentFriendsFamilyR
     public void showUserPosts(PostsResponse output) {
 
     }
+
+    @Override
+    public void openComments(PostsResponse.Datum datum) {
+
+    }
 }

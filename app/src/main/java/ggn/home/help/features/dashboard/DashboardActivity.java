@@ -1,7 +1,9 @@
 package ggn.home.help.features.dashboard;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -20,6 +22,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -44,6 +47,7 @@ import ggn.home.help.features.friendsNFamily.FriendsFamilyFragment;
 import ggn.home.help.features.fullLifeAlbum.FullLifeAlbumActivity;
 import ggn.home.help.features.memoryCategories.MemoryCategoriesFragment;
 import ggn.home.help.features.profile.ProfileActivity;
+import ggn.home.help.features.services.UploadService;
 import ggn.home.help.features.signIn.SignInActivity;
 import ggn.home.help.utils.CallBackG;
 import ggn.home.help.utils.Constants;
@@ -179,6 +183,9 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
     protected void onResume() {
         super.onResume();
         showUserNameOnNav();
+
+        registerReceiver(receiver, new IntentFilter(
+                UploadService.NOTIFICATION));
     }
 
     @Override
@@ -393,4 +400,28 @@ public class DashboardActivity extends AppCompatActivity implements DrawerAdapte
         setupToolbar("", true, false);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                int resultCode = bundle.getInt(UploadService.RESULT);
+                if (resultCode == RESULT_OK) {
+                    findViewById(R.id.linearLayoutProgress).setVisibility(View.GONE);
+                } else if (resultCode == RESULT_FIRST_USER) {
+                    findViewById(R.id.linearLayoutProgress).setVisibility(View.VISIBLE);
+                    ((ProgressBar)findViewById(R.id.progress)).setProgress(bundle.getInt(UploadService.PROGRESS));
+                } else {
+                    findViewById(R.id.linearLayoutProgress).setVisibility(View.GONE);
+                }
+            }
+        }
+    };
 }

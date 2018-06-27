@@ -4,13 +4,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import com.example.usemedia.Matisse;
+import com.example.usemedia.ui.MatisseFragment;
+import com.github.florent37.camerafragment.PreviewActivity;
+import com.github.florent37.camerafragment.configuration.Configuration;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,11 +23,12 @@ import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityFullLifeAlbumBinding;
+import ggn.home.help.features.addMemoryPreview.MemoryPreviewActivity;
 import ggn.home.help.features.addPostPreview.PostPreviewActivity;
-import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.fullLifeAlbum.fragments.ImagesFragment;
 import ggn.home.help.features.fullLifeAlbum.fragments.VideosFragment;
 import ggn.home.help.features.internal.base.BaseActivity;
+import ggn.home.help.features.pickMedia.AddMediaActivity;
 import ggn.home.help.utils.CategorySelectedListener;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.PagerAdapter;
@@ -34,16 +40,15 @@ import ggn.home.help.web.response.CategoryResponse;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.SubCategory;
 
+import static ggn.home.help.features.addMemories.fragments.AddDescriptionFragment.MEDIA_ACTION_ARG;
+
 public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBinding, FullLifeAlbumPresenter> implements FullLifeAlbumView, CategorySelectedListener, SubCategorySelectedListener {
 
     private PagerAdapter adapter;
-    private boolean isPostEnabled;
     private MenuItem menuItemPost;
-    private String checkedItemCategory = "Choose Category";
-    private String checkedItemSubCategory = "Choose Sub Category";
+    private MenuItem menuItemAdd;
     private CategoryResponse categoryResponseObj;
-    private AlertDialog dialogCategory;
-    private AlertDialog dialogSubCategory;
+    private CategoryResponse.Datum categoryDataObj;
     private Category categoryObj;
     private SubCategory subCategoryObj;
     private List<SubCategory> listSubCategory;
@@ -130,7 +135,6 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 }
             }
         });
-
         getPresenter().getCategories();
     }
 
@@ -145,6 +149,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_add_white, menu);
         menuItemPost = menu.findItem(R.id.action_post);
+        menuItemAdd = menu.findItem(R.id.action_add);
         return true;
     }
 
@@ -155,7 +160,46 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 menuItemPost.setVisible(false);
                 ((ImagesFragment) adapter.getItem(0)).resetData();
                 ((VideosFragment) adapter.getItem(1)).resetData();
-                isPostEnabled = false;
+            }
+        } else if (requestCode == Constants.RequestCode.IMAGE_SEARCH) {
+            if (resultCode == RESULT_OK) {
+                if (data.getBooleanExtra(MatisseFragment.EXTRA_IS_GALLERY, false)) {
+                    List<Uri> uriList = Matisse.obtainResult(data);
+                    List<String> pathList = Matisse.obtainPathResult(data);
+                    Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                    intent.putExtra("images_size", uriList.size());
+                    intent.putExtra(Constants.Extras.DATA, categoryDataObj);
+                    intent.putExtra(Constants.Extras.IS_MEMORY, true);
+                    intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategoryObj);
+                    intent.putStringArrayListExtra("list_images", (ArrayList<String>) pathList);
+                    startActivity(intent);
+                } else {
+                    if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
+                        if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+
+                            Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                            intent.putExtra("images_size", 1);
+                            intent.putExtra(Constants.Extras.IS_MEMORY, true);
+                            intent.putExtra(Constants.Extras.DATA, categoryDataObj);
+                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategoryObj);
+                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
+                            startActivity(intent);
+                        } else {
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+
+                            Intent intent = new Intent(getActivityG(), MemoryPreviewActivity.class);
+                            intent.putExtra("images_size", 1);
+                            intent.putExtra(Constants.Extras.IS_MEMORY, true);
+                            intent.putExtra(Constants.Extras.DATA, categoryDataObj);
+                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategoryObj);
+                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
+                            startActivity(intent);
+                        }
+                    }
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -191,7 +235,10 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                DashboardActivity.start(getActivityG(), true);
+//                DashboardActivity.start(getActivityG(), true);
+                Intent intentAddMedia = new Intent(getActivityG(), AddMediaActivity.class);
+                intentAddMedia.putExtra(Constants.Extras.IS_MEMORY, true);
+                startActivityForResult(intentAddMedia, Constants.RequestCode.IMAGE_SEARCH);
                 break;
 
             case R.id.action_post:
@@ -226,6 +273,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
 
     @Override
     public void onCategorySelected(CategoryResponse.Datum category) {
+        categoryDataObj = category;
         if (dialogCat != null) {
             dialogCat.dismiss();
             dialogCat = null;
@@ -240,11 +288,11 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
         getDataBinder().textViewSubCategory.setText("Select Sub Category");
         listSubCategory = category.subCategory;
 
-        if (categoryObj != null && subCategoryObj != null) {
-            ((ImagesFragment) adapter.getItem(0)).setCategoryIds(categoryObj.id, subCategoryObj.id);
-            ((VideosFragment) adapter.getItem(1)).setCategoryIds(categoryObj.id, subCategoryObj.id);
+        if (categoryObj != null) {
+            ((ImagesFragment) adapter.getItem(0)).setCategoryIds(categoryObj.id, "");
+            ((VideosFragment) adapter.getItem(1)).setCategoryIds(categoryObj.id, "");
         }
-
+        menuItemAdd.setVisible(false);
     }
 
     @Override
@@ -258,5 +306,6 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
 
         ((ImagesFragment) adapter.getItem(0)).setCategoryIds(categoryObj.id, subCategoryObj.id);
         ((VideosFragment) adapter.getItem(1)).setCategoryIds(categoryObj.id, subCategoryObj.id);
+        menuItemAdd.setVisible(true);
     }
 }

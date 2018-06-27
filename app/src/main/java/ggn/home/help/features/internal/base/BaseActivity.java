@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -230,5 +229,4 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
      * After that,put all the stuff you need in your activity on create.
      */
     protected abstract void onCreateActivityG();
-
 }

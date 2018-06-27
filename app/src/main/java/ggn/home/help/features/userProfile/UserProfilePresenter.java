@@ -33,6 +33,11 @@ public class UserProfilePresenter extends BasePresenter<UserProfileView> impleme
         likeUnlikePost(memory);
     }
 
+    @Override
+    public void showComments(PostsResponse.Datum datum) {
+
+    }
+
     public void likeUnlikePost(final PostsResponse.Datum memory) {
         LikePostRequest likePostRequest= new LikePostRequest();
         likePostRequest.userId = Integer.parseInt(getView().getLocalData().getUserId());

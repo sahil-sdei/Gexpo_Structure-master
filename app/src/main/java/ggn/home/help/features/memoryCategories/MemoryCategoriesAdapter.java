@@ -39,7 +39,44 @@ public class MemoryCategoriesAdapter extends InfiniteAdapterG<ItemAddMemoryBindi
     protected void bindData(int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
 
-        ImageLoader.loadFullWidthImage(baseViewHolder.binding.imageViewBg, baseUrl+dataList.get(position).category.image);
+        String drawable = "";
+        switch (position) {
+            case 0:
+                drawable = "pre_birth";
+                break;
+            case 1:
+                drawable = "birth";
+                break;
+            case 2:
+                drawable = "infancy";
+                break;
+            case 3:
+                drawable = "early_childhood";
+                break;
+            case 4:
+                drawable = "middle_childhood";
+                break;
+            case 5:
+                drawable = "late_childhood";
+                break;
+            case 6:
+                drawable = "adolescence";
+                break;
+            case 7:
+                drawable = "early_adulthood";
+                break;
+            case 8:
+                drawable = "midlife";
+                break;
+            case 9:
+                drawable = "mature_adulthood";
+                break;
+            case 10:
+                drawable = "late_adulthood";
+                break;
+        }
+
+        ImageLoader.loadFullWidthImage(baseViewHolder.binding.imageViewBg, drawable);
         if(!TextUtils.isEmpty(dataList.get(position).category.years))
             baseViewHolder.binding.relativeLayoutYears.setVisibility(View.VISIBLE);
         else

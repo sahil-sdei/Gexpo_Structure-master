@@ -58,7 +58,9 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
                     getPresenter().searchUser(charSequence.toString());
                 } else {
                     getPresenter().searchUser("");
+                    getDataBinder().textViewNoRecords.setVisibility(View.GONE);
                     getDataBinder().recyclerViewUsers.setVisibility(View.GONE);
+                    listUsers.clear();
                 }
             }
 
@@ -71,6 +73,7 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
     @Override
     public void showUsers(SearchUserResponse output) {
+        getDataBinder().textViewNoRecords.setVisibility(View.GONE);
         listUsers = output.data;
         getDataBinder().recyclerViewUsers.setHasFixedSize(true);
         getDataBinder().recyclerViewUsers.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.VERTICAL, false));
@@ -81,7 +84,9 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
     @Override
     public void noDataFound() {
-        listUsers = new ArrayList<>();
-        searchUserAdapter.notifyDataSetChanged();
+        getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
+        listUsers.clear();
+        if (searchUserAdapter != null)
+            searchUserAdapter.notifyDataSetChanged();
     }
 }

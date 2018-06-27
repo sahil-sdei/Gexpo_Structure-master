@@ -17,16 +17,35 @@
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="@dimen/margin5dp"
             android:hint="@string/search_name"
-            android:textColorHint="@color/greyLight"
             android:imeOptions="actionSearch"
             android:padding="@dimen/margin13dp"
+            android:textColorHint="@color/greyLight"
             android:textSize="@dimen/text16sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewUsers"
-            android:visibility="gone"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewNoRecords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin20dp"
+                android:gravity="center"
+                android:lines="1"
+                android:text="No results found"
+                android:padding="@dimen/margin10dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text16sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 </layout>

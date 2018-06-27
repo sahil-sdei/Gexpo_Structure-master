@@ -3,6 +3,7 @@ package ggn.home.help.features.userProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
@@ -75,6 +76,10 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
     public void initViews() {
         setupToolbar("");
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        Typeface font = Typeface.createFromAsset(getActivityG().getAssets(), "fonts/Roboto-Medium.ttf");
+//        getDataBinder().collapsingToolbar.setCollapsedTitleTypeface(font);
+//        getDataBinder().collapsingToolbar.setExpandedTitleTypeface(font);
+
 
         if (getIntent().getStringExtra(Constants.Extras.USER_ID).equalsIgnoreCase(getLocalData().getUserId())) {
             getDataBinder().textViewAddFriend.setVisibility(View.GONE);
@@ -94,7 +99,7 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
                 MenuItem menuItemFamily = popup.getMenu().findItem(R.id.action_family_member);
                 MenuItem menuItemUnfriend = popup.getMenu().findItem(R.id.action_un_friend);
 
-                if (profileResponse.about.isFriend == 0) {
+                if (profileResponse.about.isFriend == 2) {
                     menuItemFriend.setVisible(true);
                     menuItemFamily.setVisible(true);
                     menuItemUnfriend.setVisible(false);
@@ -215,21 +220,22 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
     public void showProfileData(ProfileResponse output) {
         profileResponse = output;
         getDataBinder().textViewUserName.setText(output.about.name);
+        getDataBinder().collapsingToolbar.setTitle(output.about.name);
+//        getDataBinder().collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         ImageLoader.loadFullWidthImage(getDataBinder().imageViewProfilePic, output.about.profileImage);
 
 
-        if (output.about.isFriend == 0) {
-            getDataBinder().textViewAddFriend.setText("Add Friend");
-            getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people, 0, 0);
-        } else if (output.about.isFriend == 2) {
+        if (output.about.isFriend == 1) {
+            getDataBinder().textViewAddFriend.setText("Unfriend");
+            getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people_blue, 0, 0);
+        } else if (output.about.isFriend == 0) {
             getDataBinder().textViewAddFriend.setText("Pending");
             getDataBinder().textViewAddFriend.setTextColor(ContextCompat.getColor(getActivityG(), R.color.textRed));
             getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people, 0, 0);
             getDataBinder().textViewAddFriend.setEnabled(false);
         } else {
-            getDataBinder().textViewAddFriend.setText("Unfriend");
-            getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people_blue, 0, 0);
-            getDataBinder().textViewAddFriend.setEnabled(false);
+            getDataBinder().textViewAddFriend.setText("Add Friend");
+            getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people, 0, 0);
         }
 
         int currentTab = getDataBinder().viewPager.getCurrentItem();

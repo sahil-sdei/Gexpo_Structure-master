@@ -38,6 +38,7 @@ public @interface Constants {
         String TYPE = "type";
         String CATEGORY_DATA = "category_data";
         String SUB_CATEGORY_DATA = "sub_category_data";
+        String COMMENT_COUNT = "comment_count";
     }
 
     @interface RequestCode {
@@ -56,6 +57,7 @@ public @interface Constants {
         int SELECT_IMAGES_VIDEOS = 511;
         int POST_VIA_MEMORY = 512;
         int EDIT_PROFILE = 513;
+        int COMMENTS = 514;
     }
 
 }

@@ -7,4 +7,5 @@ public interface MemoriesAdapterBinder {
 
     void onLikeClicked(PostsResponse.Datum memory);
 
+    void showComments(PostsResponse.Datum datum);
 }

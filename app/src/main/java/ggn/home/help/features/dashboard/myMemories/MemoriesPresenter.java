@@ -28,6 +28,11 @@ public class MemoriesPresenter extends BasePresenter<MemoriesView> implements Me
         likeUnlikePost(memory);
     }
 
+    @Override
+    public void showComments(PostsResponse.Datum datum) {
+        getView().openComments(datum);
+    }
+
     public void likeUnlikePost(final PostsResponse.Datum memory) {
         LikePostRequest likePostRequest= new LikePostRequest();
         likePostRequest.userId = Integer.parseInt(getView().getLocalData().getUserId());

@@ -2,6 +2,8 @@ package ggn.home.help.features.comments;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.TextUtils;
+import android.view.View;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import ggn.home.help.databinding.ItemCommentsBinding;
 import ggn.home.help.databinding.ItemNotificationBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.notifications.Notifications;
+import ggn.home.help.features.userProfile.UserProfileActivity;
+import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.CommentListResponse;
 
 public class CommentsAdapter extends InfiniteAdapterG<ItemCommentsBinding> {
@@ -37,7 +41,20 @@ public class CommentsAdapter extends InfiniteAdapterG<ItemCommentsBinding> {
     @Override
     protected void bindData(final int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
-        String htmlText = "<b>"+dataList.get(position).user.name+"</b>"+" "+dataList.get(position).comment;
+
+        if(!TextUtils.isEmpty(dataList.get(position).user.profileImage))
+            ImageLoader.loadUserImageSmall(baseViewHolder.binding.imageViewProfilePic, dataList.get(position).user.profileImage);
+        else
+            baseViewHolder.binding.imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
+
+        baseViewHolder.binding.imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserProfileActivity.start(context, dataList.get(position).user.id);
+            }
+        });
+
+        String htmlText = "<b>"+dataList.get(position).user.name+"</b>"+"  "+dataList.get(position).comment;
         baseViewHolder.binding.textViewNotification.setText(Html.fromHtml(htmlText));
         baseViewHolder.binding.setBinder(commentsAdapterBinder);
         baseViewHolder.binding.executePendingBindings();
