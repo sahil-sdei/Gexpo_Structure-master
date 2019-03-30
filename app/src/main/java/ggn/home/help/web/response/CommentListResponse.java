@@ -36,6 +36,9 @@ public class CommentListResponse {
         @SerializedName("user")
         @Expose
         public User user;
+        @SerializedName("date")
+        @Expose
+        public String date;
     }
 
 }

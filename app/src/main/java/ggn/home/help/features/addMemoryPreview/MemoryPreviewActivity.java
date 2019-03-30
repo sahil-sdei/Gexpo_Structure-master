@@ -18,6 +18,7 @@ import ggn.home.help.utils.UtillsG;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.request.AddMemoryRequest;
 import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.Child;
 import ggn.home.help.web.response.SubCategory;
 
 public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreviewBinding, MemoryPreviewPresenter> implements MemoryPreviewView, View.OnClickListener {
@@ -69,8 +70,26 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
         subCategoryObj = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY);
         getDataBinder().textViewTitle.setText(categoriesObj.category.name + " > " + categoriesObj.category.subTitle);
 
+        if (!TextUtils.isEmpty(getLocalData().getChildId())) {
+            for (Child childObj : getLocalData().getChildAccounts().data.childs) {
+                if (childObj.id.equalsIgnoreCase(getLocalData().getChildId())) {
+                    getDataBinder().textViewUserName.setText(childObj.userProfile.name);
+                    if (!TextUtils.isEmpty(childObj.profileImage))
+                        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/" +
+                                childObj.profileImage);
+                    else
+                        getDataBinder().imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
+                    break;
+                }
+            }
+            return;
+        }
+
         getDataBinder().textViewUserName.setText(getLocalData().getUserName());
-        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, getLocalData().getProfileImage());
+        if (!TextUtils.isEmpty(getLocalData().getProfileImage()))
+            ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, getLocalData().getProfileImage());
+        else
+            getDataBinder().imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
     }
 
     @Override
@@ -84,9 +103,12 @@ public class MemoryPreviewActivity extends BaseActivity<ActivityAddMemoryPreview
                     addMemoryRequest.categoryId = categoriesObj.category.id;
                     addMemoryRequest.subCategoryId = subCategoryObj.id;
                     addMemoryRequest.title = getDataBinder().editTextTitle.getText().toString();
+                    if (!TextUtils.isEmpty(getLocalData().getChildId()))
+                        addMemoryRequest.childId = getLocalData().getChildId();
+
                     getPresenter().addMemory(addMemoryRequest, getIntent().getStringArrayListExtra("list_images"));
                 } else {
-                    displayError("Please enter title for your memory.");
+                    displayError("Please enter description for your memory.");
                 }
                 break;
         }

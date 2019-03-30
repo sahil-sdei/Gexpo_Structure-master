@@ -66,7 +66,7 @@ public class FamilyActivity extends BaseActivity<ActivityRecyclerViewBinding, Fa
     @Override
     public void noDataFound() {
         getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
-        listFamily = new ArrayList<>();
+        listFamily.clear();
         if (commentsAdapter != null)
             commentsAdapter.notifyDataSetChanged();
     }

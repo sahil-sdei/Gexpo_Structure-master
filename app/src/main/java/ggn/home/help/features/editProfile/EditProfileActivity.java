@@ -103,7 +103,10 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
         getDataBinder().editTextAddress.setText(output.about.address);
         getDataBinder().editTextLifeLesson.setText(output.about.lifeLession);
 
-        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        if (!TextUtils.isEmpty(output.about.profileImage))
+            ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        else
+            getDataBinder().imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
 
         if (!TextUtils.isEmpty(output.about.gender))
             if (output.about.gender.equalsIgnoreCase("Male")) {

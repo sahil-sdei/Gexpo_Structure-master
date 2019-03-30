@@ -25,6 +25,8 @@ import ggn.home.help.databinding.ActivitySignUpBinding;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.features.signIn.SignInActivity;
+import ggn.home.help.utils.CallBackG;
+import ggn.home.help.utils.DialogHelper;
 import ggn.home.help.utils.UtillsG;
 import ggn.home.help.web.response.LoginResponse;
 
@@ -115,9 +117,14 @@ public class SignUpActivity extends BaseActivity<ActivitySignUpBinding, SignUpPr
 
     @Override
     public void goToSignIn(LoginResponse output) {
-        Toast.makeText(getActivityG(), output.message, Toast.LENGTH_LONG).show();
-        SignInActivity.start(getActivityG());
-        finish();
+//        Toast.makeText(getActivityG(), output.message, Toast.LENGTH_LONG).show();
+        DialogHelper.getInstance().showInformation(getActivityG(), output.message, new CallBackG<String>() {
+            @Override
+            public void callBack(String output) {
+                SignInActivity.start(getActivityG());
+                finish();
+            }
+        });
     }
 
     @Override

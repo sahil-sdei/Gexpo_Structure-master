@@ -6,14 +6,21 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import ggn.home.help.utils.TypefaceUtil;
 import ggn.home.help.web.Web;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by singh.gagandeep on 12/09/17.
  */
 
-public class ApplicationClass extends Application implements Application.ActivityLifecycleCallbacks {
+public class ApplicationClass extends MultiDexApplication implements Application.ActivityLifecycleCallbacks {
     private static boolean isInterestingActivityVisible;
     private static Retrofit retrofit;
     private static String userId;
@@ -55,8 +62,20 @@ public class ApplicationClass extends Application implements Application.Activit
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        try {
+            MultiDex.install(this);
+        } catch (RuntimeException multiDexException) {
+            multiDexException.printStackTrace();
+        }
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         sInstance = this;
 
         // Register to be notified of activity state changes
@@ -79,7 +98,20 @@ public class ApplicationClass extends Application implements Application.Activit
                 .callbackExecutor(Executors.newFixedThreadPool(5))
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(okClient(context))
                 .build();
+    }
+
+    private static OkHttpClient okClient(Context context) {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.connectTimeout(1, TimeUnit.MINUTES);
+        httpClient.readTimeout(1, TimeUnit.MINUTES);
+        httpClient.addInterceptor(interceptor);
+
+        return httpClient.build();
     }
 
     private static ApplicationClass sInstance = null;

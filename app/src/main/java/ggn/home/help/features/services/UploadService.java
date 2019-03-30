@@ -22,6 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static ggn.home.help.features.services.UploadPostService.RESULT_POST;
+import static ggn.home.help.features.services.UploadPostService.RESULT_TYPE;
+
 public class UploadService extends IntentService implements ProgressRequestBody.UploadCallbacks {
 
     public static final String RESULT = "result";
@@ -44,19 +47,14 @@ public class UploadService extends IntentService implements ProgressRequestBody.
         if (listImages.size() > 0) {
             fileParts = new MultipartBody.Part[listImages.size()];
             for (int index = 0; index < listImages.size(); index++) {
-                Log.d("PostPreviewPresenter", "requestUploadSurvey: " + index + "  " + listImages.get(index));
                 File file = null;
                 ProgressRequestBody surveyBody = null;
                 if (isImageFile(listImages.get(index))) {
                     file = new File(listImages.get(index));
-//                    surveyBody = ProgressRequestBody.create(MediaType.parse("image/*"), file);
                     surveyBody = new ProgressRequestBody(file, "image/*", this);
-                    Log.d("PostPreviewPresenter", "Image " + listImages.get(index));
                 } else if (isVideoFile(listImages.get(index))) {
                     file = new File(listImages.get(index));
-//                    surveyBody = ProgressRequestBody.create(MediaType.parse("video/*"), file);
                     surveyBody = new ProgressRequestBody(file, "video/*", this);
-                    Log.d("PostPreviewPresenter", "Video " + listImages.get(index));
                 }
                 fileParts[index] = MultipartBody.Part.createFormData("galleries[]", file.getName(), surveyBody);
             }
@@ -81,13 +79,15 @@ public class UploadService extends IntentService implements ProgressRequestBody.
 
     private void publishResults(int result) {
         Intent intent = new Intent(NOTIFICATION);
-        intent.putExtra(RESULT, result);
+        intent.putExtra(RESULT_POST, result);
+        intent.putExtra(RESULT_TYPE, 2);
         sendBroadcast(intent);
     }
 
     private void publishResults(int result, int progress) {
         Intent intent = new Intent(NOTIFICATION);
-        intent.putExtra(RESULT, result);
+        intent.putExtra(RESULT_POST, result);
+        intent.putExtra(RESULT_TYPE, 2);
         intent.putExtra(PROGRESS, progress);
         sendBroadcast(intent);
     }

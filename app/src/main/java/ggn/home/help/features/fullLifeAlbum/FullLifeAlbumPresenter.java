@@ -48,6 +48,9 @@ public class FullLifeAlbumPresenter extends BasePresenter<FullLifeAlbumView> imp
         fullLifeAlbumRequest.memoryType = memoryType;
         fullLifeAlbumRequest.page = page;
 
+        if(!TextUtils.isEmpty(getView().getLocalData().getChildId()))
+            fullLifeAlbumRequest.childId = getView().getLocalData().getChildId();
+
         Gson gson = new Gson();
 
 //        getView().showLoading(getView().getActivityG().getString(R.string.loading), getView().getActivityG().getString(R.string.please_wait));

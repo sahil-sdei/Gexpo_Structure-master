@@ -19,6 +19,7 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
     private List<SearchUserResponse.Datum> listUsers;
     private SearchUserAdapter searchUserAdapter;
+    private boolean isEmpty;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SearchUserActivity.class);
@@ -56,7 +57,9 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
                 if (charSequence.length() > 0) {
                     getDataBinder().recyclerViewUsers.setVisibility(View.VISIBLE);
                     getPresenter().searchUser(charSequence.toString());
+                    isEmpty = false;
                 } else {
+                    isEmpty = true;
                     getPresenter().searchUser("");
                     getDataBinder().textViewNoRecords.setVisibility(View.GONE);
                     getDataBinder().recyclerViewUsers.setVisibility(View.GONE);
@@ -84,7 +87,8 @@ public class SearchUserActivity extends BaseActivity<ActivitySearchUserBinding, 
 
     @Override
     public void noDataFound() {
-        getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
+        if (!isEmpty)
+            getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
         listUsers.clear();
         if (searchUserAdapter != null)
             searchUserAdapter.notifyDataSetChanged();

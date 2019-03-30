@@ -55,7 +55,6 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
             @Override
             public void onClick(View view) {
                 ((DashboardActivity) getActivity()).showFragmentWithBackStack(MemoryCategoriesFragment.newInstance(false), getString(R.string.post_memory));
-
             }
         });
 
@@ -97,12 +96,15 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
 
     @Override
     public void showChildAccounts(ChildAccountsResponse output) {
+        getLocalData().saveChildAccounts(output);
         ((DashboardActivity) getActivity()).setUpAccounts(output.data.childs);
     }
 
     @Override
     public void showUserPosts(PostsResponse output) {
         if (output.data != null) {
+            getDataBinder().textViewAddYourMemories.setVisibility(View.GONE);
+            getDataBinder().recyclerViewMemories.setVisibility(View.VISIBLE);
             dataList = output.data;
             getDataBinder().swipeRefreshLayout.setRefreshing(false);
             getDataBinder().recyclerViewMemories.setHasFixedSize(true);
@@ -116,6 +118,7 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
             getDataBinder().textViewAddYourMemories.setVisibility(View.INVISIBLE);
         } else {
             getDataBinder().textViewAddYourMemories.setVisibility(View.VISIBLE);
+            getDataBinder().recyclerViewMemories.setVisibility(View.GONE);
         }
     }
 
@@ -147,5 +150,12 @@ public class MemoriesFragment extends BaseFragment<FragmentMemoriesBinding, Memo
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void noDataFound() {
+        getDataBinder().swipeRefreshLayout.setRefreshing(false);
+        getDataBinder().textViewAddYourMemories.setVisibility(View.VISIBLE);
+        getDataBinder().recyclerViewMemories.setVisibility(View.GONE);
     }
 }

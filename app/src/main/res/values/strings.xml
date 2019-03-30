@@ -114,5 +114,6 @@
     <string name="please_enter_nick_name">Please enter nick name</string>
     <string name="please_select_dob">Please enter date of birth</string>
     <string name="unfriend">Unfriend</string>
+    <string name="clear"><u>Clear</u></string>
 
 </resources>

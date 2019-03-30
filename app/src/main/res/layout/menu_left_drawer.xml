@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_menu"
@@ -27,16 +28,15 @@
     </RelativeLayout>
 
     <ggn.home.help.utils.widgets.CustomTextView
-        android:drawableRight="@drawable/ic_dropdown"
-        android:drawablePadding="@dimen/margin5dp"
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
-        android:maxWidth="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin20dp"
         android:layout_marginTop="@dimen/margin10dp"
         android:background="@null"
-        android:text="Emilly Smith"
+        android:drawablePadding="@dimen/margin5dp"
+        android:drawableRight="@drawable/ic_dropdown"
+        android:maxWidth="150dp"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/text18sp" />
@@ -44,6 +44,79 @@
     <Space
         android:layout_width="wrap_content"
         android:layout_height="@dimen/margin40dp" />
+
+    <ggn.home.help.utils.widgets.CustomTextView
+        android:id="@+id/textViewParent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingBottom="@dimen/margin3dp"
+        android:paddingLeft="@dimen/margin10dp"
+        android:paddingTop="@dimen/margin3dp"
+        android:text="PARENT"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text13sp"
+        app:fontG="Roboto-Bold.ttf" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutParentProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin10dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutParentProfilePic"
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/bordered_circle" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageViewParentProfilePic"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:id="@+id/textViewParentUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin10dp"
+                android:layout_marginRight="@dimen/margin10dp"
+                android:layout_toRightOf="@+id/relativeLayoutParentProfilePic"
+                android:lines="1"
+                android:textColor="@color/greyDark"
+                android:textSize="@dimen/text16sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ggn.home.help.utils.widgets.CustomTextView
+        android:id="@+id/textViewChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:paddingBottom="@dimen/margin3dp"
+        android:paddingLeft="@dimen/margin10dp"
+        android:paddingTop="@dimen/margin3dp"
+        android:text="CHILD"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text13sp"
+        android:visibility="gone"
+        app:fontG="Roboto-Bold.ttf" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
@@ -62,13 +135,12 @@
             android:visibility="gone" />
 
         <RelativeLayout
-            android:paddingLeft="@dimen/margin10dp"
-            android:paddingRight="@dimen/margin10dp"
             android:id="@+id/relativeLayoutManageAccounts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/listAccounts"
-            >
+            android:paddingLeft="@dimen/margin10dp"
+            android:paddingRight="@dimen/margin10dp">
 
             <ImageView
                 android:id="@+id/imageSettings"

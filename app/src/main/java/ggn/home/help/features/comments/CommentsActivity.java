@@ -21,7 +21,6 @@ import ggn.home.help.web.response.PostsResponse;
 
 public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, CommentsPresenter> implements CommentsView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private List<Comments> list;
     private CommentsAdapter commentsAdapter;
     boolean isCommentAdded = false;
     private PostsResponse.Datum postObj;
@@ -77,7 +76,7 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
@@ -131,11 +130,19 @@ public class CommentsActivity extends BaseActivity<ActivityCommentsBinding, Comm
 
     @Override
     public void onBackPressed() {
-        Intent intent = getIntent();
-        intent.putExtra(Constants.Extras.DATA, postObj);
-        intent.putExtra(Constants.Extras.COMMENT_COUNT, listComments.size());
-        setResult(Activity.RESULT_OK, intent);
-        finish();
+        if (listComments != null) {
+            Intent intent = getIntent();
+            intent.putExtra(Constants.Extras.DATA, postObj);
+            intent.putExtra(Constants.Extras.COMMENT_COUNT, listComments.size());
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
         super.onBackPressed();
+    }
+
+    @Override
+    public void commentDeletedSuccessfully(CommentListResponse.Datum commentObj) {
+        listComments.remove(commentObj);
+        commentsAdapter.notifyDataSetChanged();
     }
 }

@@ -2,22 +2,589 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/maverick/StudioProjects/Memoreeta-master/camera/build/intermediates/bundles/default/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/7d202d2e894650a53e2b1d71262c15112e25051d/output/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="d1356c96c3d7d0230f7a0e752d6fd0702afebcc8">
-        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/pre-dexed/debug/classes_2f45a207f52176edc5d4a6f2a6e6ce5153801579.jar" />
+        sha1="252896ce41f2a84a2849e29235e66098be7d12ee">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3ab25744705cb3b364d4079a63893c2e0263718b/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/maverick/StudioProjects/Memoreeta-master/usemedia/build/intermediates/bundles/default/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.3/7d7f60c4783872861222166f6164215f8951c7b1/common-1.0.3.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="6789604c36a40bc181fd492bc7baa071366050a4">
-        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/pre-dexed/debug/classes_de697a159f96a6cfaa173a62facdca38ae82fbf3.jar" />
+        sha1="7d7f60c4783872861222166f6164215f8951c7b1">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/common-1.0.3_35216b60d46a08580eb8c1a591c325d30e53a934/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava2/2.3.0/f436637f9500ab5b8bc32afe556373180894b4a5/adapter-rxjava2-2.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f436637f9500ab5b8bc32afe556373180894b4a5">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/adapter-rxjava2-2.3.0_b61b75fa8212d9281297964b9564f481bfb7ed0b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/518ab653d96df8c73faaf0e5f07b85faac05f6fd/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d9e973ce005ae994c326ac8e41eb2db04b3ce1b">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_698825a5bd6b8d352aa0e8c5460ece82f1c2ef7f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.2/3efb75ac15c0659bc34f68d715930af8d57530a7/rxjava-2.1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3efb75ac15c0659bc34f68d715930af8d57530a7">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-2.1.2_c8db9d4842f0ff2c4ee3030be1df6f0939f81d60/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/717eae698abf92b804b4995a73d70db67e299a7d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2482bfd874e8b3927f4141105674ad392ff83698">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9a12bb5e1e0797b10348fe0e8d6b4b7eeab6ecb2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/0ec898ea2458ffa465e13a6fe17625ace1440e36/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="68956f5ba1517b7a3d513ba540548e257741cbae">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6ab09000a4a51fb5f167727a009e787747da37d4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/430c4cc3ef2506e6013e32fef9c513757a5c3933/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5ab7b6af3e80111065d8aae2ab9694939bf4d289">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e2f0e254761153c3d14e27ce1c05e798a5d68e87/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/f3d985f0d521b8072ae84603964225955b181b48/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="82ea5a937ab84229fbd2f3fc8cf2a72cbdf0ee0f">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f6a1d454214d9e68c131694b352f07bd89bf0c6b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.1.1/5cf10dddd902443677b1614579f1183f952f3666/glide-4.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5cf10dddd902443677b1614579f1183f952f3666">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-4.1.1_814d2d91d62a072ba4df2fa8e61ff4c704db9210/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.0.2/b9ef4342c934a1a8b107506273dc8061662a322/support-annotations-27.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0b9ef4342c934a1a8b107506273dc8061662a322">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-27.0.2_e1d08d0851aaaed2f35e73d1613df406a1faf3d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_d7ae70be43eaf7472888e70daa23e7fed8fc1980/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2c915df53429148c2719403fe24737f97bd4731c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/7ca32e689473ccde7a7f9bbd20f542d3a66b5743/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="53e8932b1ac8c7dfc35cfeda1f9efbc9822ceaf3">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f10da481b97c80624cfba9efb5b682daebe7a8fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_3cad57ed617533ece2cc485101add4ab3217fbc5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/aa35bf8978a9be5845ec616a67435ad6c3294165/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2f3cb3df170666c6db106758a97d3a91b30d585">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7ac9391cca546dc28c713ec8598015bd59da3421/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.9.1/36e71ab9e903fc4d1b4a58d80572a91d9fd60caf/logging-interceptor-3.9.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="36e71ab9e903fc4d1b4a58d80572a91d9fd60caf">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/logging-interceptor-3.9.1_97266c8eab828664b36f9225652dd87bb791f88f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/766bbdafff957f0052d96fc27a9826628c88c8c1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7f2f348b830f292429db987f74ba3e67c6752322">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_40b1f192ac5b333903399d4a314760d32bbd9de6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/80378c7666a20bbf0930f0a2f404859850d092b2/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c4c0b81bc55396bd92b1401ae5ed40e6cb9f58f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.caverock/androidsvg/1.2.1/d0cb3453e18fffeb053e9b7f052af3dcec9f75b4/androidsvg-1.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d0cb3453e18fffeb053e9b7f052af3dcec9f75b4">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/androidsvg-1.2.1_8361ce9ba52151291fc49a87a7f2a2b0a891ec47/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/35abc2c2e6ad85b947499cabf2be7e3c7b0674a8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bc9ea2bc291bbebc83f5b160d115c699bddc4e16">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f3e0d2a4a1f3034acb5612ae29d819f82d58cea0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/reactive-streams-1.0.0_46745cc886044266aa45bed876a5ef1b88fc2851/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/547180a965c52ba702efa8994cf09ded092df48d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_43408edabc619d6633cf156d1c0065f80ad99064/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2b54ed2f10562dfe19e28ea2fcc97450461cebd4">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e4ed9890c4c7b92b2bc77c5cea1f36aa70cac2ce/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/01ccb030b6b0bb1a4cf02375fd8b4655fa818e4a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="90b4233b87eccc4d2cdacda55f47ce2f0580bc15">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c0fd148d86a0dd9530b13a7cdb7c80320d17d836/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/7776642d3037dcc00189961b11687c385154bd6d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fe3916317a699975bcce0cba2d13fd2d8cf88922">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3d42b98338f0c0e5c7e360c94800091f1ee850d8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.3.0/9e09011e9767bb76b5e27c9b8223476b93b14631/converter-gson-2.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9e09011e9767bb76b5e27c9b8223476b93b14631">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.3.0_4bbf39e645ac7e97c936acdfa6e5a9489cfa7746/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/a2ec6ff987caac3554107b65c8ac9400b065f56e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_304fb992f49bd13b8454270828d035920cb67dec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/2b647be7702aca1dd34aab98c266c36309ccbbb9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ee32e20b978935906eae97ef76173e24a44982f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/232370b22cd7b512528d1124fa131b6f86f7f6ec/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ac2ce6027755bcf49442e70597bec0feb9064f68">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1be5d2ca68fcfd8d0c412972265fe65e3832ab03/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/123c6dfb509601b8d7d7eea58bf55fe36330c4b9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9a0c96cb2e74d3a6e692d920c9e03326e77f6429">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e8f9e70085ab0e524bf04a881f0cf24903d8fb6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.1.1/e336eaee0493d7a441c8e7adbaf38d1d78e58596/annotations-4.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e336eaee0493d7a441c8e7adbaf38d1d78e58596">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-4.1.1_ffb6cb367189992a323cef0406f57ee7c373fe43/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/a519e827048a0721f6273b3f55bd709f82bace86/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0d394688dd7030b83dea8eed3fa483410c24afe0">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b2199d2a72b18c428e9c8fa7b999ca489cbb5c5f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/b353b1be4aea328f9fcd9da796688510af83e7c9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cb2ed48bcba6ba38c485925ea70afab84bd0d1f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.1.1/d02b9bad9380a7f98248e58ec9df65023226259e/disklrucache-4.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d02b9bad9380a7f98248e58ec9df65023226259e">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/disklrucache-4.1.1_8c4cf4b57fcccd5ce629b8f449f51d7046b33ec2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/c0d219356f8169808874ac5f0eeb4963c8d22a7d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4119ea97a7191ff9b8f33b534ea220448f62f491">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e8a684cb2bf8feed36322ad760eb96b1fb486b68/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/0d111e44f69be8398b98054198ada252dc77fb02/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40ee4c228864232eae6f91d74fcfd39a21eefded">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6e7e1e3d148cfd22ba772f2ae091383ad07fb40e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/3d9b1c6125d1d21806501e4f41357633e443700c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_68d7c92e478a4b25b57839f30ead410ed0863986/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/f349e95eeb43554b5c65bd801940e75b99de046c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1db6784d006818fee2591f13b0bf09ac31a3d49a">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_836195380eef3d761f8e3fa4875fa9d8b429c426/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/1196881fdf2bf5cf35df87eb234112e5e8d19aa5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="524dbb5c53295c006c7aa1a209aae0407d6ebc53">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f40951d754300a40deb84f1c449a2fec8408cc02/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/35c6cd3c670730e9cd0ae41c70dcc5491db9ee2a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="caa03787689212c10939f308a55a8dc8a3333ed2">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c28d4abfab5b6538428408ecef7b9acce68c09a9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/common-1.0.0_650ee11d2dbf1575416bc086c0f7a72f2561bb5e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/d519f523594608329eef191370668edabd6f5491/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="978ba04cd179b5fc1f832074cc7c6218dac984d3">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_758905be56fd06fb7dde8d2980e9146b159c5c47/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/2df9890646c4f7fa83139fec29fc5f70962a8b90/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="97c7be4a90a5495a6e3beda08120d0fa106cfdcc">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b29de50418399643638957946af247be06bb7bf0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/6d39123472d73860880fe3c1b04a25db30252b74/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="808deed0b600a65b805b642c2234feb6992dec88">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_075ef0e5a691c066cd35f9e4fb6f695b36a407ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/ec3cdd9f2bcaa933302b243ee1d03964e554e6a0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="807751a24cf96566fd8675517c94d8463cf364db">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b7a4c5a2adefa0692c5f2eb90b0a69ded3d39ce5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/570f1a08129a611089c66389d6eb98405c65abc0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7cc5473b9cf4ea159a263cd477fb3ecb2987b96">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4886dbc61a739e3f7c33f6b95f706298427d2ff0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/ace015023ddeeca06097f7642ba5397c6748a5b7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c3e2786d20b106e0488e638c0dacd6a695d82ab4">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_15cf9e8879f046619314e0d347791d9f789341d3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/2.3.3/eb3399988a52099b0127e27fb5bed666eca86ace/baseLibrary-2.3.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="eb3399988a52099b0127e27fb5bed666eca86ace">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/baseLibrary-2.3.3_0090e02150feaab5fd2e788eb99a97669e317e1b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/6e92537fd1c579799827399f972c8eaa96a34ec3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b4d6fbbb48b42dd03fd9c5a09b3b7a53266df6ed">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_97f34165cb07cf85ab6a7b4f0130db399cbbf0e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/3b2b7318f7d5f0f4728ea11ee74cbc9d531f0723/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a291a37263a30113eb90ad7618fd7081d8c0e837">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f040642efb1776812c649378b5b40600aa1ef316/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/ff2e3eb4902c589d6998e6a8c6aea6afa8b8fe49/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b8b26b28aae0ba8e2db55ad9fe0ebc770530c5ef">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8a748616d0232fb4f974f7e79f25a1c9bf728ae5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_47d73dbcd0e9932e5ecbd3b456093b37d9ef0d57/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/5dd6eb2701783ddc6659547d2ed0498d552a092e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="04cd0cacbedcb338f64665b88bad64d145325fbd">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_46887a2270e8cb123725cb4aecd420e97190359e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.9.1/84b4b7d1c4a238e7899972b7446c250691e65f1f/okhttp-3.9.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="84b4b7d1c4a238e7899972b7446c250691e65f1f">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.9.1_5e384a7d850eb247839cd2900e1b00d1430f3685/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.3.0_2e61b8e33be33582b5772ca2f981a8162b0c5037/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/f3ca744ba43ccc54fe4ef31c0b762cee4bfb442e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b432e82447a3af781e927b9ba0bbb9fe2a496d4a">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c672127ab168ca441495567d4fddaedc090d34ee/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/084660c056b68af2c9f6267fcedc930b3c8f9c66/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed6560f31a6a40b5965f5879d8f2eab1f68def05">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c5205df73b4b9423d28cddd18b28442c4fe38b54/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_c3d430cc4363b22d3d59229235776dcc3e9a81d8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/3803791374391b5862fdc9af86cafffb53fb40a3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7de8817c6fe070c2e179a69c6cfa10ca01d8d0ba">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_13f57431929d450f5e96a2303adef997d584bed4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/05b8d2963b362e8cae247f27d842c8fabb8396c1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="618f75fe11febf263e3234c7da7dc892232a5608">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_748b1049b1c73612ce62771e8e093f85126d84d6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.1.1/df97c1211882e43d08911e0b82eb6e1b25b3d311/gifdecoder-4.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="df97c1211882e43d08911e0b82eb6e1b25b3d311">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/gifdecoder-4.1.1_20af85a6e355de9fffaff7cc2037d96262b2e42d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.android/build-cache/c9f42676c1db5743b98f84385c7a26afb2fab8b3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_75f170f0a57ae782efd185436aeea0a3c49fd8f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.3.0_9e788b42d03ec3367752b93ad08dc4f5c7d09183/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/maverick/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/maverick/StudioProjects/Memoreeta-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_cbeca7d53905222211f9768a6cfd412f531051b0/classes.dex" />
     </item>
 
 </items>

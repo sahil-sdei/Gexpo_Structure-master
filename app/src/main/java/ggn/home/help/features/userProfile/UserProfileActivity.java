@@ -128,7 +128,7 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         getDataBinder().viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if(position == 0){
+                if (position == 0) {
                     if (tab1Call)
                         return;
                     getProfileData(1);
@@ -174,7 +174,7 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         profileRequest.page = 1;
 
         getPresenter().getProfile(profileRequest);
-        Log.d("Tab", ""+tab);
+        Log.d("Tab", "" + tab);
 
         switch (tab) {
             case 1:
@@ -222,7 +222,7 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         getDataBinder().textViewUserName.setText(output.about.name);
         getDataBinder().collapsingToolbar.setTitle(output.about.name);
 //        getDataBinder().collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-        ImageLoader.loadFullWidthImage(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
 
 
         if (output.about.isFriend == 1) {
@@ -236,6 +236,15 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         } else {
             getDataBinder().textViewAddFriend.setText("Add Friend");
             getDataBinder().textViewAddFriend.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_tag_people, 0, 0);
+        }
+
+
+        if (!getIntent().getStringExtra(Constants.Extras.USER_ID).equalsIgnoreCase(getLocalData().getUserId())) {
+            if (output.about.privacy == 1) {
+                getDataBinder().linearLayoutViewProfile.setVisibility(View.GONE);
+                getDataBinder().textViewPrivateProfile.setVisibility(View.VISIBLE);
+                return;
+            }
         }
 
         int currentTab = getDataBinder().viewPager.getCurrentItem();
@@ -285,7 +294,7 @@ public class UserProfileActivity extends BaseActivity<ActivityUserProfileBinding
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
-        builder.setTitle("Select Relation");
+        builder.setTitle("Select your relation with the user");
         LayoutInflater inflater = getLayoutInflater();
         View dialogLayout = inflater.inflate(R.layout.dialog_list_category_sub_category, null);
         RelationsAdapter relationsAdapter = new RelationsAdapter(getActivityG(), listRelations);

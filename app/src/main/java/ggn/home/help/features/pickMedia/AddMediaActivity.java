@@ -222,6 +222,7 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
                     case 0:
                         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
                         ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                        ((PhotoNewFragment) adapter.getItem(1)).resetTimer();
                         break;
                     case 1:
                         if (isVideoClicked) {
@@ -229,9 +230,9 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
                             ((PhotoNewFragment) adapter.getItem(1)).setVideoView();
                             isVideoClicked = false;
                         } else {
+                            ((PhotoNewFragment) adapter.getItem(1)).resetTimer();
                             ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
                             tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
-                            ((PhotoNewFragment) adapter.getItem(1)).setPictureView();
                         }
                         break;
                 }
@@ -248,6 +249,7 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
                     case 0:
                         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
                         ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
+                        ((PhotoNewFragment) adapter.getItem(1)).resetTimer();
                         break;
                     case 1:
                         if (isVideoClicked) {
@@ -255,6 +257,7 @@ public class AddMediaActivity extends AppCompatActivity implements AlbumMediaAda
                             ((PhotoNewFragment) adapter.getItem(1)).setVideoView();
                             isVideoClicked = false;
                         } else {
+                            ((PhotoNewFragment) adapter.getItem(1)).resetTimer();
                             ((TextView)findViewById(R.id.textViewVideo)).setTextColor(Color.parseColor("#000000"));
                             tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#212D9D"));
                             ((PhotoNewFragment) adapter.getItem(1)).setPictureView();

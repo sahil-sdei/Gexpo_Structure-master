@@ -34,5 +34,16 @@ public class Gallery implements Serializable{
     @SerializedName("gallery")
     @Expose
     public String gallery;
+    public static final int HEADER_ITEM_TYPE = 0;
+    public static final int GRID_ITEM_TYPE = 1;
+    public int itemType;
+    public String mItemTitle;
 
+    public Gallery(String title) {
+        mItemTitle = title;
+    }
+
+    public int getItemType() {
+        return itemType;
+    }
 }

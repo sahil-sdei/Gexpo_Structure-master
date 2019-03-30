@@ -1,6 +1,7 @@
 package ggn.home.help.features.dashboard.menu;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 
 import java.util.List;
@@ -33,17 +34,19 @@ public class AccountsAdapter extends InfiniteAdapterG<ItemAccountsBinding> {
     }
 
     @Override
-    protected void bindData(int position, BaseViewHolder baseViewHolder) {
+    protected void bindData(final int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
         baseViewHolder.binding.relativeLayoutParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accountsAdapterBinder.onAccountClicked();
+                accountsAdapterBinder.onAccountClicked(dataList.get(position));
             }
         });
 
-        ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/"+dataList.get(position).profileImage);
-
+        if (!TextUtils.isEmpty(dataList.get(position).profileImage))
+            ImageLoader.loadImageSmall(baseViewHolder.binding.imageViewProfilePic, "http://18.216.102.186/memoreeta/files/profileimage/" + dataList.get(position).profileImage);
+        else
+            baseViewHolder.binding.imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
 
         baseViewHolder.binding.executePendingBindings();
     }

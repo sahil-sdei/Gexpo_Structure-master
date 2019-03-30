@@ -6,6 +6,9 @@ import android.view.View;
 
 import com.github.florent37.camerafragment.PreviewActivity;
 
+import java.io.Serializable;
+import java.util.List;
+
 import ggn.home.help.R;
 import ggn.home.help.databinding.ActivityPrivacyBinding;
 import ggn.home.help.databinding.ActivityShareBinding;
@@ -13,8 +16,11 @@ import ggn.home.help.features.addMemories.fragments.AddDescriptionFragment;
 import ggn.home.help.features.familyMembers.FamilyMembersActivity;
 import ggn.home.help.features.internal.base.BaseActivity;
 import ggn.home.help.utils.Constants;
+import ggn.home.help.web.response.AllFamilyResponse;
 
 public class PrivacyActivity extends BaseActivity<ActivityPrivacyBinding, PrivacyPresenter> implements PrivacyView, View.OnClickListener {
+
+    private List<AllFamilyResponse.Datum> listIds;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, PrivacyActivity.class);
@@ -52,32 +58,36 @@ public class PrivacyActivity extends BaseActivity<ActivityPrivacyBinding, Privac
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.relativeLayoutEveryone:
-                returnResult(0);
+                returnResult(1);
                 break;
             case R.id.relativeLayoutFriends:
-                returnResult(1);
+                returnResult(2);
                 break;
             case R.id.relativeLayoutFamily:
                 startActivityForResult(new Intent(getActivityG(), FamilyMembersActivity.class), Constants.RequestCode.SELECT_FAMILY_MEMBERS);
                 break;
             case R.id.relativeLayoutOnlyMe:
-                returnResult(3);
+                returnResult(4);
                 break;
         }
     }
 
-    private void returnResult(int type){
+    private void returnResult(int type) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra(Constants.Extras.PRIVACY, type);
+        if (listIds != null) {
+            resultIntent.putExtra(Constants.Extras.RETURN_DATA, (Serializable) listIds);
+        }
         setResult(RESULT_OK, resultIntent);
         finish();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == Constants.RequestCode.SELECT_FAMILY_MEMBERS){
-            if(resultCode == RESULT_OK){
-                returnResult(2);
+        if (requestCode == Constants.RequestCode.SELECT_FAMILY_MEMBERS) {
+            if (resultCode == RESULT_OK) {
+                listIds = (List<AllFamilyResponse.Datum>) data.getSerializableExtra(Constants.Extras.RETURN_DATA);
+                returnResult(3);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

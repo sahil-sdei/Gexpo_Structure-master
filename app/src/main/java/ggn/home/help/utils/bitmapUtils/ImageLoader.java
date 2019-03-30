@@ -37,7 +37,7 @@ public class ImageLoader {
             Glide
                     .with(imageView.getContext())
                     .load(url)
-                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).override(50, 50)
+                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).override(100, 100)
                     )
                     .into(((ImageView) imageView));
         }
@@ -138,11 +138,13 @@ public class ImageLoader {
             int id = (imageView).getContext().getResources().getIdentifier(url, "drawable", imageView.getContext().getPackageName());
             ((ImageView) imageView).setImageResource(id);
         } else {
-
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.override(800, 800);
+            requestOptions.transforms(new CenterCrop(), new RoundedCorners(10));
             Glide
                     .with(imageView.getContext())
                     .load(url)
-                    .apply(new RequestOptions().centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .apply(requestOptions)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(((ImageView) imageView));
         }
@@ -162,7 +164,7 @@ public class ImageLoader {
             Glide
                     .with(imageView.getContext())
                     .load(url)
-                    .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL))
+                    .apply(new RequestOptions().centerInside().diskCacheStrategy(DiskCacheStrategy.ALL).override(800, 800))
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(((ImageView) imageView));
         }

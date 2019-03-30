@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -13,69 +14,56 @@ import ggn.home.help.R;
  * Created by G-Expo on 03 May 2017.
  */
 
-public class DialogHelper
-{
+public class DialogHelper {
     private static final DialogHelper ourInstance = new DialogHelper();
 
-    public static DialogHelper getInstance()
-    {
+    public static DialogHelper getInstance() {
         return ourInstance;
     }
 
-    private DialogHelper()
-    {
+    private DialogHelper() {
     }
 
-    public void reportAbuse(Context context, String title, final CallBackG<String> callBackG)
-    {
+    public void reportAbuse(Context context, String title, final CallBackG<String> callBackG) {
         final CharSequence[] reportMessage = {"Spam", "Fake Account", "Inappropriate content", "Other"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
-        builder.setItems(reportMessage, new DialogInterface.OnClickListener()
-        {
+        builder.setItems(reportMessage, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, final int item)
-            {
+            public void onClick(DialogInterface dialog, final int item) {
                 callBackG.callBack(reportMessage[item].toString());
             }
         });
         builder.show();
     }
 
-    public void showInformation(Context context, String message, final CallBackG<String> callBackG)
-    {
-        showInformation(context, "Memoreeta", message, callBackG);
+    public void showInformation(Context context, String message, final CallBackG<String> callBackG) {
+        showInformation(context, "", message, callBackG);
     }
 
-    public void showInformation(Context context, String title, String message, final CallBackG<String> callBackG)
-    {
+    public void showInformation(Context context, String title, String message, final CallBackG<String> callBackG) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
-        builder.setTitle(title);
+        if (!TextUtils.isEmpty(title))
+            builder.setTitle(title);
         builder.setMessage(message);
         builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
-        {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i)
-            {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 callBackG.callBack("");
             }
         });
         builder.show();
     }
 
-    public void showWithAction(Context context, String message, final CallBackG<String> callBackG)
-    {
+    public void showWithAction(Context context, String message, final CallBackG<String> callBackG) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle);
-        builder.setTitle("Memoreeta");
         builder.setMessage(message);
         builder.setCancelable(false);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
-        {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i)
-            {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 callBackG.callBack("");
             }
         });
@@ -83,8 +71,7 @@ public class DialogHelper
         builder.show();
     }
 
-    public void showDeleteMenu(Context context, final View anchor, String option, final CallBackG<Boolean> callBackG)
-    {
+    public void showDeleteMenu(Context context, final View anchor, String option, final CallBackG<Boolean> callBackG) {
         final PopupMenu popup = new PopupMenu(context, anchor);
         //Inflating the Popup using xml file
         popup.getMenuInflater()
@@ -92,10 +79,8 @@ public class DialogHelper
 
         popup.getMenu().findItem(R.id.delete).setTitle(option);
         //registering popup with OnMenuItemClickListener
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-        {
-            public boolean onMenuItemClick(MenuItem item)
-            {
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.cancel:
                         popup.dismiss();

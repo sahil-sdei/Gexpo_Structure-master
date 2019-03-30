@@ -10,6 +10,7 @@ import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.ProfileResponse;
 import ggn.home.help.web.response.RelationsResponse;
 import ggn.home.help.web.response.SearchUserResponse;
+import ggn.home.help.web.response.UserPrivacyResponse;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -70,6 +71,22 @@ public interface UserAPI {
     Observable<AllFamilyResponse> getFamilyList(@Field(Web.Keys.DETAILS) String details);
 
     @FormUrlEncoded
-    @POST(Web.Path.UNFRIEND)
+    @POST(Web.Path.UN_FRIEND)
     Observable<BasicResponse> unFriend(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.ACCOUNT_TRANSFER)
+    Observable<BasicResponse> accountTransfer(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.DELETE_ACCOUNT)
+    Observable<BasicResponse> deleteChildAccount(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.USER_PRIVACY)
+    Observable<UserPrivacyResponse> getPrivacy(@Field(Web.Keys.DETAILS) String details);
+
+    @FormUrlEncoded
+    @POST(Web.Path.PRIVACY_SETTING)
+    Observable<BasicResponse> setPrivacy(@Field(Web.Keys.DETAILS) String details);
 }

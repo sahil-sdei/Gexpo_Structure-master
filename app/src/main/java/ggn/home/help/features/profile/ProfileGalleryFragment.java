@@ -64,7 +64,7 @@ public class ProfileGalleryFragment extends BaseFragment<FragmentProfileGalleryB
         getDataBinder().recyclerViewGallery.addItemDecoration(new SpacesItemDecoration(1));
         getDataBinder().recyclerViewGallery.setAdapter(mAdapter);
 
-        addMockList();
+//        addMockList();
     }
 
     private void addMockList() {

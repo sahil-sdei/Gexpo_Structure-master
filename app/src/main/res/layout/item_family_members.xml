@@ -31,10 +31,10 @@
                 android:padding="@dimen/margin15dp">
 
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewAllFamily"
-                    android:layout_width="@dimen/margin30dp"
-                    android:layout_height="@dimen/margin30dp"
+                    android:layout_width="@dimen/margin40dp"
+                    android:layout_height="@dimen/margin40dp"
                     android:layout_centerVertical="true"
                     app:urlSquare="@{data.profileImage}" />
 

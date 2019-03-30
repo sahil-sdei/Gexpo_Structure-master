@@ -29,9 +29,10 @@
         android:visibility="gone">
 
         <ggn.home.help.utils.widgets.CustomTextView
+            android:id="@+id/textViewPostMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Uploading your memories."
+            android:text="Uploading your memories"
             android:textColor="@color/black"
             android:textSize="@dimen/text14sp"
             app:fontG="Roboto-Medium.ttf" />

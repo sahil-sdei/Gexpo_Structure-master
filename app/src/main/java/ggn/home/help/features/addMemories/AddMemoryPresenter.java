@@ -1,13 +1,18 @@
 package ggn.home.help.features.addMemories;
 
 
-import android.util.Log;
+import android.content.Intent;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 import ggn.home.help.R;
 import ggn.home.help.features.internal.base.BasePresenter;
+import ggn.home.help.features.services.UploadPostService;
 import ggn.home.help.utils.CallBackG;
+import ggn.home.help.utils.Constants;
 import ggn.home.help.web.apiInterfaces.MemoryAPI;
 import ggn.home.help.web.apiInterfaces.PostsAPI;
 import ggn.home.help.web.request.AddPostRequest;
@@ -44,7 +49,8 @@ public class AddMemoryPresenter extends BasePresenter<AddMemoryView> implements 
     public void addPost(AddPostRequest addPostRequest) {
         Gson gson = new Gson();
 
-        Log.d("Post Data", gson.toJson(addPostRequest));
+        if (!TextUtils.isEmpty(getView().getLocalData().getChildId()))
+            addPostRequest.childId = getView().getLocalData().getChildId();
 
         getView().showLoading(getView().getActivityG().getString(R.string.loading), getView().getActivityG().getString(R.string.please_wait));
         createApiRequest(getRetrofitInstance(PostsAPI.class)
@@ -57,5 +63,13 @@ public class AddMemoryPresenter extends BasePresenter<AddMemoryView> implements 
                     getView().memoryPostedSuccessfully();
             }
         });
+    }
+
+    public void addPost(AddPostRequest addPostRequest, ArrayList<String> listImages) {
+        Intent intent = new Intent(getView().getActivityG(), UploadPostService.class);
+        intent.putExtra(Constants.Extras.DATA, addPostRequest);
+        intent.putExtra(Constants.Extras.GALLERY_DATA, listImages);
+        getView().getActivityG().startService(intent);
+        getView().postAddedSuccessfully();
     }
 }

@@ -18,4 +18,8 @@ public interface ApiInterface {
     @Multipart
     @POST(Web.Path.ADD_MEMORY)
     Call<BasicResponse> addMemory(@Part MultipartBody.Part[] memories, @Part("details") RequestBody details);
+
+    @Multipart
+    @POST(Web.Path.ADD_POST)
+    Call<BasicResponse> addPost(@Part MultipartBody.Part[] memories, @Part("details") RequestBody details);
 }

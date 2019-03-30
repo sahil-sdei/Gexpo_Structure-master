@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data></data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundGrey"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutOnlyMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayoutExport"
+            android:layout_marginTop="@dimen/margin1dp"
+            android:background="@color/white"
+            android:padding="@dimen/margin15dp">
+
+            <ImageView
+                android:id="@+id/imageViewOnlyMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin2dp"
+                android:src="@drawable/ic_only_me" />
+
+            <ggn.home.help.utils.widgets.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin15dp"
+                android:layout_marginRight="@dimen/margin25dp"
+                android:layout_toRightOf="@+id/imageViewOnlyMe"
+                android:text="Profile Visibility"
+                android:textColor="#FF434343"
+                android:textSize="@dimen/text16sp" />
+
+            <Switch
+                android:id="@+id/switchPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

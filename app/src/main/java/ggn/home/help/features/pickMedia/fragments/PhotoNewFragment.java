@@ -1,6 +1,9 @@
 package ggn.home.help.features.pickMedia.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -21,9 +24,11 @@ import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraLogger;
 import com.otaliastudios.cameraview.CameraOptions;
 import com.otaliastudios.cameraview.CameraView;
+import com.otaliastudios.cameraview.Facing;
 import com.otaliastudios.cameraview.SessionType;
 import com.otaliastudios.cameraview.Size;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +48,8 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
     private Size mCaptureNativeSize;
     private long mCaptureTime;
     private boolean isPlaying = false;
+    private CountDownTimer countDownTimer;
+    boolean isDiscard;
 
     public static PhotoNewFragment newInstance() {
         PhotoNewFragment photoFragment = new PhotoNewFragment();
@@ -79,6 +86,12 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onVideoTaken(File video) {
                 super.onVideoTaken(video);
+                if(isDiscard){
+                    isDiscard = false;
+                    mCapturingVideo = false;
+                    isPlaying = false;
+                    return;
+                }
                 onVideo(video);
             }
         });
@@ -108,6 +121,17 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public static byte[] rotateImage(byte[] source) {
+        Bitmap bmp = BitmapFactory.decodeByteArray(source, 0, source.length);
+        Matrix matrix = new Matrix();
+        matrix.preScale(-1, 1);
+        Bitmap m = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        m.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] flippedImageByteArray = stream.toByteArray();
+        return flippedImageByteArray;
+    }
+
     private void onPicture(byte[] jpeg) {
         mCapturingPicture = false;
         long callbackTime = System.currentTimeMillis();
@@ -123,8 +147,12 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
         mCaptureTime = 0;
         mCaptureNativeSize = null;
 
-//        Toast.makeText(getActivity(), "Picture Taken", Toast.LENGTH_SHORT).show();
-        new SavePhotoTask().execute(jpeg);
+        byte[] image;
+        if (camera.getFacing() == Facing.FRONT) {
+            image = rotateImage(jpeg);
+        } else
+            image = jpeg;
+        new SavePhotoTask().execute(image);
     }
 
     class SavePhotoTask extends AsyncTask<byte[], String, String> {
@@ -157,6 +185,9 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onVideo(File video) {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
         mCapturingVideo = false;
         isPlaying = false;
         textViewTimer.setVisibility(View.GONE);
@@ -214,19 +245,21 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
     }
 
     public void setVideoView() {
+        camera.start();
         camera.setSessionType(SessionType.VIDEO);
-        Toast.makeText(getActivity(), "Video Mode", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "Video Mode", Toast.LENGTH_SHORT).show();
     }
 
     public void setPictureView() {
+        camera.start();
         textViewTimer.setVisibility(View.GONE);
         camera.setSessionType(SessionType.PICTURE);
-        Toast.makeText(getActivity(), "Picture Mode", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "Picture Mode", Toast.LENGTH_SHORT).show();
     }
 
     private void startTimer() {
         textViewTimer.setVisibility(View.VISIBLE);
-        new CountDownTimer(50000, 1000) { // adjust the milli seconds here
+        countDownTimer = new CountDownTimer(50000, 1000) { // adjust the milli seconds here
             public void onTick(long millisUntilFinished) {
                 textViewTimer.setText("" + String.format("%2d:%2d",
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
@@ -239,6 +272,18 @@ public class PhotoNewFragment extends Fragment implements View.OnClickListener {
                 textViewTimer.setVisibility(View.GONE);
             }
         }.start();
+    }
+
+    public void resetTimer() {
+        textViewTimer.setText("00:00");
+        textViewTimer.setVisibility(View.GONE);
+        if (isPlaying) {
+            isDiscard = true;
+            camera.stopCapturingVideo();
+        }
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 }
 

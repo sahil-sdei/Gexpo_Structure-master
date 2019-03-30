@@ -135,6 +135,20 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
                 }
             }
         });
+
+        getDataBinder().textViewClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getDataBinder().textViewClear.setVisibility(View.GONE);
+
+                ((ImagesFragment) adapter.getItem(0)).setCategoryIds("", "");
+                ((VideosFragment) adapter.getItem(1)).setCategoryIds("", "");
+
+                getDataBinder().textViewCategory.setText("Select Category");
+                getDataBinder().textViewSubCategory.setText("Select Sub Category");
+            }
+        });
+
         getPresenter().getCategories();
     }
 
@@ -293,6 +307,7 @@ public class FullLifeAlbumActivity extends BaseActivity<ActivityFullLifeAlbumBin
             ((VideosFragment) adapter.getItem(1)).setCategoryIds(categoryObj.id, "");
         }
         menuItemAdd.setVisible(false);
+        getDataBinder().textViewClear.setVisibility(View.VISIBLE);
     }
 
     @Override

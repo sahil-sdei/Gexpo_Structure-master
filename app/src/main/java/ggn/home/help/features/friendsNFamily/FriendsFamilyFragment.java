@@ -1,8 +1,13 @@
 package ggn.home.help.features.friendsNFamily;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.share.model.AppInviteContent;
 import com.facebook.share.widget.AppInviteDialog;
 
@@ -21,6 +26,7 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
 
     private RequestsAdapter requestsAdapter;
     private List<FriendRequestsResponse.Datum> listRequests;
+    private CallbackManager callbackManager;
 
     public static FriendsFamilyFragment newInstance() {
         FriendsFamilyFragment friendsFamilyFragment = new FriendsFamilyFragment();
@@ -37,6 +43,30 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
         setHasOptionsMenu(true);
         injectPresenter(new FriendsFamilyPresenter());
         getPresenter().attachView(this);
+
+
+        callbackManager = CallbackManager.Factory.create();
+
+        AppInviteDialog mInvititeDialog = new AppInviteDialog(this);
+        mInvititeDialog.registerCallback(callbackManager,
+                new FacebookCallback<AppInviteDialog.Result>() {
+
+                    @Override
+                    public void onSuccess(AppInviteDialog.Result result) {
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d("Result", "Cancelled");
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("Result", "Error " + exception.getMessage());
+                    }
+                });
+
     }
 
     @Override
@@ -101,12 +131,19 @@ public class FriendsFamilyFragment extends BaseFragment<FragmentFriendsFamilyBin
     @Override
     public void noRequestsFound() {
         getDataBinder().recyclerViewRequests.setVisibility(View.GONE);
-        getDataBinder().textViewNoRequests.setVisibility(View.VISIBLE);
+        getDataBinder().textViewNoRequests.setVisibility(View.GONE);
+        getDataBinder().textViewRequests.setVisibility(View.GONE);
     }
 
     @Override
     public void requestAcceptedRejectedSuccessFully(FriendRequestsResponse.Datum datum) {
         listRequests.remove(datum);
         requestsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }

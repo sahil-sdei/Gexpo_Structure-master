@@ -23,5 +23,7 @@ public class FullLifeAlbumRequest {
     @SerializedName("memory_type")
     @Expose
     public String memoryType;
-
+    @SerializedName("child_id")
+    @Expose
+    public String childId;
 }

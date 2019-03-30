@@ -14,5 +14,4 @@ public class ChildAccountsRequest {
     @SerializedName("user_id")
     @Expose
     public Integer userId;
-
 }

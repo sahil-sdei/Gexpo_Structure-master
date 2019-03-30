@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.PopupMenu;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -77,9 +78,9 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
             }
         });
 
-        ProfileRequest profileRequest= new ProfileRequest();
+        ProfileRequest profileRequest = new ProfileRequest();
         profileRequest.token = getLocalData().getAuthToken();
-        profileRequest.userId = Integer.parseInt(getLocalData().getUserId());
+        profileRequest.userId = Integer.parseInt(getIntent().getStringExtra(Constants.Extras.USER_ID));
         profileRequest.page = 1;
         profileRequest.tab = 2;
         getPresenter().getProfile(profileRequest);
@@ -143,7 +144,10 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
     @Override
     public void showProfileData(ProfileResponse output) {
         ((ProfileAboutFragment) adapter.getItem(0)).showProfileData(output);
-        ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        if (!TextUtils.isEmpty(output.about.profileImage))
+            ImageLoader.loadImageSmall(getDataBinder().imageViewProfilePic, output.about.profileImage);
+        else
+            getDataBinder().imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
         getLocalData().setProfileImage(output.about.profileImage);
     }
 
@@ -151,7 +155,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.RequestCode.EDIT_PROFILE) {
             if (resultCode == Activity.RESULT_OK) {
-                ProfileRequest profileRequest= new ProfileRequest();
+                ProfileRequest profileRequest = new ProfileRequest();
                 profileRequest.token = getLocalData().getAuthToken();
                 profileRequest.userId = Integer.parseInt(getLocalData().getUserId());
                 profileRequest.page = 1;

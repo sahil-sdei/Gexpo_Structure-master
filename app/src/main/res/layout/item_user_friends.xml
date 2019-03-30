@@ -12,6 +12,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:id="@+id/relativeLayoutParent"
         android:layout_marginBottom="@dimen/margin2dp"
         android:layout_height="wrap_content"
         android:background="@color/white">
@@ -35,7 +36,6 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="45dp"
-                    app:urlSquare="@{data.profileImage}"
                     android:layout_height="45dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>

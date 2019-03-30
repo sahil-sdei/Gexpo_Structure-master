@@ -40,7 +40,6 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageViewProfilePic"
                     android:layout_width="45dp"
-                    app:urlSquare="@{data.profileImage}"
                     android:layout_height="45dp"
                     android:scaleType="centerCrop" />
             </RelativeLayout>

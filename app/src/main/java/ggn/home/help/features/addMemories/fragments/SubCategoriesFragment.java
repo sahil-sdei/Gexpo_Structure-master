@@ -92,7 +92,7 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
             }
         }
 
-        if(subCategory!=null) {
+        if (subCategory != null) {
             listSubCategory.remove(index);
             listSubCategory.add(listSubCategory.size(), subCategory);
         }
@@ -120,15 +120,40 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
             } else {
 //                ((AddMemoryActivity) getActivity()).changeHeadingText(subCategories.title);
 //                ((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance());
-                Intent intent = new Intent(getActivityG(), SelectMediaPostActivity.class);
-                intent.putExtra(Constants.Extras.CATEGORY_ID, categoriesObj.category.id);
-                intent.putExtra(Constants.Extras.SUB_CATEGORY_ID, subCategory.id);
-                intent.putExtra(Constants.Extras.CATEGORY_DATA, categoriesObj);
-                intent.putExtra(Constants.Extras.SUB_CATEGORY_DATA, subCategory);
-                intent.putExtra(Constants.Extras.BASE_URL_IMAGE, baseUrlImage);
-                startActivityForResult(intent, Constants.RequestCode.SELECT_IMAGES_VIDEOS);
+                showPostPickDialog();
             }
         }
+    }
+
+    private void showPostPickDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivityG(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle("Pick media");
+
+        String[] animals = {"Life Album", "Gallery"};
+        builder.setItems(animals, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent;
+                switch (which) {
+                    case 0:
+                        intent = new Intent(getActivityG(), SelectMediaPostActivity.class);
+                        intent.putExtra(Constants.Extras.CATEGORY_ID, categoriesObj.category.id);
+                        intent.putExtra(Constants.Extras.SUB_CATEGORY_ID, subCategory.id);
+                        intent.putExtra(Constants.Extras.CATEGORY_DATA, categoriesObj);
+                        intent.putExtra(Constants.Extras.SUB_CATEGORY_DATA, subCategory);
+                        intent.putExtra(Constants.Extras.BASE_URL_IMAGE, baseUrlImage);
+                        startActivityForResult(intent, Constants.RequestCode.SELECT_IMAGES_VIDEOS);
+                        break;
+                    case 1:
+                        intent = new Intent(getActivityG(), AddMediaActivity.class);
+                        intent.putExtra(Constants.Extras.IS_MEMORY, true);
+                        startActivityForResult(intent, Constants.RequestCode.PICK_MEDIA_POST);
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -218,11 +243,59 @@ public class SubCategoriesFragment extends BaseFragment<FragmentRecyclerViewBind
                     }
                 }
             }
+        } else if (requestCode == Constants.RequestCode.PICK_MEDIA_POST) {
+            if (resultCode == RESULT_OK) {
+                if (data.getBooleanExtra(MatisseFragment.EXTRA_IS_GALLERY, false)) {
+                    List<Uri> uriList = Matisse.obtainResult(data);
+                    List<String> pathList = Matisse.obtainPathResult(data);
+//                    Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
+//                    intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_POST));
+//                    intent.putExtra("images_size", uriList.size());
+//                    intent.putExtra(Constants.Extras.DATA, categoriesObj);
+//                    intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
+//                    intent.putStringArrayListExtra("list_images", (ArrayList<String>) pathList);
+//                    startActivity(intent);
+                    ((AddMemoryActivity) getActivity()).showDescriptionFragmentWithLocalData(pathList, subCategory);
+                } else {
+                    if (data.getIntExtra(Constants.Extras.RESPONSE_CODE_ARG, 0) == PreviewActivity.ACTION_CONFIRM) {
+                        if (data.getIntExtra(MEDIA_ACTION_ARG, 0) == Configuration.MEDIA_ACTION_VIDEO) {
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                            ((AddMemoryActivity) getActivity()).showDescriptionFragmentWithLocalData(list, subCategory);
+
+//                            Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
+//                            intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_POST));
+//                            intent.putExtra("images_size", 1);
+//                            intent.putExtra(Constants.Extras.DATA, categoriesObj);
+//                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
+//                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
+//                            startActivity(intent);
+                        } else {
+                            List<String> list = new ArrayList<>();
+                            list.add(data.getStringExtra(Constants.Extras.FILE_PATH_ARG));
+                            ((AddMemoryActivity) getActivity()).showDescriptionFragmentWithLocalData(list, subCategory);
+
+//                            Intent intent = new Intent(getActivityG(), AddMemoryActivity.class);
+//                            intent.putExtra(Constants.Extras.IS_MEMORY, getArguments().getBoolean(Constants.Extras.IS_POST));
+//                            intent.putExtra("images_size", 1);
+//                            intent.putExtra(Constants.Extras.DATA, categoriesObj);
+//                            intent.putExtra(Constants.Extras.SUB_CATEGORY, subCategory);
+//                            intent.putStringArrayListExtra("list_images", (ArrayList<String>) list);
+//                            startActivity(intent);
+                        }
+                    }
+                }
+            }
         } else if (requestCode == Constants.RequestCode.SELECT_IMAGES_VIDEOS) {
             if (resultCode == RESULT_OK) {
                 ((AddMemoryActivity) getActivity()).changeHeadingText(subCategory.name);
                 //((AddMemoryActivity) getActivity()).showFragmentWithBackStack(AddDescriptionFragment.newInstance((List<Pictures>) data.getSerializableExtra(Constants.Extras.SELECTED_MEDIA)));
             }
         }
+    }
+
+    @Override
+    public void postAddedSuccessfully() {
+
     }
 }

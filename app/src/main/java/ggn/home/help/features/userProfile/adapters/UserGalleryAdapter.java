@@ -51,6 +51,18 @@ public class UserGalleryAdapter extends InfiniteAdapterG<ItemUserGalleryBinding>
             baseViewHolder.binding.imageViewVideoIcon.setVisibility(View.VISIBLE);
         }
 
+        if(position == 0){
+            baseViewHolder.binding.getRoot().setVisibility(View.VISIBLE);
+        }
+
+        if(position > 0){
+            if(gallery.categoryName.equalsIgnoreCase(dataList.get(position - 1).categoryName)){
+                baseViewHolder.binding.getRoot().setVisibility(View.GONE);
+            }else{
+                baseViewHolder.binding.getRoot().setVisibility(View.VISIBLE);
+            }
+        }
+
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
 

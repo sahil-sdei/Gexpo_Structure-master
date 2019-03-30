@@ -45,6 +45,40 @@ public class RelationsAdapter extends ArrayAdapter<RelationsResponse.Datum> {
         String drawable = dataObj.relation.name.toLowerCase();
         ImageLoader.loadImageVerySmall(imageViewProfilePic, drawable);
 
+        if(dataObj.relation.name.equalsIgnoreCase("Aunt")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "aunty");
+        }else if(dataObj.relation.name.equalsIgnoreCase("Brother")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "cousin");
+        }else if(dataObj.relation.name.equalsIgnoreCase("Sister")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "daughter");
+        }else if(dataObj.relation.name.equalsIgnoreCase("brother-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "husband");
+        }else if(dataObj.relation.name.equalsIgnoreCase("sister-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "wife");
+        }else if(dataObj.relation.name.equalsIgnoreCase("father-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "father");
+        }else if(dataObj.relation.name.equalsIgnoreCase("mother-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "mother");
+        }else if(dataObj.relation.name.equalsIgnoreCase("son-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "husband");
+        }else if(dataObj.relation.name.equalsIgnoreCase("daughter-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "mother");
+        }else if(dataObj.relation.name.equalsIgnoreCase("parents-in-law")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "father");
+        }else if(dataObj.relation.name.equalsIgnoreCase("grandfather")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "father");
+        }else if(dataObj.relation.name.equalsIgnoreCase("grandmother")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "mother");
+        }else if(dataObj.relation.name.equalsIgnoreCase("grandson")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "son");
+        }else if(dataObj.relation.name.equalsIgnoreCase("granddaughter")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "daughter");
+        }else if(dataObj.relation.name.equalsIgnoreCase("grandparents")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "father");
+        }else if(dataObj.relation.name.equalsIgnoreCase("grandchildren")){
+            ImageLoader.loadImageVerySmall(imageViewProfilePic, "cousin");
+        }
+
         RadioButton radioButtonSelected = customRow.findViewById(R.id.radioButtonSelected);
 
         textViewTitle.setText(dataObj.relation.name);

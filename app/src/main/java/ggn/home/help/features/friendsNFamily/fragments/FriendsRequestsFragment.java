@@ -80,4 +80,9 @@ public class FriendsRequestsFragment extends BaseFragment<FragmentFriendsFamilyR
     public void openComments(PostsResponse.Datum datum) {
 
     }
+
+    @Override
+    public void noDataFound() {
+
+    }
 }

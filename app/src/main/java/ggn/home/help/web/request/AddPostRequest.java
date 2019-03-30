@@ -1,11 +1,12 @@
 package ggn.home.help.web.request;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AddPostRequest {
+public class AddPostRequest implements Serializable{
 
     @SerializedName("token")
     @Expose
@@ -36,6 +37,8 @@ public class AddPostRequest {
     public List<Integer> tags = null;
     @SerializedName("shared_user_ids")
     @Expose
-    public List<Integer> sharedUserIds = null;
-
+    public List<String> sharedUserIds = null;
+    @SerializedName("child_id")
+    @Expose
+    public String childId;
 }

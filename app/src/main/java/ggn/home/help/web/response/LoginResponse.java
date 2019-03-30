@@ -20,5 +20,8 @@ public class LoginResponse {
     @SerializedName("status")
     @Expose
     public int status;
+    @SerializedName("profile_image")
+    @Expose
+    public String profileImage;
 
 }

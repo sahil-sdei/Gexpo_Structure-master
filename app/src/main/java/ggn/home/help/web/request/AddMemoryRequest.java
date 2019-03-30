@@ -22,5 +22,8 @@ public class AddMemoryRequest implements Serializable{
     @SerializedName("title")
     @Expose
     public String title;
+    @SerializedName("child_id")
+    @Expose
+    public String childId;
 
 }

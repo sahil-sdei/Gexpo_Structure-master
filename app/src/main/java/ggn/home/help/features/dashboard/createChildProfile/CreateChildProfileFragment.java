@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentCreateChildProfileBinding;
+import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
 import ggn.home.help.utils.UtillsG;
 
@@ -76,6 +77,7 @@ public class CreateChildProfileFragment extends BaseFragment<FragmentCreateChild
     @Override
     public void onCreatedSuccessfully() {
         getDataBinder().imageViewProfilePic.setImageResource(0);
+        ((DashboardActivity)getActivity()).setUpAccounts(getLocalData().getChildAccounts().data.childs);
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

@@ -60,6 +60,11 @@
 
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/greyLight"/>
+
             <LinearLayout
                 android:padding="@dimen/margin10dp"
                 android:layout_width="match_parent"
@@ -68,6 +73,7 @@
 
             <android.support.design.widget.TextInputLayout
                 style="@style/TextInputLayout"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -77,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/title"
+                    android:text="@string/title"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:textColor="@color/black" />

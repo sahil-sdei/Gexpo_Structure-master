@@ -5,6 +5,10 @@
         <variable
             name="data"
             type="ggn.home.help.web.response.FullLifeAlbumResponse.Datum"/>
+
+        <variable
+            name="dataLocal"
+            type="String"/>
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

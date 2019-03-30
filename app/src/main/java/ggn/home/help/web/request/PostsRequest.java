@@ -14,5 +14,7 @@ public class PostsRequest {
     @SerializedName("user_id")
     @Expose
     public Integer userId;
-
+    @SerializedName("child_id")
+    @Expose
+    public String childId;
 }

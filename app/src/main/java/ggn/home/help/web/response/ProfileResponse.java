@@ -50,5 +50,8 @@ public class ProfileResponse {
         @SerializedName("is_friend")
         @Expose
         public int isFriend;
+        @SerializedName("privacy")
+        @Expose
+        public int privacy;
     }
 }

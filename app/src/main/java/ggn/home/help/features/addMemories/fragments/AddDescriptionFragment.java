@@ -3,6 +3,7 @@ package ggn.home.help.features.addMemories.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -21,6 +22,7 @@ import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentAddMemoryDescriptionBinding;
 import ggn.home.help.features.addMemories.AddMemoryPresenter;
 import ggn.home.help.features.addMemories.AddMemoryView;
+import ggn.home.help.features.addMemories.adapetrs.ShowLocalMediaAdapter;
 import ggn.home.help.features.addMemories.adapetrs.ShowMediaAdapter;
 import ggn.home.help.features.dashboard.DashboardActivity;
 import ggn.home.help.features.internal.base.BaseFragment;
@@ -30,6 +32,7 @@ import ggn.home.help.features.privacy.PrivacyActivity;
 import ggn.home.help.utils.Constants;
 import ggn.home.help.utils.UtillsG;
 import ggn.home.help.web.request.AddPostRequest;
+import ggn.home.help.web.response.AllFamilyResponse;
 import ggn.home.help.web.response.FullLifeAlbumResponse;
 import ggn.home.help.web.response.SubCategory;
 
@@ -40,13 +43,27 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 
     private DisplayMetrics displayMetrics;
     public final static String MEDIA_ACTION_ARG = "media_action_arg";
-    private List<String> listPictures;
+    private ArrayList<String> listPictures;
     private ShowMediaAdapter showMediaAdapter;
+    private List<FullLifeAlbumResponse.Datum> pictures;
+    private boolean isMemory;
+    private int privacyType;
+    private List<AllFamilyResponse.Datum> listIds;
 
     public static AddDescriptionFragment newInstance(List<FullLifeAlbumResponse.Datum> pictures) {
         AddDescriptionFragment addDescriptionFragment = new AddDescriptionFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.Extras.SELECTED_MEDIA, (Serializable) pictures);
+        bundle.putBoolean(Constants.Extras.IS_MEMORY, true);
+        addDescriptionFragment.setArguments(bundle);
+        return addDescriptionFragment;
+    }
+
+    public static AddDescriptionFragment newInstance(List<String> pictures, boolean isMemory) {
+        AddDescriptionFragment addDescriptionFragment = new AddDescriptionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.Extras.SELECTED_MEDIA, (Serializable) pictures);
+        bundle.putBoolean(Constants.Extras.IS_MEMORY, isMemory);
         addDescriptionFragment.setArguments(bundle);
         return addDescriptionFragment;
     }
@@ -66,8 +83,13 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
 
     @Override
     public void initViews() {
-        final List<FullLifeAlbumResponse.Datum> pictures = (List<FullLifeAlbumResponse.Datum>) getArguments().getSerializable(Constants.Extras.SELECTED_MEDIA);
-
+        if (!getArguments().getBoolean(Constants.Extras.IS_MEMORY)) {
+            isMemory = false;
+            listPictures = getArguments().getStringArrayList(Constants.Extras.SELECTED_MEDIA);
+        } else {
+            isMemory = true;
+            pictures = (List<FullLifeAlbumResponse.Datum>) getArguments().getSerializable(Constants.Extras.SELECTED_MEDIA);
+        }
         getDataBinder().textViewAddMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,26 +101,70 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         getDataBinder().buttonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent resultIntent = getActivity().getIntent();
-//                getActivity().setResult(RESULT_OK, resultIntent);
-//                getActivity().finish();
-                if (TextUtils.isEmpty(getDataBinder().editTextTitle.getText().toString())) {
-                    displayError("Please enter title for your memory.");
-                } /*else if (TextUtils.isEmpty(getDataBinder().editTextDescription.getText().toString())) {
-                    displayError("Please enter description for your memory.");
-                }*/ else {
-                    AddPostRequest addPostRequest = new AddPostRequest();
-                    addPostRequest.userId = Integer.parseInt(getLocalData().getUserId());
-                    addPostRequest.token = getLocalData().getAuthToken();
-                    addPostRequest.title = getDataBinder().editTextTitle.getText().toString();
-                    addPostRequest.description = getDataBinder().editTextDescription.getText().toString();
-                    addPostRequest.privacy = "1";
-                    List<Integer> listGallery = new ArrayList<>();
-                    for (FullLifeAlbumResponse.Datum p : pictures) {
-                        listGallery.add(Integer.parseInt(p.id));
+                if (isMemory)
+                    if (TextUtils.isEmpty(getDataBinder().editTextDescription.getText().toString())) {
+                        displayError("Please enter description for your memory.");
+                    } else if (pictures.size() == 0) {
+                        displayError("Please add atleast one picture or video for posting your memory.");
+                    } else {
+                        AddPostRequest addPostRequest = new AddPostRequest();
+                        addPostRequest.userId = Integer.parseInt(getLocalData().getUserId());
+                        addPostRequest.token = getLocalData().getAuthToken();
+                        addPostRequest.title = getDataBinder().editTextTitle.getText().toString();
+                        addPostRequest.description = getDataBinder().editTextDescription.getText().toString();
+                        addPostRequest.privacy = "1";
+                        List<Integer> listGallery = new ArrayList<>();
+                        for (FullLifeAlbumResponse.Datum p : pictures) {
+                            listGallery.add(Integer.parseInt(p.id));
+                        }
+                        addPostRequest.galleries = listGallery;
+
+                        if (!TextUtils.isEmpty(getLocalData().getChildId())) {
+                            addPostRequest.childId = getLocalData().getChildId();
+                        }
+
+                        if (listIds != null) {
+                            List<String> sharedIds = new ArrayList<>();
+                            for (AllFamilyResponse.Datum datum : listIds) {
+                                if (datum.isSelected) {
+                                    sharedIds.add(datum.id);
+                                }
+                            }
+                            addPostRequest.sharedUserIds = sharedIds;
+                        }
+
+                        getPresenter().addPost(addPostRequest);
                     }
-                    addPostRequest.galleries = listGallery;
-                    getPresenter().addPost(addPostRequest);
+                else {
+                    if (TextUtils.isEmpty(getDataBinder().editTextDescription.getText().toString())) {
+                        displayError("Please enter description for your memory.");
+                    } else if (listPictures.size() == 0) {
+                        displayError("Please add atleast one picture or video for posting your memory.");
+                    } else {
+                        AddPostRequest addPostRequest = new AddPostRequest();
+                        addPostRequest.userId = Integer.parseInt(getLocalData().getUserId());
+                        addPostRequest.token = getLocalData().getAuthToken();
+                        addPostRequest.title = getDataBinder().editTextTitle.getText().toString();
+                        addPostRequest.description = getDataBinder().editTextDescription.getText().toString();
+                        addPostRequest.privacy = "" + privacyType;
+
+                        if (!TextUtils.isEmpty(getLocalData().getChildId())) {
+                            addPostRequest.childId = getLocalData().getChildId();
+                        }
+
+                        if (listIds != null) {
+                            List<String> sharedIds = new ArrayList<>();
+                            for (AllFamilyResponse.Datum datum : listIds) {
+                                if (datum.isSelected) {
+                                    sharedIds.add(datum.id);
+                                }
+                            }
+                            addPostRequest.sharedUserIds = sharedIds;
+                        }
+
+                        if (listPictures != null)
+                            getPresenter().addPost(addPostRequest, listPictures);
+                    }
                 }
             }
         });
@@ -111,14 +177,18 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
             }
         });
 
-        listPictures = new ArrayList<>();
-
         getDataBinder().recyclerViewMedia.setHasFixedSize(true);
         getDataBinder().recyclerViewMedia.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.HORIZONTAL, false));
-        showMediaAdapter = new ShowMediaAdapter(pictures, getActivityG(), null);
-        showMediaAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewMedia.setAdapter(showMediaAdapter);
 
+        if (isMemory) {
+            showMediaAdapter = new ShowMediaAdapter(pictures, getActivityG(), null);
+            showMediaAdapter.setShouldLoadMore(false);
+            getDataBinder().recyclerViewMedia.setAdapter(showMediaAdapter);
+        } else {
+            ShowLocalMediaAdapter showLocalMediaAdapter = new ShowLocalMediaAdapter(listPictures, getActivityG());
+            showLocalMediaAdapter.setShouldLoadMore(false);
+            getDataBinder().recyclerViewMedia.setAdapter(showLocalMediaAdapter);
+        }
     }
 
     @Override
@@ -153,22 +223,24 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
         } else if (requestCode == Constants.RequestCode.PRIVACY) {
             if (resultCode == RESULT_OK) {
                 int privacyType = data.getIntExtra(Constants.Extras.PRIVACY, 0);
+                listIds = (List<AllFamilyResponse.Datum>) data.getSerializableExtra(Constants.Extras.RETURN_DATA);
                 updatePrivacy(privacyType);
             }
         }
     }
 
     private void updatePrivacy(int privacyType) {
-        if (privacyType == 0) {
+        this.privacyType = privacyType;
+        if (privacyType == 1) {
             getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_everyone_in_share_screen, 0, 0, 0);
             getDataBinder().textViewPrivacy.setText("Everyone");
-        } else if (privacyType == 1) {
+        } else if (privacyType == 2) {
             getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_friends_small, 0, 0, 0);
             getDataBinder().textViewPrivacy.setText("Friends");
-        } else if (privacyType == 2) {
+        } else if (privacyType == 3) {
             getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_family_small, 0, 0, 0);
             getDataBinder().textViewPrivacy.setText("Family");
-        } else if (privacyType == 3) {
+        } else if (privacyType == 4) {
             getDataBinder().textViewPrivacy.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_only_me_small, 0, 0, 0);
             getDataBinder().textViewPrivacy.setText("Only Me");
         }
@@ -183,5 +255,17 @@ public class AddDescriptionFragment extends BaseFragment<FragmentAddMemoryDescri
     public void memoryPostedSuccessfully() {
         UtillsG.finishAll(getActivityG());
         DashboardActivity.start(getActivityG());
+    }
+
+    @Override
+    public void postAddedSuccessfully() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                UtillsG.finishAll(getActivityG());
+                DashboardActivity.start(getActivityG());
+            }
+        }, 1000);
     }
 }

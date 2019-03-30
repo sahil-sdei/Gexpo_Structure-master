@@ -9,4 +9,6 @@ public interface AddMemoryView extends Viewable<AddMemoryPresenter> {
     void showDescriptionFragment(SubCategory subCategory);
 
     void memoryPostedSuccessfully();
+
+    void postAddedSuccessfully();
 }

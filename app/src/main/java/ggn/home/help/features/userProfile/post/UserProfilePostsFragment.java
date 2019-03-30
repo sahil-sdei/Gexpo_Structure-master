@@ -1,22 +1,17 @@
 package ggn.home.help.features.userProfile.post;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ggn.home.help.R;
 import ggn.home.help.databinding.FragmentProfilePostsBinding;
 import ggn.home.help.features.dashboard.myMemories.MemoriesAdapter;
-import ggn.home.help.features.dashboard.myMemories.MemoriesPresenter;
-import ggn.home.help.features.dashboard.myMemories.MemoriesView;
-import ggn.home.help.features.dashboard.myMemories.Memory;
 import ggn.home.help.features.internal.base.BaseFragment;
-import ggn.home.help.features.profile.FamilyAdapter;
 import ggn.home.help.features.userProfile.UserProfilePresenter;
 import ggn.home.help.features.userProfile.UserProfileView;
 import ggn.home.help.web.response.BasicResponse;
-import ggn.home.help.web.response.ChildAccountsResponse;
 import ggn.home.help.web.response.PostsResponse;
 import ggn.home.help.web.response.ProfileResponse;
 import ggn.home.help.web.response.RelationsResponse;
@@ -46,18 +41,12 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
 
     @Override
     public void initViews() {
-        list = new ArrayList<>();
-        list.add("a");
-        list.add("a");
-        list.add("a");
-        list.add("a");
-
-        getDataBinder().recyclerViewFriends.setHasFixedSize(true);
-        getDataBinder().recyclerViewFriends.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.HORIZONTAL, false));
-        userFriendsAdapter = new UserFriendsAdapter(list, getActivityG(), null);
-        userFriendsAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewFriends.setAdapter(userFriendsAdapter);
-        getDataBinder().recyclerViewFriends.setNestedScrollingEnabled(false);
+//        getDataBinder().recyclerViewFriends.setHasFixedSize(true);
+//        getDataBinder().recyclerViewFriends.setLayoutManager(new LinearLayoutManager(getActivityG(), LinearLayoutManager.HORIZONTAL, false));
+//        userFriendsAdapter = new UserFriendsAdapter(list, getActivityG(), null);
+//        userFriendsAdapter.setShouldLoadMore(false);
+//        getDataBinder().recyclerViewFriends.setAdapter(userFriendsAdapter);
+//        getDataBinder().recyclerViewFriends.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -85,14 +74,20 @@ public class UserProfilePostsFragment extends BaseFragment<FragmentProfilePostsB
         memoriesAdapter.notifyDataSetChanged();
     }
 
-    public void setPostsData(List<PostsResponse.Datum> postsData){
-        getDataBinder().recyclerViewPosts.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityG());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        getDataBinder().recyclerViewPosts.setLayoutManager(linearLayoutManager);
-        memoriesAdapter = new MemoriesAdapter(postsData, getActivityG(), getPresenter());
-        memoriesAdapter.setShouldLoadMore(false);
-        getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
+    public void setPostsData(List<PostsResponse.Datum> postsData) {
+        if(postsData.size()>0) {
+            getDataBinder().recyclerViewPosts.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityG());
+            linearLayoutManager.setReverseLayout(true);
+            linearLayoutManager.setStackFromEnd(true);
+            getDataBinder().recyclerViewPosts.setLayoutManager(linearLayoutManager);
+            memoriesAdapter = new MemoriesAdapter(postsData, getActivityG(), getPresenter());
+            memoriesAdapter.setShouldLoadMore(false);
+            getDataBinder().recyclerViewPosts.setAdapter(memoriesAdapter);
+            getDataBinder().textViewNoRecords.setVisibility(View.GONE);
+        }else {
+            getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
+            getDataBinder().textViewNoRecords.setText("No posts yet");
+        }
     }
 }

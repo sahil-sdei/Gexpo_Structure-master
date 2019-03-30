@@ -77,7 +77,7 @@ public class FriendsActivity extends BaseActivity<ActivityRecyclerViewBinding, F
     @Override
     public void noDataFound() {
         getDataBinder().textViewNoRecords.setVisibility(View.VISIBLE);
-        listFriends = new ArrayList<>();
+        listFriends.clear();
         if (commentsAdapter != null)
             commentsAdapter.notifyDataSetChanged();
     }

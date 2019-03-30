@@ -12,7 +12,8 @@ public @interface Web {
     }
 
     @interface Path {
-        String BASE_URL = "http://18.216.102.186/memoreeta/webservices/";
+        String BASE_URL = "http://13.59.58.80/memoreeta/webservices/";
+                //"http://18.216.102.186/memoreeta/webservices/";
         String SIGN_IN = "login";
         String SIGN_UP = "signup";
         String FORGOT_PASSWORD = "forgot_password";
@@ -38,7 +39,12 @@ public @interface Web {
         String ACCEPT_REQUEST = "accept_request";
         String FRIENDS_LIST = "friends_list";
         String FAMILY_LIST = "family_list";
-        String UNFRIEND = "unfriend";
+        String UN_FRIEND = "unfriend";
+        String ACCOUNT_TRANSFER = "account_transfer";
+        String DELETE_ACCOUNT = "delete_account";
+        String USER_PRIVACY = "user_privacy";
+        String PRIVACY_SETTING = "privacy_setting";
+        String DELETE_COMMENT = "delete_comment";
 
     }
 }

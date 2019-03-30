@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+<layout>
 
     <data>
 
@@ -22,6 +21,7 @@
 
 
         <RelativeLayout
+            android:layout_toLeftOf="@+id/imageViewMore"
             android:id="@+id/relativeLayoutProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,14 @@
 
             </RelativeLayout>
 
-
         </RelativeLayout>
+
+        <ImageView
+            android:padding="@dimen/margin10dp"
+            android:id="@+id/imageViewMore"
+            android:src="@drawable/ic_more_vert_black"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </layout>

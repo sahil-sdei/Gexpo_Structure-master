@@ -11,4 +11,6 @@ public interface CommentsView extends Viewable<CommentsPresenter> {
     void noDataFound();
 
     void commentAddedSuccessfully();
+
+    void commentDeletedSuccessfully(CommentListResponse.Datum commentObj);
 }

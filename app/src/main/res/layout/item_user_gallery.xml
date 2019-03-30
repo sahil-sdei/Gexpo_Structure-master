@@ -16,18 +16,18 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relativeLayoutParent"
         android:layout_width="130dp"
-        android:layout_marginBottom="@dimen/margin1dp"
-        android:layout_height="130dp">
+        android:layout_height="130dp"
+        android:layout_marginBottom="@dimen/margin1dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_crop_original"/>
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_crop_original" />
 
         </RelativeLayout>
 
@@ -40,8 +40,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:background="@drawable/gradient_black"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_black" />
 
         <ImageView
             android:id="@+id/imageViewVideoIcon"

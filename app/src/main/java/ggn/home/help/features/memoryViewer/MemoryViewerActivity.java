@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -62,7 +63,8 @@ public class MemoryViewerActivity extends BaseActivity<ActivityViewerBinding, Me
 
         if (getIntent().hasExtra(Constants.Extras.GALLERY_DATA)) {
             Gallery galleryObj = (Gallery) getIntent().getSerializableExtra(Constants.Extras.GALLERY_DATA);
-            getDataBinder().textViewCategory.setText(galleryObj.categoryName + " > " + galleryObj.subCategoryName);
+            if (!TextUtils.isEmpty(galleryObj.categoryName))
+                getDataBinder().textViewCategory.setText(galleryObj.categoryName + " > " + galleryObj.subCategoryName);
         }
 
         getDataBinder().videoPreview.setOnTouchListener(new View.OnTouchListener() {

@@ -12,4 +12,7 @@ public interface MemoriesView extends Viewable<MemoriesPresenter> {
     void showUserPosts(PostsResponse output);
 
     void openComments(PostsResponse.Datum datum);
+
+    void noDataFound();
+
 }

@@ -76,6 +76,7 @@
                     android:textColor="@color/textBrown"
                     android:text="@string/remember_me"
                     android:padding="@dimen/margin5dp"
+                    android:checked="true"
                     android:button="@drawable/checkbox"
                     android:textSize="@dimen/text14sp" />
 

@@ -1,6 +1,9 @@
 package ggn.home.help.features.dashboard.myMemories;
 
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import ggn.home.help.features.internal.base.BasePresenter;
@@ -89,7 +92,13 @@ public class MemoriesPresenter extends BasePresenter<MemoriesView> implements Me
         postsRequest.token = getView().getLocalData().getAuthToken();
         postsRequest.page = pageNo;
 
+        if(!TextUtils.isEmpty(getView().getLocalData().getChildId()))
+            postsRequest.childId = getView().getLocalData().getChildId();
+
         Gson gson = new Gson();
+
+        Log.d("Input", gson.toJson(postsRequest));
+
         createApiRequest(getRetrofitInstance(PostsAPI.class)
                 .getUserPosts(gson.toJson(postsRequest)), new CallBackG<PostsResponse>() {
             @Override
@@ -97,7 +106,7 @@ public class MemoriesPresenter extends BasePresenter<MemoriesView> implements Me
                 if (output.status == 1)
                     getView().showUserPosts(output);
                 else
-                    getView().displayError(output.message);
+                    getView().noDataFound();
             }
         });
     }

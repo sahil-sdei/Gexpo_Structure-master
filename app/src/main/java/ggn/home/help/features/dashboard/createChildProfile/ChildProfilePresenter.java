@@ -16,8 +16,10 @@ import ggn.home.help.web.apiInterfaces.MemoryAPI;
 import ggn.home.help.web.apiInterfaces.UserAPI;
 import ggn.home.help.web.request.AddChildRequest;
 import ggn.home.help.web.request.BasicRequest;
+import ggn.home.help.web.request.ChildAccountsRequest;
 import ggn.home.help.web.response.BasicResponse;
 import ggn.home.help.web.response.CategoryResponse;
+import ggn.home.help.web.response.ChildAccountsResponse;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -115,7 +117,6 @@ class ChildProfilePresenter extends BasePresenter<ChildProfileView> implements C
                     .addChildProfile(imageFileBody, details), new CallBackG<BasicResponse>() {
                 @Override
                 public void callBack(BasicResponse output) {
-                    getView().hideLoading();
                     if (output.status == 1) {
                         getView().hideKeyboard(view);
                         getView().displayError(output.message);
@@ -125,9 +126,12 @@ class ChildProfilePresenter extends BasePresenter<ChildProfileView> implements C
                         gender.set("Male");
                         address.set("");
                         lifeLesson.set("");
-                        getView().onCreatedSuccessfully();
-                    } else
+//                        getView().onCreatedSuccessfully();
+                        getChildAccounts();
+                    } else {
                         getView().displayError(output.message);
+                        getView().hideLoading();
+                    }
                 }
             });
         }
@@ -148,5 +152,28 @@ class ChildProfilePresenter extends BasePresenter<ChildProfileView> implements C
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public void getChildAccounts() {
+        ChildAccountsRequest childAccountsRequest = new ChildAccountsRequest();
+        childAccountsRequest.userId = Integer.parseInt(getView().getLocalData().getUserId());
+        childAccountsRequest.token = getView().getLocalData().getAuthToken();
+        childAccountsRequest.page = 1;
+
+        Gson gson = new Gson();
+
+        createApiRequest(getRetrofitInstance(UserAPI.class)
+                .getChildAccounts(gson.toJson(childAccountsRequest)), new CallBackG<ChildAccountsResponse>() {
+            @Override
+            public void callBack(ChildAccountsResponse output) {
+                getView().hideLoading();
+                if (output.status == 1) {
+                    getView().getLocalData().saveChildAccounts(output);
+                    getView().onCreatedSuccessfully();
+                }
+                else
+                    getView().displayError(output.message);
+            }
+        });
     }
 }

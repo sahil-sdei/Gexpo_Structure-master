@@ -32,4 +32,8 @@ public interface PostsAPI {
     @POST(Web.Path.COMMENT)
     Observable<BasicResponse> addComment(@Field(Web.Keys.DETAILS) String details);
 
+    @FormUrlEncoded
+    @POST(Web.Path.DELETE_COMMENT)
+    Observable<BasicResponse> deleteComment(@Field(Web.Keys.DETAILS) String details);
+
 }

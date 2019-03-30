@@ -21,10 +21,10 @@
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 android:fitsSystemWindows="true"
                 app:expandedTitleMarginEnd="20dp"
                 app:expandedTitleMarginStart="20dp"
+                app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <RelativeLayout
@@ -50,9 +50,9 @@
                         android:paddingBottom="@dimen/margin10dp"
                         android:paddingLeft="@dimen/margin15dp"
                         android:paddingRight="@dimen/margin10dp"
-                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text30sp"
+                        android:visibility="gone"
                         app:fontG="Roboto-Bold.ttf" />
 
 
@@ -97,35 +97,54 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/greyLight" />
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="match_parent"
+                <ggn.home.help.utils.widgets.CustomTextView
+                    android:id="@+id/textViewPrivateProfile"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    app:tabGravity="fill"
-                    app:tabIndicatorHeight="0dp"
-                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                    android:textSize="@dimen/text16sp"
-                    app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/buttonBlue"
-                    app:tabTextColor="@color/black" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin35dp"
+                    android:text="This profile is private."
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text14sp"
+                    android:visibility="gone"
+                    app:fontG="Roboto-Medium.ttf" />
 
-                <View
+                <LinearLayout
+                    android:id="@+id/linearLayoutViewProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/greyLight" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/greyLight" />
 
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:textSize="@dimen/text16sp"
+                        app:tabGravity="fill"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/buttonBlue"
+                        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                        app:tabTextColor="@color/black" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/greyLight" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 

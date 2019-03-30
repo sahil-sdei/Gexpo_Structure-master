@@ -2,8 +2,12 @@ package ggn.home.help.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
 
 import ggn.home.help.features.internal.base.ApplicationClass;
+import ggn.home.help.web.response.ChildAccountsResponse;
 import ggn.home.help.web.response.LoginResponse;
 
 public class SharedPrefHelper {
@@ -14,13 +18,15 @@ public class SharedPrefHelper {
         preferences = context.getSharedPreferences("Memoreeta", Context.MODE_PRIVATE);
     }
 
-    public void saveUser(LoginResponse loginResponse){
-        if(loginResponse==null)
+    public void saveUser(LoginResponse loginResponse) {
+        if (loginResponse == null)
             return;
 
         setAuthToken(loginResponse.token);
         setUserId(loginResponse.userId);
         setUserName(loginResponse.name);
+        if (!TextUtils.isEmpty(loginResponse.profileImage))
+            setProfileImage(loginResponse.profileImage);
 
         ApplicationClass.setUserId(loginResponse.userId);
         ApplicationClass.setAuthToken(loginResponse.token);
@@ -79,7 +85,23 @@ public class SharedPrefHelper {
         edit.apply();
     }
 
-    public boolean getRememberMe(){
+    public void setChild(String childId) {
+        edit = preferences.edit();
+        edit.putString("childId", childId);
+        edit.apply();
+    }
+
+    public String getChildId() {
+        return preferences.getString("childId", "");
+    }
+
+    public void clearChild() {
+        edit = preferences.edit();
+        edit.putString("childId", "");
+        edit.apply();
+    }
+
+    public boolean getRememberMe() {
         return preferences.getBoolean("rememberMe", false);
     }
 
@@ -91,5 +113,17 @@ public class SharedPrefHelper {
         edit = preferences.edit();
         edit.clear();
         edit.apply();
+    }
+
+    public void saveChildAccounts(ChildAccountsResponse output) {
+        Gson gson = new Gson();
+        edit = preferences.edit();
+        edit.putString("childAccounts", gson.toJson(output));
+        edit.apply();
+    }
+
+    public ChildAccountsResponse getChildAccounts() {
+        String json = preferences.getString("childAccounts", "");
+        return new Gson().fromJson(json, ChildAccountsResponse.class);
     }
 }

@@ -13,6 +13,7 @@ import ggn.home.help.databinding.ItemNotificationBinding;
 import ggn.home.help.features.internal.base.InfiniteAdapterG;
 import ggn.home.help.features.notifications.Notifications;
 import ggn.home.help.features.userProfile.UserProfileActivity;
+import ggn.home.help.utils.UtillsG;
 import ggn.home.help.utils.bitmapUtils.ImageLoader;
 import ggn.home.help.web.response.CommentListResponse;
 
@@ -42,7 +43,7 @@ public class CommentsAdapter extends InfiniteAdapterG<ItemCommentsBinding> {
     protected void bindData(final int position, BaseViewHolder baseViewHolder) {
         baseViewHolder.binding.setData(dataList.get(position));
 
-        if(!TextUtils.isEmpty(dataList.get(position).user.profileImage))
+        if (!TextUtils.isEmpty(dataList.get(position).user.profileImage))
             ImageLoader.loadUserImageSmall(baseViewHolder.binding.imageViewProfilePic, dataList.get(position).user.profileImage);
         else
             baseViewHolder.binding.imageViewProfilePic.setImageResource(R.drawable.ic_user_placeholder);
@@ -54,8 +55,20 @@ public class CommentsAdapter extends InfiniteAdapterG<ItemCommentsBinding> {
             }
         });
 
-        String htmlText = "<b>"+dataList.get(position).user.name+"</b>"+"  "+dataList.get(position).comment;
+        baseViewHolder.binding.imageViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               commentsAdapterBinder.onMoreItemClicked(view, dataList.get(position));
+            }
+        });
+
+
+        String htmlText = "<b>" + dataList.get(position).user.name + "</b>" + "  " + dataList.get(position).comment;
         baseViewHolder.binding.textViewNotification.setText(Html.fromHtml(htmlText));
+
+        if (!TextUtils.isEmpty(dataList.get(position).date))
+            baseViewHolder.binding.textViewTimeAgo.setText(UtillsG.getTimeAgo(dataList.get(position).date));
+
         baseViewHolder.binding.setBinder(commentsAdapterBinder);
         baseViewHolder.binding.executePendingBindings();
     }

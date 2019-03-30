@@ -68,10 +68,34 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
                 categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.CATEGORY_DATA);
                 binding.setData(categories);
                 binding.executePendingBindings();
+
                 if (!TextUtils.isEmpty(categories.category.years))
                     binding.textViewTitle.setText(categories.category.name + " (" + categories.category.years + " years)");
                 else
                     binding.textViewTitle.setText(categories.category.name);
+
+                SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY_DATA);
+                binding.textViewSubCategories.setText(subCategory.name);
+                ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE) + categories.category.image);
+            }
+            return;
+        }
+
+        if (getIntent().hasExtra(Constants.Extras.IS_POST)) {
+            if (getIntent().getBooleanExtra(Constants.Extras.IS_POST, false)) {
+                showFragment(AddDescriptionFragment.newInstance((List<FullLifeAlbumResponse.Datum>) getIntent().getSerializableExtra(Constants.Extras.DATA)));
+                toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+                categories = (CategoryResponse.Datum) getIntent().getSerializableExtra(Constants.Extras.CATEGORY_DATA);
+                binding.setData(categories);
+                binding.executePendingBindings();
+
+                if (!TextUtils.isEmpty(categories.category.years))
+                    binding.textViewTitle.setText(categories.category.name + " (" + categories.category.years + " years)");
+                else
+                    binding.textViewTitle.setText(categories.category.name);
+
+                SubCategory subCategory = (SubCategory) getIntent().getSerializableExtra(Constants.Extras.SUB_CATEGORY_DATA);
+                binding.textViewSubCategories.setText(subCategory.name);
                 ImageLoader.loadFullWidthImage(binding.imageViewBg, getIntent().getStringExtra(Constants.Extras.BASE_URL_IMAGE) + categories.category.image);
             }
             return;
@@ -145,6 +169,7 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
         Fragment frag = getSupportFragmentManager().findFragmentByTag(tag);
         if (frag instanceof AddDescriptionFragment) {
             getSupportFragmentManager().popBackStack();
+            changeHeadingText("Sub Categories");
             return true;
         } else
             return false;
@@ -161,6 +186,16 @@ public class AddMemoryActivity extends BaseActivity<ActivityAddMemoryBinding, Ad
 
     @Override
     public void memoryPostedSuccessfully() {
+
+    }
+
+    public void showDescriptionFragmentWithLocalData(List<String> list, SubCategory subCategory){
+        changeHeadingText(subCategory.name);
+        showFragmentWithBackStack(AddDescriptionFragment.newInstance(list, false));
+    }
+
+    @Override
+    public void postAddedSuccessfully() {
 
     }
 }
